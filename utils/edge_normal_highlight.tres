@@ -1,0 +1,106 @@
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://co20wix0iigdr"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_q6ahy"]
+input_name = "tangent"
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_xja0m"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 0, 0)]
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_21u5c"]
+default_input_values = [0, 0.75, 1, 0.25, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1d2rq"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_76wnj"]
+constant = 1.0
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_cmyas"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0, 1)]
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_5vdl3"]
+default_input_values = [0, 0.75, 1, 0.25, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_gjeqf"]
+constant = Color(1, 0.533333, 0.121569, 1)
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_0sxjw"]
+parameter_name = "near_side"
+hint = 1
+default_value_enabled = true
+default_value = 0.75
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_0boka"]
+parameter_name = "far_side"
+hint = 1
+default_value_enabled = true
+default_value = 0.25
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_disabled, unshaded, shadows_disabled, ambient_light_disabled;
+
+uniform float near_side : hint_range(0.0, 1.0) = 0.75;
+uniform float far_side : hint_range(0.0, 1.0) = 0.25;
+
+
+
+void fragment() {
+// ColorConstant:7
+	vec4 n_out7p0 = vec4(1.000000, 0.533333, 0.121569, 1.000000);
+
+
+// FloatParameter:8
+	float n_out8p0 = near_side;
+
+
+// FloatParameter:9
+	float n_out9p0 = far_side;
+
+
+// Input:2
+	vec3 n_out2p0 = NORMAL;
+
+
+// DotProduct:4
+	vec3 n_in4p1 = vec3(0.00000, 0.00000, 1.00000);
+	float n_out4p0 = dot(n_out2p0, n_in4p1);
+
+
+// SmoothStep:6
+	float n_out6p0 = smoothstep(n_out8p0, n_out9p0, n_out4p0);
+
+
+// Output:0
+	ALBEDO = vec3(n_out7p0.xyz);
+	ALPHA = n_out6p0;
+
+
+}
+"
+modes/specular = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+nodes/fragment/0/position = Vector2(2100, -140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_1d2rq")
+nodes/fragment/2/position = Vector2(-980, 100)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_76wnj")
+nodes/fragment/3/position = Vector2(960, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeDotProduct_cmyas")
+nodes/fragment/4/position = Vector2(-300, 160)
+nodes/fragment/6/node = SubResource("VisualShaderNodeSmoothStep_5vdl3")
+nodes/fragment/6/position = Vector2(280, 340)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorConstant_gjeqf")
+nodes/fragment/7/position = Vector2(1100, -80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_0sxjw")
+nodes/fragment/8/position = Vector2(-1260, 380)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatParameter_0boka")
+nodes/fragment/9/position = Vector2(-700, 620)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_q6ahy")
+nodes/fragment/10/position = Vector2(-20, -400)
+nodes/fragment/11/node = SubResource("VisualShaderNodeDotProduct_xja0m")
+nodes/fragment/11/position = Vector2(760, -400)
+nodes/fragment/12/node = SubResource("VisualShaderNodeSmoothStep_21u5c")
+nodes/fragment/12/position = Vector2(1260, -480)
+nodes/fragment/connections = PackedInt32Array(4, 0, 6, 2, 8, 0, 6, 0, 9, 0, 6, 1, 10, 0, 11, 0, 11, 0, 12, 2, 2, 0, 4, 0, 7, 0, 0, 0, 6, 0, 0, 1)

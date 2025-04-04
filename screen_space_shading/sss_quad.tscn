@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp6bdq5pahndr"]
+
+[ext_resource type="PackedScene" uid="uid://cumlkudt7n44b" path="res://StarterScene.tscn" id="1_28jvc"]
+[ext_resource type="Shader" uid="uid://br2s6nb6en0st" path="res://screen_space_shading/sss_quad.gdshader" id="2_s55cx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8ji4"]
+render_priority = 0
+shader = ExtResource("2_s55cx")
+shader_parameter/quantize_size = 1.0
+shader_parameter/handle_scale = false
+shader_parameter/handle_subpixels = true
+shader_parameter/dither_enabled = false
+shader_parameter/bayer_pattern = 1.0
+shader_parameter/divisions = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/shift = 0.0
+shader_parameter/grayscale = false
+shader_parameter/use_palette = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_6xyhj"]
+material = SubResource("ShaderMaterial_g8ji4")
+flip_faces = true
+
+[node name="Screen Space Shader" type="Node3D"]
+
+[node name="World" parent="." instance=ExtResource("1_28jvc")]
+
+[node name="quad" type="MeshInstance3D" parent="."]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_6xyhj")

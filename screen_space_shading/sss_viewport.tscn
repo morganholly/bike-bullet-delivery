@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsdcph0ot0101"]
+
+[ext_resource type="Script" uid="uid://dwfbo2tpjieh3" path="res://screen_space_shading/pass_events.gd" id="1_68sve"]
+[ext_resource type="Shader" uid="uid://ywb16dfocp8q" path="res://screen_space_shading/sss_viewport.gdshader" id="2_5mp2e"]
+[ext_resource type="PackedScene" uid="uid://denk6fn1vwa5b" path="res://levels/testing/test01.tscn" id="2_hy0bk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70wu8"]
+shader = ExtResource("2_5mp2e")
+shader_parameter/quantize_size = 1.0
+shader_parameter/handle_scale = false
+shader_parameter/handle_subpixels = true
+shader_parameter/dither_enabled = true
+shader_parameter/bayer_pattern = 1.0
+shader_parameter/divisions = 16.0
+shader_parameter/contrast = 1.0
+shader_parameter/shift = 0.0
+shader_parameter/grayscale = false
+shader_parameter/use_palette = false
+
+[node name="Screen Space Shader" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+stretch_shrink = 2
+script = ExtResource("1_68sve")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(576, 324)
+render_target_update_mode = 4
+
+[node name="World" parent="SubViewport" instance=ExtResource("2_hy0bk")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_70wu8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1

@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6ob8apegn4rq"]
+
+[ext_resource type="Script" uid="uid://c8vc6iqk7wtti" path="res://character/controller.gd" id="1_q8ffh"]
+[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://character/mouse_handler.gd" id="2_5t74s"]
+[ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://character/camera.tscn" id="2_iyh5y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jjtsd"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_ik8fk"]
+inner_radius = 0.25
+outer_radius = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3wbva"]
+top_radius = 0.25
+bottom_radius = 0.3
+height = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_knsne"]
+radius = 1.0
+height = 3.0
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 2
+floor_max_angle = 1.0472
+platform_on_leave = 2
+script = ExtResource("1_q8ffh")
+cr_jump_raise_scale = 0.8
+
+[node name="capsule_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6q0gj")
+
+[node name="MouseHandler" type="Node3D" parent="."]
+script = ExtResource("2_5t74s")
+
+[node name="WorldModel" type="Node3D" parent="."]
+
+[node name="capsule_view_mesh" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_jjtsd")
+
+[node name="hat" type="Node3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="hat_brim" type="MeshInstance3D" parent="WorldModel/hat"]
+layers = 2
+mesh = SubResource("TorusMesh_ik8fk")
+skeleton = NodePath("../..")
+
+[node name="hat_center" type="MeshInstance3D" parent="WorldModel/hat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_3wbva")
+skeleton = NodePath("../..")
+
+[node name="Camera" parent="." instance=ExtResource("2_iyh5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="RaycastBelow" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.75, 0)
+
+[node name="Rotate" type="Node3D" parent="."]
+
+[node name="RaycastStairsAhead" type="RayCast3D" parent="Rotate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="stair_climb_area" type="Area3D" parent="Rotate"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25, 0)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Rotate/stair_climb_area"]
+visible = false
+depth = 2.5
+disabled = true
+polygon = PackedVector2Array(-0.6, -0.15, -1, 0.75, 0, 1, 1, 0.75, 0.6, -0.15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rotate/stair_climb_area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_knsne")

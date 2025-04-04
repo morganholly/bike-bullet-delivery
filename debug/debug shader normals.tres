@@ -1,0 +1,86 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://owl32hticlea"]
+
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_f5vwj"]
+varying_name = "world_normal"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_f5vwj"]
+default_input_values = [1, -1.0, 2, 1.0, 3, 0.0, 4, 1.0, 0, Vector3(0, 0, 0)]
+op_type = 4
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_f5vwj"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_is2rj"]
+varying_name = "world_normal"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_f5vwj"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_is2rj"]
+input_name = "model_matrix"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, world_vertex_coords;
+
+
+// Varyings
+varying vec3 var_world_normal;
+
+
+
+
+void vertex() {
+// Input:2
+	vec3 n_out2p0 = NORMAL;
+
+
+// VaryingSetter:3
+	var_world_normal = n_out2p0;
+
+
+}
+
+void fragment() {
+// VaryingGetter:2
+	vec3 n_out2p0 = var_world_normal;
+
+
+	vec3 n_out3p0;
+// Remap:3
+	float n_in3p1 = -1.00000;
+	float n_in3p2 = 1.00000;
+	float n_in3p3 = 0.00000;
+	float n_in3p4 = 1.00000;
+	{
+		vec3 __input_range = vec3(n_in3p2 - n_in3p1);
+		vec3 __output_range = vec3(n_in3p4 - n_in3p3);
+		n_out3p0 = vec3(n_in3p3) + __output_range * ((n_out2p0 - vec3(n_in3p1)) / __input_range);
+	}
+
+
+// Output:0
+	ALBEDO = n_out3p0;
+
+
+}
+"
+graph_offset = Vector2(-879.986, -6.99792)
+flags/unshaded = true
+flags/world_vertex_coords = true
+varyings/world_normal = "0,4"
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_f5vwj")
+nodes/vertex/2/position = Vector2(-2220, 220)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVaryingSetter_is2rj")
+nodes/vertex/3/position = Vector2(-200, 260)
+nodes/vertex/4/node = SubResource("VisualShaderNodeTransformVecMult_f5vwj")
+nodes/vertex/4/position = Vector2(-1200, 480)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_is2rj")
+nodes/vertex/5/position = Vector2(-2160, 600)
+nodes/vertex/connections = PackedInt32Array(2, 0, 4, 1, 5, 0, 4, 0, 2, 0, 3, 0)
+nodes/fragment/2/node = SubResource("VisualShaderNodeVaryingGetter_f5vwj")
+nodes/fragment/2/position = Vector2(-1480, 320)
+nodes/fragment/3/node = SubResource("VisualShaderNodeRemap_f5vwj")
+nodes/fragment/3/position = Vector2(-680, 460)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 2, 0, 3, 0)

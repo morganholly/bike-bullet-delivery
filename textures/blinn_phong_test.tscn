@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwi4qfahd5kin"]
+
+[ext_resource type="Shader" uid="uid://ct7je0k2fx1lp" path="res://textures/blinnphongtest.gdshader" id="1_btkgq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgqf6"]
+render_priority = 0
+shader = ExtResource("1_btkgq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ugat8"]
+material = SubResource("ShaderMaterial_rgqf6")
+
+[node name="blinn phong test" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ugat8")

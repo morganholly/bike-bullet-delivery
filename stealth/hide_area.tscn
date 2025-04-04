@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccgub7uqoohhi"]
+
+[ext_resource type="Script" uid="uid://bbl86iq7vp7jt" path="res://stealth/hide_area.gd" id="1_ff8qo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l0cyn"]
+
+[node name="HideArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ff8qo")
+
+[node name="MainCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_l0cyn")
+
+[node name="Override1" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="Override2" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

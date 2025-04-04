@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drdpokrtdoi4q"]
+
+[ext_resource type="Script" uid="uid://dskc3ms6luif0" path="res://npcs/npc_pather.gd" id="1_t0d0p"]
+
+[node name="NPCPather" type="Node3D"]
+script = ExtResource("1_t0d0p")

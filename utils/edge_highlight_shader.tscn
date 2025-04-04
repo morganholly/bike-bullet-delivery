@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3gmrn55y55ve"]
+
+[ext_resource type="Shader" uid="uid://co20wix0iigdr" path="res://utils/edge_normal_highlight.tres" id="1_wrfyo"]
+[ext_resource type="Texture2D" uid="uid://50sr30dbnxic" path="res://textures/low res grayscale textures/gray12_128.png" id="1_yq6x8"]
+[ext_resource type="Texture2D" uid="uid://dll0gpnr5d5cr" path="res://textures/low res grayscale textures/gray12_128_normal.png" id="2_b5w5x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gro2h"]
+render_priority = 0
+shader = ExtResource("1_wrfyo")
+shader_parameter/near_side = 0.75
+shader_parameter/far_side = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ngate"]
+albedo_texture = ExtResource("1_yq6x8")
+metallic = 0.34
+roughness = 0.6
+normal_enabled = true
+normal_texture = ExtResource("2_b5w5x")
+
+[sub_resource type="TorusMesh" id="TorusMesh_3qvoo"]
+material = SubResource("StandardMaterial3D_ngate")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_overlay = SubResource("ShaderMaterial_gro2h")
+mesh = SubResource("TorusMesh_3qvoo")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.48719)

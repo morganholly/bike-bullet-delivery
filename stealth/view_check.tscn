@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ekx8px1j8p18"]
+
+[ext_resource type="Script" uid="uid://cj5iwi5jmwlh6" path="res://stealth/view_check.gd" id="1_0gefn"]
+[ext_resource type="Shader" uid="uid://owl32hticlea" path="res://debug/debug shader normals.tres" id="1_66jg7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0gefn"]
+radius = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gefn"]
+render_priority = 0
+shader = ExtResource("1_66jg7")
+
+[sub_resource type="PrismMesh" id="PrismMesh_xbqy2"]
+material = SubResource("ShaderMaterial_0gefn")
+size = Vector3(0.1, 0.15, 0.25)
+
+[node name="ViewCheck" type="Area3D" groups=["ViewCheck"]]
+script = ExtResource("1_0gefn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0gefn")
+debug_color = Color(0.990494, 0, 0.277635, 0.42)
+
+[node name="Debug" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Debug"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, -1, 1.91069e-15, 4.37114e-08, 0, 1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("PrismMesh_xbqy2")
+skeleton = NodePath("../..")
