@@ -10,14 +10,19 @@ config_version=5
 
 [application]
 
-config/name="stealth thing"
+config/name="bike bullet delivery"
 run/main_scene="res://screen_space_shading/sss_viewport.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ninetailsrabbit.terrainy/plugin.cfg", "res://addons/noise_texture_composer/plugin.cfg", "res://addons/proto_shape/plugin.cfg")
+
 [global_group]
 
 ViewCheck=""
+HealthManager=""
 
 [input]
 
