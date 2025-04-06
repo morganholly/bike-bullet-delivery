@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc0ycck3etk38"]
+
+[ext_resource type="Script" uid="uid://vytcbt5yq4bf" path="res://weapons/uniform_health.gd" id="1_qeko4"]
+
+[node name="UniformHealth" type="Node" groups=["HealthManager"]]
+script = ExtResource("1_qeko4")
