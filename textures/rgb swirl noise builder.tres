@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="ComposedTexture2D" load_steps=9 format=3 uid="uid://bacstxp5mern0"]
+
+[ext_resource type="Texture2D" uid="uid://bd7uxi4bx15hs" path="res://textures/rgb swirl noise texture.tres" id="1_ymteu"]
+[ext_resource type="Script" uid="uid://8ym36jl7x04" path="res://addons/noise_texture_composer/composed_texture2D.gd" id="2_67tgx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1h3b7"]
+seed = 3
+frequency = 0.005
+fractal_type = 3
+fractal_octaves = 8
+fractal_lacunarity = 1.1
+fractal_gain = 1.0
+fractal_ping_pong_strength = 4.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_414v4"]
+seamless = true
+noise = SubResource("FastNoiseLite_1h3b7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uupsd"]
+seed = 2
+frequency = 0.005
+fractal_type = 3
+fractal_octaves = 8
+fractal_lacunarity = 1.1
+fractal_gain = 1.0
+fractal_ping_pong_strength = 4.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4icp5"]
+seamless = true
+noise = SubResource("FastNoiseLite_uupsd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u2kjr"]
+seed = 1
+frequency = 0.005
+fractal_type = 3
+fractal_octaves = 8
+fractal_lacunarity = 1.1
+fractal_gain = 1.0
+fractal_ping_pong_strength = 4.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_smouh"]
+seamless = true
+noise = SubResource("FastNoiseLite_u2kjr")
+
+[resource]
+script = ExtResource("2_67tgx")
+image_format = 4
+texture_r = SubResource("NoiseTexture2D_smouh")
+texture_g = SubResource("NoiseTexture2D_4icp5")
+texture_b = SubResource("NoiseTexture2D_414v4")
+output = ExtResource("1_ymteu")
+metadata/_custom_type_script = "uid://8ym36jl7x04"
