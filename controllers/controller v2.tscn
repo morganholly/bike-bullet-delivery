@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cghjxqpj25jao"]
+[gd_scene load_steps=10 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
 [ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/mouse_handler.gd" id="2_3qjgo"]
@@ -21,7 +21,10 @@ height = 0.25
 radius = 1.0
 height = 3.0
 
-[node name="CharControllerV2" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_sa7iv"]
+radius = 0.01
+
+[node name="CharControllerV2" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
 floor_max_angle = 1.0472
 platform_on_leave = 2
@@ -82,3 +85,14 @@ polygon = PackedVector2Array(-0.6, -0.15, -1, 0.75, 0, 1, 1, 0.75, 0.6, -0.15)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rotate/stair_climb_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_knsne")
+
+[node name="can_ride" type="Area3D" parent="." groups=["Rideable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 32
+
+[node name="can_ride_collider" type="CollisionShape3D" parent="can_ride"]
+shape = SubResource("SphereShape3D_sa7iv")
+
+[connection signal="body_entered" from="can_ride" to="." method="_on_can_ride_body_entered"]
+[connection signal="body_exited" from="can_ride" to="." method="_on_can_ride_body_exited"]

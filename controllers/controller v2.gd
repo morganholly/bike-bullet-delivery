@@ -69,6 +69,9 @@ var inertial_velocity := Vector3.ZERO
 var last_rotation: float = 0
 var smoothed_rotation_abs_delta: float = 0
 
+var is_riding: bool = false
+var riding_node: Node3D
+
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
 
@@ -237,18 +240,19 @@ func _handle_crouch(delta: float, is_action_crouching: bool) -> void:
 	collision_shape_3d.position.y = collision_shape_3d.shape.height * 0.5
 
 func _physics_process(delta: float) -> void:
-	if is_player and can_move:
-		_internal_physics_process(delta,
-			Input.is_action_pressed("crouch"),
-			Input.is_action_pressed("sprint"),
-			Input.is_action_pressed("jump"),
-			Input.is_action_just_pressed("jump"),
-			Input.get_vector("left", "right", "up", "down").normalized(),
-			0
-		)
-	else:
-		pass
-		# call same function with different inputs
+	if not is_riding:
+		if is_player and can_move:
+			_internal_physics_process(delta,
+				Input.is_action_pressed("crouch"),
+				Input.is_action_pressed("sprint"),
+				Input.is_action_pressed("jump"),
+				Input.is_action_just_pressed("jump"),
+				Input.get_vector("left", "right", "up", "down").normalized(),
+				0
+			)
+		else:
+			pass
+			# call same function with different inputs
 
 func _internal_physics_process(delta: float,
 								is_action_crouching: bool,
@@ -371,3 +375,53 @@ func _internal_physics_process(delta: float,
 # if their distance indicates a drop off, use the players movement delta to update the new position (if the player moves +z a units towards a dropoff, the +z wall moves relatively -a, and the diagonal +z walls move `sqrt(2*a*a)`)
 # the player will then collide with the walls and no longer fall off
 # this however is very absolute, rather than a more invisible nudge
+
+
+@onready var can_ride: Area3D = $can_ride
+@onready var can_ride_collider: CollisionShape3D = $can_ride/can_ride_collider
+var trying_to_ride: bool = false
+var retry_ride_wait: bool = false
+
+func reset_trying_to_ride():
+	trying_to_ride = false
+
+func reset_retry_ride_wait():
+	retry_ride_wait = false
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("ride") and event.is_pressed() and not trying_to_ride and not retry_ride_wait:
+		if not is_riding:
+			print("get in loser we're going riding")
+			trying_to_ride = true
+			can_ride_collider.shape.radius = 0.01
+			var ride_check_tween = get_tree().create_tween()
+			ride_check_tween.tween_property(can_ride_collider.shape, "radius", 4.0, 1.0)
+			ride_check_tween.tween_callback(reset_trying_to_ride)
+		else:
+			print("this is my stop")
+			riding_node.player_remote_transform.remote_path = ""
+			riding_node.player_remote_transform.force_update_cache()
+			riding_node.is_controlled = false
+			riding_node.player_ref = null
+			is_riding = false
+			riding_node = null
+			retry_ride_wait = true
+			var ride_check_tween = get_tree().create_tween()
+			ride_check_tween.tween_interval(1.0)
+			ride_check_tween.tween_callback(reset_retry_ride_wait)
+
+func _on_can_ride_body_entered(body: Node3D) -> void:
+	if trying_to_ride and not retry_ride_wait:
+		print("here's my whip")
+		is_riding = true
+		trying_to_ride = false
+		riding_node = body
+		can_ride_collider.shape.radius = 0.01
+		#body.player_remote_transform.remote_path = body.get_path_to(self)
+		body.player_remote_transform.remote_path = self.get_path()
+		body.player_remote_transform.force_update_cache()
+		riding_node.is_controlled = true
+		riding_node.player_ref = self
+
+func _on_can_ride_body_exited(body: Node3D) -> void:
+	pass # Replace with function body.
