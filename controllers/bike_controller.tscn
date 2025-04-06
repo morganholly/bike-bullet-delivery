@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://brwtf0m7dnxf1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o2qf1"]
+height = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o2qf1"]
+radius = 0.35
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0iwwr"]
+radius = 0.25
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fgnws"]
+radius = 0.35
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vrrhe"]
+height = 2.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o2qf1"]
+height = 2.5
+
+[node name="BikeController" type="CharacterBody3D"]
+
+[node name="wheel front" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, -1)
+visible = false
+shape = SubResource("CylinderShape3D_o2qf1")
+disabled = true
+
+[node name="wheel back" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 1)
+visible = false
+shape = SubResource("CylinderShape3D_o2qf1")
+disabled = true
+
+[node name="body upper" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 1, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_o2qf1")
+disabled = true
+
+[node name="body lower" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0.965926, -0.258819, 1.13133e-08, 0.258819, 0.965926, -4.2222e-08, 0, 0.75, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_0iwwr")
+disabled = true
+
+[node name="body front" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0, 1, -4.37114e-08, -1, 0, 1.91069e-15, 0, 1, -1)
+visible = false
+shape = SubResource("CapsuleShape3D_fgnws")
+disabled = true
+
+[node name="bike simple" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, -1, -4.37114e-08, 3.82137e-15, 4.37114e-08, -1, 4.37114e-08, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_vrrhe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.3027e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_o2qf1")
