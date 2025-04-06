@@ -1,7 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://denk6fn1vwa5b"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_hx4c0"]
-[ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://character/controller v2.tscn" id="2_bsrcr"]
+[ext_resource type="Material" uid="uid://ciwkuu8mifka2" path="res://textures/voronoi concrete or metal.tres" id="1_mm7rj"]
+[ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="2_bsrcr"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_hx4c0"]
 rayleigh_coefficient = 5.0
@@ -28,27 +29,6 @@ agent_max_climb = 1.0
 agent_max_slope = 40.0
 filter_low_hanging_obstacles = true
 filter_walkable_low_height_spans = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bsrcr"]
-noise_type = 2
-frequency = 0.0436
-fractal_octaves = 10
-fractal_gain = 0.8
-fractal_weighted_strength = 1.0
-cellular_jitter = 7.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bsrcr"]
-seamless = true
-noise = SubResource("FastNoiseLite_bsrcr")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsrcr"]
-albedo_color = Color(0.914322, 0.904031, 0.894359, 1)
-albedo_texture = SubResource("NoiseTexture2D_bsrcr")
-roughness = 0.8
-uv1_scale = Vector3(0.025, 0.025, 0.025)
-uv1_triplanar = true
-uv1_world_triplanar = true
-texture_filter = 2
 
 [sub_resource type="Gradient" id="Gradient_bsrcr"]
 offsets = PackedFloat32Array(0.204846, 0.799559)
@@ -86,6 +66,18 @@ uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bsrcr"]
+noise_type = 2
+frequency = 0.0436
+fractal_octaves = 10
+fractal_gain = 0.8
+fractal_weighted_strength = 1.0
+cellular_jitter = 7.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bsrcr"]
+seamless = true
+noise = SubResource("FastNoiseLite_bsrcr")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edee0"]
 albedo_color = Color(0.914322, 0.904031, 0.894359, 1)
 albedo_texture = SubResource("NoiseTexture2D_bsrcr")
@@ -111,7 +103,7 @@ navigation_mesh = SubResource("NavigationMesh_bsrcr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="NavigationRegion3D/Geometry"]
-material_override = SubResource("StandardMaterial3D_bsrcr")
+material_override = ExtResource("1_mm7rj")
 use_collision = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D/Geometry/CSGCombiner3D2"]
