@@ -12,6 +12,7 @@ extends CharacterBody3D
 
 
 @export var is_player: bool = false
+@export var can_move: bool = true
 
 @export_group("Air")
 @export var air_speed_control: float = 0.075
@@ -236,7 +237,7 @@ func _handle_crouch(delta: float, is_action_crouching: bool) -> void:
 	collision_shape_3d.position.y = collision_shape_3d.shape.height * 0.5
 
 func _physics_process(delta: float) -> void:
-	if is_player:
+	if is_player and can_move:
 		_internal_physics_process(delta,
 			Input.is_action_pressed("crouch"),
 			Input.is_action_pressed("sprint"),
@@ -245,6 +246,9 @@ func _physics_process(delta: float) -> void:
 			Input.get_vector("left", "right", "up", "down").normalized(),
 			0
 		)
+	else:
+		pass
+		# call same function with different inputs
 
 func _internal_physics_process(delta: float,
 								is_action_crouching: bool,

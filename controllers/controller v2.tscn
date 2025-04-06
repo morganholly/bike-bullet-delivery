@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6ob8apegn4rq"]
+[gd_scene load_steps=9 format=3 uid="uid://cghjxqpj25jao"]
 
-[ext_resource type="Script" uid="uid://c8vc6iqk7wtti" path="res://character/controller.gd" id="1_q8ffh"]
-[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://character/mouse_handler.gd" id="2_5t74s"]
-[ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://character/camera.tscn" id="2_iyh5y"]
+[ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
+[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/mouse_handler.gd" id="2_3qjgo"]
+[ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
 
@@ -21,11 +21,11 @@ height = 0.25
 radius = 1.0
 height = 3.0
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharControllerV2" type="CharacterBody3D"]
 collision_layer = 2
 floor_max_angle = 1.0472
 platform_on_leave = 2
-script = ExtResource("1_q8ffh")
+script = ExtResource("1_skear")
 cr_jump_raise_scale = 0.8
 
 [node name="capsule_collider" type="CollisionShape3D" parent="."]
@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6q0gj")
 
 [node name="MouseHandler" type="Node3D" parent="."]
-script = ExtResource("2_5t74s")
+script = ExtResource("2_3qjgo")
 
 [node name="WorldModel" type="Node3D" parent="."]
 
@@ -56,7 +56,7 @@ layers = 2
 mesh = SubResource("CylinderMesh_3wbva")
 skeleton = NodePath("../..")
 
-[node name="Camera" parent="." instance=ExtResource("2_iyh5y")]
+[node name="Camera" parent="." instance=ExtResource("3_rbxf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="RaycastBelow" type="RayCast3D" parent="."]
