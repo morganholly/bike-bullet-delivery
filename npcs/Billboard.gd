@@ -4,6 +4,8 @@ extends Sprite3D
 
 
 func _physics_process(delta: float) -> void:
+	if (!get_viewport().get_camera_3d()):
+		return
 	var cam_pos = get_viewport().get_camera_3d().global_position
 	var targetPos;
 	targetPos = Vector3(cam_pos.x, global_position.y-(global_position.y-cam_pos.y)/3, cam_pos.z)

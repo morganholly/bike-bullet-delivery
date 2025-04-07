@@ -18,7 +18,7 @@ shader_parameter/shift = 0.0
 shader_parameter/grayscale = false
 shader_parameter/use_palette = false
 
-[node name="Screen Space Shader" type="SubViewportContainer"]
+[node name="ScreenSpaceShader" type="SubViewportContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,6 +39,7 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
 offset_left = -120.0
 offset_top = -145.0
 offset_right = 1160.0

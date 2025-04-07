@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://hl8invlcxyuh"]
+[gd_scene load_steps=8 format=3 uid="uid://hl8invlcxyuh"]
 
 [ext_resource type="Script" uid="uid://dcgpdo2u1xsi0" path="res://controllers/camera.gd" id="1_tf3c0"]
+[ext_resource type="Texture2D" uid="uid://ccck8464bus7n" path="res://textures/Mockups/AmmoBox.png" id="2_7p6mk"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_yu7di"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48gdj"]
 render_priority = 127
@@ -61,6 +63,12 @@ current = true
 [node name="CameraFirstPerson" type="Camera3D" parent="Rotate/Flip/FirstPerson"]
 cull_mask = 1048573
 current = true
+
+[node name="Sprite3D2" type="Sprite3D" parent="Rotate/Flip/FirstPerson/CameraFirstPerson"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.461926, -0.263069, -0.827521)
+visible = false
+texture = ExtResource("2_7p6mk")
+script = ExtResource("3_yu7di")
 
 [node name="HoldPosition" type="Node3D" parent="Rotate/Flip/FirstPerson"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)

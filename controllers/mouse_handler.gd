@@ -3,7 +3,7 @@ extends Node3D
 
 @onready var camera: Node3D = $"../Camera"
 @onready var character_body_3d: CharacterBody3D = $".."
-
+@onready var object_sprite: Node3D = $"../Camera/Rotate/Flip/FirstPerson/CameraFirstPerson/Sprite3D2"
 
 enum ActionState {EMPTY, HOLDITEM, GUN, MELEEITEM}
 var current_action_state: ActionState = ActionState.EMPTY
@@ -14,6 +14,8 @@ var last_pos_delta: Vector3 = Vector3.ZERO
 var holding_old_contact_monitor: bool = false
 var holding_contacts_avg: float = 0
 var holding_old_gravity_scale: float = 0
+
+var pick_up_range: float = 6
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -92,9 +94,28 @@ func _physics_process(delta: float) -> void:
 func _input(event) -> void:
 	match current_action_state:
 		ActionState.EMPTY:
+			if event is InputEventKey and event.pressed and event.keycode == KEY_G:
+				if (object_sprite.visible):
+					throw_item();
+			
+			if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+				if camera.nodeRaycast.is_colliding():
+					var obj_over = camera.nodeRaycast.get_collider()
+					if !((global_position - obj_over.global_position).length() < pick_up_range): 
+						return;
+						
+					if (obj_over is RigidBody3D and obj_over.is_in_group("pickable")):
+						pick_up_item(obj_over)
+					#if (obj_over.is_in_group("holdable_could_gun")):
+					
+			
 			if event is InputEventMouseButton and event.pressed:
 				if camera.nodeRaycast.is_colliding():
 					var obj_over = camera.nodeRaycast.get_collider()
+					
+					if !((global_position - obj_over.global_position).length() < pick_up_range): 
+						return;
+						
 					var could_holditem  = obj_over is RigidBody3D #PhysicsBody3D
 					var could_gun       = obj_over.is_in_group("holdable_could_gun")
 					var could_meleeitem = obj_over.is_in_group("holdable_could_melee")
@@ -164,3 +185,26 @@ func _input(event) -> void:
 			pass
 		ActionState.MELEEITEM:
 			pass
+
+
+func pick_up_item(obj_over) -> void:
+	#print("Item picked up")
+	obj_over.queue_free()
+	object_sprite.show()
+	pass
+	
+	
+func throw_item() -> void:
+	print("Thrown object")
+	#obj_over.queue_free()
+	var scene = load("res://npcs/ammo_box.tscn")
+	var object = scene.instantiate()
+	#add_child_below_node(,bullet)
+	print(get_tree().get_root())
+	get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
+	#angle_to(to: Vector3)
+	#camera.nodeRaycast
+	
+	object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
+	object_sprite.hide()
+	pass

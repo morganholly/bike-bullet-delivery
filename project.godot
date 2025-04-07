@@ -25,6 +25,7 @@ ViewCheck=""
 HealthManager=""
 Player=""
 Rideable=""
+pickable=""
 
 [input]
 
