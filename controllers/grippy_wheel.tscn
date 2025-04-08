@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpepgfm0oj6up"]
+
+[ext_resource type="Script" uid="uid://cyalw72668oa" path="res://controllers/grippy_wheel.gd" id="1_xi7jk"]
+
+[node name="GrippyWheel" type="RigidBody3D"]
+script = ExtResource("1_xi7jk")
+
+[node name="CollisionPolygon3D1" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -1, 0, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D4" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 0, 0, 1, 0, -1, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D5" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.707107, 0.707107, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D6" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(-0.707107, -0.707107, 0, 0.707107, -0.707107, 0, 0, 0, 1, -0.707107, 0.707107, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D7" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(-0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0, 1, -0.707107, -0.707107, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
+
+[node name="CollisionPolygon3D8" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.707107, -0.707107, 0)
+polygon = PackedVector2Array(-1.5, 0, 0, 0, -0.019, 0.195, -0.076, 0.383, -0.169, 0.556, -0.293, 0.707, -1, 0.5)
