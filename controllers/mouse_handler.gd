@@ -3,7 +3,7 @@ extends Node3D
 
 @onready var camera: Node3D = $"../Camera"
 @onready var character_body_3d: CharacterBody3D = $".."
-@onready var object_sprite: Node3D = $"../Camera/Rotate/Flip/FirstPerson/CameraFirstPerson/Sprite3D2"
+@onready var object_sprite: Node3D = $"../Camera/Rotate/Flip/FirstPerson/CameraFirstPerson/CarriedObject"
 
 
 enum ActionState {EMPTY, HOLDITEM, GUN, MELEEITEM}
@@ -17,6 +17,7 @@ var holding_contacts_avg: float = 0
 var holding_old_gravity_scale: float = 0
 
 var pick_up_range: float = 6
+var slot_inventory
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -42,6 +43,7 @@ var pick_up_range: float = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
 	#hold_filt_coefs = make_biquad_lpf_coefs(0.5, 1)
 	pass
 
@@ -93,36 +95,38 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_G:
+			if (object_sprite.visible):
+				current_action_state = ActionState.EMPTY
+				drop_item();
+			
+	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+		if camera.nodeRaycast.is_colliding():
+			var obj_over = camera.nodeRaycast.get_collider()
+			if !((global_position - obj_over.global_position).length() < pick_up_range): 
+				return;
+						
+			if (obj_over is RigidBody3D and obj_over.is_in_group("pickable")):
+				obj_over.remove_from_group("pickable")
+				pick_up_item(obj_over)
+						
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			scroll_inventory_down() #it's intended to be the other way around
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			scroll_inventory_up()
+			
+		var holds_gun = slot_inventory.get_current_slotInfo()["type"] == "gun"
+		if (holds_gun):
+			current_action_state = ActionState.GUN
+	
+	
+	
+	
 	match current_action_state:
 		ActionState.EMPTY:
-			
-			# call the zoom function
-		# zoom out
-			
-			
-			if event is InputEventKey and event.pressed:
-				if event.keycode == KEY_G:
-					if (object_sprite.visible):
-						drop_item();
-			
-			if event is InputEventKey and event.pressed and event.keycode == KEY_E:
-				if camera.nodeRaycast.is_colliding():
-					var obj_over = camera.nodeRaycast.get_collider()
-					if !((global_position - obj_over.global_position).length() < pick_up_range): 
-						return;
-						
-					if (obj_over is RigidBody3D and obj_over.is_in_group("pickable")):
-						obj_over.remove_from_group("pickable")
-						pick_up_item(obj_over)
-					#if (obj_over.is_in_group("holdable_could_gun")):
-					
-			
 			if event is InputEventMouseButton and event.pressed:
-				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-					scroll_inventory_down() #it's intended to be the other way around
-				
-				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-					scroll_inventory_up()
 				
 				if event.button_index == MOUSE_BUTTON_LEFT and camera.nodeRaycast.is_colliding():
 					var obj_over = camera.nodeRaycast.get_collider()
@@ -130,29 +134,34 @@ func _input(event) -> void:
 					if !((global_position - obj_over.global_position).length() < pick_up_range): 
 						return;
 						
-					var could_holditem  = obj_over is RigidBody3D #PhysicsBody3D
-					var could_gun       = obj_over.is_in_group("holdable_could_gun")
+					var could_holditem  = obj_over is RigidBody3D 
+					var holds_gun       = slot_inventory.get_current_slotInfo()["type"] == "gun"
 					var could_meleeitem = obj_over.is_in_group("holdable_could_melee")
+					
+					
 					#var prefer_holditem  = obj_over.is_in_group("holdable_prefer_object")
 					#var prefer_gun       = obj_over.is_in_group("holdable_prefer_gun")
 					#var prefer_meleeitem = obj_over.is_in_group("holdable_prefer_melee")
 					var should_switch_dialog_be_shown = false
-					if could_holditem or could_gun or could_meleeitem:
+					if could_holditem or holds_gun or could_meleeitem:
 						# i aint retyping all that
 						#match [could_holditem, could_gun, could_meleeitem, prefer_holditem, prefer_gun, prefer_meleeitem]:
-						match [could_holditem, could_gun, could_meleeitem]:
+						match [could_holditem, holds_gun, could_meleeitem]:
 							[true, false, false]: # only hold
 								#print("only hold")
 								current_action_state = ActionState.HOLDITEM
+								holding_old_gravity_scale = obj_over.gravity_scale
+								obj_over.gravity_scale = 0
+								holding = obj_over
 							[_, true, false]: # only gun, maybe hold
 								#print("only gun, maybe hold")
 								current_action_state = ActionState.GUN
-							[_, false, true]: # only melee, maybe hold
+							#[_, false, true]: # only melee, maybe hold
 								#print("only melee, maybe hold")
-								current_action_state = ActionState.MELEEITEM
-							[_, true, true]: # gun and melee, maybe hold
+								#current_action_state = ActionState.MELEEITEM
+							#[_, true, true]: # gun and melee, maybe hold
 								#print("gun and melee, maybe hold")
-								current_action_state = ActionState.GUN
+								#current_action_state = ActionState.GUN
 								# if obj_over.gun_component.ammo_counter > 0:
 								# 	# use as gun
 								# else:
@@ -176,15 +185,14 @@ func _input(event) -> void:
 							#[true, true, true, _, _, _]: # anything, equip as gun if it has ammo, otherwise melee, but show dialog box to switch
 								#should_switch_dialog_be_shown = true
 								#print("could multiple")
-						holding_old_gravity_scale = obj_over.gravity_scale
-						obj_over.gravity_scale = 0
+						
 						#hold_filt_dx[0] = obj_over.global_position
 						#hold_filt_dx[1] = obj_over.global_position
 						#hold_filt_dy[0] = obj_over.global_position
 						#hold_filt_dy[1] = obj_over.global_position
 						#holding_old_contact_monitor = obj_over.contact_monitor
 						#obj_over.contact_monitor = true
-						holding = obj_over
+						
 		ActionState.HOLDITEM:
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
@@ -196,6 +204,16 @@ func _input(event) -> void:
 					holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
 					holding = null
 		ActionState.GUN:
+			if event is InputEventMouseButton and event.pressed:
+				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
+					match slot_inventory.get_current_slotInfo()["type"]:
+						"gun":
+							print("Shoot")
+							var scene = load("res://npcs/ammo_box.tscn")
+							var object = scene.instantiate()
+							get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
+							object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
+							object.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(object.mass)
 			pass
 		ActionState.MELEEITEM:
 			pass
@@ -204,13 +222,10 @@ func _input(event) -> void:
 func pick_up_item(obj_over) -> void:
 	#print("Item picked up")
 	
-	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
-	if (slot_inventory.pick_up_item({ 
-		"type": "ammo",
-		"amount": 120,
-	})):
+	
+	if (slot_inventory.pick_up_item(obj_over.slotInfo)):
 		obj_over.queue_free()
-		object_sprite.show()
+		object_sprite.refresh(slot_inventory.get_current_slotInfo())
 		obj_over.add_to_group("pickable")
 	
 	pass
@@ -219,41 +234,44 @@ func pick_up_item(obj_over) -> void:
 func drop_item() -> void:
 	#print("Thrown object")
 	#obj_over.queue_free()
-	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	
 	if (!slot_inventory.get_current_slotInfo()["type"] == "empty"):
+		
+		var scene; 
+		match slot_inventory.get_current_slotInfo()["type"]:
+			"ammo":
+				scene = load("res://npcs/ammo_box.tscn")
+			"gun":
+				scene = load("res://npcs/gun_pickable.tscn")
+		
 		slot_inventory.get_current_slotInfo()["type"] = "empty";
 		slot_inventory.get_current_slotInfo()["amount"] = 0;
 		slot_inventory.refresh()
-		var scene = load("res://npcs/ammo_box.tscn")
+		
 		var object = scene.instantiate()
 		get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
 		object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
-		object_sprite.hide()
+		object_sprite.refresh(slot_inventory.get_current_slotInfo())
 
 	pass
 
 func scroll_inventory_up():
-	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	
 	slot_inventory.curSlotIndex += 1;
 	if slot_inventory.curSlotIndex >= slot_inventory.UISlots.size():
 		slot_inventory.curSlotIndex = 0
 	slot_inventory.refresh()
-	if (slot_inventory.get_current_slotInfo()["type"] == "empty"):
-		object_sprite.hide()
-	else:
-		object_sprite.show()
+	object_sprite.refresh(slot_inventory.get_current_slotInfo())
+	
 	pass
 	
 	
 
 func scroll_inventory_down():
-	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	
 	slot_inventory.curSlotIndex -= 1;
 	if slot_inventory.curSlotIndex < 0:
 		slot_inventory.curSlotIndex = slot_inventory.UISlots.size()-1
 	slot_inventory.refresh()
-	if (slot_inventory.get_current_slotInfo()["type"] == "empty"):
-		object_sprite.hide()
-	else:
-		object_sprite.show()
+	object_sprite.refresh(slot_inventory.get_current_slotInfo())
 	pass
