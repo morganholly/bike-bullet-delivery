@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://g2nfy7f8iukx"]
+
+[ext_resource type="Texture2D" uid="uid://ccck8464bus7n" path="res://textures/Mockups/AmmoBox.png" id="1_1m8ot"]
+[ext_resource type="Script" uid="uid://br2xuh6q873u5" path="res://ui/inventory_slot.gd" id="1_5uilj"]
+
+[node name="ColorRect3" type="ColorRect"]
+offset_left = 85.0
+offset_top = 488.0
+offset_right = 235.0
+offset_bottom = 638.0
+color = Color(0, 0, 0, 0.458824)
+script = ExtResource("1_5uilj")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 32.0
+offset_right = 1412.0
+offset_bottom = 868.0
+scale = Vector2(0.1, 0.1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_1m8ot")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 42.0
+offset_bottom = 23.0
+text = "120"

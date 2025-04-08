@@ -5,6 +5,7 @@ extends Node3D
 @onready var character_body_3d: CharacterBody3D = $".."
 @onready var object_sprite: Node3D = $"../Camera/Rotate/Flip/FirstPerson/CameraFirstPerson/Sprite3D2"
 
+
 enum ActionState {EMPTY, HOLDITEM, GUN, MELEEITEM}
 var current_action_state: ActionState = ActionState.EMPTY
 var holding: Object
@@ -94,9 +95,15 @@ func _physics_process(delta: float) -> void:
 func _input(event) -> void:
 	match current_action_state:
 		ActionState.EMPTY:
-			if event is InputEventKey and event.pressed and event.keycode == KEY_G:
-				if (object_sprite.visible):
-					throw_item();
+			
+			# call the zoom function
+		# zoom out
+			
+			
+			if event is InputEventKey and event.pressed:
+				if event.keycode == KEY_G:
+					if (object_sprite.visible):
+						drop_item();
 			
 			if event is InputEventKey and event.pressed and event.keycode == KEY_E:
 				if camera.nodeRaycast.is_colliding():
@@ -105,12 +112,19 @@ func _input(event) -> void:
 						return;
 						
 					if (obj_over is RigidBody3D and obj_over.is_in_group("pickable")):
+						obj_over.remove_from_group("pickable")
 						pick_up_item(obj_over)
 					#if (obj_over.is_in_group("holdable_could_gun")):
 					
 			
 			if event is InputEventMouseButton and event.pressed:
-				if camera.nodeRaycast.is_colliding():
+				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+					scroll_inventory_down() #it's intended to be the other way around
+				
+				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+					scroll_inventory_up()
+				
+				if event.button_index == MOUSE_BUTTON_LEFT and camera.nodeRaycast.is_colliding():
 					var obj_over = camera.nodeRaycast.get_collider()
 					
 					if !((global_position - obj_over.global_position).length() < pick_up_range): 
@@ -189,22 +203,57 @@ func _input(event) -> void:
 
 func pick_up_item(obj_over) -> void:
 	#print("Item picked up")
-	obj_over.queue_free()
-	object_sprite.show()
+	
+	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	if (slot_inventory.pick_up_item({ 
+		"type": "ammo",
+		"amount": 120,
+	})):
+		obj_over.queue_free()
+		object_sprite.show()
+		obj_over.add_to_group("pickable")
+	
+	pass
+
+
+func drop_item() -> void:
+	#print("Thrown object")
+	#obj_over.queue_free()
+	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	if (!slot_inventory.get_current_slotInfo()["type"] == "empty"):
+		slot_inventory.get_current_slotInfo()["type"] = "empty";
+		slot_inventory.get_current_slotInfo()["amount"] = 0;
+		slot_inventory.refresh()
+		var scene = load("res://npcs/ammo_box.tscn")
+		var object = scene.instantiate()
+		get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
+		object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
+		object_sprite.hide()
+
+	pass
+
+func scroll_inventory_up():
+	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	slot_inventory.curSlotIndex += 1;
+	if slot_inventory.curSlotIndex >= slot_inventory.UISlots.size():
+		slot_inventory.curSlotIndex = 0
+	slot_inventory.refresh()
+	if (slot_inventory.get_current_slotInfo()["type"] == "empty"):
+		object_sprite.hide()
+	else:
+		object_sprite.show()
 	pass
 	
 	
-func throw_item() -> void:
-	print("Thrown object")
-	#obj_over.queue_free()
-	var scene = load("res://npcs/ammo_box.tscn")
-	var object = scene.instantiate()
-	#add_child_below_node(,bullet)
-	print(get_tree().get_root())
-	get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
-	#angle_to(to: Vector3)
-	#camera.nodeRaycast
-	
-	object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
-	object_sprite.hide()
+
+func scroll_inventory_down():
+	var slot_inventory = get_tree().get_root().get_node("ScreenSpaceShader/CanvasLayer/Control");
+	slot_inventory.curSlotIndex -= 1;
+	if slot_inventory.curSlotIndex < 0:
+		slot_inventory.curSlotIndex = slot_inventory.UISlots.size()-1
+	slot_inventory.refresh()
+	if (slot_inventory.get_current_slotInfo()["type"] == "empty"):
+		object_sprite.hide()
+	else:
+		object_sprite.show()
 	pass
