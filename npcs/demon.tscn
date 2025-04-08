@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2vj1tgxdcsin"]
+[gd_scene load_steps=6 format=3 uid="uid://b2vj1tgxdcsin"]
 
 [ext_resource type="Texture2D" uid="uid://5f2xlm1wi380" path="res://textures/Mockups/Demon.png" id="1_4rmfa"]
-[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="2_vwpks"]
+[ext_resource type="Script" uid="uid://dg0l11rjq4773" path="res://npcs/demon.gd" id="1_vwpks"]
+[ext_resource type="Script" path="res://npcs/Billboard.gd" id="2_vwpks"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 height = 2.31707
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
+radius = 15.0
+
+[node name="Enemy" type="RigidBody3D"]
 lock_rotation = true
+script = ExtResource("1_vwpks")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17194, 0)
@@ -17,3 +22,8 @@ shape = SubResource("CapsuleShape3D_v0wm2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13089, 0)
 texture = ExtResource("1_4rmfa")
 script = ExtResource("2_vwpks")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4rmfa")

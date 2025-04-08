@@ -15,6 +15,10 @@ run/main_scene="res://screen_space_shading/sss_viewport.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 
+[autoload]
+
+EntitySpawner="*res://levels/level_singletons/entity_spawner/entity_spawner.tscn"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ninetailsrabbit.terrainy/plugin.cfg", "res://addons/noise_texture_composer/plugin.cfg")

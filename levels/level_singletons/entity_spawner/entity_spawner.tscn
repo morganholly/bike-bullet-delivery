@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://klstx2a8mdyo"]
+
+[ext_resource type="Script" uid="uid://mbj2siio2yuy" path="res://levels/level_singletons/entity_spawner/entity_spawner.gd" id="1_i7i6e"]
+
+[node name="EntitySpawner" type="Node"]
+script = ExtResource("1_i7i6e")

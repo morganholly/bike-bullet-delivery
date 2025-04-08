@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7ne5xgsgbipk" path="res://levels/testing/test_02.tscn" id="2_ex0h6"]
 [ext_resource type="Texture2D" uid="uid://b2lsy6wjj4wsh" path="res://textures/Mockups/Sprite-0003.png" id="3_5bhby"]
 [ext_resource type="PackedScene" uid="uid://g2nfy7f8iukx" path="res://ui/InventorySlot.tscn" id="5_3gm0h"]
-[ext_resource type="Script" uid="uid://cmckn4dqfof78" path="res://screen_space_shading/slot_inventory.gd" id="5_eum3a"]
+[ext_resource type="Script" path="res://screen_space_shading/slot_inventory.gd" id="5_eum3a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70wu8"]
 shader = ExtResource("2_5mp2e")
