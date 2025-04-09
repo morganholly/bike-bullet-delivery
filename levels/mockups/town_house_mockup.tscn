@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dn2g70cuevj7b"]
+
+[node name="TownHouseMockup" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.451019, 7.10556, -1.37111)
+use_collision = true
+size = Vector3(8.07367, 15.2111, 16.6329)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.404274, 14.3459, -0.969154)
+use_collision = true
+size = Vector3(9.82787, 0.978729, 17.5838)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0235598, -0.999722, 0, 0.999722, -0.0235598, -0.548722, 6.59636, 7.18861)
+use_collision = true
+size = Vector3(9.25769, 0.978729, 14.4222)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0235598, -0.999722, 0, 0.999722, -0.0235598, -2.28123, 1.06189, 7.80389)
+use_collision = true
+size = Vector3(1.87045, 0.978729, 3.44753)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78693, 2.63622, 7.94231)
+use_collision = true
+size = Vector3(2.35913, 3.71149, 0.603027)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55163, 9.47454, 7.53165)
+use_collision = true
+size = Vector3(2.35913, 3.71149, 0.603027)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82229, 9.47454, 7.53165)
+use_collision = true
+size = Vector3(2.35913, 3.71149, 0.603027)
