@@ -18,7 +18,7 @@ extends RigidBody3D
 @export var width: float = 1:
 	set(value):
 		width = value
-		if is_ready:
+		if is_ready and value != null and value != NAN:
 			collision_polygon_3d_1.depth = value
 			collision_polygon_3d_2.depth = value
 			collision_polygon_3d_3.depth = value
@@ -32,7 +32,7 @@ extends RigidBody3D
 @export var rotate: float = 0:
 	set(value):
 		rotate = value
-		if is_ready:
+		if is_ready and value != null and value != NAN:
 			collision_polygon_3d_1.rotation.z = value
 			collision_polygon_3d_2.rotation.z = value + 0.5 * PI
 			collision_polygon_3d_3.rotation.z = value + PI
@@ -45,7 +45,7 @@ extends RigidBody3D
 @export var radius: float = 1:
 	set(value):
 		radius = value
-		if is_ready:
+		if is_ready and value != null and value != NAN:
 			collision_polygon_3d_1.scale = Vector3(value, value, value)
 			collision_polygon_3d_2.scale = Vector3(value, value, value)
 			collision_polygon_3d_3.scale = Vector3(value, value, value)

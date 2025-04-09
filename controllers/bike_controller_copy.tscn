@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://biywwpmrrlmkt"]
+
+[ext_resource type="Script" uid="uid://cx8l44cabpkfd" path="res://controllers/bike_controller_copy.gd" id="1_cs571"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o2qf1"]
+height = 0.25
+radius = 0.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o2qf1"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0iwwr"]
+radius = 0.25
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fgnws"]
+radius = 0.35
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vrrhe"]
+height = 2.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o2qf1"]
+height = 2.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0iwwr"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.25
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 32
+collision_mask = 37
+script = ExtResource("1_cs571")
+
+[node name="col wheel front" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.75, -2)
+shape = SubResource("CylinderShape3D_o2qf1")
+
+[node name="col wheel back" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CylinderShape3D_o2qf1")
+
+[node name="col body upper" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.55271e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 1, -1)
+shape = SubResource("CapsuleShape3D_o2qf1")
+
+[node name="col body lower" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.77636e-15, 4.37114e-08, 1, 0.965926, -0.258819, 1.13133e-08, 0.258819, 0.965926, -4.2222e-08, 0, 0.75, -1)
+visible = false
+shape = SubResource("CapsuleShape3D_0iwwr")
+
+[node name="col body front" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 0, 1, -4.37114e-08, -1, 0, 1.91069e-15, 0, 1, -2)
+visible = false
+shape = SubResource("CapsuleShape3D_fgnws")
+
+[node name="col bike simple" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.77636e-15, 4.37114e-08, 1, -1, -4.37114e-08, 3.55271e-15, 4.37114e-08, -1, 4.37114e-08, 0, 0.5, -1)
+visible = false
+shape = SubResource("CapsuleShape3D_vrrhe")
+disabled = true
+
+[node name="mesh body" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.77636e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 1, -1)
+mesh = SubResource("CapsuleMesh_o2qf1")
+skeleton = NodePath("")
+
+[node name="mesh wheel front" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, 0, 0.75, -2)
+mesh = SubResource("CylinderMesh_0iwwr")
+skeleton = NodePath("")
+
+[node name="marker front" type="Marker3D" parent="mesh wheel front"]
+transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, -0.75, -2.23517e-08, -0.5)
+
+[node name="marker back" type="Marker3D" parent="mesh wheel front"]
+transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, -0.75, -2.23517e-08, 0.5)
+
+[node name="mesh wheel back" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("CylinderMesh_0iwwr")
+skeleton = NodePath("")
+
+[node name="player_remote_transform" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+update_scale = false
+
+[node name="marker front wheel ground" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="marker back wheel ground" type="Marker3D" parent="."]
+
+[node name="marker up" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
