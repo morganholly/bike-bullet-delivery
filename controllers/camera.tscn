@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcgpdo2u1xsi0" path="res://controllers/camera.gd" id="1_tf3c0"]
 [ext_resource type="Texture2D" uid="uid://dw85hjnxoncyy" path="res://textures/Mockups/Sprite-0001.png" id="2_7p6mk"]
-[ext_resource type="Script" path="res://controllers/carried_object.gd" id="3_7p6mk"]
+[ext_resource type="Script" uid="uid://51cwacan28c3" path="res://controllers/carried_object.gd" id="3_7p6mk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48gdj"]
 render_priority = 127
