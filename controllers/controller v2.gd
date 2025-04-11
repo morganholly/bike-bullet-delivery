@@ -415,11 +415,11 @@ func _on_can_ride_body_entered(body: Node3D) -> void:
 		print("here's my whip")
 		is_riding = true
 		trying_to_ride = false
-		riding_node = body
+		riding_node = body.get_parent()
 		can_ride_collider.shape.radius = 0.01
 		#body.player_remote_transform.remote_path = body.get_path_to(self)
-		body.player_remote_transform.remote_path = self.get_path()
-		body.player_remote_transform.force_update_cache()
+		riding_node.player_remote_transform.remote_path = self.get_path()
+		riding_node.player_remote_transform.force_update_cache()
 		riding_node.is_controlled = true
 		riding_node.player_ref = self
 

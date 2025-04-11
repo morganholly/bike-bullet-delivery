@@ -1,15 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://brwtf0m7dnxf1"]
+[gd_scene load_steps=13 format=3 uid="uid://brwtf0m7dnxf1"]
 
 [ext_resource type="Script" uid="uid://bd80s6di6dipm" path="res://controllers/bike_controller.gd" id="1_0iwwr"]
-[ext_resource type="PackedScene" uid="uid://dpepgfm0oj6up" path="res://controllers/grippy_wheel.tscn" id="2_fgnws"]
+[ext_resource type="Script" uid="uid://byjx2c3rydiuc" path="res://controllers/local_rotation_lock.gd" id="2_fgnws"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o2qf1"]
 height = 2.5
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fgnws"]
-friction = 0.8
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fgnws"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0iwwr"]
+radius = 0.25
+height = 5.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0iwwr"]
 rough = true
-bounce = 0.4
+bounce = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fgnws"]
+height = 0.25
+radius = 0.75
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0iwwr"]
 top_radius = 0.75
@@ -23,6 +33,13 @@ uppercase = true
 curve_step = 4.0
 depth = 0.5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0iwwr"]
+radius = 0.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0iwwr"]
+radius = 0.25
+height = 1.0
+
 [sub_resource type="TextMesh" id="TextMesh_vrrhe"]
 text = "front"
 font_size = 50
@@ -35,8 +52,8 @@ script = ExtResource("1_0iwwr")
 [node name="frame" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1)
 collision_layer = 32
-collision_mask = 37
-mass = 8.0
+collision_mask = 5
+mass = 2.0
 
 [node name="mesh body" type="MeshInstance3D" parent="frame"]
 transform = Transform3D(-1.77636e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -47,11 +64,24 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 update_scale = false
 
-[node name="back wheel" parent="." instance=ExtResource("2_fgnws")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="frame"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_fgnws")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="frame"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, -1, 0)
+shape = SubResource("CapsuleShape3D_0iwwr")
+
+[node name="back wheel" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, 0)
-physics_material_override = SubResource("PhysicsMaterial_fgnws")
-width = 0.25
-radius = 0.75
+collision_layer = 32
+collision_mask = 5
+mass = 8.0
+physics_material_override = SubResource("PhysicsMaterial_0iwwr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="back wheel"]
+transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_fgnws")
 
 [node name="mesh wheel" type="MeshInstance3D" parent="back wheel"]
 transform = Transform3D(-1.3027e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -66,12 +96,35 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.2
 
 [node name="mesh label" type="MeshInstance3D" parent="back wheel"]
 mesh = SubResource("TextMesh_fgnws")
+skeleton = NodePath("")
 
-[node name="front wheel" parent="." instance=ExtResource("2_fgnws")]
+[node name="back hinge" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+collision_layer = 0
+collision_mask = 0
+mass = 0.5
+script = ExtResource("2_fgnws")
+lock_x = true
+lock_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="back hinge"]
+shape = SubResource("SphereShape3D_0iwwr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="back hinge"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_0iwwr")
+skeleton = NodePath("../../front hinge")
+
+[node name="front wheel" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, -2)
-physics_material_override = SubResource("PhysicsMaterial_fgnws")
-width = 0.25
-radius = 0.75
+collision_layer = 32
+collision_mask = 5
+mass = 8.0
+physics_material_override = SubResource("PhysicsMaterial_0iwwr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="front wheel"]
+transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_fgnws")
 
 [node name="mesh wheel" type="MeshInstance3D" parent="front wheel"]
 transform = Transform3D(-1.3027e-15, 4.37114e-08, -1, 1, 2.98023e-08, 0, 2.98023e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -89,23 +142,58 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.
 
 [node name="mesh label" type="MeshInstance3D" parent="front wheel"]
 mesh = SubResource("TextMesh_vrrhe")
+skeleton = NodePath("")
 
-[node name="back spring" type="SliderJoint3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, -9.1951e-16, 0.965926, 4.2222e-08, -0.258819, -0.258819, -1.13133e-08, -0.965926, 0, 1.25, -0.1)
+[node name="front hinge" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -2)
+collision_layer = 0
+collision_mask = 0
+mass = 0.5
+script = ExtResource("2_fgnws")
+lock_x = true
+lock_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="front hinge"]
+shape = SubResource("SphereShape3D_0iwwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="front hinge"]
+transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_0iwwr")
+
+[node name="back spring" type="JoltSliderJoint3D" parent="."]
+limit_enabled = true
+limit_upper = 0.6
+limit_lower = 0.5
+limit_spring_enabled = true
+limit_spring_frequency = 50.0
+limit_spring_damping = 0.7
 node_a = NodePath("../frame")
+node_b = NodePath("../back hinge")
+transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, 0.258819, 0.258819, 1.13133e-08, 0.965926, 0, 1.25, -0.1)
+
+[node name="front spring" type="JoltSliderJoint3D" parent="."]
+limit_enabled = true
+limit_upper = 0.6
+limit_lower = 0.5
+limit_spring_enabled = true
+limit_spring_frequency = 50.0
+limit_spring_damping = 0.7
+node_a = NodePath("../frame")
+node_b = NodePath("../front hinge")
+transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, -0.258819, -0.258819, -1.13133e-08, 0.965926, 0, 1.25, -1.9)
+
+[node name="back spin" type="JoltHingeJoint3D" parent="."]
+motor_enabled = true
+motor_max_torque = 2.0
+node_a = NodePath("../back hinge")
 node_b = NodePath("../back wheel")
-linear_limit/upper_distance = 0.6
-linear_limit/lower_distance = 0.2
-linear_ortho/softness = 0.1
-linear_ortho/restitution = 0.2
-linear_ortho/damping = 2.0
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, 0)
 
-[node name="front spring" type="SliderJoint3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 9.1951e-16, 0.965926, 4.2222e-08, 0.258819, 0.258819, 1.13133e-08, -0.965926, 0, 1.25, -1.9)
-node_a = NodePath("../frame")
+[node name="front spin" type="JoltHingeJoint3D" parent="."]
+motor_enabled = true
+motor_max_torque = 20.0
+node_a = NodePath("../front hinge")
 node_b = NodePath("../front wheel")
-linear_limit/upper_distance = 0.6
-linear_limit/lower_distance = 0.2
-linear_ortho/softness = 0.1
-linear_ortho/restitution = 0.2
-linear_ortho/damping = 2.0
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, -2)
+
+[node name="JoltGeneric6DOFJoint3D" type="JoltGeneric6DOFJoint3D" parent="."]
