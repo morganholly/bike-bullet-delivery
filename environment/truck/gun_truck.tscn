@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://4a0uetuukcje"]
+
+[ext_resource type="Script" uid="uid://bi0orf8wb2bm5" path="res://environment/truck/gun_truck.gd" id="1_qs7ku"]
+[ext_resource type="Texture2D" uid="uid://hsmwx42ubvxp" path="res://textures/Mockups/Untitled-export.png" id="2_rc0ci"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_fnaer"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_06fj6"]
+size = Vector3(4.15723, 3.01367, 2)
+
+[node name="Truck" type="RigidBody3D" groups=["Interactable"]]
+script = ExtResource("1_qs7ku")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0786133, -0.00683594, 0)
+shape = SubResource("BoxShape3D_06fj6")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_rc0ci")
+script = ExtResource("3_fnaer")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

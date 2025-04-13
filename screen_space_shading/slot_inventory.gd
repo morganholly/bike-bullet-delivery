@@ -40,8 +40,8 @@ func refresh():
 func pick_up_item(pickedSlotInfo) -> bool:
 	print(slotsInfo[curSlotIndex])
 	if (slotsInfo[curSlotIndex]["type"] == "empty"):
-		slotsInfo[curSlotIndex]["type"] = pickedSlotInfo["type"]
-		slotsInfo[curSlotIndex]["amount"] = pickedSlotInfo["amount"]
+		#slotsInfo[curSlotIndex]["type"] = pickedSlotInfo["type"]
+		slotsInfo[curSlotIndex] = pickedSlotInfo
 		refresh()
 		return true
 		#pass
@@ -59,6 +59,13 @@ func pick_up_item(pickedSlotInfo) -> bool:
 
 
 
-
 func get_current_slotInfo():
 	return slotsInfo[curSlotIndex]
+	
+func get_by_type_slotInfo(type):
+	for i in range(slotsInfo.size()):
+		if (type == slotsInfo[i]["type"]):
+			return slotsInfo[i]
+	
+	return;
+		#UISlots[i].refresh_slot(slotsInfo[i], (i == curSlotIndex))

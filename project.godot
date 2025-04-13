@@ -30,6 +30,7 @@ HealthManager=""
 Player=""
 Rideable=""
 pickable=""
+Interactable=""
 
 [input]
 

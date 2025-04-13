@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3g0v2uv5gamw"]
+
+[ext_resource type="Script" uid="uid://jcyw00rhma7u" path="res://npcs/civilian.gd" id="1_jghv5"]
+[ext_resource type="Texture2D" uid="uid://d4nga1wwvunxs" path="res://textures/Mockups/Front.png" id="2_jghv5"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_7ung2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
+height = 2.51798
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
+radius = 15.0
+
+[node name="Civilian" type="RigidBody3D"]
+can_sleep = false
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_jghv5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32478, 0)
+shape = SubResource("CapsuleShape3D_v0wm2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.520315, 0, 0, 0, 0.487084, 0, 0, 0, 1, 0.0954814, 1.38756, 0)
+texture = ExtResource("2_jghv5")
+script = ExtResource("3_7ung2")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4rmfa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

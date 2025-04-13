@@ -82,6 +82,9 @@ func _holdable_hold_update(obj: RigidBody3D) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	go_to = camera.hold_position.global_position
+	if holding == null:
+		pass
+		
 	match current_action_state:
 		ActionState.EMPTY:
 			pass
@@ -110,7 +113,14 @@ func _input(event) -> void:
 			if (obj_over is RigidBody3D and obj_over.is_in_group("pickable")):
 				obj_over.remove_from_group("pickable")
 				pick_up_item(obj_over)
-						
+				
+	#reload()
+	if event is InputEventKey and event.pressed and event.keycode == KEY_R:
+		if (slot_inventory.get_current_slotInfo()["type"] == "gun"):
+			reload()
+		
+
+	
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			scroll_inventory_down() #it's intended to be the other way around
@@ -121,8 +131,11 @@ func _input(event) -> void:
 		if (holds_gun):
 			current_action_state = ActionState.GUN
 	
-	
-	
+	if event is InputEventKey and event.pressed and event.keycode == KEY_F:
+		if camera.nodeRaycast.is_colliding():
+			var obj_over = camera.nodeRaycast.get_collider()
+			if obj_over.is_in_group("Interactable"):
+				obj_over.order()
 	
 	match current_action_state:
 		ActionState.EMPTY:
@@ -156,6 +169,8 @@ func _input(event) -> void:
 							[_, true, false]: # only gun, maybe hold
 								#print("only gun, maybe hold")
 								current_action_state = ActionState.GUN
+							[_, false, false]:
+								current_action_state = ActionState.EMPTY
 							#[_, false, true]: # only melee, maybe hold
 								#print("only melee, maybe hold")
 								#current_action_state = ActionState.MELEEITEM
@@ -208,27 +223,59 @@ func _input(event) -> void:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 					match slot_inventory.get_current_slotInfo()["type"]:
 						"gun":
-							print("Shoot")
-							var scene = load("res://npcs/ammo_box.tscn")
-							var object = scene.instantiate()
-							get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
-							object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
-							object.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(object.mass)
+							shoot_gun()
 			pass
 		ActionState.MELEEITEM:
 			pass
 
+func shoot_gun():
+	if (slot_inventory.get_current_slotInfo()["ammo"] > 0):
+		slot_inventory.get_current_slotInfo()["ammo"] -= 1;
+		print("Shoot")
+		var scene = load("res://npcs/bullet.tscn")
+		var object = scene.instantiate()
+		get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
+		object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
+		object.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(object.mass)
+		slot_inventory.refresh()
+
+func reload() -> void:
+	#print("Item picked up")
+	if (slot_inventory.get_by_type_slotInfo("ammo") && slot_inventory.get_current_slotInfo()["ammo"] < 11):
+		var slot = slot_inventory.get_by_type_slotInfo("ammo")
+		slot["amount"] -= 1
+		if slot["amount"] <= 0:
+			slot["type"] = "empty"
+			
+		slot_inventory.get_current_slotInfo()["ammo"] = 11;
+		object_sprite.refresh(slot_inventory.get_current_slotInfo())
+		slot_inventory.refresh()
+		#obj_over.queue_free()
+		#obj_over.add_to_group("pickable")
+	
+	
+	pass
+
+
+func update_state():
+	#var holds_gun = slot_inventory.get_current_slotInfo()["type"] == "gun"
+	match slot_inventory.get_current_slotInfo()["type"]:
+		"gun":
+			current_action_state = ActionState.GUN
+		_:
+			current_action_state = ActionState.EMPTY
+	
 
 func pick_up_item(obj_over) -> void:
 	#print("Item picked up")
-	
-	
 	if (slot_inventory.pick_up_item(obj_over.slotInfo)):
 		obj_over.queue_free()
 		object_sprite.refresh(slot_inventory.get_current_slotInfo())
 		obj_over.add_to_group("pickable")
-	
 	pass
+	
+
+
 
 
 func drop_item() -> void:
@@ -244,34 +291,39 @@ func drop_item() -> void:
 			"gun":
 				scene = load("res://npcs/gun_pickable.tscn")
 		
-		slot_inventory.get_current_slotInfo()["type"] = "empty";
-		slot_inventory.get_current_slotInfo()["amount"] = 0;
+		var object = scene.instantiate()
+		
+		object.set_slot_info(slot_inventory.get_current_slotInfo())
+		#slot_inventory.get_current_slotInfo()["type"] = "empty";
+		slot_inventory.slotsInfo[slot_inventory.curSlotIndex] = { 
+			"type": "empty",
+			"amount": 0 
+		};
 		slot_inventory.refresh()
 		
-		var object = scene.instantiate()
+		#$CanvasLayer
 		get_tree().get_root().get_node("ScreenSpaceShader/SubViewport/test02").add_child(object)
 		object.global_position = Vector3(global_position) + global_position.direction_to(camera.hold_position.global_position) * 1.5
 		object_sprite.refresh(slot_inventory.get_current_slotInfo())
-
+		
 	pass
 
 func scroll_inventory_up():
-	
 	slot_inventory.curSlotIndex += 1;
 	if slot_inventory.curSlotIndex >= slot_inventory.UISlots.size():
 		slot_inventory.curSlotIndex = 0
 	slot_inventory.refresh()
 	object_sprite.refresh(slot_inventory.get_current_slotInfo())
-	
+	update_state()
 	pass
 	
 	
 
 func scroll_inventory_down():
-	
 	slot_inventory.curSlotIndex -= 1;
 	if slot_inventory.curSlotIndex < 0:
 		slot_inventory.curSlotIndex = slot_inventory.UISlots.size()-1
 	slot_inventory.refresh()
 	object_sprite.refresh(slot_inventory.get_current_slotInfo())
+	update_state()
 	pass

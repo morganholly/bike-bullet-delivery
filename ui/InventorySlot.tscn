@@ -28,3 +28,10 @@ offset_left = 2.0
 offset_right = 42.0
 offset_bottom = 23.0
 text = "120"
+
+[node name="Ammo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_right = 160.0
+offset_bottom = 23.0
+text = "120"

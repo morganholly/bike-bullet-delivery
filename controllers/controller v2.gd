@@ -103,7 +103,10 @@ func _run_body_test_motion(from: Transform3D, motion: Vector3, result = null) ->
 	return PhysicsServer3D.body_test_motion(self.get_rid(), params, result)
 
 func get_velo_at_pos(rid: RID, at: Vector3) -> Vector3:
-	return PhysicsServer3D.body_get_direct_state(rid).get_velocity_at_local_position(at)
+	if (at != null && PhysicsServer3D.body_get_direct_state(rid) != null):
+		return PhysicsServer3D.body_get_direct_state(rid).get_velocity_at_local_position(at)
+	else:
+		return Vector3.ZERO
 
 func get_collision_velo() -> Vector3:
 	# get_contact_collider_velocity_at_position

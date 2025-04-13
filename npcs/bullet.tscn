@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://brjt2gw4u0g8e"]
+
+[ext_resource type="Texture2D" uid="uid://kg3jvmkv10k5" path="res://textures/Mockups/Bullet.png" id="1_rn60w"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_w7lxn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c7t1n"]
+height = 0.137635
+radius = 0.0703125
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["projectile"]]
+mass = 0.1
+can_sleep = false
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000925895, 0.00199394, -0.000664858)
+shape = SubResource("CylinderShape3D_c7t1n")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.623267, 0, 0, 0, 0.621093, 0, 0, 0, 0.1, 0, 0.00313583, 0)
+texture = ExtResource("1_rn60w")
+script = ExtResource("3_w7lxn")

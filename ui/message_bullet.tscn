@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcidqoyoag54s"]
+
+[ext_resource type="Script" uid="uid://b4vtx13i3kxxr" path="res://ui/message_bullet.gd" id="1_p1aip"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eum3a"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect"]
+custom_minimum_size = Vector2(200, 80)
+script = ExtResource("1_p1aip")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 177.0
+offset_bottom = 77.0
+text = "Hey, I need 4 pistol mags of ammo ASAP. "
+label_settings = SubResource("LabelSettings_eum3a")
+autowrap_mode = 3
+clip_text = true
