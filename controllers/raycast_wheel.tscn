@@ -1,0 +1,180 @@
+[gd_scene load_steps=10 format=3 uid="uid://jkx452hmhinf"]
+
+[ext_resource type="Script" uid="uid://crho8inuubji2" path="res://controllers/raycast_wheel.gd" id="1_sknyj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1p6o"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_caq7l"]
+material = SubResource("StandardMaterial3D_y1p6o")
+top_radius = 0.05
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caq7l"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ibk0q"]
+material = SubResource("StandardMaterial3D_caq7l")
+top_radius = 0.05
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sknyj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sknyj"]
+material = SubResource("StandardMaterial3D_sknyj")
+top_radius = 0.05
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibk0q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8wg8h"]
+material = SubResource("StandardMaterial3D_ibk0q")
+radius = 0.25
+height = 0.5
+
+[node name="RaycastWheel" type="Node3D"]
+script = ExtResource("1_sknyj")
+
+[node name="rotate_random" type="Node3D" parent="."]
+
+[node name="raycast1" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast2" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast3" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast4" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast5" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast6" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast7" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast8" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast9" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast10" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast11" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast12" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="raycast13" type="RayCast3D" parent="rotate_random"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+
+[node name="marker" type="Marker3D" parent="rotate_random/raycast13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="marker_pz" type="Marker3D" parent="rotate_random/raycast13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="marker_px" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="marker_pz" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="marker_py" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="force_display_x" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("CylinderMesh_caq7l")
+
+[node name="force_display_z" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_ibk0q")
+
+[node name="force_display_y" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_sknyj")
+
+[node name="force_display_point" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8wg8h")

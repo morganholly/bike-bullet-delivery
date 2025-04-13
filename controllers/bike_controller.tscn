@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://brwtf0m7dnxf1"]
+[gd_scene load_steps=10 format=3 uid="uid://brwtf0m7dnxf1"]
 
 [ext_resource type="Script" uid="uid://bd80s6di6dipm" path="res://controllers/bike_controller.gd" id="1_0iwwr"]
-[ext_resource type="Script" uid="uid://byjx2c3rydiuc" path="res://controllers/local_rotation_lock.gd" id="2_fgnws"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o2qf1"]
 height = 2.5
@@ -32,13 +31,6 @@ font_size = 50
 uppercase = true
 curve_step = 4.0
 depth = 0.5
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_0iwwr"]
-radius = 0.25
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_0iwwr"]
-radius = 0.25
-height = 1.0
 
 [sub_resource type="TextMesh" id="TextMesh_vrrhe"]
 text = "front"
@@ -72,6 +64,88 @@ shape = SubResource("CapsuleShape3D_fgnws")
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, -1, 0)
 shape = SubResource("CapsuleShape3D_0iwwr")
 
+[node name="back joint r" type="JoltGeneric6DOFJoint3D" parent="frame"]
+linear_limit_x/lower = -0.25
+linear_limit_y/upper = 0.1
+linear_limit_y/lower = -0.3
+linear_limit_spring_y/enabled = true
+linear_limit_spring_y/frequency = 50.0
+linear_limit_spring_y/damping = 0.8
+linear_spring_z/enabled = true
+linear_spring_z/frequency = 30.0
+linear_spring_z/damping = 0.4
+linear_spring_z/equilibrium_point = 0.1
+angular_limit_x/enabled = false
+angular_motor_x/enabled = true
+angular_motor_x/max_torque = 30.0
+node_a = NodePath("..")
+node_b = NodePath("../../back wheel")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.5, 1)
+
+[node name="front joint r" type="JoltGeneric6DOFJoint3D" parent="frame"]
+linear_limit_x/lower = -0.25
+linear_limit_y/upper = 0.1
+linear_limit_y/lower = -0.3
+linear_limit_spring_y/enabled = true
+linear_limit_spring_y/frequency = 50.0
+linear_limit_spring_y/damping = 0.8
+linear_spring_z/enabled = true
+linear_spring_z/frequency = 30.0
+linear_spring_z/damping = 0.4
+linear_spring_z/equilibrium_point = 0.1
+angular_limit_x/enabled = false
+angular_limit_y/upper = 3.14159
+angular_limit_y/lower = -3.14159
+angular_motor_x/enabled = true
+angular_motor_x/max_torque = 30.0
+angular_spring_y/frequency = 5.0
+angular_spring_y/damping = 0.9
+angular_spring_y/equilibrium_point = 1.5708
+node_a = NodePath("..")
+node_b = NodePath("../../front wheel")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.5, -1)
+
+[node name="back joint l" type="JoltGeneric6DOFJoint3D" parent="frame"]
+linear_limit_x/upper = 0.25
+linear_limit_y/upper = 0.1
+linear_limit_y/lower = -0.3
+linear_limit_spring_y/enabled = true
+linear_limit_spring_y/frequency = 50.0
+linear_limit_spring_y/damping = 0.8
+linear_spring_z/enabled = true
+linear_spring_z/frequency = 30.0
+linear_spring_z/damping = 0.4
+linear_spring_z/equilibrium_point = 0.1
+angular_limit_x/enabled = false
+angular_motor_x/enabled = true
+angular_motor_x/max_torque = 30.0
+node_a = NodePath("..")
+node_b = NodePath("../../back wheel")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.5, 1)
+
+[node name="front joint l" type="JoltGeneric6DOFJoint3D" parent="frame"]
+linear_limit_x/upper = 0.25
+linear_limit_y/upper = 0.1
+linear_limit_y/lower = -0.3
+linear_limit_spring_y/enabled = true
+linear_limit_spring_y/frequency = 50.0
+linear_limit_spring_y/damping = 0.8
+linear_spring_z/enabled = true
+linear_spring_z/frequency = 30.0
+linear_spring_z/damping = 0.4
+linear_spring_z/equilibrium_point = 0.1
+angular_limit_x/enabled = false
+angular_limit_y/upper = 3.14159
+angular_limit_y/lower = -3.14159
+angular_motor_x/enabled = true
+angular_motor_x/max_torque = 30.0
+angular_spring_y/frequency = 5.0
+angular_spring_y/damping = 0.9
+angular_spring_y/equilibrium_point = 1.5708
+node_a = NodePath("..")
+node_b = NodePath("../../front wheel")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.5, -1)
+
 [node name="back wheel" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, 0)
 collision_layer = 32
@@ -97,23 +171,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.2
 [node name="mesh label" type="MeshInstance3D" parent="back wheel"]
 mesh = SubResource("TextMesh_fgnws")
 skeleton = NodePath("")
-
-[node name="back hinge" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-collision_layer = 0
-collision_mask = 0
-mass = 0.5
-script = ExtResource("2_fgnws")
-lock_x = true
-lock_z = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="back hinge"]
-shape = SubResource("SphereShape3D_0iwwr")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="back hinge"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_0iwwr")
-skeleton = NodePath("../../front hinge")
 
 [node name="front wheel" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, -2)
@@ -143,57 +200,3 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.
 [node name="mesh label" type="MeshInstance3D" parent="front wheel"]
 mesh = SubResource("TextMesh_vrrhe")
 skeleton = NodePath("")
-
-[node name="front hinge" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -2)
-collision_layer = 0
-collision_mask = 0
-mass = 0.5
-script = ExtResource("2_fgnws")
-lock_x = true
-lock_z = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="front hinge"]
-shape = SubResource("SphereShape3D_0iwwr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="front hinge"]
-transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_0iwwr")
-
-[node name="back spring" type="JoltSliderJoint3D" parent="."]
-limit_enabled = true
-limit_upper = 0.6
-limit_lower = 0.5
-limit_spring_enabled = true
-limit_spring_frequency = 50.0
-limit_spring_damping = 0.7
-node_a = NodePath("../frame")
-node_b = NodePath("../back hinge")
-transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, 0.258819, 0.258819, 1.13133e-08, 0.965926, 0, 1.25, -0.1)
-
-[node name="front spring" type="JoltSliderJoint3D" parent="."]
-limit_enabled = true
-limit_upper = 0.6
-limit_lower = 0.5
-limit_spring_enabled = true
-limit_spring_frequency = 50.0
-limit_spring_damping = 0.7
-node_a = NodePath("../frame")
-node_b = NodePath("../front hinge")
-transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, -0.258819, -0.258819, -1.13133e-08, 0.965926, 0, 1.25, -1.9)
-
-[node name="back spin" type="JoltHingeJoint3D" parent="."]
-motor_enabled = true
-motor_max_torque = 2.0
-node_a = NodePath("../back hinge")
-node_b = NodePath("../back wheel")
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, 0)
-
-[node name="front spin" type="JoltHingeJoint3D" parent="."]
-motor_enabled = true
-motor_max_torque = 20.0
-node_a = NodePath("../front hinge")
-node_b = NodePath("../front wheel")
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.75, -2)
-
-[node name="JoltGeneric6DOFJoint3D" type="JoltGeneric6DOFJoint3D" parent="."]
