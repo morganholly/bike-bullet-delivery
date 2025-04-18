@@ -1,14 +1,13 @@
 extends Node3D
 
 
-@export var spring_inline_strength: float = 100
-@export var spring_inline_damping: float = -50
+# tuned by hand
+var spring_inline_strength: float = 31
+var spring_inline_damping: float = -360
 
 @export var slide_grip_strength: float = 1
 
 @export var turn_grip_strength: float = 1
-
-@export var force_lerp_coef: float = 0.1
 
 var last_positions: Array[Vector3]
 var last_distances: Array[float]
@@ -77,6 +76,31 @@ func _ready() -> void:
 		last_distances.append(1.0)
 		forces.append(Vector3.ZERO)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action("crouch"):
+		print(last_distances)
+		#print(spring_inline_strength)
+		#print(spring_inline_damping)
+	#if event.is_action("arrow_up"):
+		#if Input.is_action_pressed("sprint"):
+			#spring_inline_strength += 5
+		#else:
+			#spring_inline_strength += 0.5
+	#elif event.is_action("arrow_down"):
+		#if Input.is_action_pressed("sprint"):
+			#spring_inline_strength -= 5
+		#else:
+			#spring_inline_strength -= 0.5
+	#elif event.is_action("arrow_left"):
+		#if Input.is_action_pressed("sprint"):
+			#spring_inline_damping -= 10
+		#else:
+			#spring_inline_damping -= 1
+	#elif event.is_action("arrow_right"):
+		#if Input.is_action_pressed("sprint"):
+			#spring_inline_damping += 10
+		#else:
+			#spring_inline_damping += 1
 
 func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 	#if delta == 0:
@@ -107,14 +131,14 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 			total_force = inline_force_scale * (marker_list[i].global_position - self.global_position)
 			#total_force += slide_force_scale * (marker_px.global_position - self.global_position)
 			#total_force += forward_force_scale * (marker_pz_list[i].global_position - marker_list[i].global_position)
-			forces[i] = lerp(forces[i], total_force / 13, force_lerp_coef)
+			forces[i] = total_force / 13
 			
 			last_positions[i] = rc.get_collision_point()
 			last_distances[i] = inline_dist
 		else:
 			last_positions[i] = marker_list[i].global_position
-			last_distances[i] = 1.0
-			forces[i] = lerp(forces[i], Vector3.ZERO, force_lerp_coef)
+			last_distances[i] = (marker_list[i].global_position - self.global_position).length()
+			forces[i] = Vector3.ZERO
 	var total_x = total_force.dot(marker_px.global_position - self.global_position)
 	var total_z = total_force.dot(marker_pz.global_position - self.global_position)
 	var total_y = total_force.dot(marker_py.global_position - self.global_position)
@@ -127,3 +151,6 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 	force_display_point.position = total_force
 	#print(total_force)
 	return total_force
+
+func shapecast_forces(delta: float) -> void:
+	pass
