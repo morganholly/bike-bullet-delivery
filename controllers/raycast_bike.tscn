@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://biywwpmrrlmkt"]
+[gd_scene load_steps=6 format=3 uid="uid://biywwpmrrlmkt"]
 
 [ext_resource type="Script" uid="uid://cx8l44cabpkfd" path="res://controllers/raycast_bike.gd" id="1_o3rlb"]
 [ext_resource type="PackedScene" uid="uid://jkx452hmhinf" path="res://controllers/raycast_wheel.tscn" id="2_fj8lr"]
@@ -7,6 +7,10 @@
 height = 2.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o2qf1"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj8lr"]
+radius = 0.25
 height = 2.5
 
 [node name="RaycastBike" type="RigidBody3D"]
@@ -28,7 +32,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 update_scale = false
 
 [node name="wheel_back" parent="." instance=ExtResource("2_fj8lr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0.5, 0)
 
 [node name="wheel_front" parent="." instance=ExtResource("2_fj8lr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, -2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0.5, -2)
+
+[node name="wheel_back2" parent="." instance=ExtResource("2_fj8lr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0.5, 0)
+
+[node name="wheel_front2" parent="." instance=ExtResource("2_fj8lr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0.5, -2)
+
+[node name="collider back" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_fj8lr")
+
+[node name="collider front" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, -2)
+shape = SubResource("CapsuleShape3D_fj8lr")

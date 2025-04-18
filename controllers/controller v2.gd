@@ -409,6 +409,7 @@ func _input(event: InputEvent) -> void:
 			var ride_check_tween = get_tree().create_tween()
 			ride_check_tween.tween_interval(1.0)
 			ride_check_tween.tween_callback(reset_retry_ride_wait)
+			self.global_rotation = Vector3.ZERO
 
 func _on_can_ride_body_entered(body: Node3D) -> void:
 	if trying_to_ride and not retry_ride_wait:

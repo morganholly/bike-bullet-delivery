@@ -1,12 +1,14 @@
 extends Node3D
 
 
-@export var spring_inline_strength: float = 10
-@export var spring_inline_damping: float = 5
+@export var spring_inline_strength: float = 100
+@export var spring_inline_damping: float = -50
 
 @export var slide_grip_strength: float = 1
 
 @export var turn_grip_strength: float = 1
+
+@export var force_lerp_coef: float = 0.1
 
 var last_positions: Array[Vector3]
 var last_distances: Array[float]
@@ -102,17 +104,17 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 			var forward_delta_delta: float = desired_turn_delta - forward_delta
 			var forward_force_scale: float = turn_grip_strength * forward_delta_delta
 			
-			forces[i] = inline_force_scale * (marker_list[i].global_position - self.global_position)
-			forces[i] += slide_force_scale * (marker_px.global_position - self.global_position)
-			forces[i] += forward_force_scale * (marker_pz_list[i].global_position - marker_list[i].global_position)
-			total_force += forces[i] / 13
+			total_force = inline_force_scale * (marker_list[i].global_position - self.global_position)
+			#total_force += slide_force_scale * (marker_px.global_position - self.global_position)
+			#total_force += forward_force_scale * (marker_pz_list[i].global_position - marker_list[i].global_position)
+			forces[i] = lerp(forces[i], total_force / 13, force_lerp_coef)
 			
 			last_positions[i] = rc.get_collision_point()
 			last_distances[i] = inline_dist
 		else:
 			last_positions[i] = marker_list[i].global_position
 			last_distances[i] = 1.0
-			forces[i] = Vector3.ZERO
+			forces[i] = lerp(forces[i], Vector3.ZERO, force_lerp_coef)
 	var total_x = total_force.dot(marker_px.global_position - self.global_position)
 	var total_z = total_force.dot(marker_pz.global_position - self.global_position)
 	var total_y = total_force.dot(marker_py.global_position - self.global_position)
@@ -123,5 +125,5 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 	force_display_z.mesh.height = total_z * 2
 	force_display_y.mesh.height = total_y * 2
 	force_display_point.position = total_force
-	print(total_force)
+	#print(total_force)
 	return total_force
