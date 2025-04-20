@@ -13,7 +13,7 @@ height = 2.5
 radius = 0.25
 height = 2.5
 
-[node name="RaycastBike" type="RigidBody3D"]
+[node name="RaycastBike" type="RigidBody3D" groups=["Rideable"]]
 collision_layer = 32
 collision_mask = 39
 script = ExtResource("1_o3rlb")
@@ -32,16 +32,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 update_scale = false
 
 [node name="wheel_back" parent="." instance=ExtResource("2_fj8lr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
 
 [node name="wheel_front" parent="." instance=ExtResource("2_fj8lr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0.5, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -2)
 
 [node name="wheel_back2" parent="." instance=ExtResource("2_fj8lr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
 
 [node name="wheel_front2" parent="." instance=ExtResource("2_fj8lr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0.5, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -2)
 
 [node name="collider back" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.5, 0)

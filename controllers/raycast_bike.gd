@@ -13,11 +13,11 @@ var turn_smoothed: float = 0
 
 @export var upright_impulse_strength: float = 10
 
-#func _ready() -> void:
-	#wheel_back.collider.reparent(self)
-	#wheel_front.collider.reparent(self)
-	#wheel_back_2.collider.reparent(self)
-	#wheel_front_2.collider.reparent(self)
+func _ready() -> void:
+	wheel_back.collide_shape.reparent(self)
+	wheel_front.collide_shape.reparent(self)
+	wheel_back_2.collide_shape.reparent(self)
+	wheel_front_2.collide_shape.reparent(self)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("upright_rideable"):
@@ -32,12 +32,20 @@ func _physics_process(delta: float) -> void:
 		#var input_dir = Input.get_vector("left", "right", "up", "down") #.normalized()
 		#turn_smoothed = lerp(turn_smoothed, input_dir.x, 0.1)
 		##var camera_rotation = player_ref.camera.nodeRotate.rotation.y
-	wheel_back.update_forces(delta, 0.1)
-	wheel_front.update_forces(delta, 0.1)
-	wheel_back_2.update_forces(delta, 0.1)
-	wheel_front_2.update_forces(delta, 0.1)
-	for i in range(0, len(wheel_back.raycast_list)):
-		self.apply_force(wheel_back.forces[i], wheel_back.position + wheel_back.marker_list[i].position)
-		self.apply_force(wheel_front.forces[i], wheel_front.position + wheel_front.marker_list[i].position)
-		self.apply_force(wheel_back_2.forces[i], wheel_back_2.position + wheel_back_2.marker_list[i].position)
-		self.apply_force(wheel_front_2.forces[i], wheel_front_2.position + wheel_front_2.marker_list[i].position)
+	wheel_back.shapecast_forces(delta)
+	wheel_front.shapecast_forces(delta)
+	wheel_back_2.shapecast_forces(delta)
+	wheel_front_2.shapecast_forces(delta)
+	self.apply_force(wheel_back.center_force)
+	self.apply_force(wheel_front.center_force)
+	self.apply_force(wheel_back_2.center_force)
+	self.apply_force(wheel_front_2.center_force)
+	#wheel_back.update_forces(delta, 0.1)
+	#wheel_front.update_forces(delta, 0.1)
+	#wheel_back_2.update_forces(delta, 0.1)
+	#wheel_front_2.update_forces(delta, 0.1)
+	#for i in range(0, len(wheel_back.raycast_list)):
+		#self.apply_force(wheel_back.forces[i], wheel_back.position + wheel_back.marker_list[i].position)
+		#self.apply_force(wheel_front.forces[i], wheel_front.position + wheel_front.marker_list[i].position)
+		#self.apply_force(wheel_back_2.forces[i], wheel_back_2.position + wheel_back_2.marker_list[i].position)
+		#self.apply_force(wheel_front_2.forces[i], wheel_front_2.position + wheel_front_2.marker_list[i].position)

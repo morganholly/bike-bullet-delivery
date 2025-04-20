@@ -403,6 +403,7 @@ func _input(event: InputEvent) -> void:
 			riding_node.player_remote_transform.force_update_cache()
 			riding_node.is_controlled = false
 			riding_node.player_ref = null
+			riding_node.remove_collision_exception_with(self)
 			is_riding = false
 			riding_node = null
 			retry_ride_wait = true
@@ -413,16 +414,18 @@ func _input(event: InputEvent) -> void:
 
 func _on_can_ride_body_entered(body: Node3D) -> void:
 	if trying_to_ride and not retry_ride_wait:
-		print("here's my whip")
-		is_riding = true
-		trying_to_ride = false
-		riding_node = body#.get_parent()
-		can_ride_collider.shape.radius = 0.01
-		#body.player_remote_transform.remote_path = body.get_path_to(self)
-		riding_node.player_remote_transform.remote_path = self.get_path()
-		riding_node.player_remote_transform.force_update_cache()
-		riding_node.is_controlled = true
-		riding_node.player_ref = self
+		if body.is_in_group("Rideable"):
+			print("here's my whip")
+			is_riding = true
+			trying_to_ride = false
+			riding_node = body#.get_parent()
+			riding_node.add_collision_exception_with(self)
+			can_ride_collider.shape.radius = 0.01
+			#body.player_remote_transform.remote_path = body.get_path_to(self)
+			riding_node.player_remote_transform.remote_path = self.get_path()
+			riding_node.player_remote_transform.force_update_cache()
+			riding_node.is_controlled = true
+			riding_node.player_ref = self
 
 func _on_can_ride_body_exited(body: Node3D) -> void:
 	pass # Replace with function body.

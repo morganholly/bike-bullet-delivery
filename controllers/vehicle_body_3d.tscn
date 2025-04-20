@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwh6pbop6atna"]
+
+[ext_resource type="Script" uid="uid://dutps46sexy5l" path="res://controllers/vehicle_body_3d.gd" id="1_ym633"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x1ajd"]
+height = 0.125
+radial_segments = 32
+rings = 0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ym633"]
+radius = 0.25
+height = 3.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i107e"]
+radius = 0.25
+height = 3.0
+
+[node name="VehicleBody3D" type="VehicleBody3D" groups=["Rideable"]]
+collision_layer = 32
+collision_mask = 39
+script = ExtResource("1_ym633")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -0.05, 0.5, 1)
+use_as_traction = true
+use_as_steering = true
+wheel_friction_slip = 4.0
+suspension_stiffness = 70.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D"]
+transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_x1ajd")
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.05, 0.5, -1)
+use_as_traction = true
+wheel_friction_slip = 4.0
+suspension_stiffness = 70.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D2"]
+transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_x1ajd")
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 0.05, 0.5, 1)
+use_as_traction = true
+use_as_steering = true
+wheel_friction_slip = 4.0
+suspension_stiffness = 70.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D3"]
+transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_x1ajd")
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.05, 0.5, -1)
+use_as_traction = true
+wheel_friction_slip = 4.0
+suspension_stiffness = 70.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D4"]
+transform = Transform3D(-4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_x1ajd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ym633")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_i107e")
+
+[node name="player_remote_transform" type="RemoteTransform3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+update_scale = false

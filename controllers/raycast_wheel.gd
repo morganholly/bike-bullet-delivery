@@ -77,8 +77,9 @@ func _ready() -> void:
 		forces.append(Vector3.ZERO)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("crouch"):
-		print(last_distances)
+	pass
+	#if event.is_action("crouch"):
+		#print(last_distances)
 		#print(spring_inline_strength)
 		#print(spring_inline_damping)
 	#if event.is_action("arrow_up"):
@@ -152,5 +153,46 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 	#print(total_force)
 	return total_force
 
+@onready var grip_area: Area3D = $grip_area
+
+func area_forces(delta: float) -> void:
+	if grip_area.has_overlapping_bodies():
+		for body in grip_area.get_overlapping_bodies():
+			pass
+
+
+func _on_grip_area_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+	#var body_shape_owner = body.shape_find_owner(body_shape_index)
+	#var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+
+	var area_space: RID = PhysicsServer3D.area_get_space(grip_area.get_rid())
+	var space_state: PhysicsDirectSpaceState3D = PhysicsServer3D.space_get_direct_state(area_space)
+	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
+	query.set_shape(body.shape_owner_get_owner(body_shape_index).shape)
+	var collision_points: Array = space_state.collide_shape(query)
+
+func _on_grip_area_body_shape_exited(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+	var body_shape_owner = body.shape_find_owner(body_shape_index)
+	var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+
+@onready var collide_shape: CollisionShape3D = $collide_shape
+@onready var shapecast: ShapeCast3D = $ShapeCast3D
+@onready var collision_points: MultiMeshInstance3D = $collision_points
+
+var center_force: Vector3
+
 func shapecast_forces(delta: float) -> void:
-	pass
+	if shapecast.get_collision_count() > 0:
+		collision_points.multimesh.instance_count = shapecast.get_collision_count()
+		var count_scale = 1 / (delta * shapecast.get_collision_count())
+		for i in range(shapecast.get_collision_count()):
+			#var tf = Transform3D()
+			#if abs(shapecast.get_collision_normal(i).dot(Vector3.UP)) < 0.99:
+				#tf = tf.looking_at(shapecast.get_collision_normal(i))
+			#tf.origin = 5 * shapecast.get_collision_normal(i) + shapecast.get_collision_point(i)
+			#collision_points.multimesh.set_instance_transform(i, tf)
+			var local_pos = self.to_local(shapecast.get_collision_point(i))
+			var length = local_pos.length()
+			if length < 0:
+				var diff = 1 - length
+				center_force += 10 * count_scale * diff * shapecast.get_collision_normal(i)
