@@ -13,6 +13,7 @@ extends CharacterBody3D
 
 @export var is_player: bool = false
 @export var can_move: bool = true
+@export var is_rollerblade: bool = false
 
 @export_group("Air")
 @export var air_speed_control: float = 0.075
@@ -46,6 +47,11 @@ var is_crouched: bool = false
 @export var ground_smooth: float = 0.1
 @export var ground_friction: float = 0.7
 
+@export_group("Rollerblade")
+@export var rb_turn_rate: float = 1
+@export var rb_speed: float = 20
+@export var rb_air_speed_control: float = 0.05
+
 @export_group("Camera")
 @export var camera_y_smooth: float = 20
 @export var camera_height: float = 2
@@ -71,6 +77,8 @@ var smoothed_rotation_abs_delta: float = 0
 
 var is_riding: bool = false
 var riding_node: Node3D
+
+var rollerblade_direction: Vector3
 
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
@@ -133,14 +141,14 @@ func get_move_speed(is_action_crouching: bool, is_action_sprint: bool) -> float:
 			res = sprint_speed
 	return speed_scale * res
 
-func _air_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool) -> void:
+func _air_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool, speed: float, air_control: float) -> void:
 	self.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
 	# my take on movement in air
-	var speed = get_move_speed(is_action_crouching, is_action_sprint)
-	self.velocity -= inertial_velocity
-	self.velocity.x = lerp(self.velocity.x, wish_dir.x * speed, air_speed_control)
-	self.velocity.z = lerp(self.velocity.z, wish_dir.z * speed, air_speed_control)
-	self.velocity += inertial_velocity
+	#var speed = get_move_speed(is_action_crouching, is_action_sprint)
+	#self.velocity -= inertial_velocity
+	self.velocity.x = lerp(self.velocity.x, wish_dir.x * speed, air_control)
+	self.velocity.z = lerp(self.velocity.z, wish_dir.z * speed, air_control)
+	#self.velocity += inertial_velocity
 	# tutorial's take on movement in air, from source/quake. feels too rigid, stopping immediately in the air, immediately changing direction
 	#var cur_speed_in_air_wish_dir = self.velocity.dot(wish_dir)
 	#var capped_speed = min((air_move_speed * wish_dir).length(), air_cap)
@@ -169,6 +177,21 @@ func _walkrun_physics_process(delta: float, is_action_crouching: bool, is_action
 		var over = xz_vel.length() - speed
 		xz_vel = (over * ground_friction + speed) * xz_vel.normalized()
 	self.velocity = xz_vel
+	self.velocity.y = y_vel
+
+func _rollerblade_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool) -> void:
+	var fb_speed = Input.get_axis(&"down", &"up")
+	var lr_speed = Input.get_axis(&"right", &"left")
+	var y_vel = self.velocity.y
+	var xz_vel = Vector3(1, 0, 1) * self.velocity
+	var turn_scale = 1 / (1 + (xz_vel.length() * 0.05 / rb_turn_rate) ** 2)
+	rollerblade_direction = rollerblade_direction.rotated(Vector3.UP, 10 * turn_scale * delta * lr_speed)
+	#var vel_norm = xz_vel.normalized()
+	#xz_vel = lerp(xz_vel, wish_dir * speed, ground_smooth) # * xz_vel.length()
+	#if xz_vel.length() > speed:
+		#var over = xz_vel.length() - speed
+		#xz_vel = (over * ground_friction + speed) * xz_vel.normalized()
+	self.velocity = rollerblade_direction * rb_speed * fb_speed
 	self.velocity.y = y_vel
 
 func _crouch_physics_process(delta: float) -> void:
@@ -270,9 +293,11 @@ func _internal_physics_process(delta: float,
 	var was_on_floor_at_start_of_frame: bool = is_on_floor()
 	var did_jump: bool = false
 	
-	
-	_handle_crouch(delta, is_action_crouching)
-	
+	if not is_rollerblade:
+		rollerblade_direction = wish_dir.normalized()
+		
+		_handle_crouch(delta, is_action_crouching)
+		
 	if was_on_floor_at_start_of_frame:
 		coyote_timer = 0
 	
@@ -292,41 +317,57 @@ func _internal_physics_process(delta: float,
 			else:
 				self.velocity += get_floor_normal() * y_jump
 			#inertial_velocity = get_collision_velo()
-			var actual_jump_accel = jump_accel * (1 - jump_recharge_inv) * speed_scale
-			self.velocity.x = self.velocity.x + self.velocity.x * actual_jump_accel
-			self.velocity.z = self.velocity.z + self.velocity.z * actual_jump_accel
+			var actual_jump_accel = 1 + jump_accel * (1 - jump_recharge_inv) * speed_scale
+			#self.velocity.x *= actual_jump_accel
+			#self.velocity.z *= actual_jump_accel
 			jump_recharge_inv = 1 # lerp(jump_recharge_inv, 1.0, 0.5)
 			coyote_timer = coyote_time
-	if was_on_floor_at_start_of_frame or snapped_to_stairs_last_frame: # after implementing crouching, switch based on crouch state
-		_walkrun_physics_process(delta, is_action_crouching, is_action_sprint)
-		#floor_max_angle = deg_to_rad(50)
-		pframes_since_on_floor = 0
-		#was_on_floor_last_frame = true
-		jump_recharge_inv_wgrab = 0
-		if not did_jump:
-			inertial_velocity = lerp(inertial_velocity, get_collision_velo(), 0.10)
+			print(self.velocity)
+	if not is_rollerblade:
+		if was_on_floor_at_start_of_frame or snapped_to_stairs_last_frame: # after implementing crouching, switch based on crouch state
+			_walkrun_physics_process(delta, is_action_crouching, is_action_sprint)
+			#floor_max_angle = deg_to_rad(50)
+			pframes_since_on_floor = 0
+			#was_on_floor_last_frame = true
+			jump_recharge_inv_wgrab = 0
+			#if not did_jump:
+				#inertial_velocity = lerp(inertial_velocity, get_collision_velo(), 0.10)
+			#else:
+				#inertial_velocity = lerp(inertial_velocity, get_collision_velo(), 0.01)
 		else:
-			inertial_velocity = lerp(inertial_velocity, get_collision_velo(), 0.01)
+			floor_max_angle = deg_to_rad(80)
+			_air_physics_process(delta, is_action_crouching, is_action_sprint, get_move_speed(is_action_crouching, is_action_sprint), air_speed_control)
+			#self.velocity += ground_velo
+			pframes_since_on_floor += 1
+			#was_on_floor_last_frame = false
+		
+		#it would be nice to have some better way of combining forward and up movement. it should probably be mainly up, but forward would be super cool for wall jumping
+		if stair_climb_area.has_overlapping_bodies():
+			#if Input.is_action_just_pressed("jump"):
+			if is_action_jump:
+				self.velocity *= Vector3(0, 0.5, 0.5)
+				self.velocity += (climb_speed * Vector3.UP)
+				jump_recharge_inv = 0
+		if not _snap_up_stairs_check(delta):
+			move_and_slide()
+			_snap_down_to_stairs_check()
+		else:
+			self.velocity.y = 0 # prevents jump accumulating during stair up snapping
 	else:
-		floor_max_angle = deg_to_rad(80)
-		_air_physics_process(delta, is_action_crouching, is_action_sprint)
-		#self.velocity += ground_velo
-		pframes_since_on_floor += 1
-		#was_on_floor_last_frame = false
-	
-	#it would be nice to have some better way of combining forward and up movement. it should probably be mainly up, but forward would be super cool for wall jumping
-	if stair_climb_area.has_overlapping_bodies():
-		#if Input.is_action_just_pressed("jump"):
-		if is_action_jump:
-			self.velocity *= Vector3(0, 0.5, 0.5)
-			self.velocity += (climb_speed * Vector3.UP)
-			jump_recharge_inv = 0
-	if not _snap_up_stairs_check(delta):
+		if was_on_floor_at_start_of_frame: # after implementing crouching, switch based on crouch state
+			_rollerblade_physics_process(delta, is_action_crouching, is_action_sprint)
+			#floor_max_angle = deg_to_rad(50)
+			pframes_since_on_floor = 0
+			#was_on_floor_last_frame = true
+			jump_recharge_inv_wgrab = 0
+		else:
+			rollerblade_direction = lerp(rollerblade_direction, wish_dir.normalized(), 0.05).normalized()
+			floor_max_angle = deg_to_rad(80)
+			_air_physics_process(delta, is_action_crouching, is_action_sprint, rb_speed, rb_air_speed_control)
+			#self.velocity += ground_velo
+			pframes_since_on_floor += 1
+			#was_on_floor_last_frame = false
 		move_and_slide()
-		_snap_down_to_stairs_check()
-	else:
-		self.velocity.y = 0 # prevents jump accumulating during stair up snapping
-	
 	
 	# i don't think the inertia is needed for this
 	#var turn_amount = camera.nodeRotate.basis.get_euler().y - last_rotation
@@ -354,9 +395,11 @@ func _internal_physics_process(delta: float,
 	
 	#last_rotation = camera.nodeRotate.basis.get_euler().y
 	
-	if inertial_velocity.length() > 0.0001:
-		camera.vector_pointer.look_at(camera.hold_position.global_position + inertial_velocity)
-	camera.vector_pointer.scale.z = inertial_velocity.length()
+	#if inertial_velocity.length() > 0.0001:
+		#camera.vector_pointer.look_at(camera.hold_position.global_position + inertial_velocity)
+	if rollerblade_direction.length() > 0.0001:
+		camera.vector_pointer.look_at(camera.hold_position.global_position + rollerblade_direction)
+	camera.vector_pointer.scale.z = rollerblade_direction.length()
 	
 	
 	floor_max_angle = deg_to_rad(50 + 45 * (1 - (1 / ((self.velocity * Vector3(1, 0, 1)).length() * 0.1 + 1))))
@@ -389,7 +432,12 @@ func reset_retry_ride_wait():
 	retry_ride_wait = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("ride") and event.is_pressed() and not trying_to_ride and not retry_ride_wait:
+	if event.is_action_pressed("rollerblade") and event.is_pressed():
+		is_rollerblade = not is_rollerblade
+		if rollerblade_direction.length() < 0.01:
+			rollerblade_direction = camera.nodeRotate.basis * Vector3(0, 0, -1)
+		print("rollerblading: ", is_rollerblade, " ", event)
+	elif event.is_action("ride") and event.is_pressed() and not trying_to_ride and not retry_ride_wait:
 		if not is_riding:
 			print("get in loser we're going riding")
 			trying_to_ride = true
