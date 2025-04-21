@@ -49,7 +49,8 @@ var is_crouched: bool = false
 
 @export_group("Rollerblade")
 @export var rb_turn_rate: float = 1
-@export var rb_speed: float = 20
+#@export var rb_min_speed: float = 5
+@export var rb_max_speed: float = 25
 @export var rb_air_speed_control: float = 0.05
 
 @export_group("Camera")
@@ -79,6 +80,9 @@ var is_riding: bool = false
 var riding_node: Node3D
 
 var rollerblade_direction: Vector3
+var rb_delta_accum: float
+var rb_actual_speed: float
+var rb_accel_timer: float
 
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
@@ -185,9 +189,26 @@ func _rollerblade_physics_process(delta: float, is_action_crouching: bool, is_ac
 	var y_vel = self.velocity.y
 	var xz_vel = Vector3(1, 0, 1) * self.velocity
 	var turn_scale = 1 / (1 + (xz_vel.length() * 0.05 / rb_turn_rate) ** 2)
+	
 	#rollerblade_direction = rollerblade_direction.rotated(Vector3.UP, 10 * turn_scale * delta * lr_speed)
+	var rb_dir_cache = rollerblade_direction
 	rollerblade_direction = rollerblade_direction.slerp(walk_dir, turn_scale * delta)
-	self.velocity = rollerblade_direction * rb_speed * walk_dir.length()
+	rb_delta_accum += 100 * rb_dir_cache.distance_squared_to(rollerblade_direction)
+	
+	var desired_speed_01 = 0.2
+	if is_action_sprint:
+		desired_speed_01 = 1
+	if is_action_crouching:
+		desired_speed_01 = 0.1
+	desired_speed_01 *= walk_dir.length()
+	if desired_speed_01 > rb_accel_timer:
+		rb_accel_timer = move_toward(rb_accel_timer, desired_speed_01, delta * 1/40)
+	else:
+		rb_accel_timer = move_toward(rb_accel_timer, desired_speed_01, delta * 1/15)
+	#rb_actual_speed = lerp(rb_min_speed, rb_max_speed, (1.0333 - 1.0333 / (rb_accel_timer * rb_accel_timer * 30 + 1)))# / (rb_delta_accum + 1)
+	rb_actual_speed = rb_max_speed * (1.0333 - 1.0333 / (rb_accel_timer * rb_accel_timer * 30 + 1))# / (rb_delta_accum + 1)
+	
+	self.velocity = rollerblade_direction * rb_actual_speed
 	self.velocity.y = y_vel
 
 func _crouch_physics_process(delta: float) -> void:
@@ -358,11 +379,12 @@ func _internal_physics_process(delta: float,
 		else:
 			rollerblade_direction = lerp(rollerblade_direction, wish_dir.normalized(), 0.05).normalized()
 			floor_max_angle = deg_to_rad(80)
-			_air_physics_process(delta, is_action_crouching, is_action_sprint, rb_speed, rb_air_speed_control)
+			_air_physics_process(delta, is_action_crouching, is_action_sprint, rb_actual_speed, rb_air_speed_control)
 			#self.velocity += ground_velo
 			pframes_since_on_floor += 1
 			#was_on_floor_last_frame = false
 		move_and_slide()
+		rb_delta_accum = max(0, rb_delta_accum - 0.001)
 	
 	# i don't think the inertia is needed for this
 	#var turn_amount = camera.nodeRotate.basis.get_euler().y - last_rotation
