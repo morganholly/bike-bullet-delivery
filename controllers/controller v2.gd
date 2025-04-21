@@ -179,19 +179,15 @@ func _walkrun_physics_process(delta: float, is_action_crouching: bool, is_action
 	self.velocity = xz_vel
 	self.velocity.y = y_vel
 
-func _rollerblade_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool) -> void:
-	var fb_speed = Input.get_axis(&"down", &"up")
-	var lr_speed = Input.get_axis(&"right", &"left")
+func _rollerblade_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool, walk_dir: Vector3) -> void:
+	#var fb_speed = Input.get_axis(&"down", &"up")
+	#var lr_speed = Input.get_axis(&"right", &"left")
 	var y_vel = self.velocity.y
 	var xz_vel = Vector3(1, 0, 1) * self.velocity
 	var turn_scale = 1 / (1 + (xz_vel.length() * 0.05 / rb_turn_rate) ** 2)
-	rollerblade_direction = rollerblade_direction.rotated(Vector3.UP, 10 * turn_scale * delta * lr_speed)
-	#var vel_norm = xz_vel.normalized()
-	#xz_vel = lerp(xz_vel, wish_dir * speed, ground_smooth) # * xz_vel.length()
-	#if xz_vel.length() > speed:
-		#var over = xz_vel.length() - speed
-		#xz_vel = (over * ground_friction + speed) * xz_vel.normalized()
-	self.velocity = rollerblade_direction * rb_speed * fb_speed
+	#rollerblade_direction = rollerblade_direction.rotated(Vector3.UP, 10 * turn_scale * delta * lr_speed)
+	rollerblade_direction = rollerblade_direction.slerp(walk_dir, turn_scale * delta)
+	self.velocity = rollerblade_direction * rb_speed * walk_dir.length()
 	self.velocity.y = y_vel
 
 func _crouch_physics_process(delta: float) -> void:
@@ -318,11 +314,10 @@ func _internal_physics_process(delta: float,
 				self.velocity += get_floor_normal() * y_jump
 			#inertial_velocity = get_collision_velo()
 			var actual_jump_accel = 1 + jump_accel * (1 - jump_recharge_inv) * speed_scale
-			#self.velocity.x *= actual_jump_accel
-			#self.velocity.z *= actual_jump_accel
+			self.velocity.x *= actual_jump_accel
+			self.velocity.z *= actual_jump_accel
 			jump_recharge_inv = 1 # lerp(jump_recharge_inv, 1.0, 0.5)
 			coyote_timer = coyote_time
-			print(self.velocity)
 	if not is_rollerblade:
 		if was_on_floor_at_start_of_frame or snapped_to_stairs_last_frame: # after implementing crouching, switch based on crouch state
 			_walkrun_physics_process(delta, is_action_crouching, is_action_sprint)
@@ -355,7 +350,7 @@ func _internal_physics_process(delta: float,
 			self.velocity.y = 0 # prevents jump accumulating during stair up snapping
 	else:
 		if was_on_floor_at_start_of_frame: # after implementing crouching, switch based on crouch state
-			_rollerblade_physics_process(delta, is_action_crouching, is_action_sprint)
+			_rollerblade_physics_process(delta, is_action_crouching, is_action_sprint, wish_dir)
 			#floor_max_angle = deg_to_rad(50)
 			pframes_since_on_floor = 0
 			#was_on_floor_last_frame = true
@@ -400,7 +395,9 @@ func _internal_physics_process(delta: float,
 	if rollerblade_direction.length() > 0.0001:
 		camera.vector_pointer.look_at(camera.hold_position.global_position + rollerblade_direction)
 	camera.vector_pointer.scale.z = rollerblade_direction.length()
-	
+	#if wish_dir.length() > 0.0001:
+		#camera.vector_pointer.look_at(camera.hold_position.global_position + wish_dir)
+	#camera.vector_pointer.scale.z = wish_dir.length()
 	
 	floor_max_angle = deg_to_rad(50 + 45 * (1 - (1 / ((self.velocity * Vector3(1, 0, 1)).length() * 0.1 + 1))))
 	jump_recharge_inv *= 1 - jump_accel_recharge
