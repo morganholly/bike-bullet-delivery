@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_wmlf2")
-test = 0
+hit_type = 0
+bullet_speed = 1200.0

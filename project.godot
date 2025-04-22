@@ -27,6 +27,8 @@ HealthManager=""
 Player=""
 Rideable=""
 Damageable="contains a health manager node"
+holdable_could_gun=""
+holdable_could_melee=""
 
 [input]
 

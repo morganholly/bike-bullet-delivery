@@ -5,9 +5,15 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6xalo"]
 
-[node name="Gun" type="RigidBody3D"]
+[node name="Gun" type="RigidBody3D" groups=["holdable_could_gun"]]
 script = ExtResource("1_tsf64")
 gun_stats = ExtResource("2_14xyu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6xalo")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 1000)
+collision_mask = 5
+hit_from_inside = true
+collide_with_areas = true
