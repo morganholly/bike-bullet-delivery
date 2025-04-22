@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://bulcl2lwyyxbq"]
+
+[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
+[ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
+[ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
+
+[node name="Test03" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+use_collision = true
+collision_mask = 0
+size = Vector3(50, 40, 50)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 20, 0)
+operation = 2
+size = Vector3(50, 40, 50)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+radius = 20.0
+height = 20.0
+sides = 32
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+operation = 2
+radius = 20.0
+height = 20.0
+sides = 32
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+size = Vector3(100, 20, 100)
+
+[node name="CSGStairMaker3D" parent="CSGBox3D" instance=ExtResource("1_o7pxr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 1, 22.5)
+size = Vector3(5, 2, 4)
+
+[node name="CSGStairMaker3D2" parent="CSGBox3D" instance=ExtResource("1_o7pxr")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 1, -22.5)
+size = Vector3(5, 2, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+size = Vector3(4, 2, 41)
+
+[node name="dummies" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="dummies"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D2" type="Node3D" parent="dummies"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D2" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D3" type="Node3D" parent="dummies"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D3" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D4" type="Node3D" parent="dummies"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D4" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D5" type="Node3D" parent="dummies"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D5" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D6" type="Node3D" parent="dummies"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D6" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D7" type="Node3D" parent="dummies"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D7" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D8" type="Node3D" parent="dummies"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D8" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D9" type="Node3D" parent="dummies"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D9" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D10" type="Node3D" parent="dummies"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D10" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="Node3D11" type="Node3D" parent="dummies"]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 0, 0, 0)
+
+[node name="EnemyDummy" parent="dummies/Node3D11" instance=ExtResource("2_fuc8a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="CharControllerV2" parent="." instance=ExtResource("3_nln6s")]

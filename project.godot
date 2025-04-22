@@ -26,6 +26,7 @@ ViewCheck=""
 HealthManager=""
 Player=""
 Rideable=""
+Damageable="contains a health manager node"
 
 [input]
 
