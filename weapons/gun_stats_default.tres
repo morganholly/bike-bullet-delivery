@@ -6,3 +6,6 @@
 script = ExtResource("1_wmlf2")
 hit_type = 0
 bullet_speed = 1200.0
+bullet_id = 0
+shot_damage = 1.0
+infinite_ammo = false

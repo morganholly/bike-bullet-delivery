@@ -1,6 +1,6 @@
-extends RigidBody3D
+extends Node
 
-@export var gun_mesh: PackedScene
+#@export var gun_mesh: PackedScene
 @export var gun_stats: GunStats
 
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
@@ -9,8 +9,8 @@ extends RigidBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var instance = gun_mesh.instantiate()
-	add_child(instance)
+	#var instance = gun_mesh.instantiate()
+	#add_child(instance)
 	ray_cast_3d.enabled = gun_stats.hit_type == gun_stats.GunStats.hitscan
 
 
@@ -54,6 +54,10 @@ func aim_show_entity(over: Node3D, up: float = 2) -> void:
 	red_arrow.show()
 
 
-func looking_at(pos: Vector3) -> void:
-	#TODO add tween using quaternion blending
-	self.global_basis = self.global_basis.looking_at(pos, Vector3.UP, true)
+#func looking_at(pos: Vector3) -> void:
+	##TODO add tween using quaternion blending
+	#self.global_basis = self.global_basis.looking_at(pos, Vector3.UP, true)
+
+
+# make equipped gun hold mode like the normal hold item mode
+# but maybe a bit stiffer and also spring lock rotation
