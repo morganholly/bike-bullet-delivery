@@ -1,10 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=7 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nln6s"]
+sky_top_color = Color(0.434819, 0.458047, 0.411919, 1)
+sky_horizon_color = Color(0.677628, 0.675685, 0.655152, 1)
+ground_horizon_color = Color(0.677628, 0.675685, 0.655152, 1)
+
+[sub_resource type="Sky" id="Sky_xast0"]
+sky_material = SubResource("ProceduralSkyMaterial_nln6s")
+
+[sub_resource type="Environment" id="Environment_mvq67"]
+background_mode = 2
+sky = SubResource("Sky_xast0")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="Test03" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mvq67")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.692143, -0.286646, 0.662399, 0, 0.917755, 0.397148, -0.72176, 0.274883, -0.635218, 0, 0, 0)
+light_color = Color(0.766264, 0.587737, 0.388044, 1)
+light_energy = 2.2
+shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
