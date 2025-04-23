@@ -41,7 +41,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_health += delta * health_regen
+	current_health = max(current_health, max_health)
 	current_armor += delta * armor_regen
+	current_armor = max(current_armor, max_armor)
 	block_curve_is_01 = abs(armor_condition_block_rate.min_domain) < 0.001 and abs(armor_condition_block_rate.min_value) < 0.001 and abs(armor_condition_block_rate.max_domain - 1) < 0.001 and abs(armor_condition_block_rate.max_value - 1) < 0.001
 
 func damage(amount: float) -> void:
