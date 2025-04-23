@@ -11,7 +11,7 @@ extends CharacterBody3D
 @onready var stair_climb_area: Area3D = $Rotate/stair_climb_area
 
 
-@export var is_player: bool = false
+@export var is_player: bool = true
 @export var can_move: bool = true
 @export var is_rollerblade: bool = false
 
