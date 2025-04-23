@@ -72,6 +72,8 @@ script = ExtResource("1_tf3c0")
 [node name="AimRaycast" type="RayCast3D" parent="Rotate/Flip/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
 target_position = Vector3(0, -10000, 0)
+collision_mask = 485
+collide_with_areas = true
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Rotate/Flip/SpringArm3D"]
 current = true
