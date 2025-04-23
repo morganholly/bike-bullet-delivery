@@ -9,7 +9,10 @@ extends Node3D
 @onready var first_person: Node3D = $Rotate/Flip/FirstPerson
 @onready var camera_third_person: Camera3D = $Rotate/Flip/SpringArm3D/CameraThirdPerson
 @onready var camera_first_person: Camera3D = $Rotate/Flip/FirstPerson/CameraFirstPerson
+
 @onready var hold_position: Node3D = $Rotate/Flip/FirstPerson/HoldPosition
+@onready var gun_position_r: Marker3D = $Rotate/Flip/FirstPerson/GunPositionR
+
 @onready var vector_pointer: Node3D = $Rotate/Flip/FirstPerson/HoldPosition/VectorPointer
 @onready var aim_debug_pointer: Node3D = $AimDebugPointer
 
