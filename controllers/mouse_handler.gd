@@ -16,6 +16,8 @@ var holding_contacts_avg: float = 0
 var holding_old_gravity_scale: float = 0
 var holding_old_collision_mask: int = 0
 
+var debounce_gun_hold_swap: float = 0.5
+
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
 #var hold_filt_dy: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -46,7 +48,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	debounce_gun_hold_swap = max(0, debounce_gun_hold_swap - delta)
 
 
 func _holdable_hold_update(obj: RigidBody3D) -> void:
@@ -90,6 +92,19 @@ func _physics_process(delta: float) -> void:
 	last_go_to = go_to
 
 
+func gun_tween_to_hold():
+	var tween_pos = get_tree().create_tween()
+	tween_pos.set_ease(Tween.EASE_OUT)
+	tween_pos.tween_property(camera.gun_position_r.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
+	
+	var tween_face = get_tree().create_tween()
+	tween_face.set_ease(Tween.EASE_IN)
+	var facing_callable = func(weight: float):
+		if camera.gun_position_r.get_node("gun_action") != null and camera.gun_position_r.global_basis != null:
+			camera.gun_position_r.get_node("gun_action").global_basis = camera.gun_position_r.get_node("gun_action").global_basis.slerp(camera.gun_position_r.global_basis, weight * weight)
+	tween_face.tween_method(facing_callable, 0.0, 1.0, 1.0)
+
+
 func _input(event) -> void:
 	match current_action_state:
 		ActionState.EMPTY:
@@ -110,23 +125,21 @@ func _input(event) -> void:
 							[true, false, false]: # only hold
 								#print("only hold")
 								current_action_state = ActionState.HOLDITEM
-							[_, true, false]: # only gun, maybe hold
+							[_, true, false], [_, true, true]: # only gun, maybe hold
 								#print("only gun, maybe hold")
 								holding_old_collision_mask = obj_over.collision_mask
-								obj_over.get_node("gun_action").reparent(self)
-								current_action_state = ActionState.GUN
-							[_, false, true]: # only melee, maybe hold
-								#print("only melee, maybe hold")
-								current_action_state = ActionState.MELEEITEM
-							[_, true, true]: # gun and melee, maybe hold
-								#print("gun and melee, maybe hold")
-								holding_old_collision_mask = obj_over.collision_mask
-								obj_over.get_node("gun_action").reparent(self)
-								current_action_state = ActionState.GUN
+								obj_over.get_node("gun_action").reparent(camera.gun_position_r)
 								# if obj_over.gun_component.ammo_counter > 0:
 								# 	# use as gun
 								# else:
 								#	# use as melee
+								
+								gun_tween_to_hold()
+								
+								current_action_state = ActionState.GUN
+							[_, false, true]: # only melee, maybe hold
+								#print("only melee, maybe hold")
+								current_action_state = ActionState.MELEEITEM
 							# i aint retyping all that
 							#[true, true, _, _, true, _]: # item or gun, prefer gun, but show dialog box to switch
 								#should_switch_dialog_be_shown = true
@@ -156,9 +169,14 @@ func _input(event) -> void:
 						#obj_over.contact_monitor = true
 						holding = obj_over
 		ActionState.HOLDITEM:
-			if event.is_action_pressed("gun_hold_swap"):
+			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
+				debounce_gun_hold_swap = 0.5
+				#print("to gun hold")
 				holding_old_collision_mask = holding.collision_mask
-				holding.get_node("gun_action").reparent(self)
+				holding.get_node("gun_action").reparent(camera.gun_position_r)
+				
+				gun_tween_to_hold()
+				
 				current_action_state = ActionState.GUN
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
@@ -170,13 +188,15 @@ func _input(event) -> void:
 					holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
 					holding = null
 		ActionState.GUN:
-			if event.is_action_pressed("gun_hold_swap"):
+			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
+				debounce_gun_hold_swap = 0.5
+				#print("to item hold")
 				holding.collision_mask = holding_old_collision_mask
-				$gun_action.reparent(holding)
+				camera.gun_position_r.get_node("gun_action").reparent(holding)
 				#holding.get_node("gun_action").position = Vector3.ZERO
-				var tween = get_tree().create_tween()
-				tween.set_ease(Tween.EASE_OUT)
-				tween.tween_property(holding.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
+				var tween_pos = get_tree().create_tween()
+				tween_pos.set_ease(Tween.EASE_OUT)
+				tween_pos.tween_property(holding.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
 				current_action_state = ActionState.HOLDITEM
 		ActionState.MELEEITEM:
 			pass

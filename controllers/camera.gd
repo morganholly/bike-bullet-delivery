@@ -68,7 +68,7 @@ func add_raycast_exception(col_obj: CollisionObject3D):
 	nodeRaycast.add_exception(col_obj)
 
 func get_collider():
-	print("get_collider()")
+	#print("get_collider()")
 	if nodeRaycast.get_collider() is Area3D:
 		return nodeRaycast.get_collider().get_parent()
 	return nodeRaycast.get_collider()
