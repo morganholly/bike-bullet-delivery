@@ -102,7 +102,7 @@ func _input(event) -> void:
 		if event.keycode == KEY_G:
 			if (object_sprite.visible):
 				current_action_state = ActionState.EMPTY
-				drop_item();
+				drop_item()
 			
 	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
 		if camera.nodeRaycast.is_colliding():
@@ -286,6 +286,8 @@ func drop_item() -> void:
 		
 		var scene; 
 		match slot_inventory.get_current_slotInfo()["type"]:
+			"mag":
+				scene = load("res://npcs/mag.tscn")
 			"ammo":
 				scene = load("res://npcs/ammo_box.tscn")
 			"gun":

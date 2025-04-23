@@ -3,9 +3,17 @@ extends Entity
 
 class_name Enemy
 
-
 var target = null
-var follow_strength = 17.0
+var follow_strength = 25
+
+var shoot_range = 18
+var too_close_range = 12
+
+@export var stun_delay : float = 0.2
+@export var shoot_delay : float = 0.3
+
+var cur_stun_delay = 0
+var cur_shoot_delay = 0
 
 func _ready():
 	$Area3D.connect("body_entered", self._on_Area3D_body_entered)
@@ -14,11 +22,29 @@ func _ready():
 	$Area3D.collision_mask = $Area3D.collision_mask | 2
 
 func _physics_process(delta):
+	
+	if (cur_stun_delay > 0):
+		cur_stun_delay -= delta;
+		return;
+	
 	if target:
 		# Target exists, move toward it
 		var target_position = target.global_transform.origin
-		var direction = (target_position - global_transform.origin).normalized()
-		apply_central_force(direction * follow_strength)
+		
+		print(global_transform.origin.distance_to(target_position))
+		if (global_transform.origin.distance_to(target_position) > shoot_range):
+			var direction = (target_position - global_transform.origin).normalized()
+			apply_central_force(direction * follow_strength)
+			current_state = Entity_States.Walk
+		elif (global_transform.origin.distance_to(target_position) < too_close_range):
+			var direction = (target_position - global_transform.origin).normalized()
+			apply_central_force(-direction * follow_strength)
+			current_state = Entity_States.Walk
+		else:
+			current_state = Entity_States.Shoot
+		
+	else:
+		current_state = Entity_States.Idle
 
 		#print(position)
 
@@ -40,7 +66,8 @@ func _on_body_entered(body: Node) -> void:
 	if (body.is_in_group("projectile")):
 		recieve_damage(100)
 		body.queue_free()
-	
+		current_state = Entity_States.Damaged 
+		cur_stun_delay = stun_delay
 	pass # Replace with function body.
 
 

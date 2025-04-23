@@ -1,8 +1,13 @@
 extends Entity
 
 class_name Civilian
+
+
 #var gunsSprite = load("res://textures/Mockups/civwithgun.png")
 
+func _ready() -> void:
+	current_state = Entity_States.Disabled
+	pass
 
 func _on_body_entered(body: Node) -> void:
 	#print("_on_body_entered")

@@ -21,7 +21,7 @@ EntitySpawner="*res://levels/level_singletons/entity_spawner/entity_spawner.tscn
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ninetailsrabbit.terrainy/plugin.cfg", "res://addons/noise_texture_composer/plugin.cfg")
+enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg", "res://addons/ninetailsrabbit.terrainy/plugin.cfg", "res://addons/noise_texture_composer/plugin.cfg")
 
 [global_group]
 
