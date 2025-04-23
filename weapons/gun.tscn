@@ -34,7 +34,7 @@ script = ExtResource("1_tsf64")
 gun_stats = SubResource("Resource_tan0m")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, 1000)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 69
 hit_from_inside = true
 collide_with_areas = true

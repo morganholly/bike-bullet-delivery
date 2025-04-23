@@ -64,7 +64,7 @@ func aim_show_entity(over: Node3D, up: float = 2) -> void:
 
 #func looking_at(pos: Vector3) -> void:
 	##TODO add tween using quaternion blending
-	#self.global_basis = self.global_basis.looking_at(pos, Vector3.UP, true)
+	#self.global_basis = self.global_basis.looking_at(pos, Vector3.UP, false)
 
 
 # make equipped gun hold mode like the normal hold item mode
