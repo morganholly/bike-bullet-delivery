@@ -11,6 +11,9 @@ bullet_speed = 350.0
 bullet_id = 0
 shot_damage = 1.0
 infinite_ammo = false
+mag_capacity = 11
+reload_time = 3.0
+partial_refill_time = 10.0
 metadata/_custom_type_script = "uid://dic641n02q3ww"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsf64"]
