@@ -1,7 +1,7 @@
+#extends Control
+#@onready var sub_viewport: SubViewport = $"Screen Space Shader/SubViewport"
 extends SubViewportContainer
-
 @onready var sub_viewport: SubViewport = $SubViewport
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
