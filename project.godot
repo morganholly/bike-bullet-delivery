@@ -152,6 +152,7 @@ rollerblade={
 3d_physics/layer_4="Climbable"
 3d_physics/layer_5="ViewCheck"
 3d_physics/layer_6="SmallVehicle"
+3d_physics/layer_7="DamageableObject"
 
 [physics]
 

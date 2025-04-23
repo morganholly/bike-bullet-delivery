@@ -1,11 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://xrks1ho84k4w"]
+[gd_scene load_steps=7 format=3 uid="uid://xrks1ho84k4w"]
 
 [ext_resource type="Script" uid="uid://cdegx4otnhpbw" path="res://weapons/gun.gd" id="1_tsf64"]
 [ext_resource type="Resource" uid="uid://bq3ogoflf5h3d" path="res://weapons/gun_stats_default.tres" id="2_14xyu"]
+[ext_resource type="Texture2D" uid="uid://cu48mpcxhj886" path="res://textures/crosshairs/crosshair_2b_512.png" id="3_14xyu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6xalo"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsf64"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("3_14xyu")
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_14xyu"]
+material = SubResource("StandardMaterial3D_tsf64")
+size = Vector2(0.25, 0.25)
+
 [node name="Gun" type="RigidBody3D" groups=["holdable_could_gun"]]
+top_level = true
 script = ExtResource("1_tsf64")
 gun_stats = ExtResource("2_14xyu")
 
@@ -14,6 +29,11 @@ shape = SubResource("BoxShape3D_6xalo")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, 1000)
-collision_mask = 5
+collision_mask = 69
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="red_arrow" type="MeshInstance3D" parent="."]
+visible = false
+sorting_offset = 20.0
+mesh = SubResource("QuadMesh_14xyu")
