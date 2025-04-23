@@ -14,6 +14,7 @@ var last_pos_delta: Vector3 = Vector3.ZERO
 var holding_old_contact_monitor: bool = false
 var holding_contacts_avg: float = 0
 var holding_old_gravity_scale: float = 0
+var holding_old_collision_mask: int = 0
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -83,7 +84,7 @@ func _physics_process(delta: float) -> void:
 		ActionState.HOLDITEM:
 			_holdable_hold_update(holding)
 		ActionState.GUN:
-			pass
+			_holdable_hold_update(holding)
 		ActionState.MELEEITEM:
 			pass
 	last_go_to = go_to
@@ -94,7 +95,7 @@ func _input(event) -> void:
 		ActionState.EMPTY:
 			if event is InputEventMouseButton and event.pressed:
 				if camera.nodeRaycast.is_colliding():
-					var obj_over = camera.nodeRaycast.get_collider()
+					var obj_over = camera.get_collider()
 					var could_holditem  = obj_over is RigidBody3D #PhysicsBody3D
 					var could_gun       = obj_over.is_in_group("holdable_could_gun")
 					var could_meleeitem = obj_over.is_in_group("holdable_could_melee")
@@ -111,12 +112,16 @@ func _input(event) -> void:
 								current_action_state = ActionState.HOLDITEM
 							[_, true, false]: # only gun, maybe hold
 								#print("only gun, maybe hold")
+								holding_old_collision_mask = obj_over.collision_mask
+								obj_over.get_node("gun_action").reparent(self)
 								current_action_state = ActionState.GUN
 							[_, false, true]: # only melee, maybe hold
 								#print("only melee, maybe hold")
 								current_action_state = ActionState.MELEEITEM
 							[_, true, true]: # gun and melee, maybe hold
 								#print("gun and melee, maybe hold")
+								holding_old_collision_mask = obj_over.collision_mask
+								obj_over.get_node("gun_action").reparent(self)
 								current_action_state = ActionState.GUN
 								# if obj_over.gun_component.ammo_counter > 0:
 								# 	# use as gun
@@ -151,6 +156,10 @@ func _input(event) -> void:
 						#obj_over.contact_monitor = true
 						holding = obj_over
 		ActionState.HOLDITEM:
+			if event.is_action_pressed("gun_hold_swap"):
+				holding_old_collision_mask = holding.collision_mask
+				holding.get_node("gun_action").reparent(self)
+				current_action_state = ActionState.GUN
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 					current_action_state = ActionState.EMPTY
@@ -161,6 +170,13 @@ func _input(event) -> void:
 					holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
 					holding = null
 		ActionState.GUN:
-			pass
+			if event.is_action_pressed("gun_hold_swap"):
+				holding.collision_mask = holding_old_collision_mask
+				$gun_action.reparent(holding)
+				#holding.get_node("gun_action").position = Vector3.ZERO
+				var tween = get_tree().create_tween()
+				tween.set_ease(Tween.EASE_OUT)
+				tween.tween_property(holding.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
+				current_action_state = ActionState.HOLDITEM
 		ActionState.MELEEITEM:
 			pass
