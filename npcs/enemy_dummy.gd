@@ -8,7 +8,7 @@ extends StaticBody3D
 func dead() -> void:
 	mesh_main.mesh.surface_get_material(0).albedo_color = Color("ff4221")
 
-func _init() -> void:
+func _ready() -> void:
 	mesh_main.mesh.surface_get_material(0).albedo_color = Color("1232a0")
 	uniform_health.death_callback = dead
 
