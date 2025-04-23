@@ -14,7 +14,7 @@ var reload_timer: float = 0
 func _ready() -> void:
 	#var instance = gun_mesh.instantiate()
 	#add_child(instance)
-	ray_cast_3d.enabled = gun_stats.hit_type == gun_stats.GunStats.hitscan
+	ray_cast_3d.enabled = gun_stats.hit_type == GunStats.HitType.Hitscan
 	mag_count = round(mag_fill_percent * gun_stats.mag_capacity)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 
 func shoot(ammo_pool: Node) -> void:
 	match gun_stats.hit_type:
-		[gun_stats.GunStats.hitscan]:
+		[GunStats.HitType.Hitscan]:
 			if ray_cast_3d.is_colliding():
 				if ray_cast_3d.get_collider().get_collision_layer() & 0b01000100 > 0:
 					if ray_cast_3d.get_collider().is_in_group(&"Damageable"):
