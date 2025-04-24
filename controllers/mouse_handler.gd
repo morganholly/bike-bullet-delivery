@@ -79,17 +79,19 @@ func _holdable_hold_update(obj: RigidBody3D) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	go_to = camera.hold_position.global_position
 	match current_action_state:
 		ActionState.EMPTY:
 			pass
 		ActionState.HOLDITEM:
+			go_to = camera.hold_position.global_position
 			_holdable_hold_update(holding)
 		ActionState.GUN:
+			go_to = camera.gun_position_r.global_position
 			_holdable_hold_update(holding)
 			smoothed_aim_basis = lerp(smoothed_aim_basis, Basis.looking_at(camera.gun_position_r.to_local(camera.aim_pos)), 0.1)
 			camera.gun_position_r.get_node("gun_action").basis = smoothed_aim_basis
 		ActionState.MELEEITEM:
+			go_to = camera.gun_position_r.global_position
 			pass
 	last_go_to = go_to
 
@@ -102,7 +104,7 @@ func gun_tween_to_hold():
 	var tween_face = get_tree().create_tween()
 	tween_face.set_ease(Tween.EASE_IN)
 	var facing_callable = func(weight: float):
-		if camera.gun_position_r.get_node("gun_action") != null and camera.gun_position_r.global_basis != null:
+		if camera.gun_position_r.has_node("gun_action") and camera.gun_position_r.get_node("gun_action") != null and camera.gun_position_r.global_basis != null:
 			camera.gun_position_r.get_node("gun_action").global_basis = camera.gun_position_r.get_node("gun_action").global_basis.slerp(camera.gun_position_r.global_basis, weight * weight)
 	tween_face.tween_method(facing_callable, 0.0, 1.0, 1.0)
 
