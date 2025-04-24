@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cbtdk4wlyqjhs"]
+
+[ext_resource type="Texture2D" uid="uid://c8xdfxeljipf8" path="res://alien/CharacterSheets/alien_spritesheet.png" id="1_8sr81"]
+
+[resource]
+atlas = ExtResource("1_8sr81")
+region = Rect2(748, 0, 68, 87)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
-[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
-[ext_resource type="Script" uid="uid://c06lti0ifcwdy" path="res://controllers/hold_container.gd" id="2_4phe5"]
+[ext_resource type="Script" path="res://controllers/hold_system.gd" id="2_3qjgo"]
+[ext_resource type="Script" path="res://controllers/hold_container.gd" id="2_4phe5"]
 [ext_resource type="PackedScene" uid="uid://be8kx6fdtbf55" path="res://weapons/ammo_pool.tscn" id="3_nbs7e"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
 

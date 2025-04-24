@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsdcph0ot0101"]
+[gd_scene load_steps=7 format=3 uid="uid://bsdcph0ot0101"]
 
 [ext_resource type="Script" uid="uid://dwfbo2tpjieh3" path="res://screen_space_shading/pass_events.gd" id="1_68sve"]
 [ext_resource type="Shader" uid="uid://ywb16dfocp8q" path="res://screen_space_shading/sss_viewport.gdshader" id="2_5mp2e"]
 [ext_resource type="PackedScene" uid="uid://bulcl2lwyyxbq" path="res://levels/testing/test03.tscn" id="2_ex0h6"]
+[ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="3_3gm0h"]
 [ext_resource type="Texture2D" uid="uid://cvgx5r5csqhuf" path="res://textures/crosshairs/crosshair_1_256.png" id="3_5bhby"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70wu8"]
@@ -34,6 +35,15 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Test03" parent="SubViewport" instance=ExtResource("2_ex0h6")]
+
+[node name="Enemy" parent="SubViewport" instance=ExtResource("3_3gm0h")]
+transform = Transform3D(0.638096, 0, -0.769957, 0, 1, 0, 0.769957, 0, 0.638096, 9.56917, 0.0155181, -10.9173)
+
+[node name="Enemy2" parent="SubViewport" instance=ExtResource("3_3gm0h")]
+transform = Transform3D(0.913083, 0, -0.407773, 0, 1, 0, 0.407773, 0, 0.913083, 6.12477, 0.0155162, -15.1339)
+
+[node name="Enemy3" parent="SubViewport" instance=ExtResource("3_3gm0h")]
+transform = Transform3D(0.536755, 0, -0.843738, 0, 1, 0, 0.843738, 0, 0.536755, 12.3057, 0.0155181, -7.72008)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
