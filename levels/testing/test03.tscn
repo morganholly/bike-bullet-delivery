@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=11 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/test_gun.tscn" id="4_xast0"]
+[ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/demo_bullets.tscn" id="5_mvq67"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nln6s"]
 sky_top_color = Color(0.434819, 0.458047, 0.411919, 1)
@@ -166,3 +167,21 @@ mesh = SubResource("SphereMesh_xast0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("CapsuleShape3D_mvq67")
+
+[node name="DemoBullets" parent="." instance=ExtResource("5_mvq67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93312, 0.124998, -1.21241)
+
+[node name="DemoBullets2" parent="." instance=ExtResource("5_mvq67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31186, 0.124999, -3.06445)
+
+[node name="DemoBullets3" parent="." instance=ExtResource("5_mvq67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22737, 0.124998, -5.26306)
+
+[node name="DemoBullets4" parent="." instance=ExtResource("5_mvq67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09809, 0.124998, 6.19772)
+
+[node name="DemoBullets5" parent="." instance=ExtResource("5_mvq67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48044, 0.124998, 7.0245)
+
+[node name="DemoBullets6" parent="." instance=ExtResource("5_mvq67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14003, 0.124998, -4.53315)

@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var capsule_view_mesh: MeshInstance3D = $WorldModel/capsule_view_mesh
 @onready var hat: Node3D = $WorldModel/hat
 @onready var stair_climb_area: Area3D = $Rotate/stair_climb_area
+@onready var hold_container: Node3D = $HoldContainer
 
 
 @export var is_player: bool = true

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuqy1l8g8a877"]
+[gd_scene load_steps=13 format=3 uid="uid://cuqy1l8g8a877"]
 
 [ext_resource type="Script" uid="uid://cfxi0r5rs5p4s" path="res://npcs/enemy_dummy.gd" id="1_3umq2"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="1_ltfn3"]
-[ext_resource type="Script" uid="uid://b8r7jremcxodp" path="res://utils/mesh_face_camera.gd" id="3_3umq2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7w2jb"]
 height = 1.5
@@ -84,12 +83,10 @@ mesh = SubResource("CylinderMesh_s3y7n")
 [node name="health_text" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("TextMesh_s3y7n")
-script = ExtResource("3_3umq2")
 
 [node name="armor_text" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 mesh = SubResource("TextMesh_irc7n")
-script = ExtResource("3_3umq2")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
