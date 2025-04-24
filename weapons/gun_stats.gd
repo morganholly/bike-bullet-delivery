@@ -20,3 +20,5 @@ enum BulletType {
 @export var mag_capacity: int = 11
 @export var reload_time: float = 3
 @export var partial_refill_time: float = 10
+@export var can_auto_fire: bool = false
+@export var shots_per_second: float = 10

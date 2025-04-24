@@ -14,6 +14,8 @@ infinite_ammo = false
 mag_capacity = 11
 reload_time = 3.0
 partial_refill_time = 10.0
+can_auto_fire = false
+shots_per_second = 10.0
 metadata/_custom_type_script = "uid://dic641n02q3ww"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsf64"]
@@ -35,7 +37,7 @@ gun_stats = SubResource("Resource_tan0m")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -1000)
-collision_mask = 69
+collision_mask = 197
 hit_from_inside = true
 collide_with_areas = true
 

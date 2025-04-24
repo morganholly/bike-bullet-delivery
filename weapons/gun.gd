@@ -16,6 +16,7 @@ func _ready() -> void:
 	#add_child(instance)
 	ray_cast_3d.enabled = gun_stats.hit_type == GunStats.HitType.Hitscan
 	mag_count = round(mag_fill_percent * gun_stats.mag_capacity)
+	ray_cast_3d.add_exception(self.get_parent())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,7 +28,8 @@ func _process(delta: float) -> void:
 	reload_timer -= delta
 	reload_timer = max(0, reload_timer)
 
-func shoot(ammo_pool: Node) -> void:
+## returns if entering reload time
+func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 	match gun_stats.hit_type:
 		[GunStats.HitType.Hitscan]:
 			if ray_cast_3d.is_colliding():
@@ -40,16 +42,21 @@ func shoot(ammo_pool: Node) -> void:
 								health_manager = child
 								break
 						if not gun_stats.infinite_ammo:
-							if mag_count > 0 and reload_timer <= 0:
-								mag_count -= 1
-								health_manager.damage(gun_stats.shot_damage)
+							var can_shoot = min(shots, mag_count)
+							if can_shoot > 0 and reload_timer <= 0:
+								mag_count -= can_shoot
+								health_manager.damage(gun_stats.shot_damage * can_shoot)
+								return false
 							else:
 								var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
 								mag_count = reload_result.mag_count
 								reload_timer = reload_result.reload_timer
+								return true
 						else:
-							health_manager.damage(gun_stats.shot_damage)
+							health_manager.damage(gun_stats.shot_damage * shots)
+							return false
 				# could add else here to spawn bullet hole decal
+	return false
 
 
 func aim_show_entity(over: Node3D, up: float = 2) -> void:
