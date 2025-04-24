@@ -37,8 +37,8 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 					if ray_cast_3d.get_collider().is_in_group(&"Damageable"):
 						var parent_object = ray_cast_3d.get_collider()
 						var health_manager: Node
-						for child in parent_object.get_children() :
-							if child.is_in_group(&"HealthManager") :
+						for child in parent_object.get_children():
+							if child.is_in_group(&"HealthManager"):
 								health_manager = child
 								break
 						if not gun_stats.infinite_ammo:

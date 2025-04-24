@@ -1,8 +1,8 @@
 extends Node3D
 
 
-@onready var camera: Node3D = $"../Camera"
-@onready var character_body_3d: CharacterBody3D = $".."
+@onready var camera: Node3D = $"../../Camera"
+@onready var character_body_3d: CharacterBody3D = $"../.."
 
 
 enum ActionState {EMPTY, HOLDITEM, GUN, MELEEITEM}
@@ -44,6 +44,31 @@ var smoothed_aim_basis: Basis
 func _ready() -> void:
 	#hold_filt_coefs = make_biquad_lpf_coefs(0.5, 1)
 	pass
+
+
+func make_active() -> void:
+	match current_action_state:
+		ActionState.EMPTY:
+			pass
+		ActionState.HOLDITEM:
+			holding.collision_mask = holding_old_collision_mask
+			holding.visible = true
+		ActionState.GUN:
+			camera.gun_position_r.get_node("gun_action").visible = true
+		ActionState.MELEEITEM:
+			pass
+
+func make_inactive() -> void:
+	match current_action_state:
+		ActionState.EMPTY:
+			pass
+		ActionState.HOLDITEM:
+			holding_old_collision_mask = holding.collision_mask
+			holding.visible = false
+		ActionState.GUN:
+			camera.gun_position_r.get_node("gun_action").visible = false
+		ActionState.MELEEITEM:
+			pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -109,7 +134,7 @@ func gun_tween_to_hold():
 	tween_face.tween_method(facing_callable, 0.0, 1.0, 1.0)
 
 
-func _input(event) -> void:
+func active_slot_input(event) -> void:
 	match current_action_state:
 		ActionState.EMPTY:
 			if event is InputEventMouseButton and event.pressed:
@@ -176,14 +201,15 @@ func _input(event) -> void:
 						holding = obj_over
 		ActionState.HOLDITEM:
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
-				debounce_gun_hold_swap = 0.5
-				#print("to gun hold")
-				holding_old_collision_mask = holding.collision_mask
-				holding.get_node("gun_action").reparent(camera.gun_position_r)
-				
-				gun_tween_to_hold()
-				
-				current_action_state = ActionState.GUN
+				if holding.is_in_group("holdable_could_gun"):
+					debounce_gun_hold_swap = 0.5
+					#print("to gun hold")
+					holding_old_collision_mask = holding.collision_mask
+					holding.get_node("gun_action").reparent(camera.gun_position_r)
+					
+					gun_tween_to_hold()
+					
+					current_action_state = ActionState.GUN
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 					current_action_state = ActionState.EMPTY

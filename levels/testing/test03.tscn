@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=10 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
@@ -18,6 +18,16 @@ background_mode = 2
 sky = SubResource("Sky_xast0")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xast0"]
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mvq67"]
+radius = 0.25
+height = 1.0
 
 [node name="Test03" type="Node3D"]
 
@@ -142,3 +152,17 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0
 
 [node name="test_gun" parent="." instance=ExtResource("4_xast0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645156, 2.42936, -6.25368)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41962, 2.26009, -4.89007)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("SphereMesh_xast0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("SphereMesh_xast0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_mvq67")
