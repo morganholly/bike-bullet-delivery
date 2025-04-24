@@ -12,9 +12,11 @@ height = 1.0
 radius = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7w2jb"]
+resource_local_to_scene = true
 albedo_color = Color(0.0723588, 0.194387, 0.628038, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ltfn3"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_7w2jb")
 height = 1.5
 radial_segments = 16
@@ -32,6 +34,7 @@ radial_segments = 16
 rings = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3umq2"]
+resource_local_to_scene = true
 albedo_color = Color(0.918616, 0.762351, 0.610828, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_s3y7n"]
@@ -43,6 +46,7 @@ pixel_size = 0.05
 depth = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ll6o"]
+resource_local_to_scene = true
 albedo_color = Color(0.398926, 0.530106, 0.673585, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_irc7n"]
@@ -86,3 +90,9 @@ script = ExtResource("3_3umq2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 mesh = SubResource("TextMesh_irc7n")
 script = ExtResource("3_3umq2")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
