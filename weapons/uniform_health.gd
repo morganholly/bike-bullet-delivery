@@ -38,7 +38,8 @@ var block_curve_is_01: bool
 func _ready() -> void:
 	current_health = max_health
 	current_armor = max_armor
-	armor_condition_block_rate.bake()
+	if armor_condition_block_rate != null:
+		armor_condition_block_rate.bake()
 
 func _process(delta: float) -> void:
 	current_health = min(current_health + delta * health_regen, max_health)
