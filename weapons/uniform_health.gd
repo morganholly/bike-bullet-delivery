@@ -43,16 +43,15 @@ func _ready() -> void:
 	current_armor = max_armor
 	if armor_condition_block_rate != null:
 		armor_condition_block_rate.bake()
-	if armor_condition_pass_scale != null:
-		armor_condition_pass_scale.bake()
-
-func _process(delta: float) -> void:
-	current_health = min(current_health + delta * health_regen, max_health)
-	current_armor = min(current_armor + delta * armor_regen, max_armor)
-	if armor_condition_block_rate != null:
 		block_curve_is_01 = abs(armor_condition_block_rate.min_domain) < 0.001 and abs(armor_condition_block_rate.min_value) < 0.001 and abs(armor_condition_block_rate.max_domain - 1) < 0.001 and abs(armor_condition_block_rate.max_value - 1) < 0.001
 	if armor_condition_pass_scale != null:
+		armor_condition_pass_scale.bake()
 		pass_curve_is_01 = abs(armor_condition_pass_scale.min_domain) < 0.001 and abs(armor_condition_pass_scale.min_value) < 0.001 and abs(armor_condition_pass_scale.max_domain - 1) < 0.001 and abs(armor_condition_pass_scale.max_value - 1) < 0.001
+
+func _process(delta: float) -> void:
+	if not is_dead:
+		current_health = min(current_health + delta * health_regen, max_health)
+		current_armor = min(current_armor + delta * armor_regen, max_armor)
 
 func get_block_chance(armor_percent: float) -> float:
 	var chance: float
