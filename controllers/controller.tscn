@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c6ob8apegn4rq"]
 
 [ext_resource type="Script" uid="uid://c8vc6iqk7wtti" path="res://controllers/controller.gd" id="1_q8ffh"]
-[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/mouse_handler.gd" id="2_5t74s"]
+[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_5t74s"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="2_iyh5y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]

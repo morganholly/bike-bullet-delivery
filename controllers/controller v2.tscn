@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
-[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/mouse_handler.gd" id="2_3qjgo"]
+[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
@@ -36,7 +36,7 @@ cr_jump_raise_scale = 0.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6q0gj")
 
-[node name="MouseHandler" type="Node3D" parent="."]
+[node name="HoldSystem" type="Node3D" parent="."]
 script = ExtResource("2_3qjgo")
 
 [node name="WorldModel" type="Node3D" parent="."]
