@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi0orf8wb2bm5" path="res://environment/truck/gun_truck.gd" id="1_qs7ku"]
 [ext_resource type="Texture2D" uid="uid://hsmwx42ubvxp" path="res://textures/Mockups/Untitled-export.png" id="2_rc0ci"]
-[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_fnaer"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://alien/Billboard.gd" id="3_fnaer"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_06fj6"]
 size = Vector3(4.15723, 3.01367, 2)

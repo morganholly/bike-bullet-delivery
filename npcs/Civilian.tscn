@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jcyw00rhma7u" path="res://npcs/civilian.gd" id="1_jghv5"]
 [ext_resource type="Texture2D" uid="uid://d4nga1wwvunxs" path="res://textures/Mockups/Front.png" id="2_jghv5"]
-[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_7ung2"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://alien/Billboard.gd" id="3_7ung2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 height = 2.51798

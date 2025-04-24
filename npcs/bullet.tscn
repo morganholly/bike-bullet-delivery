@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brjt2gw4u0g8e"]
 
 [ext_resource type="Texture2D" uid="uid://kg3jvmkv10k5" path="res://textures/Mockups/Bullet.png" id="1_rn60w"]
-[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_w7lxn"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://alien/Billboard.gd" id="3_w7lxn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c7t1n"]
 height = 0.137635

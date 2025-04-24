@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dw85hjnxoncyy" path="res://textures/Mockups/Sprite-0001.png" id="1_5kt36"]
 [ext_resource type="Script" uid="uid://cjoehl4xcbppe" path="res://npcs/gun_pickable.gd" id="1_ql0qm"]
-[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="2_ql0qm"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://alien/Billboard.gd" id="2_ql0qm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c7t1n"]
 height = 0.621338

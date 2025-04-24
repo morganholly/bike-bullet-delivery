@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bayoc8puvq056" path="res://npcs/mag.gd" id="1_r8wh4"]
 [ext_resource type="Texture2D" uid="uid://mx67quka3wii" path="res://textures/Mockups/Mag.png" id="2_r8wh4"]
-[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://npcs/Billboard.gd" id="3_a6vi1"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://alien/Billboard.gd" id="3_a6vi1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c7t1n"]
 height = 0.403931
