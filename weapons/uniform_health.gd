@@ -99,7 +99,7 @@ func damage(amount: float) -> void:
 			var remaining = amount - current_armor
 			current_armor = 0
 			current_health = max(0, current_health - remaining - pass_scale * amount)
-			print(current_health)
+			#print(current_health)
 		if hit_callback != null and hit_callback.is_valid():
 			hit_callback.call()
 		if damaged_callback != null and damaged_callback.is_valid():

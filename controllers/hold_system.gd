@@ -65,6 +65,7 @@ func make_inactive() -> void:
 			pass
 		ActionState.HOLDITEM:
 			holding_old_collision_mask = holding.collision_mask
+			holding.collision_mask = 0
 			holding.visible = false
 		ActionState.GUN:
 			camera.gun_position_r.get_node("gun_action").visible = false
@@ -160,6 +161,7 @@ func active_slot_input(event) -> void:
 							[_, true, false], [_, true, true]: # only gun, maybe hold
 								#print("only gun, maybe hold")
 								holding_old_collision_mask = obj_over.collision_mask
+								obj_over.collision_mask = 0
 								obj_over.get_node("gun_action").stash_extra_mags(ammo_pool)
 								obj_over.get_node("gun_action").reparent(camera.gun_position_r)
 								# if obj_over.gun_component.ammo_counter > 0:
@@ -207,6 +209,7 @@ func active_slot_input(event) -> void:
 					debounce_gun_hold_swap = 0.5
 					#print("to gun hold")
 					holding_old_collision_mask = holding.collision_mask
+					holding.collision_mask = 0
 					holding.get_node("gun_action").reparent(camera.gun_position_r)
 					
 					gun_tween_to_hold()
