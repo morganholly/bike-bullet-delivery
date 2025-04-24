@@ -154,6 +154,7 @@ func active_slot_input(event) -> void:
 						camera.nodeRaycast.add_exception(obj_over)
 						# i aint retyping all that
 						#match [could_holditem, could_gun, could_meleeitem, prefer_holditem, prefer_gun, prefer_meleeitem]:
+						obj_over.add_to_group(&"IsHeld")
 						match [could_holditem, could_gun, could_meleeitem]:
 							[true, false, false]: # only hold
 								#print("only hold")
@@ -225,6 +226,7 @@ func active_slot_input(event) -> void:
 					holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
 					camera.nodeRaycast.remove_exception(holding)
 					camera.nodeRaycast.collision_mask |= 0b1_0000_0000
+					holding.remove_from_group(&"IsHeld")
 					holding = null
 		ActionState.GUN:
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
