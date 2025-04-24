@@ -62,16 +62,22 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 							if can_shoot > 0 and reload_timer <= 0:
 								bullets_in_mag -= can_shoot
 								health_manager.damage(gun_stats.shot_damage * can_shoot)
-								print("bang, bullets left: ", bullets_in_mag)
-								return false
+								#print("bang, bullets left: ", bullets_in_mag)
+								if bullets_in_mag > 0:
+									return false
+								else:
+									var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
+									bullets_in_mag = reload_result.mag_count
+									reload_timer = reload_result.reload_time
+									return true
 							elif reload_timer <= 0:
 								var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
 								bullets_in_mag = reload_result.mag_count
 								reload_timer = reload_result.reload_time
-								print("reloading, bullets left: ", bullets_in_mag)
+								#print("reloading, bullets left: ", bullets_in_mag)
 								return true
 							else:
-								print("wait for reload timer, time: ", reload_timer)
+								#print("wait for reload timer, time: ", reload_timer)
 								return true
 						else:
 							health_manager.damage(gun_stats.shot_damage * shots)

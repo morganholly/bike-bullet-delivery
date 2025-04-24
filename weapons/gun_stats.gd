@@ -15,7 +15,7 @@ enum BulletType {
 	_308_762x51
 }
 @export var bullet_id: BulletType = BulletType._9MM
-@export var shot_damage: float = 1.0
+@export var shot_damage: float = 4.0
 @export var infinite_ammo: bool = false
 @export var mag_capacity: int = 11
 @export var reload_time: float = 3
