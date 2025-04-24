@@ -15,8 +15,8 @@ var holding_old_contact_monitor: bool = false
 var holding_contacts_avg: float = 0
 var holding_old_gravity_scale: float = 0
 var holding_old_collision_mask: int = 0
-
 var debounce_gun_hold_swap: float = 0.5
+var smoothed_aim_basis: Basis
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -87,6 +87,8 @@ func _physics_process(delta: float) -> void:
 			_holdable_hold_update(holding)
 		ActionState.GUN:
 			_holdable_hold_update(holding)
+			smoothed_aim_basis = lerp(smoothed_aim_basis, Basis.looking_at(camera.gun_position_r.to_local(camera.aim_pos)), 0.1)
+			camera.gun_position_r.get_node("gun_action").basis = smoothed_aim_basis
 		ActionState.MELEEITEM:
 			pass
 	last_go_to = go_to
@@ -119,6 +121,8 @@ func _input(event) -> void:
 					#var prefer_meleeitem = obj_over.is_in_group("holdable_prefer_melee")
 					var should_switch_dialog_be_shown = false
 					if could_holditem or could_gun or could_meleeitem:
+						camera.nodeRaycast.collision_mask &= ~0b1_0000_0000
+						camera.nodeRaycast.add_exception(obj_over)
 						# i aint retyping all that
 						#match [could_holditem, could_gun, could_meleeitem, prefer_holditem, prefer_gun, prefer_meleeitem]:
 						match [could_holditem, could_gun, could_meleeitem]:
@@ -186,6 +190,8 @@ func _input(event) -> void:
 						holding.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(holding.mass)
 					var vel_clamped = 20 * (1 - (1 / (1 + 0.05 * holding.linear_velocity.length())))
 					holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
+					camera.nodeRaycast.remove_exception(holding)
+					camera.nodeRaycast.collision_mask |= 0b1_0000_0000
 					holding = null
 		ActionState.GUN:
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:

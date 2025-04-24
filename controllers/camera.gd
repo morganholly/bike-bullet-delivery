@@ -26,7 +26,7 @@ var mouse_movement: Vector2 = Vector2(0,0)
 var next_movement: Vector2 = Vector2(0,0)
 var view_rotation: Quaternion = Quaternion()
 var view_tilt: Quaternion = Quaternion()
-#var camera_basis: Basis = Basis.IDENTITY
+var camera_transform: Transform3D
 
 var aim_dist: float = 0
 var aim_norm: Vector3 = Vector3(0, 0, 0)
@@ -57,7 +57,6 @@ var is_active: bool = true:
 			nodeRotate.process_mode = Node.PROCESS_MODE_INHERIT
 		else:
 			nodeRotate.process_mode = Node.PROCESS_MODE_DISABLED
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -170,7 +169,10 @@ func _process(delta):
 		else:
 			flip.basis = Basis.IDENTITY
 		
-		#camera_basis = camera_3d.global_transform.basis
+		if third_person_select:
+			camera_transform = camera_third_person.global_transform
+		else:
+			camera_transform = camera_first_person.global_transform
 
 		if process_aim:
 			nodePointer.visible = true
@@ -188,6 +190,9 @@ func _process(delta):
 			else:
 				colliding = false
 				nodePointer.visible = false
-				aim_dist = 100000000
+				var hold_pos_global_vec = hold_position.global_position - self.global_position
+				aim_pos = hold_pos_global_vec * 10 + self.global_position
+				aim_dist = hold_pos_global_vec.length() * 10
+				aim_norm = Vector3.UP
 		else:
 			nodePointer.visible = false
