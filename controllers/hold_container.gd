@@ -5,6 +5,7 @@ var slots: Array[Node3D]
 var selected_slot: int = 0
 var flip_scroll_ud: bool
 var flip_scroll_rl: bool
+var ammo_pool: Node
 
 
 func _ready() -> void:
@@ -12,6 +13,11 @@ func _ready() -> void:
 		if child.is_in_group(&"hold_system"):
 			num_slots += 1
 			slots.append(child)
+		if child.is_in_group(&"AmmoPool"):
+			ammo_pool = child
+	if ammo_pool != null:
+		for hs in slots:
+			hs.ammo_pool = ammo_pool
 
 
 func _input(event: InputEvent) -> void:

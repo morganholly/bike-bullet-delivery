@@ -17,6 +17,7 @@ var holding_old_gravity_scale: float = 0
 var holding_old_collision_mask: int = 0
 var debounce_gun_hold_swap: float = 0.5
 var smoothed_aim_basis: Basis
+var ammo_pool: Node
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -232,5 +233,7 @@ func active_slot_input(event) -> void:
 				tween_pos.set_ease(Tween.EASE_OUT)
 				tween_pos.tween_property(holding.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
 				current_action_state = ActionState.HOLDITEM
+			elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+				camera.gun_position_r.get_node("gun_action").shoot(ammo_pool, 1)
 		ActionState.MELEEITEM:
 			pass

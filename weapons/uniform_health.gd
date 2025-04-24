@@ -31,6 +31,7 @@ var current_armor: float
 var is_dead: bool = false
 var death_callback: Callable
 var damaged_callback: Callable
+var hit_callback: Callable
 
 var block_curve_is_01: bool
 
@@ -42,31 +43,42 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	current_health = min(current_health + delta * health_regen, max_health)
 	current_armor = min(current_armor + delta * armor_regen, max_armor)
-	block_curve_is_01 = abs(armor_condition_block_rate.min_domain) < 0.001 and abs(armor_condition_block_rate.min_value) < 0.001 and abs(armor_condition_block_rate.max_domain - 1) < 0.001 and abs(armor_condition_block_rate.max_value - 1) < 0.001
+	if armor_condition_block_rate != null:
+		block_curve_is_01 = abs(armor_condition_block_rate.min_domain) < 0.001 and abs(armor_condition_block_rate.min_value) < 0.001 and abs(armor_condition_block_rate.max_domain - 1) < 0.001 and abs(armor_condition_block_rate.max_value - 1) < 0.001
 
 func damage(amount: float) -> void:
 	var chance: float
-	if not block_curve_is_01:
-		var block_curve_input = lerp(
-			armor_condition_block_rate.min_domain,
-			armor_condition_block_rate.max_domain,
-			current_armor / max_armor)
-		chance = armor_condition_block_rate.sample_baked(block_curve_input)
-		chance -= armor_condition_block_rate.min_value
-		chance /= armor_condition_block_rate.max_value - armor_condition_block_rate.min_value
-	else:
-		chance = armor_condition_block_rate.sample_baked(current_armor / max_armor)
-	if randf() > chance:
+	if armor_condition_block_rate != null:
+		if not block_curve_is_01:
+			var block_curve_input = lerp(
+				armor_condition_block_rate.min_domain,
+				armor_condition_block_rate.max_domain,
+				current_armor / max_armor)
+			chance = armor_condition_block_rate.sample_baked(block_curve_input)
+			chance -= armor_condition_block_rate.min_value
+			chance /= armor_condition_block_rate.max_value - armor_condition_block_rate.min_value
+		else:
+			chance = armor_condition_block_rate.sample_baked(current_armor / max_armor)
+	if randf() >= chance:
+		print("hitting")
 		# do damage
 		if current_armor >= amount:
-			current_armor -= amount
+			print("armor block")
+			current_armor = max(0, current_armor - amount)
+			if hit_callback != null and hit_callback.is_valid():
+				hit_callback.call()
+			print(current_armor)
 		else:
+			print("insufficient armor")
 			var remaining = amount - current_armor
 			current_armor = 0
 			current_health -= remaining
+			print(current_health)
+			if hit_callback != null and hit_callback.is_valid():
+				hit_callback.call()
+			if damaged_callback != null and damaged_callback.is_valid():
+				damaged_callback.call()
 			if current_health <= 0:
 				is_dead = true
-				if death_callback != null:
+				if death_callback != null and death_callback.is_valid():
 					death_callback.call()
-		if damaged_callback != null:
-			damaged_callback.call()
