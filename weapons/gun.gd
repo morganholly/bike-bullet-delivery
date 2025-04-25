@@ -46,7 +46,7 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 		GunStats.HitType.Hitscan:
 			#print("is hitscan gun")
 			if ray_cast_3d.is_colliding():
-				#print("raycast hitting")
+				print("hit!")
 				if ray_cast_3d.get_collider().get_collision_layer() & 0b01000100 > 0:
 					#print("has right coll mask")
 					if ray_cast_3d.get_collider().is_in_group(&"Damageable"):
@@ -69,6 +69,7 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 									var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
 									bullets_in_mag = reload_result.mag_count
 									reload_timer = reload_result.reload_time
+									print("reloading, bullets left: ", bullets_in_mag)
 									return true
 							elif reload_timer <= 0:
 								var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
@@ -83,6 +84,30 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 							health_manager.damage(gun_stats.shot_damage * shots)
 							return false
 				# could add else here to spawn bullet hole decal
+			else:
+				print("missed!")
+				if not gun_stats.infinite_ammo:
+					var can_shoot = min(shots, bullets_in_mag)
+					if can_shoot > 0 and reload_timer <= 0:
+						bullets_in_mag -= can_shoot
+						print("bang, bullets left: ", bullets_in_mag)
+						if bullets_in_mag > 0:
+							return false
+						else:
+							var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
+							bullets_in_mag = reload_result.mag_count
+							reload_timer = reload_result.reload_time
+							print("reloading, bullets left: ", bullets_in_mag)
+							return true
+					elif reload_timer <= 0:
+						var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
+						bullets_in_mag = reload_result.mag_count
+						reload_timer = reload_result.reload_time
+						print("reloading, bullets left: ", bullets_in_mag)
+						return true
+					else:
+						print("wait for reload timer, time: ", reload_timer)
+						return true
 	return false
 
 
