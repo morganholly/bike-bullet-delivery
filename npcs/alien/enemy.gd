@@ -19,7 +19,11 @@ var cur_shoot_delay = 0
 
 func damaged_set_state():
 	print("ow!")
-	current_state = Entity_States.Damaged
+	current_state = Entity_States.Damaged 
+	cur_stun_delay = stun_delay
+	if target == null:
+		target = get_tree().get_nodes_in_group("Player")[0]
+	
 
 func death_set_state():
 	print("aughh")
@@ -79,9 +83,9 @@ func _on_body_entered(body: Node) -> void:
 		#recieve_damage(100)
 		uniform_health.damage(100)
 		body.queue_free()
-		current_state = Entity_States.Damaged 
-		cur_stun_delay = stun_delay
 	pass # Replace with function body.
+
+
 
 
 #func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:

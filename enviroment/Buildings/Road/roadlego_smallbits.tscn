@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv0xsw4j2hfla"]
+
+[ext_resource type="PackedScene" uid="uid://degftwdy588q2" path="res://enviroment/Buildings/Road/roadlego-smallbits.blend" id="1_v43tl"]
+
+[node name="roadlego-smallbits" instance=ExtResource("1_v43tl")]
