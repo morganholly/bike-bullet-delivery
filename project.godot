@@ -162,6 +162,7 @@ gun_hold_swap={
 3d_physics/layer_7="DamageableObject"
 3d_physics/layer_8="SmallProp"
 3d_physics/layer_9="ExtraPickupArea"
+3d_physics/layer_10="Projectile"
 
 [physics]
 

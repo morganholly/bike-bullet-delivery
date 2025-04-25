@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8xdfxeljipf8"
-path.s3tc="res://.godot/imported/alien_spritesheet.png-ecca4d7a7fe6ca520797bd7f1a06ab2a.s3tc.ctex"
+path="res://.godot/imported/alien_spritesheet.png-63498c0c0a659d8a04263581bfc17107.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://npcs/alien/CharacterSheets/alien_spritesheet.png"
-dest_files=["res://.godot/imported/alien_spritesheet.png-ecca4d7a7fe6ca520797bd7f1a06ab2a.s3tc.ctex"]
+source_file="res://npcs/alien/alien_char_sheet/alien_spritesheet.png"
+dest_files=["res://.godot/imported/alien_spritesheet.png-63498c0c0a659d8a04263581bfc17107.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

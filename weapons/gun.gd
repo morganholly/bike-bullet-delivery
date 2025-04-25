@@ -28,7 +28,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if ray_cast_3d.is_colliding():
-		if ray_cast_3d.get_collider().get_collision_layer() & 0b00000100 > 0:
+		if ray_cast_3d.get_collider() and ray_cast_3d.get_collider().get_collision_layer() & 0b00000100 > 0:
 			aim_show_entity(ray_cast_3d.get_collider())
 		else:
 			red_arrow.hide()
