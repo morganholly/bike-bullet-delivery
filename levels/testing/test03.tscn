@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=15 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/test_gun.tscn" id="4_xast0"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/demo_bullets.tscn" id="5_mvq67"]
 [ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="6_x73s8"]
+[ext_resource type="PackedScene" uid="uid://b2kvbarovxss2" path="res://enviroment/Buildings/Building/building.tscn" id="7_hxiib"]
+[ext_resource type="PackedScene" uid="uid://bya2cxmh4p88e" path="res://enviroment/Buildings/Townhall/Townhall.tscn" id="8_40n4o"]
+[ext_resource type="PackedScene" uid="uid://ciqx1d74mng24" path="res://enviroment/Buildings/CrossResidential/CrossResidentialbuilding.tscn" id="9_gcrq5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nln6s"]
 sky_top_color = Color(0.434819, 0.458047, 0.411919, 1)
@@ -195,3 +198,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3638, 3.44572, -1.62)
 
 [node name="Enemy3" parent="." instance=ExtResource("6_x73s8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9865, 3.44572, -25.4369)
+
+[node name="Building" parent="." instance=ExtResource("7_hxiib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2401, -2.30896, -14.7828)
+
+[node name="Townhall2" parent="." instance=ExtResource("8_40n4o")]
+transform = Transform3D(0.0109081, 0, -0.99994, 0, 1, 0, 0.99994, 0, 0.0109081, 39.6153, -1.99185, 18.4117)
+
+[node name="Building2" parent="." instance=ExtResource("9_gcrq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.368, -1.52035, -14.453)

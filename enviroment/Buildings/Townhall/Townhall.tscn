@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bya2cxmh4p88e"]
+
+[ext_resource type="PackedScene" uid="uid://cpmx4umf20s4c" path="res://enviroment/Buildings/Townhall/oldtownhall1.blend" id="1_77vws"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7e1dv"]
+size = Vector3(11.148, 15.0515, 33.7486)
+
+[node name="Townhall" type="RigidBody3D"]
+freeze = true
+
+[node name="oldtownhall1" parent="." instance=ExtResource("1_77vws")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55452, 7.37029, -15.6051)
+shape = SubResource("BoxShape3D_7e1dv")

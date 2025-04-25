@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2kvbarovxss2"]
+
+[ext_resource type="PackedScene" uid="uid://dltio7e20kgvn" path="res://enviroment/Buildings/Building/beigebuilding.blend" id="1_66mn8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_weoln"]
+size = Vector3(30.4209, 16.0034, 13.9059)
+
+[node name="Building" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.172133, 0)
+disable_mode = 1
+can_sleep = false
+freeze = true
+
+[node name="beigebuilding" parent="." instance=ExtResource("1_66mn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.132267, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2339, 7.99727, -5.97892)
+shape = SubResource("BoxShape3D_weoln")
