@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var hat: Node3D = $WorldModel/hat
 @onready var stair_climb_area: Area3D = $Rotate/stair_climb_area
 @onready var hold_container: Node3D = $HoldContainer
+@onready var uniform_health: Node = $UniformHealth
 
 
 @export var is_player: bool = true
@@ -88,11 +89,15 @@ var rb_accel_timer: float
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
 
+func death_callback():
+	# this will probably glitch out the camera
+	self.is_player = false
 
 func _ready() -> void:
 	# could add automatic world model hiding here
 	camera.is_active = is_player
 	camera.add_raycast_exception(self)
+	uniform_health.death_callback = death_callback
 
 
 func _process(delta: float) -> void:

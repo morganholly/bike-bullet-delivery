@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cghjxqpj25jao"]
+[gd_scene load_steps=13 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
 [ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
 [ext_resource type="Script" uid="uid://c06lti0ifcwdy" path="res://controllers/hold_container.gd" id="2_4phe5"]
+[ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_nlpru"]
 [ext_resource type="PackedScene" uid="uid://be8kx6fdtbf55" path="res://weapons/ammo_pool.tscn" id="3_nbs7e"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
 
@@ -26,13 +27,16 @@ height = 3.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_sa7iv"]
 radius = 0.01
 
-[node name="CharControllerV2" type="CharacterBody3D" groups=["Player"]]
+[node name="CharControllerV2" type="CharacterBody3D" groups=["Damageable", "Player"]]
 collision_layer = 2
 collision_mask = 33
 floor_max_angle = 1.0472
 platform_on_leave = 2
 script = ExtResource("1_skear")
 cr_jump_raise_scale = 0.8
+
+[node name="UniformHealth" parent="." instance=ExtResource("2_nlpru")]
+max_health = 50.0
 
 [node name="capsule_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
