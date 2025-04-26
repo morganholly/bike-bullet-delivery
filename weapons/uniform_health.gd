@@ -114,12 +114,14 @@ func damage(amount: float) -> void:
 			if death_callback != null and death_callback.is_valid():
 				death_callback.call()
 
-func damage_penetrate(amount: float, damage_health: bool = true, damage_armor: bool = true) -> void:
+func damage_penetrate(amount_health: float, amount_armor: float) -> void:
+	var damage_health: bool = abs(amount_health) > 0.00001
+	var damage_armor: bool = abs(amount_armor) > 0.00001
 	if damage_health or damage_armor:
 		if damage_armor:
-			current_armor = max(0, current_armor - amount)
+			current_armor = max(0, current_armor - amount_armor)
 		if damage_health:
-			current_health = max(0, current_health - amount)
+			current_health = max(0, current_health - amount_health)
 		
 		if hit_callback != null and hit_callback.is_valid():
 			hit_callback.call()
