@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cbbfu2jutj4bf"]
 
-[ext_resource type="Texture2D" uid="uid://bvw8bjvqwsf7p" path="res://textures/low res grayscale textures/gray31_256.png" id="1_oeyj5"]
-[ext_resource type="Texture2D" uid="uid://uwmlhh773s5a" path="res://textures/low res grayscale textures/gray13_128.png" id="2_bkj76"]
-[ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/bullet_pickup.tscn" id="3_uwa27"]
+[ext_resource type="Texture2D" uid="uid://bvw8bjvqwsf7p" path="res://graphics/low res grayscale textures/gray31_256.png" id="1_oeyj5"]
+[ext_resource type="Texture2D" uid="uid://uwmlhh773s5a" path="res://graphics/low res grayscale textures/gray13_128.png" id="2_bkj76"]
+[ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="3_uwa27"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd4l6"]
 albedo_texture = ExtResource("1_oeyj5")

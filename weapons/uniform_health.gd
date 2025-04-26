@@ -88,13 +88,17 @@ func damage(amount: float) -> void:
 	if randf() >= chance:
 		#print("hitting")
 		# do damage
+		var did_health_damage: bool = false
 		if current_armor >= amount:
 			#print("armor block")
 			var pass_scale = get_pass_scale(current_armor / max_armor)
 			current_armor = max(0, current_armor - amount)
 			current_health = max(0, current_health - pass_scale * amount)
+			if pass_scale * amount > 0:
+				did_health_damage = true
 		else:
 			#print("insufficient armor")
+			did_health_damage = true
 			var pass_scale = get_pass_scale(current_armor / max_armor)
 			var remaining = amount - current_armor
 			current_armor = 0
@@ -102,8 +106,26 @@ func damage(amount: float) -> void:
 			#print(current_health)
 		if hit_callback != null and hit_callback.is_valid():
 			hit_callback.call()
-		if damaged_callback != null and damaged_callback.is_valid():
-			damaged_callback.call()
+		if did_health_damage:
+			if damaged_callback != null and damaged_callback.is_valid():
+				damaged_callback.call()
+		if current_health <= 0:
+			is_dead = true
+			if death_callback != null and death_callback.is_valid():
+				death_callback.call()
+
+func damage_penetrate(amount: float, damage_health: bool = true, damage_armor: bool = true) -> void:
+	if damage_health or damage_armor:
+		if damage_armor:
+			current_armor = max(0, current_armor - amount)
+		if damage_health:
+			current_health = max(0, current_health - amount)
+		
+		if hit_callback != null and hit_callback.is_valid():
+			hit_callback.call()
+		if damage_health:
+			if damaged_callback != null and damaged_callback.is_valid():
+				damaged_callback.call()
 		if current_health <= 0:
 			is_dead = true
 			if death_callback != null and death_callback.is_valid():

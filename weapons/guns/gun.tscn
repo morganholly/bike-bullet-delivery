@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://xrks1ho84k4w"]
 
-[ext_resource type="Script" uid="uid://cdegx4otnhpbw" path="res://weapons/gun.gd" id="1_tsf64"]
-[ext_resource type="Script" uid="uid://dic641n02q3ww" path="res://weapons/gun_stats.gd" id="2_14xyu"]
-[ext_resource type="Texture2D" uid="uid://cu48mpcxhj886" path="res://textures/crosshairs/crosshair_2b_512.png" id="3_14xyu"]
+[ext_resource type="Script" uid="uid://cdegx4otnhpbw" path="res://weapons/guns/gun.gd" id="1_tsf64"]
+[ext_resource type="Script" uid="uid://dic641n02q3ww" path="res://weapons/guns/gun_stats.gd" id="2_14xyu"]
+[ext_resource type="Texture2D" uid="uid://cu48mpcxhj886" path="res://graphics/crosshairs/crosshair_2b_512.png" id="3_14xyu"]
 
 [sub_resource type="Resource" id="Resource_tan0m"]
 script = ExtResource("2_14xyu")
