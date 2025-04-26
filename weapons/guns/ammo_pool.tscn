@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://be8kx6fdtbf55"]
+
+[ext_resource type="Script" uid="uid://de0c7vdda4o2n" path="res://weapons/guns/ammo_pool.gd" id="1_antg8"]
+
+[node name="AmmoPool" type="Node" groups=["AmmoPool"]]
+script = ExtResource("1_antg8")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://denk6fn1vwa5b"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_hx4c0"]
-[ext_resource type="Material" uid="uid://ciwkuu8mifka2" path="res://textures/voronoi concrete or metal.tres" id="1_mm7rj"]
+[ext_resource type="Material" uid="uid://ciwkuu8mifka2" path="res://graphics/voronoi concrete or metal.tres" id="1_mm7rj"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="2_bsrcr"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_hx4c0"]

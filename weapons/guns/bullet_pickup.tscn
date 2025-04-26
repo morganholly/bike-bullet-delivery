@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwjbi03u7v2sr"]
+
+[ext_resource type="Script" uid="uid://c4tvs50jcsjlm" path="res://weapons/guns/bullet_pickup.gd" id="1_vylu1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u4brl"]
+radius = 1.0
+
+[node name="BulletPickup" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vylu1")
+full_mags = Dictionary[int, int]({
+0: 4
+})
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_u4brl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
