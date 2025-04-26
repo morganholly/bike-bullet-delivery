@@ -1,13 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=28 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="4_xast0"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="5_mvq67"]
+[ext_resource type="Script" uid="uid://dic641n02q3ww" path="res://weapons/guns/gun_stats.gd" id="5_wbiaj"]
+[ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="6_hgwig"]
 [ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="6_x73s8"]
 [ext_resource type="PackedScene" uid="uid://b2kvbarovxss2" path="res://enviroment/Buildings/Building/building.tscn" id="7_hxiib"]
+[ext_resource type="Script" uid="uid://bneyvukm2fm7v" path="res://weapons/damage_resources/repeating_damage.gd" id="7_vxxs0"]
 [ext_resource type="PackedScene" uid="uid://bya2cxmh4p88e" path="res://enviroment/Buildings/Townhall/Townhall.tscn" id="8_40n4o"]
+[ext_resource type="Texture2D" uid="uid://50sr30dbnxic" path="res://graphics/low res grayscale textures/gray12_128.png" id="8_hgwig"]
 [ext_resource type="PackedScene" uid="uid://ciqx1d74mng24" path="res://enviroment/Buildings/CrossResidential/CrossResidentialbuilding.tscn" id="9_gcrq5"]
 [ext_resource type="PackedScene" uid="uid://bpfmruy1t3xy4" path="res://weapons/test_collision_damager.tscn" id="10_hqlv0"]
 
@@ -24,6 +28,62 @@ background_mode = 2
 sky = SubResource("Sky_xast0")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_pb3sh"]
+script = ExtResource("6_hgwig")
+normal_damage = 1.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="Resource" id="Resource_40mmv"]
+script = ExtResource("7_vxxs0")
+damage_res = SubResource("Resource_pb3sh")
+times = 1
+forever = true
+time = 1.0
+time_mode = 0
+metadata/_custom_type_script = "uid://bneyvukm2fm7v"
+
+[sub_resource type="Resource" id="Resource_pbs5x"]
+script = ExtResource("5_wbiaj")
+hit_type = 0
+bullet_speed = 350.0
+bullet_id = 0
+shot_damage = SubResource("Resource_40mmv")
+infinite_ammo = false
+mag_capacity = 11
+reload_time = 3.0
+partial_refill_time = 10.0
+can_auto_fire = false
+shots_per_second = 10.0
+metadata/_custom_type_script = "uid://dic641n02q3ww"
+
+[sub_resource type="FontVariation" id="FontVariation_fq6e1"]
+variation_transform = Transform2D(1, 0.1, 0.2, 1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vxxs0"]
+load_path = "res://.godot/imported/gray4_128_normal.png-7995c886a2237113affb8dc22b0573cc.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb3sh"]
+albedo_color = Color(0.762673, 0.368247, 0.322856, 1)
+albedo_texture = ExtResource("8_hgwig")
+metallic = 0.7
+roughness = 0.5
+normal_enabled = true
+normal_scale = 0.7
+normal_texture = SubResource("CompressedTexture2D_vxxs0")
+uv1_scale = Vector3(2, 10, 1)
+uv1_triplanar = true
+
+[sub_resource type="TextMesh" id="TextMesh_40mmv"]
+material = SubResource("StandardMaterial3D_pb3sh")
+text = "F"
+font = SubResource("FontVariation_fq6e1")
+font_size = 40
+depth = 0.03
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hgwig"]
+radius = 0.333
+height = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_xast0"]
 radius = 0.25
@@ -159,6 +219,18 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0
 [node name="test_gun" parent="." instance=ExtResource("4_xast0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645156, 2.42936, -6.25368)
 
+[node name="test_gun2" parent="." instance=ExtResource("4_xast0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48614, 2.42936, 7.2696)
+
+[node name="gun_action" parent="test_gun2" index="0"]
+gun_stats = SubResource("Resource_pbs5x")
+
+[node name="MeshInstance3D" parent="test_gun2/gun_action" index="2"]
+mesh = SubResource("TextMesh_40mmv")
+
+[node name="CollisionShape3D" parent="test_gun2/Area3D" index="0"]
+shape = SubResource("CapsuleShape3D_hgwig")
+
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41962, 2.26009, -4.89007)
 
@@ -211,3 +283,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.368, -1.52035, -14.453)
 
 [node name="TestCollisionDamager" parent="." instance=ExtResource("10_hqlv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23405, 0.65, 1.61859)
+
+[editable path="test_gun2"]

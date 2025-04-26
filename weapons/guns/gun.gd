@@ -61,7 +61,8 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 							var can_shoot = min(shots, bullets_in_mag)
 							if can_shoot > 0 and reload_timer <= 0:
 								bullets_in_mag -= can_shoot
-								health_manager.damage(gun_stats.shot_damage * can_shoot)
+								#health_manager.damage(gun_stats.shot_damage * can_shoot)
+								gun_stats.shot_damage.damage(parent_object, health_manager)
 								print("bang, bullets left: ", bullets_in_mag)
 								if bullets_in_mag > 0:
 									return false
@@ -81,7 +82,8 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 								print("wait for reload timer, time: ", reload_timer)
 								return true
 						else:
-							health_manager.damage(gun_stats.shot_damage * shots)
+							#health_manager.damage(gun_stats.shot_damage * shots)
+							gun_stats.shot_damage.damage(parent_object, health_manager)
 							return false
 				# could add else here to spawn bullet hole decal
 			else:

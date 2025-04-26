@@ -1,11 +1,22 @@
-[gd_resource type="Resource" script_class="GunStats" load_steps=2 format=3 uid="uid://bq3ogoflf5h3d"]
+[gd_resource type="Resource" script_class="GunStats" load_steps=4 format=3 uid="uid://bq3ogoflf5h3d"]
 
 [ext_resource type="Script" uid="uid://dic641n02q3ww" path="res://weapons/guns/gun_stats.gd" id="1_wmlf2"]
+[ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="2_08u2h"]
+
+[sub_resource type="Resource" id="Resource_k6u61"]
+script = ExtResource("2_08u2h")
+normal_damage = 4.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
 
 [resource]
 script = ExtResource("1_wmlf2")
 hit_type = 0
 bullet_speed = 1200.0
 bullet_id = 0
-shot_damage = 1.0
+shot_damage = SubResource("Resource_k6u61")
 infinite_ammo = false
+mag_capacity = 11
+reload_time = 3.0
+partial_refill_time = 10.0
+can_auto_fire = false
+shots_per_second = 10.0
