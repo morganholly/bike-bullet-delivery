@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c3gmrn55y55ve"]
 
 [ext_resource type="Shader" uid="uid://co20wix0iigdr" path="res://utils/edge_normal_highlight.tres" id="1_wrfyo"]
-[ext_resource type="Texture2D" uid="uid://50sr30dbnxic" path="res://textures/low res grayscale textures/gray12_128.png" id="1_yq6x8"]
-[ext_resource type="Texture2D" uid="uid://dll0gpnr5d5cr" path="res://textures/low res grayscale textures/gray12_128_normal.png" id="2_b5w5x"]
+[ext_resource type="Texture2D" uid="uid://50sr30dbnxic" path="res://graphics/low res grayscale textures/gray12_128.png" id="1_yq6x8"]
+[ext_resource type="Texture2D" uid="uid://dll0gpnr5d5cr" path="res://graphics/low res grayscale textures/gray12_128_normal.png" id="2_b5w5x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gro2h"]
 render_priority = 0
