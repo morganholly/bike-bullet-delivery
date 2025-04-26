@@ -7,4 +7,4 @@ class_name PenetratingDamage
 
 
 func damage(calling_node: Node, health_manager: Node):
-	health_manager.damage_penetrating(health_damage, armor_damage)
+	health_manager.damage_penetrate(health_damage, armor_damage)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cce7pakh1pe5y"]
+
+[ext_resource type="Script" uid="uid://bdnoy0vear4fs" path="res://weapons/collision_damage.gd" id="1_r3l5m"]
+
+[node name="CollisionDamage" type="Node"]
+script = ExtResource("1_r3l5m")
