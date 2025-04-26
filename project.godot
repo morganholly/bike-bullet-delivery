@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 boot_splash/show_image=false
 
+[autoload]
+
+UIManager="*res://ui/ui_manager.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ninetailsrabbit.terrainy/plugin.cfg", "res://addons/noise_texture_composer/plugin.cfg")

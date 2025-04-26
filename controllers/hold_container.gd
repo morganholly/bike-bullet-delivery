@@ -18,6 +18,10 @@ func _ready() -> void:
 	if ammo_pool != null:
 		for hs in slots:
 			hs.ammo_pool = ammo_pool
+	
+	# Update UI with initial selected slot
+	if Engine.has_singleton("UIManager"):
+		UIManager.update_selected_slot(selected_slot)
 
 
 func _input(event: InputEvent) -> void:
@@ -31,6 +35,9 @@ func _input(event: InputEvent) -> void:
 				key_idx = 9
 			selected_slot = min(key_idx, num_slots - 1)
 			slots[selected_slot].make_active()
+			# Update UI with new selected slot
+			if Engine.has_singleton("UIManager"):
+				UIManager.update_selected_slot(selected_slot)
 			was_handled = true
 	elif event is InputEventMouseButton and event.is_pressed():
 		var slot_offset: int
@@ -47,6 +54,9 @@ func _input(event: InputEvent) -> void:
 				slots[selected_slot].make_inactive()
 				selected_slot += slot_offset
 				slots[selected_slot].make_active()
+				# Update UI with new selected slot
+				if Engine.has_singleton("UIManager"):
+					UIManager.update_selected_slot(selected_slot)
 				was_handled = true
 	if not was_handled:
 		slots[selected_slot].active_slot_input(event)

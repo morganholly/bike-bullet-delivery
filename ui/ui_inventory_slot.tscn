@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bobqsolltvkqa"]
+
+[ext_resource type="Script" uid="uid://vhbtrf7f8xi0" path="res://ui/ui_inventory_slot.gd" id="1_vk32u"]
+[ext_resource type="Texture2D" uid="uid://54bobvceo3yo" path="res://ui/ui_inventory_slot_passive.png" id="2_5iash"]
+
+[node name="UIInventorySlot" type="Control"]
+custom_minimum_size = Vector2(84, 68)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vk32u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(42, 34)
+texture = ExtResource("2_5iash")
+
+[node name="SlotNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 4.0
+offset_right = 54.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

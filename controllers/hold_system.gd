@@ -215,6 +215,10 @@ func active_slot_input(event) -> void:
 					
 					gun_tween_to_hold()
 					
+					# Update UI when switching to gun
+					var gun_node = camera.gun_position_r.get_node("gun_action")
+					gun_node.update_ui_ammo_display(ammo_pool)
+					
 					current_action_state = ActionState.GUN
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:

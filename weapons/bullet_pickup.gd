@@ -17,5 +17,7 @@ func _on_body_entered(body: Node3D) -> void:
 			self.full_mags[bt] = 0
 			if body.hold_container.ammo_pool.free_ammo[bt] + body.hold_container.ammo_pool.full_mags[bt] > 0:
 				print("up to ", body.hold_container.ammo_pool.full_mags[bt], " mags and ", body.hold_container.ammo_pool.free_ammo[bt], " bullets for", str(bt))
+				
+		
 		if not self.get_parent().is_in_group(&"IsHeld"):
 			self.get_parent().queue_free()

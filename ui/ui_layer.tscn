@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://c86ur1pluawt6"]
+
+[ext_resource type="Texture2D" uid="uid://bo83mo5as3wq1" path="res://ui/UI.png" id="1_3otji"]
+[ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
+[ext_resource type="Texture2D" uid="uid://cn3yfh764eatl" path="res://ui/ui_icon_bullet.png" id="2_xqqt7"]
+[ext_resource type="Texture2D" uid="uid://sr40sm3c7xfg" path="res://ui/ui_missions_table.png" id="3_00rn6"]
+
+[node name="UILayer" type="CanvasLayer"]
+script = ExtResource("1_gjtyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(170, 97)
+texture = ExtResource("1_3otji")
+
+[node name="UIBullet" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UIBulletIcon" type="Sprite2D" parent="UIBullet"]
+position = Vector2(1019, 49)
+texture = ExtResource("2_xqqt7")
+
+[node name="UIButtonLabel" type="Label" parent="UIBullet"]
+layout_mode = 0
+offset_left = 1042.0
+offset_top = 3.0
+offset_right = 1137.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 30
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReloadLabel" type="Label" parent="UIBullet"]
+visible = false
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 58.0
+offset_right = 1141.0
+offset_bottom = 85.0
+text = "RELOADING"
+horizontal_alignment = 1
+
+[node name="UIMissions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="UIMissions"]
+position = Vector2(115, 157)
+texture = ExtResource("3_00rn6")
+
+[node name="UIInventory" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIInventory"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 7.0
+offset_right = 440.0
+offset_bottom = 47.0
