@@ -10,6 +10,7 @@ signal slot_selected(slot_index: int)
 signal mission_added(mission_id: String, title: String, description: String)
 signal mission_removed(mission_id: String)
 signal mission_updated(mission_id: String, title: String, description: String)
+signal mission_target_updated(mission_id: String, target: Node)
 
 # Dictionary to keep track of mission UI items
 var mission_ui_items = {}
@@ -55,6 +56,11 @@ func get_mission_ui_item(mission_id: String) -> Control:
 	if mission_id in mission_ui_items:
 		return mission_ui_items[mission_id]
 	return null
+
+# Method to update a mission target for indicators
+func update_mission_target(mission_id: String, target: Node) -> void:
+	print("UIManager: Updated target for mission: " + mission_id)
+	mission_target_updated.emit(mission_id, target)
 
 # Debug method to test UI integration
 func debug_mission_ui():

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm631cj21p7ph"]
+
+[ext_resource type="Script" path="res://ui/mission_indicators/mission_objective_indicator.gd" id="1_i01sg"]
+
+[node name="MissionObjectiveIndicator" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_i01sg") 
