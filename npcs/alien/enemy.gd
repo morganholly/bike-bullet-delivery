@@ -3,6 +3,9 @@ extends Entity
 
 class_name Enemy
 
+
+
+
 var target = null
 var follow_strength = 15
 
@@ -27,6 +30,9 @@ func damaged_set_state():
 
 func death_set_state():
 	print("aughh")
+	current_state = Entity_States.Death 
+	cur_stun_delay = 1000
+	await get_tree().create_timer(0.75).timeout
 	queue_free()
 
 func _ready():
@@ -36,6 +42,19 @@ func _ready():
 	current_state = Entity_States.Idle
 	uniform_health.damaged_callback = damaged_set_state
 	uniform_health.death_callback = death_set_state
+	AnimationDict = {
+		
+	Entity_States.Idle : [
+		"idle_front",
+		"idle_back",
+		"idle_right",
+		"idle_left",
+		],
+	Entity_States.Damaged : "damaged",
+	Entity_States.Walk : "walk_front",
+	Entity_States.Shoot : "shoot_front",
+	Entity_States.Death : "death",
+}
 
 func _physics_process(delta):
 	

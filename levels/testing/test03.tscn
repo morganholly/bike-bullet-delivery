@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=32 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
@@ -13,8 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://bya2cxmh4p88e" path="res://enviroment/Buildings/Townhall/Townhall.tscn" id="8_40n4o"]
 [ext_resource type="Texture2D" uid="uid://50sr30dbnxic" path="res://graphics/low res grayscale textures/gray12_128.png" id="8_hgwig"]
 [ext_resource type="PackedScene" uid="uid://ciqx1d74mng24" path="res://enviroment/Buildings/CrossResidential/CrossResidentialbuilding.tscn" id="9_gcrq5"]
-[ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/ui_layer.tscn" id="10_hqlv0"]
 [ext_resource type="PackedScene" uid="uid://bpfmruy1t3xy4" path="res://weapons/test_collision_damager.tscn" id="10_hqlv0"]
+[ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="15_vxxs0"]
+[ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
+[ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="17_40mmv"]
+[ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="18_pbs5x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nln6s"]
 sky_top_color = Color(0.434819, 0.458047, 0.411919, 1)
@@ -132,8 +135,8 @@ height = 20.0
 sides = 32
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
-size = Vector3(100, 20, 100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.394, -10, 19.8537)
+size = Vector3(330.788, 20, 470.603)
 
 [node name="CSGStairMaker3D" parent="CSGBox3D" instance=ExtResource("1_o7pxr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 1, 22.5)
@@ -265,13 +268,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48044, 0.124998, 7.0245)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14003, 0.124998, -4.53315)
 
 [node name="Enemy" parent="." instance=ExtResource("6_x73s8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9517, 3.44572, 20.432)
+transform = Transform3D(0.046967, 0, 0.998896, 0, 1, 0, -0.998896, 0, 0.046967, 18.9517, 3.44572, 20.432)
 
 [node name="Enemy2" parent="." instance=ExtResource("6_x73s8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3638, 3.44572, -1.62)
+transform = Transform3D(0.528601, 0, 0.84887, 0, 1, 0, -0.84887, 0, 0.528601, 24.9667, 3.44572, 4.74257)
 
 [node name="Enemy3" parent="." instance=ExtResource("6_x73s8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9865, 3.44572, -25.4369)
+transform = Transform3D(-0.119946, 0, -0.99278, 0, 1, 0, 0.99278, 0, -0.119946, 28.8894, 3.44572, -6.57179)
 
 [node name="Building" parent="." instance=ExtResource("7_hxiib")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2401, -2.30896, -14.7828)
@@ -283,7 +286,48 @@ transform = Transform3D(0.0109081, 0, -0.99994, 0, 1, 0, 0.99994, 0, 0.0109081, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.368, -1.52035, -14.453)
 
 [node name="UILayer" parent="." instance=ExtResource("10_hqlv0")]
+
 [node name="TestCollisionDamager" parent="." instance=ExtResource("10_hqlv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23405, 0.65, 1.61859)
+
+[node name="Boomguy" parent="." instance=ExtResource("15_vxxs0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8599, 3.44572, 23.9591)
+
+[node name="Boomguy2" parent="." instance=ExtResource("15_vxxs0")]
+transform = Transform3D(-0.528853, 0, 0.848713, 0, 1, 0, -0.848713, 0, -0.528853, 14.4381, 3.44573, 26.8544)
+
+[node name="Boomguy3" parent="." instance=ExtResource("15_vxxs0")]
+transform = Transform3D(-0.317735, 0, 0.94818, 0, 1, 0, -0.94818, 0, -0.317735, 19.0151, 3.44574, 27.7495)
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.39754, 0)
+mesh_library = ExtResource("16_pb3sh")
+data = {
+"cells": PackedInt32Array(44, 4, 0, 44, 65531, 3, 44, 65522, 4, 44, 65513, 8, 53, 65513, 655366, 44, 65504, 655366, 35, 65513, 1441798, 35, 65522, 655367, 53, 65522, 655364, 35, 65504, 1048581, 35, 65495, 655369, 35, 65486, 7, 26, 65504, 1048583, 62, 65522, 1441794, 62, 65513, 1441794, 53, 65504, 2, 44, 65495, 2, 53, 65495, 2, 62, 65504, 2, 26, 65495, 655362, 17, 65495, 655362, 26, 65486, 655362, 26, 65513, 655362, 26, 65522, 1441794, 53, 65531, 1048576, 53, 4, 1048576)
+}
+
+[node name="Enemy4" parent="." instance=ExtResource("17_40mmv")]
+transform = Transform3D(-0.0486405, 0, -0.998816, 0, 1, 0, 0.998816, 0, -0.0486405, 65.6524, 1.80835, 0.352553)
+
+[node name="Demon" parent="." instance=ExtResource("18_pbs5x")]
+transform = Transform3D(0.0974961, 0, -0.995236, 0, 1, 0, 0.995236, 0, 0.0974961, 72.7682, -0.123459, -6.45532)
+
+[node name="Demon2" parent="." instance=ExtResource("17_40mmv")]
+transform = Transform3D(-0.417978, 0, 0.908457, 0, 1, 0, -0.908457, 0, -0.417978, 72.9637, 2.16287, 10.782)
+
+[node name="Demon3" parent="." instance=ExtResource("18_pbs5x")]
+transform = Transform3D(-0.547154, 0, 0.837032, 0, 1, 0, -0.837032, 0, -0.547154, 71.4502, 3.44572, 6.62241)
+
+[node name="Demon4" parent="." instance=ExtResource("18_pbs5x")]
+transform = Transform3D(-0.59259, 0, -0.805504, 0, 1, 0, 0.805504, 0, -0.59259, 66.2682, 3.44572, 13.2894)
+
+[node name="Demon5" parent="." instance=ExtResource("18_pbs5x")]
+transform = Transform3D(0.256104, 0, 0.966649, 0, 1, 0, -0.966649, 0, 0.256104, 50.8221, 3.44572, -9.12374)
+
+[node name="Demon6" parent="." instance=ExtResource("18_pbs5x")]
+transform = Transform3D(0.227059, 0, -0.973881, 0, 1, 0, 0.973881, 0, 0.227059, 52.6088, 3.44573, 11.5226)
+
+[node name="Demon7" parent="." instance=ExtResource("18_pbs5x")]
+transform = Transform3D(0.345118, 0, 0.938559, 0, 1, 0, -0.938559, 0, 0.345118, 53.4497, 3.44572, 1.56559)
 
 [editable path="test_gun2"]

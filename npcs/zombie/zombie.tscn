@@ -1,0 +1,214 @@
+[gd_scene load_steps=24 format=3 uid="uid://c05asq1j676ah"]
+
+[ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_gqdyl"]
+[ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_rnxo1"]
+[ext_resource type="Texture2D" uid="uid://bwu2vae23yfl1" path="res://npcs/zombie/zombie_spritesheet_v2.png" id="3_osiej"]
+[ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_6njfr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
+radius = 0.690391
+height = 2.34891
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qb4i"]
+atlas = ExtResource("3_osiej")
+region = Rect2(248, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1meh"]
+atlas = ExtResource("3_osiej")
+region = Rect2(744, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui6kt"]
+atlas = ExtResource("3_osiej")
+region = Rect2(806, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bktaq"]
+atlas = ExtResource("3_osiej")
+region = Rect2(868, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ebe3"]
+atlas = ExtResource("3_osiej")
+region = Rect2(930, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2bcf"]
+atlas = ExtResource("3_osiej")
+region = Rect2(124, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2s1i"]
+atlas = ExtResource("3_osiej")
+region = Rect2(0, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6qbb"]
+atlas = ExtResource("3_osiej")
+region = Rect2(186, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svj6r"]
+atlas = ExtResource("3_osiej")
+region = Rect2(62, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dejg6"]
+atlas = ExtResource("3_osiej")
+region = Rect2(558, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn5ge"]
+atlas = ExtResource("3_osiej")
+region = Rect2(620, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff6br"]
+atlas = ExtResource("3_osiej")
+region = Rect2(682, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7uxy"]
+atlas = ExtResource("3_osiej")
+region = Rect2(310, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f33v6"]
+atlas = ExtResource("3_osiej")
+region = Rect2(372, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6hb4"]
+atlas = ExtResource("3_osiej")
+region = Rect2(434, 0, 62, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwq8j"]
+atlas = ExtResource("3_osiej")
+region = Rect2(496, 0, 62, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myj7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qb4i")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1meh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui6kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bktaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ebe3")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2bcf")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2s1i")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6qbb")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svj6r")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dejg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn5ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff6br")
+}],
+"loop": true,
+"name": &"shoot_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7uxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f33v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6hb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwq8j")
+}],
+"loop": true,
+"name": &"walk_front",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
+custom_solver_bias = 0.041
+radius = 19.526
+
+[node name="Demon" type="RigidBody3D" groups=["Damageable"]]
+collision_layer = 4
+collision_mask = 711
+can_sleep = false
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_gqdyl")
+
+[node name="UniformHealth" parent="." instance=ExtResource("2_rnxo1")]
+max_armor = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967723, 1.17078, 0)
+shape = SubResource("CapsuleShape3D_v0wm2")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("designated_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0858622, 0.824531, 0)
+top_level = true
+pixel_size = 0.0313
+alpha_hash_scale = 0.5
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_myj7t")
+animation = &"damaged"
+script = ExtResource("4_6njfr")
+designated_parent = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)
+shape = SubResource("SphereShape3D_4rmfa")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]
+transform = Transform3D(-0.999999, 0.000553374, 0.00112828, 1.14177e-10, -0.897828, 0.440346, 0.00125668, 0.440346, 0.897827, 0, 1.97005, 0.0749006)
+spot_range = 6.76936
+spot_angle = 46.8611
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_Area3D_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_Area3D_body_exited"]

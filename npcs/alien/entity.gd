@@ -7,7 +7,20 @@ enum Entity_States {
 	Idle,
 	Walk,
 	Damaged,
+	Death,
 	Shoot
+}
+
+var AnimationDict = {
+	Entity_States.Idle : [
+		"idle_front",
+		"idle_back",
+		"idle_right",
+		"idle_left",
+		],
+	Entity_States.Damaged : "damaged",
+	Entity_States.Walk : "walk_front",
+	Entity_States.Shoot : "shoot_front",
 }
 
 var current_state = Entity_States.Walk
@@ -32,42 +45,53 @@ func _process(delta: float) -> void:
 	if (current_state == Entity_States.Disabled):
 		return
 	
-	match current_state:
-		Entity_States.Idle:
-			if (!get_viewport().get_camera_3d()):
-				return
-			var cam_pos = get_viewport().get_camera_3d().global_position
-			#var targetPos;
-			var vector = global_position - cam_pos
+	if (AnimationDict[current_state] is String):
+		sprite_3d.play(AnimationDict[current_state])
+	elif (AnimationDict[current_state] is Array):
+		if (AnimationDict[current_state].size() == 2):
+			PlayAnimationTwoSides(AnimationDict[current_state])
+		elif (AnimationDict[current_state].size() == 4):
+			PlayAnimationFourSides(AnimationDict[current_state])
+	
+	return;
+
+
+func PlayAnimationTwoSides(list):
+	if (!get_viewport().get_camera_3d()):
+		return
+	var cam_pos = get_viewport().get_camera_3d().global_position
+	#var targetPos;
+	var vector = global_position - cam_pos
+	
+	var direction = global_position.direction_to(cam_pos)
+	var forward = get_global_transform().basis.z
+	var left = get_global_transform().basis.x
+	
+	if (forward.dot(direction) < 0):
+		sprite_3d.play(list[0])
+	elif (forward.dot(direction) > 0):
+		sprite_3d.play(list[1])
+
+
+func PlayAnimationFourSides(list):
+	if (!get_viewport().get_camera_3d()):
+		return
+	var cam_pos = get_viewport().get_camera_3d().global_position
+	#var targetPos;
+	var vector = global_position - cam_pos
+	
+	var direction = global_position.direction_to(cam_pos)
+	var forward = get_global_transform().basis.z
+	var left = get_global_transform().basis.x
+	
+	if (forward.dot(direction) < -0.6):
+		sprite_3d.play(list[0])
+	elif (forward.dot(direction) > 0.6):
+		sprite_3d.play(list[1])
+	else:
+		if left.dot(direction) < 0: 
+			sprite_3d.play(list[2])
+		else: 
+			sprite_3d.play(list[3])
 			
-			var direction = global_position.direction_to(cam_pos)
-			var forward = get_global_transform().basis.z
-			var left = get_global_transform().basis.x
-			#print(direction)
-			#print(forward.dot(direction))
 			
-			if (forward.dot(direction) < -0.6):
-				sprite_3d.play("idle_front")
-			elif (forward.dot(direction) > 0.6):
-				sprite_3d.play("idle_back")
-			else:
-				if left.dot(direction) < 0: 
-					sprite_3d.play("idle_right")
-				else: 
-					sprite_3d.play("idle_left")
-			
-			#print(direction)
-			#targetPos = Vector3(cam_pos.x, global_position.y-(global_position.y-cam_pos.y)/3, cam_pos.z)
-			
-			pass
-		
-		Entity_States.Walk:
-			sprite_3d.play("walk_front")
-			pass
-		Entity_States.Damaged:
-			sprite_3d.play("damaged")
-			pass
-		Entity_States.Shoot:
-			sprite_3d.play("shoot_front")
-			pass
-	pass

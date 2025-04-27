@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkpnghooq0hhw"
-path.s3tc="res://.godot/imported/boomguy_spritesheet.png-a36f7d8e947a7ccf5ee74d2d5c76d1d8.s3tc.ctex"
+uid="uid://cah43t66ustf7"
+path.s3tc="res://.godot/imported/roadlego-tiles2_tilingcement.png-7b4b019bfbea970bcd30a531509e8d4a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "a0dfcb6fede32e62a47ba14c566125ef"
+}
 
 [deps]
 
-source_file="res://npcs/boomguy/spritesheet/boomguy_spritesheet.png"
-dest_files=["res://.godot/imported/boomguy_spritesheet.png-a36f7d8e947a7ccf5ee74d2d5c76d1d8.s3tc.ctex"]
+source_file="res://enviroment/Buildings/Road/SmallRoadBits/roadlego-tiles2_tilingcement.png"
+dest_files=["res://.godot/imported/roadlego-tiles2_tilingcement.png-7b4b019bfbea970bcd30a531509e8d4a.s3tc.ctex"]
 
 [params]
 

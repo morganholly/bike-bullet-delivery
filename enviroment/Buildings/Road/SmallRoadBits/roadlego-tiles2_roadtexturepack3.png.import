@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkpnghooq0hhw"
-path.s3tc="res://.godot/imported/boomguy_spritesheet.png-a36f7d8e947a7ccf5ee74d2d5c76d1d8.s3tc.ctex"
+uid="uid://bcosi28w2acdh"
+path.s3tc="res://.godot/imported/roadlego-tiles2_roadtexturepack3.png-03417791ad0c6a1ce750daec9fd6c4fd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "83a11ccf7005bc8ed438ffb3c8c7c258"
+}
 
 [deps]
 
-source_file="res://npcs/boomguy/spritesheet/boomguy_spritesheet.png"
-dest_files=["res://.godot/imported/boomguy_spritesheet.png-a36f7d8e947a7ccf5ee74d2d5c76d1d8.s3tc.ctex"]
+source_file="res://enviroment/Buildings/Road/SmallRoadBits/roadlego-tiles2_roadtexturepack3.png"
+dest_files=["res://.godot/imported/roadlego-tiles2_roadtexturepack3.png-03417791ad0c6a1ce750daec9fd6c4fd.s3tc.ctex"]
 
 [params]
 
