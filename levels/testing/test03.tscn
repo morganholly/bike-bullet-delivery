@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=34 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
+[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_tyw03"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="4_xast0"]
@@ -15,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ciqx1d74mng24" path="res://enviroment/Buildings/CrossResidential/CrossResidentialbuilding.tscn" id="9_gcrq5"]
 [ext_resource type="PackedScene" uid="uid://bpfmruy1t3xy4" path="res://weapons/test_collision_damager.tscn" id="10_hqlv0"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/ui_layer.tscn" id="15_vxxs0"]
-[ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
+[ext_resource type="MeshLibrary" uid="uid://ckgjl5rsf2dp2" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
 [ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="17_40mmv"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="18_pbs5x"]
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="18_u5an1"]
@@ -101,6 +102,7 @@ radius = 0.25
 height = 1.0
 
 [node name="Test03" type="Node3D"]
+script = ExtResource("1_tyw03")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mvq67")
@@ -286,7 +288,7 @@ transform = Transform3D(0.0109081, 0, -0.99994, 0, 1, 0, 0.99994, 0, 0.0109081, 
 [node name="Building2" parent="." instance=ExtResource("9_gcrq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.368, -1.52035, -14.453)
 
-[node name="UILayer" parent="." instance=ExtResource("10_hqlv0")]
+[node name="CollisionDamager1" parent="." instance=ExtResource("10_hqlv0")]
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.39754, 0)
@@ -325,6 +327,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9229, -0.684845, 15.4939)
 [node name="TestCollisionDamager2" parent="." instance=ExtResource("10_hqlv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23405, 0.65, 1.61859)
 
-[node name="UILayer2" parent="." instance=ExtResource("15_vxxs0")]
+[node name="UILayer" parent="." instance=ExtResource("15_vxxs0")]
 
 [editable path="test_gun2"]
