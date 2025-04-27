@@ -7,8 +7,10 @@ extends CanvasLayer
 
 # Reference to the inventory slot scene
 var inventory_slot_scene = preload("res://ui/ui_inventory_slot.tscn")
+var mission_indicator_scene = preload("res://ui/mission_indicators/mission_objective_indicator.tscn")
 var inventory_slots: Array[Control] = []
 var initial_mission_item: Control
+var mission_indicator_layer: CanvasLayer
 
 func _ready() -> void:
 	print(self)
@@ -17,6 +19,9 @@ func _ready() -> void:
 	UIManager.reload_state_changed.connect(_on_reload_state_changed)
 	update_bullet_count(0, 0)
 	reload_label.visible = false  # Hide reload label initially
+	
+	# Add mission indicator layer
+	_setup_mission_indicators()
 	
 	# Wait a frame to make sure the player is fully initialized
 	await get_tree().process_frame
@@ -106,3 +111,16 @@ func _process(_delta: float) -> void:
 # This function is no longer needed since we removed the timer
 # func _on_mission_timer_timeout() -> void:
 # 	pass
+
+# Setup mission indicators
+func _setup_mission_indicators() -> void:
+	# Check if we already have the mission indicator layer in the scene
+	mission_indicator_layer = get_node_or_null("MissionObjectiveIndicator")
+	
+	# If not, instantiate and add it
+	if mission_indicator_layer == null:
+		mission_indicator_layer = mission_indicator_scene.instantiate()
+		add_child(mission_indicator_layer)
+		print("Created mission indicator layer dynamically")
+	else:
+		print("Using mission indicator layer from scene")

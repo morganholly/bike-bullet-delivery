@@ -55,7 +55,6 @@ func _physics_process(delta: float) -> void:
 				if override_1_has_colliders and override_1.overlaps_area(node):
 					node.clear_target()
 				elif override_2_has_colliders and override_2.overlaps_area(node):
-					print("implement actual visibility check")
 					node.in_sight_range(player_ref.position)
 					node.set_target(player_ref)
 				else:
@@ -70,7 +69,6 @@ func _physics_process(delta: float) -> void:
 			for node in views:
 				# check each for the override colliders
 				if override_1_has_colliders and override_1.overlaps_area(node):
-					print("implement actual visibility check")
 					node.in_sight_range(player_ref.position)
 					node.set_target(player_ref)
 				elif override_2_has_colliders and override_2.overlaps_area(node):
@@ -89,7 +87,6 @@ func _physics_process(delta: float) -> void:
 						node.in_sight_range(player_ref.position)
 						node.set_target(player_ref)
 					else:
-						print("implement actual visibility check")
 						node.in_sight_range(player_ref.position)
 						node.set_target(player_ref)
 		elif visibility == Visibility.DefaultNo_1Maybe_2Yes:
@@ -100,7 +97,6 @@ func _physics_process(delta: float) -> void:
 					if override_1_has_colliders and override_1.overlaps_area(node):
 						node.clear_target()
 					elif override_2_has_colliders and override_2.overlaps_area(node):
-						print("implement actual visibility check")
 						node.in_sight_range(player_ref.position)
 						node.set_target(player_ref)
 					else:
@@ -115,7 +111,6 @@ func _physics_process(delta: float) -> void:
 				elif override_2_has_colliders and override_2.overlaps_area(node):
 					node.clear_target()
 				else:
-					print("implement actual visibility check")
 					node.in_sight_range(player_ref.position)
 					node.set_target(player_ref)
 		elif visibility == Visibility.DefaultMaybe_1No_2Yes:
@@ -127,6 +122,5 @@ func _physics_process(delta: float) -> void:
 					node.in_sight_range(player_ref.position)
 					node.set_target(player_ref)
 				else:
-					print("implement actual visibility check")
 					node.in_sight_range(player_ref.position)
 					node.set_target(player_ref)

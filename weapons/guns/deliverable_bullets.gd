@@ -8,18 +8,40 @@ class_name DeliverableBullets
 
 # Signal when delivered
 signal delivered_to_target(deliverable, target)
+# Signal when picked up
+signal bullet_pickup_completed
 
-# Called when the BulletPickup component transfers ammo to a player
+# Variable to track if we're being held
+var was_held = false
+
+func _ready():
+	# Make sure we're in the right group
+	if !is_in_group("Deliverable"):
+		add_to_group("Deliverable")
+
+func _process(_delta):
+	# Check if we've been picked up into the player's inventory
+	if is_in_group("IsHeld") and !was_held:
+		was_held = true
+		_on_physically_picked_up()
+	elif !is_in_group("IsHeld") and was_held:
+		was_held = false
+
+# Called when the object is physically picked up (added to IsHeld group)
+func _on_physically_picked_up():
+	if mission_id != "" and mission_id in MissionManager.active_missions:
+		emit_signal("bullet_pickup_completed")
+		# Also notify MissionManager directly
+		if MissionManager.has_method("_on_deliverable_picked_up"):
+			MissionManager._on_deliverable_picked_up(mission_id)
+
+# This is the old BulletPickup signal handler - no longer primary detection method
 func _on_bullet_pickup_ammo_transferred():
-	# If this bullet is part of a mission, notify MissionManager it was picked up
-	if mission_id != "":
-		if get_parent().is_in_group("IsHeld") and mission_id in MissionManager.active_missions:
-			print("Deliverable for mission %s picked up" % mission_id)
+	pass  # Not used for mission tracking
 
 # Called when delivering to the target
 func deliver_to_target(target_npc: Node):
 	if mission_id in MissionManager.active_missions:
-		print("Delivering %s to %s for mission %s" % [delivery_id, target_npc.name, mission_id])
 		MissionManager.deliver_to_npc(mission_id, target_npc)
 		emit_signal("delivered_to_target", self, target_npc)
 		return true
