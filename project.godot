@@ -19,6 +19,7 @@ boot_splash/show_image=false
 [autoload]
 
 UIManager="*res://ui/ui_manager.gd"
+MissionManager="*res://managers/mission_manager.gd"
 
 [editor_plugins]
 
