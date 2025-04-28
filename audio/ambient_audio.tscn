@@ -13,14 +13,12 @@
 stream = ExtResource("1_eklok")
 pitch_scale = 0.25
 autoplay = true
-stream_paused = true
 bus = &"Ambient"
 
 [node name="wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_egtrh")
 volume_db = -3.0
 autoplay = true
-stream_paused = true
 bus = &"Ambient"
 
 [node name="weird tonal" type="AudioStreamPlayer" parent="."]
@@ -28,7 +26,6 @@ stream = ExtResource("3_8115o")
 volume_db = -3.0
 pitch_scale = 0.5
 autoplay = true
-stream_paused = true
 bus = &"Ambient"
 
 [node name="cacaphony 1" type="AudioStreamPlayer" parent="."]
@@ -36,7 +33,6 @@ stream = ExtResource("4_cwebo")
 volume_db = -9.0
 pitch_scale = 0.5
 autoplay = true
-stream_paused = true
 bus = &"Ambient"
 
 [node name="cacaphony 2" type="AudioStreamPlayer" parent="."]
@@ -44,7 +40,6 @@ stream = ExtResource("5_8y244")
 volume_db = -9.0
 pitch_scale = 0.25
 autoplay = true
-stream_paused = true
 bus = &"Ambient"
 
 [node name="distant gunshots" type="AudioStreamPlayer" parent="."]
@@ -52,5 +47,4 @@ stream = ExtResource("6_6aalk")
 volume_db = -9.0
 pitch_scale = 0.5
 autoplay = true
-stream_paused = true
 bus = &"Ambient"
