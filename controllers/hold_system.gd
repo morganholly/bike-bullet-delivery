@@ -18,6 +18,7 @@ var holding_old_collision_mask: int = 0
 var debounce_gun_hold_swap: float = 0.5
 var smoothed_aim_basis: Basis
 var ammo_pool: Node
+var gun_state_slot_inactive: bool = false
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -55,7 +56,9 @@ func make_active() -> void:
 			holding.collision_mask = holding_old_collision_mask
 			holding.visible = true
 		ActionState.GUN:
+			holding.get_node("gun_action").reparent(camera.gun_position_r)
 			camera.gun_position_r.get_node("gun_action").visible = true
+			gun_state_slot_inactive = false
 		ActionState.MELEEITEM:
 			pass
 
@@ -68,7 +71,9 @@ func make_inactive() -> void:
 			holding.collision_mask = 0
 			holding.visible = false
 		ActionState.GUN:
+			gun_state_slot_inactive = true
 			camera.gun_position_r.get_node("gun_action").visible = false
+			camera.gun_position_r.get_node("gun_action").reparent(holding)
 		ActionState.MELEEITEM:
 			pass
 
@@ -116,7 +121,8 @@ func _physics_process(delta: float) -> void:
 			go_to = camera.gun_position_r.global_position
 			_holdable_hold_update(holding)
 			smoothed_aim_basis = lerp(smoothed_aim_basis, Basis.looking_at(camera.gun_position_r.to_local(camera.aim_pos)), 0.1)
-			camera.gun_position_r.get_node("gun_action").basis = smoothed_aim_basis
+			if not gun_state_slot_inactive:
+				camera.gun_position_r.get_node("gun_action").basis = smoothed_aim_basis
 		ActionState.MELEEITEM:
 			go_to = camera.gun_position_r.global_position
 			pass

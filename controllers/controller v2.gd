@@ -19,9 +19,6 @@ extends CharacterBody3D
 
 @export_group("Air")
 @export var air_speed_control: float = 0.075
-#@export var air_cap: float = 0.85
-#@export var air_accel: float = 800
-#@export var air_move_speed: float = 500
 
 @export_group("Jump")
 @export var jump_velo: float = 7.0
@@ -44,14 +41,11 @@ var is_crouched: bool = false
 @export_group("Walk")
 @export var walk_speed: float = 7.0
 @export var sprint_speed: float = 10
-#@export var ground_accel: float = 1.2
-#@export var ground_decel: float = 0.9
 @export var ground_smooth: float = 0.1
 @export var ground_friction: float = 0.7
 
 @export_group("Rollerblade")
 @export var rb_turn_rate: float = 1
-#@export var rb_min_speed: float = 5
 @export var rb_max_speed: float = 25
 @export var rb_air_speed_control: float = 0.05
 
@@ -124,8 +118,6 @@ func get_velo_at_pos(rid: RID, at: Vector3) -> Vector3:
 	return PhysicsServer3D.body_get_direct_state(rid).get_velocity_at_local_position(at)
 
 func get_collision_velo() -> Vector3:
-	# get_contact_collider_velocity_at_position
-	#return PhysicsServer3D.body_get_direct_state(self.get_rid()).get_contact_collider_velocity_at_position(0)
 	if get_slide_collision_count() > 0:
 		var avg_velo := Vector3.ZERO
 		for i in range(0, get_slide_collision_count()):
@@ -142,47 +134,24 @@ func get_collision_velo() -> Vector3:
 
 func get_move_speed(is_action_crouching: bool, is_action_sprint: bool) -> float:
 	var res = walk_speed
-	#if Input.is_action_pressed("crouch"):
 	if is_action_crouching:
 		res *= cr_walk_scale
 	else:
-		#if Input.is_action_pressed("sprint"):
 		if is_action_sprint:
 			res = sprint_speed
 	return speed_scale * res
 
 func _air_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool, speed: float, air_control: float) -> void:
 	self.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
-	# my take on movement in air
-	#var speed = get_move_speed(is_action_crouching, is_action_sprint)
-	#self.velocity -= inertial_velocity
 	self.velocity.x = lerp(self.velocity.x, wish_dir.x * speed, air_control)
 	self.velocity.z = lerp(self.velocity.z, wish_dir.z * speed, air_control)
-	#self.velocity += inertial_velocity
-	# tutorial's take on movement in air, from source/quake. feels too rigid, stopping immediately in the air, immediately changing direction
-	#var cur_speed_in_air_wish_dir = self.velocity.dot(wish_dir)
-	#var capped_speed = min((air_move_speed * wish_dir).length(), air_cap)
-	#var add_speed_until_cap = capped_speed - cur_speed_in_air_wish_dir
-	#if add_speed_until_cap > 0:
-		#var accel_speed = air_accel * air_move_speed * delta
-		#accel_speed = min(accel_speed, add_speed_until_cap)
-		#self.velocity += accel_speed * wish_dir
 
 func _walkrun_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool) -> void:
-	var speed = get_move_speed(is_action_crouching, is_action_sprint) # * delta
-	#self.velocity.x = wish_dir.x * speed
-	#self.velocity.z = wish_dir.z * speed
+	var speed = get_move_speed(is_action_crouching, is_action_sprint)
 	var y_vel = self.velocity.y
 	var xz_vel = Vector3(1, 0, 1) * self.velocity
 	var vel_norm = xz_vel.normalized()
-	#var along_vel = vel_norm.dot(wish_dir.normalized()) * self.velocity * speed # * wish_dir.length() # project wish_dir onto velocity vec
-	#var aside = wish_dir - along_vel
-	#if along_vel.length() > 0:
-		#along_vel *= ground_accel
-	#else:
-		#along_vel *= ground_decel
-	#var new_wish_dir = along_vel + aside
-	xz_vel = lerp(xz_vel, wish_dir * speed, ground_smooth) # * xz_vel.length()
+	xz_vel = lerp(xz_vel, wish_dir * speed, ground_smooth)
 	if xz_vel.length() > speed:
 		var over = xz_vel.length() - speed
 		xz_vel = (over * ground_friction + speed) * xz_vel.normalized()
@@ -190,16 +159,11 @@ func _walkrun_physics_process(delta: float, is_action_crouching: bool, is_action
 	self.velocity.y = y_vel
 
 func _rollerblade_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool, walk_dir: Vector3) -> void:
-	#var fb_speed = Input.get_axis(&"down", &"up")
-	#var lr_speed = Input.get_axis(&"right", &"left")
 	var y_vel = self.velocity.y
 	var xz_vel = Vector3(1, 0, 1) * self.velocity
 	var turn_scale = 1 / (1 + (xz_vel.length() * 0.05 / rb_turn_rate) ** 2)
 	
-	#rollerblade_direction = rollerblade_direction.rotated(Vector3.UP, 10 * turn_scale * delta * lr_speed)
 	rollerblade_direction = rollerblade_direction.slerp(walk_dir, turn_scale * delta)
-	
-	#rb_accel_timer = sqrt(((1.0333 / (1.0333 - (xz_vel.length() / rb_max_speed))) - 1) / 30)
 	
 	var desired_speed_01 = 0.2
 	if is_action_sprint:
@@ -211,7 +175,6 @@ func _rollerblade_physics_process(delta: float, is_action_crouching: bool, is_ac
 		rb_accel_timer = move_toward(rb_accel_timer, desired_speed_01, delta * 1/40)
 	else:
 		rb_accel_timer = move_toward(rb_accel_timer, desired_speed_01, delta * 1/15)
-	#rb_actual_speed = lerp(rb_min_speed, rb_max_speed, (1.0333 - 1.0333 / (rb_accel_timer * rb_accel_timer * 30 + 1)))# / (rb_delta_accum + 1)
 	rb_actual_speed = rb_max_speed * (1.0333 - 1.0333 / (rb_accel_timer * rb_accel_timer * 30 + 1))
 	
 	self.velocity = rollerblade_direction * rb_actual_speed / (rb_delta_accum + 1)
@@ -235,7 +198,6 @@ func _snap_down_to_stairs_check() -> void:
 
 func _snap_up_stairs_check(delta: float) -> bool:
 	if not is_on_floor() and not snapped_to_stairs_last_frame:
-		# snapped_to_stairs_last_frame = false
 		return false
 	var expected_move_motion = self.velocity * Vector3(1,0,1) * delta
 	var step_pos_with_clearance = self.global_transform.translated(expected_move_motion + Vector3(0, max_step_height * 2, 0))
@@ -245,23 +207,15 @@ func _snap_up_stairs_check(delta: float) -> bool:
 		if collider.is_class("StaticBody3D") or collider.is_class("CSGShape3D"):
 			var step_height = ((step_pos_with_clearance.origin + down_check_result.get_travel()) - self.global_position).y
 			if step_height > max_step_height or step_height < 0.01 or (down_check_result.get_collision_point() - self.global_position).y > max_step_height:
-				#snapped_to_stairs_last_frame = false
 				return false
 			raycast_stairs_ahead.global_position = (down_check_result.get_collision_point() + Vector3(0, max_step_height, 0) + expected_move_motion.normalized() * 0.1)
 			raycast_stairs_ahead.force_raycast_update()
 			if raycast_stairs_ahead.is_colliding() and not is_surface_too_steep(raycast_stairs_ahead.get_collision_normal()):
 				var last_pos = self.global_position
 				self.global_position = step_pos_with_clearance.origin + down_check_result.get_travel()
-				#var new_pos = step_pos_with_clearance.origin + down_check_result.get_travel()
-				#if new_pos.y - last_pos.y > 1:
-					#self.global_position = new_pos
-					#self.global_position.y = last_pos + 1
-				#else:
-					#self.global_position = new_pos
 				apply_floor_snap()
 				snapped_to_stairs_last_frame = true
 				return true
-	#snapped_to_stairs_last_frame = false
 	return false
 
 func _handle_crouch(delta: float, is_action_crouching: bool) -> void:
@@ -270,7 +224,6 @@ func _handle_crouch(delta: float, is_action_crouching: bool) -> void:
 		is_crouched = true
 	elif is_crouched and not self.test_move(self.global_transform, Vector3(0, cr_h_reduce, 0)):
 		is_crouched = false
-	# cr_h_reduce * cr_jump_raise_scale
 	
 	var translate_y_if_possible: float = 0
 	if was_crouched_last_frame != is_crouched and not is_on_floor() and not snapped_to_stairs_last_frame:
@@ -328,10 +281,6 @@ func _internal_physics_process(delta: float,
 		if (coyote_timer <= coyote_time) and not is_on_floor():
 			self.velocity.y *= 0.5
 		if (auto_bhop and is_action_jump) or just_action_jump:
-			#if not was_on_floor_last_frame:
-				#speed_scale += jump_speedup
-			#else:
-				#speed_scale = 1
 			did_jump = true
 			self.velocity.y = 0 # otherwise jumping in coyote time seems very weak
 			var y_jump: float = jump_velo * (1 - jump_recharge_inv)
@@ -339,7 +288,6 @@ func _internal_physics_process(delta: float,
 				self.velocity += Vector3(0, y_jump, 0)
 			else:
 				self.velocity += get_floor_normal() * y_jump
-			#inertial_velocity = get_collision_velo()
 			var actual_jump_accel = 1 + jump_accel * (1 - jump_recharge_inv) * speed_scale
 			self.velocity.x *= actual_jump_accel
 			self.velocity.z *= actual_jump_accel
@@ -352,10 +300,6 @@ func _internal_physics_process(delta: float,
 			pframes_since_on_floor = 0
 			#was_on_floor_last_frame = true
 			jump_recharge_inv_wgrab = 0
-			#if not did_jump:
-				#inertial_velocity = lerp(inertial_velocity, get_collision_velo(), 0.10)
-			#else:
-				#inertial_velocity = lerp(inertial_velocity, get_collision_velo(), 0.01)
 		else:
 			floor_max_angle = deg_to_rad(80)
 			_air_physics_process(delta, is_action_crouching, is_action_sprint, get_move_speed(is_action_crouching, is_action_sprint), air_speed_control)

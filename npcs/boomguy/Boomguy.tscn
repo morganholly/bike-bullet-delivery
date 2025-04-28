@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://db2eyvfi8wple"]
+[gd_scene load_steps=22 format=3 uid="uid://db2eyvfi8wple"]
 
 [ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_26o6u"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_7u3ht"]
 [ext_resource type="Texture2D" uid="uid://c8xdfxeljipf8" path="res://npcs/alien/alien_char_sheet/alien_spritesheet.png" id="3_l35ol"]
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_4j5tw"]
 [ext_resource type="Texture2D" uid="uid://bkpnghooq0hhw" path="res://npcs/boomguy/spritesheet/boomguy_spritesheet.png" id="4_d4htd"]
+[ext_resource type="Script" uid="uid://cg6nf2nd681lf" path="res://npcs/boomguy/boomguy_delivery.gd" id="6_j4m4r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 radius = 0.690391
@@ -141,7 +142,7 @@ animations = [{
 custom_solver_bias = 0.041
 radius = 19.526
 
-[node name="Boomguy" type="RigidBody3D" groups=["Damageable"]]
+[node name="Boomguy" type="RigidBody3D" groups=["Boomguy", "Damageable", "NPC"]]
 collision_layer = 4
 collision_mask = 711
 can_sleep = false
@@ -180,6 +181,9 @@ shape = SubResource("SphereShape3D_4rmfa")
 transform = Transform3D(-0.999999, 0.000553374, 0.00112828, 1.14177e-10, -0.897828, 0.440346, 0.00125668, 0.440346, 0.897827, 0, 1.97005, 0.0749006)
 spot_range = 6.76936
 spot_angle = 46.8611
+
+[node name="DeliveryController" type="Node" parent="."]
+script = ExtResource("6_j4m4r")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

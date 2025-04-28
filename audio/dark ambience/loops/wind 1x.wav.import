@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7ov2docsmhhd"
+path="res://.godot/imported/wind 1x.wav-60db60ac0e7c301ca8425fd70955ca2b.sample"
+
+[deps]
+
+source_file="res://audio/dark ambience/loops/wind 1x.wav"
+dest_files=["res://.godot/imported/wind 1x.wav-60db60ac0e7c301ca8425fd70955ca2b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
