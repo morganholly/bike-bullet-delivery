@@ -62,6 +62,24 @@ script = ExtResource("2_3qjgo")
 [node name="4" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
 script = ExtResource("2_3qjgo")
 
+[node name="5" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("2_3qjgo")
+
+[node name="6" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("2_3qjgo")
+
+[node name="7" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("2_3qjgo")
+
+[node name="8" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("2_3qjgo")
+
+[node name="9" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("2_3qjgo")
+
+[node name="10" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("2_3qjgo")
+
 [node name="WorldModel" type="Node3D" parent="."]
 
 [node name="capsule_view_mesh" type="MeshInstance3D" parent="WorldModel"]

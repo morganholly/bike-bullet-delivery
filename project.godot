@@ -22,6 +22,11 @@ UIManager="*res://ui/ui_manager.gd"
 MissionManager="*res://managers/mission_manager.gd"
 MissionIndicatorTest="*res://ui/mission_indicators/test_indicator_system.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ninetailsrabbit.terrainy/plugin.cfg", "res://addons/noise_texture_composer/plugin.cfg")
@@ -37,6 +42,10 @@ holdable_could_gun=""
 holdable_could_melee=""
 AmmoPool=""
 IsHeld=""
+
+[gui]
+
+theme/custom_font="uid://7kp3j8uwkhom"
 
 [input]
 
