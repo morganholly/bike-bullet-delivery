@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bvw8bjvqwsf7p" path="res://graphics/low res grayscale textures/gray31_256.png" id="1_oeyj5"]
 [ext_resource type="Texture2D" uid="uid://uwmlhh773s5a" path="res://graphics/low res grayscale textures/gray13_128.png" id="2_bkj76"]
 [ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="3_uwa27"]
-[ext_resource type="Script" path="res://weapons/guns/deliverable_bullets.gd" id="4_bxj1c"]
+[ext_resource type="Script" uid="uid://cdf8p1kxpsbr1" path="res://weapons/guns/deliverable_bullets.gd" id="4_bxj1c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd4l6"]
 albedo_texture = ExtResource("1_oeyj5")
@@ -36,5 +36,7 @@ skeleton = NodePath("../BulletPickup")
 shape = SubResource("BoxShape3D_538jo")
 
 [node name="BulletPickup" parent="." instance=ExtResource("3_uwa27")]
+take_while_holding = false
+disable_equip = true
 
-[connection signal="body_entered" from="BulletPickup" to="." method="_on_bullet_pickup_ammo_transferred"] 
+[connection signal="body_entered" from="BulletPickup" to="." method="_on_bullet_pickup_ammo_transferred"]
