@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cghjxqpj25jao"]
+[gd_scene load_steps=14 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
 [ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_nlpru"]
 [ext_resource type="PackedScene" uid="uid://be8kx6fdtbf55" path="res://weapons/guns/ammo_pool.tscn" id="3_nbs7e"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
+[ext_resource type="PackedScene" uid="uid://cwc3bq6cub00w" path="res://audio/footsteps.tscn" id="7_om3tm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
 
@@ -99,12 +100,7 @@ target_position = Vector3(0, -0.6, 0)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25, 0)
 collision_layer = 0
 collision_mask = 8
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Rotate/stair_climb_area"]
-visible = false
-depth = 2.5
-disabled = true
-polygon = PackedVector2Array(-0.6, -0.15, -1, 0.75, 0, 1, 1, 0.75, 0.6, -0.15)
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rotate/stair_climb_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -117,6 +113,11 @@ collision_mask = 32
 
 [node name="can_ride_collider" type="CollisionShape3D" parent="can_ride"]
 shape = SubResource("SphereShape3D_sa7iv")
+
+[node name="Footsteps" parent="." instance=ExtResource("7_om3tm")]
+step_strength = 3.0
+strength_variance = 2.0
+always_update_weights = true
 
 [connection signal="body_entered" from="can_ride" to="." method="_on_can_ride_body_entered"]
 [connection signal="body_exited" from="can_ride" to="." method="_on_can_ride_body_exited"]
