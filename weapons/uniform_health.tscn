@@ -4,3 +4,10 @@
 
 [node name="UniformHealth" type="Node" groups=["HealthManager"]]
 script = ExtResource("1_qeko4")
+
+[node name="status_effect_check_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="status_effect_check_timer" to="." method="_on_timer_timeout"]

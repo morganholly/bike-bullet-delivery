@@ -38,9 +38,13 @@ var hit_callback: Callable
 var block_curve_is_01: bool
 var pass_curve_is_01: bool
 
+var status_effects: Dictionary[String, StatusDamage]
+@onready var status_effect_check_timer: Timer = $status_effect_check_timer
+
 func _ready() -> void:
 	current_health = max_health
 	current_armor = max_armor
+	status_effect_check_timer.paused = true
 	if armor_condition_block_rate != null:
 		armor_condition_block_rate.bake()
 		block_curve_is_01 = abs(armor_condition_block_rate.min_domain) < 0.001 and abs(armor_condition_block_rate.min_value) < 0.001 and abs(armor_condition_block_rate.max_domain - 1) < 0.001 and abs(armor_condition_block_rate.max_value - 1) < 0.001
@@ -132,3 +136,21 @@ func damage_penetrate(amount_health: float, amount_armor: float) -> void:
 			is_dead = true
 			if death_callback != null and death_callback.is_valid():
 				death_callback.call()
+
+func randi_range_wrapper(lower: int, upper: int) -> int:
+	return randi_range(lower, upper)
+
+
+func _on_timer_timeout() -> void:
+	var current_time_usec = Time.get_ticks_usec()
+	#if len(status_effects.values()) > 0:
+		#print("has status effects, ", status_effects)
+	#else:
+	if len(status_effects.values()) == 0:
+		status_effect_check_timer.paused = true
+	else:
+		for effect in status_effects.values():
+			if effect.time_applied_usec < current_time_usec - effect.effect_timeout_usec:
+				effect.end_effect(self)
+			else:
+				effect.time_applied_usec = current_time_usec
