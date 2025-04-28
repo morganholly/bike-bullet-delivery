@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dsi7u3ehfl6uv"
+path="res://.godot/imported/rumble 4x.wav-99225376cff4b0ada706d4a0e46e7c41.sample"
+
+[deps]
+
+source_file="res://audio/dark ambience/loops/rumble 4x.wav"
+dest_files=["res://.godot/imported/rumble 4x.wav-99225376cff4b0ada706d4a0e46e7c41.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
