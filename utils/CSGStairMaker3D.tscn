@@ -10,12 +10,9 @@ var _cur_num_stairs = -1
 var _cur_size : Vector3
 
 func make_stairs():
-	#if not Engine.is_editor_hint():
-		#return
-	#
 	num_stairs = clampi(num_stairs, 0, 999)
 
-	var stairs_poly = $StairsSubtractCSG#add_fresh_stairs_csg_poly()
+	var stairs_poly = $StairsSubtractCSG
 	
 	var point_arr : PackedVector2Array = PackedVector2Array()
 	var step_height = self.size.y / num_stairs

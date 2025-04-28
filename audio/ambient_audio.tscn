@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpep6wedv5iwj"]
+
+[ext_resource type="AudioStream" uid="uid://dsi7u3ehfl6uv" path="res://audio/dark ambience/loops/rumble 4x.wav" id="1_eklok"]
+[ext_resource type="AudioStream" uid="uid://b7ov2docsmhhd" path="res://audio/dark ambience/loops/wind 1x.wav" id="2_egtrh"]
+[ext_resource type="AudioStream" uid="uid://c5iierni8b14t" path="res://audio/dark ambience/loops/weird tonal 2x.wav" id="3_8115o"]
+[ext_resource type="AudioStream" uid="uid://bl7rmqcmnjbo1" path="res://audio/dark ambience/loops/cacaphony 1 2x.wav" id="4_cwebo"]
+[ext_resource type="AudioStream" uid="uid://c8doqv1hk0ce0" path="res://audio/dark ambience/loops/cacaphony 2 4x.wav" id="5_8y244"]
+[ext_resource type="AudioStream" uid="uid://dunx1n8xwd7ii" path="res://audio/dark ambience/loops/distance gunshots loop 2x.wav" id="6_6aalk"]
+
+[node name="Ambient Audio" type="Node3D"]
+
+[node name="rumble" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_eklok")
+pitch_scale = 0.25
+autoplay = true
+bus = &"Ambient"
+
+[node name="wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_egtrh")
+volume_db = -3.0
+autoplay = true
+bus = &"Ambient"
+
+[node name="weird tonal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8115o")
+volume_db = -3.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"Ambient"
+
+[node name="cacaphony 1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cwebo")
+volume_db = -9.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"Ambient"
+
+[node name="cacaphony 2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8y244")
+volume_db = -9.0
+pitch_scale = 0.25
+autoplay = true
+bus = &"Ambient"
+
+[node name="distant gunshots" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6aalk")
+volume_db = -9.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"Ambient"

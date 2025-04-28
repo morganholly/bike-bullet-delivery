@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c5iierni8b14t"
+path="res://.godot/imported/weird tonal 2x.wav-4de3a0abfe2c17e5f7d0be3e05ccdf90.sample"
+
+[deps]
+
+source_file="res://audio/dark ambience/loops/weird tonal 2x.wav"
+dest_files=["res://.godot/imported/weird tonal 2x.wav-4de3a0abfe2c17e5f7d0be3e05ccdf90.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

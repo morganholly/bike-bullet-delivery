@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dquh061f0lpxb"
+path="res://.godot/imported/phase plant footsteps 1 0E-V13-LRZG.wav-78e044acd70ef5dafaf8e4e5ad2f767f.sample"
+
+[deps]
+
+source_file="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-LRZG.wav"
+dest_files=["res://.godot/imported/phase plant footsteps 1 0E-V13-LRZG.wav-78e044acd70ef5dafaf8e4e5ad2f767f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dunx1n8xwd7ii"
+path="res://.godot/imported/distance gunshots loop 2x.wav-ffc936d1a5b3d91713c5f695b75eed32.sample"
+
+[deps]
+
+source_file="res://audio/dark ambience/loops/distance gunshots loop 2x.wav"
+dest_files=["res://.godot/imported/distance gunshots loop 2x.wav-ffc936d1a5b3d91713c5f695b75eed32.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

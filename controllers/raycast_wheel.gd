@@ -78,34 +78,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	pass
-	#if event.is_action("crouch"):
-		#print(last_distances)
-		#print(spring_inline_strength)
-		#print(spring_inline_damping)
-	#if event.is_action("arrow_up"):
-		#if Input.is_action_pressed("sprint"):
-			#spring_inline_strength += 5
-		#else:
-			#spring_inline_strength += 0.5
-	#elif event.is_action("arrow_down"):
-		#if Input.is_action_pressed("sprint"):
-			#spring_inline_strength -= 5
-		#else:
-			#spring_inline_strength -= 0.5
-	#elif event.is_action("arrow_left"):
-		#if Input.is_action_pressed("sprint"):
-			#spring_inline_damping -= 10
-		#else:
-			#spring_inline_damping -= 1
-	#elif event.is_action("arrow_right"):
-		#if Input.is_action_pressed("sprint"):
-			#spring_inline_damping += 10
-		#else:
-			#spring_inline_damping += 1
 
 func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
-	#if delta == 0:
-		#return Vector3.ZERO
 	var total_force: Vector3
 	for i in range(0, len(raycast_list)):
 		var rc = raycast_list[i]
@@ -130,8 +104,6 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 			var forward_force_scale: float = turn_grip_strength * forward_delta_delta
 			
 			total_force = inline_force_scale * (marker_list[i].global_position - self.global_position)
-			#total_force += slide_force_scale * (marker_px.global_position - self.global_position)
-			#total_force += forward_force_scale * (marker_pz_list[i].global_position - marker_list[i].global_position)
 			forces[i] = total_force / 13
 			
 			last_positions[i] = rc.get_collision_point()
@@ -150,7 +122,6 @@ func update_forces(delta: float, desired_turn_delta: float) -> Vector3:
 	force_display_z.mesh.height = total_z * 2
 	force_display_y.mesh.height = total_y * 2
 	force_display_point.position = total_force
-	#print(total_force)
 	return total_force
 
 @onready var grip_area: Area3D = $grip_area
@@ -162,9 +133,6 @@ func area_forces(delta: float) -> void:
 
 
 func _on_grip_area_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
-	#var body_shape_owner = body.shape_find_owner(body_shape_index)
-	#var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
-
 	var area_space: RID = PhysicsServer3D.area_get_space(grip_area.get_rid())
 	var space_state: PhysicsDirectSpaceState3D = PhysicsServer3D.space_get_direct_state(area_space)
 	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
@@ -186,11 +154,6 @@ func shapecast_forces(delta: float) -> void:
 		collision_points.multimesh.instance_count = shapecast.get_collision_count()
 		var count_scale = 1 / (delta * shapecast.get_collision_count())
 		for i in range(shapecast.get_collision_count()):
-			#var tf = Transform3D()
-			#if abs(shapecast.get_collision_normal(i).dot(Vector3.UP)) < 0.99:
-				#tf = tf.looking_at(shapecast.get_collision_normal(i))
-			#tf.origin = 5 * shapecast.get_collision_normal(i) + shapecast.get_collision_point(i)
-			#collision_points.multimesh.set_instance_transform(i, tf)
 			var local_pos = self.to_local(shapecast.get_collision_point(i))
 			var length = local_pos.length()
 			if length < 0:

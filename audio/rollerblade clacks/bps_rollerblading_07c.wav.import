@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpfl150iwbfoq"
+path="res://.godot/imported/bps_rollerblading_07c.wav-6f816d611c3f5aea2c5a84582f29b0e5.sample"
+
+[deps]
+
+source_file="res://audio/rollerblade clacks/bps_rollerblading_07c.wav"
+dest_files=["res://.godot/imported/bps_rollerblading_07c.wav-6f816d611c3f5aea2c5a84582f29b0e5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

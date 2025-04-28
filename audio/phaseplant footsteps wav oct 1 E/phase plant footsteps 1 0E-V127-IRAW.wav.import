@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bv3x828uoyqw8"
+path="res://.godot/imported/phase plant footsteps 1 0E-V127-IRAW.wav-d681c7591640b2c4b8f6d8b4d3b8f055.sample"
+
+[deps]
+
+source_file="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-IRAW.wav"
+dest_files=["res://.godot/imported/phase plant footsteps 1 0E-V127-IRAW.wav-d681c7591640b2c4b8f6d8b4d3b8f055.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

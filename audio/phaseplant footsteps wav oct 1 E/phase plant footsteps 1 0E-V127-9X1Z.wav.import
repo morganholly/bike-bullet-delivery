@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dvoftmu41b4ky"
+path="res://.godot/imported/phase plant footsteps 1 0E-V127-9X1Z.wav-9053ffd711694820f0417a9442a3af3d.sample"
+
+[deps]
+
+source_file="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-9X1Z.wav"
+dest_files=["res://.godot/imported/phase plant footsteps 1 0E-V127-9X1Z.wav-9053ffd711694820f0417a9442a3af3d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

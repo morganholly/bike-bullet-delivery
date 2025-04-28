@@ -1,7 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=47 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
+[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_tyw03"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
+[ext_resource type="PackedScene" uid="uid://dpep6wedv5iwj" path="res://audio/ambient_audio.tscn" id="2_i2lq6"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="4_xast0"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="5_mvq67"]
@@ -13,9 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://bya2cxmh4p88e" path="res://enviroment/Buildings/Townhall/Townhall.tscn" id="8_40n4o"]
 [ext_resource type="Texture2D" uid="uid://50sr30dbnxic" path="res://graphics/low res grayscale textures/gray12_128.png" id="8_hgwig"]
 [ext_resource type="PackedScene" uid="uid://ciqx1d74mng24" path="res://enviroment/Buildings/CrossResidential/CrossResidentialbuilding.tscn" id="9_gcrq5"]
+[ext_resource type="Script" uid="uid://6xgppkkctk46" path="res://weapons/damage_resources/penetrating_damage.gd" id="9_klg6o"]
 [ext_resource type="PackedScene" uid="uid://bpfmruy1t3xy4" path="res://weapons/test_collision_damager.tscn" id="10_hqlv0"]
+[ext_resource type="Script" uid="uid://dljrobubsidxq" path="res://weapons/damage_resources/status_damage.gd" id="13_hkelk"]
+[ext_resource type="Texture2D" uid="uid://do5d78721v8c8" path="res://graphics/low res grayscale textures/gray17_128.png" id="14_hkchm"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/ui_layer.tscn" id="15_vxxs0"]
-[ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
+[ext_resource type="MeshLibrary" uid="uid://ckgjl5rsf2dp2" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
 [ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="17_40mmv"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="18_pbs5x"]
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="18_u5an1"]
@@ -34,26 +39,28 @@ sky = SubResource("Sky_xast0")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Resource" id="Resource_pb3sh"]
-script = ExtResource("6_hgwig")
-normal_damage = 1.0
-metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+[sub_resource type="Resource" id="Resource_klg6o"]
+script = ExtResource("9_klg6o")
+health_damage = 1.0
+armor_damage = 1.0
+metadata/_custom_type_script = "uid://6xgppkkctk46"
 
-[sub_resource type="Resource" id="Resource_40mmv"]
+[sub_resource type="Resource" id="Resource_hkchm"]
 script = ExtResource("7_vxxs0")
-damage_res = SubResource("Resource_pb3sh")
-times = 1
-forever = true
-time = 1.0
+damage_res = SubResource("Resource_klg6o")
+times = 8
+forever = false
+time = 0.25
 time_mode = 0
+initial_damage = true
 metadata/_custom_type_script = "uid://bneyvukm2fm7v"
 
-[sub_resource type="Resource" id="Resource_pbs5x"]
+[sub_resource type="Resource" id="Resource_3rhod"]
 script = ExtResource("5_wbiaj")
 hit_type = 0
 bullet_speed = 350.0
 bullet_id = 0
-shot_damage = SubResource("Resource_40mmv")
+shot_damage = SubResource("Resource_hkchm")
 infinite_ammo = false
 mag_capacity = 11
 reload_time = 3.0
@@ -90,6 +97,71 @@ depth = 0.03
 radius = 0.333
 height = 1.0
 
+[sub_resource type="Resource" id="Resource_hkelk"]
+script = ExtResource("6_hgwig")
+normal_damage = 1.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="Resource" id="Resource_4u75y"]
+script = ExtResource("6_hgwig")
+normal_damage = 1.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="Resource" id="Resource_scbh7"]
+script = ExtResource("6_hgwig")
+normal_damage = 1.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="Resource" id="Resource_gsxap"]
+script = ExtResource("13_hkelk")
+damage_start = SubResource("Resource_4u75y")
+damage_timer = SubResource("Resource_scbh7")
+damage_end = SubResource("Resource_hkelk")
+status_name = "foo"
+reapply_mode = 1
+damage_timer_time = 0.5
+time_mode = 0
+effect_timeout = 10.0
+metadata/_custom_type_script = "uid://dljrobubsidxq"
+
+[sub_resource type="Resource" id="Resource_pbs5x"]
+script = ExtResource("5_wbiaj")
+hit_type = 0
+bullet_speed = 350.0
+bullet_id = 0
+shot_damage = SubResource("Resource_gsxap")
+infinite_ammo = false
+mag_capacity = 11
+reload_time = 3.0
+partial_refill_time = 10.0
+can_auto_fire = false
+shots_per_second = 10.0
+metadata/_custom_type_script = "uid://dic641n02q3ww"
+
+[sub_resource type="FontVariation" id="FontVariation_hkelk"]
+variation_transform = Transform2D(1, 0.1, 0.2, 1, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5b2d8"]
+load_path = "res://.godot/imported/gray4_128_normal.png-7995c886a2237113affb8dc22b0573cc.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rhod"]
+albedo_color = Color(0.637594, 0.363419, 0.781738, 1)
+albedo_texture = ExtResource("14_hkchm")
+metallic = 0.7
+roughness = 0.5
+normal_enabled = true
+normal_scale = 0.7
+normal_texture = SubResource("CompressedTexture2D_5b2d8")
+uv1_scale = Vector3(2, 10, 1)
+uv1_triplanar = true
+
+[sub_resource type="TextMesh" id="TextMesh_0qasl"]
+material = SubResource("StandardMaterial3D_3rhod")
+text = "F"
+font = SubResource("FontVariation_hkelk")
+font_size = 40
+depth = 0.03
+
 [sub_resource type="SphereMesh" id="SphereMesh_xast0"]
 radius = 0.25
 height = 0.5
@@ -101,6 +173,7 @@ radius = 0.25
 height = 1.0
 
 [node name="Test03" type="Node3D"]
+script = ExtResource("1_tyw03")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mvq67")
@@ -110,6 +183,8 @@ transform = Transform3D(-0.692143, -0.286646, 0.662399, 0, 0.917755, 0.397148, -
 light_color = Color(0.766264, 0.587737, 0.388044, 1)
 light_energy = 2.2
 shadow_enabled = true
+
+[node name="Ambient Audio" parent="." instance=ExtResource("2_i2lq6")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
@@ -228,12 +303,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645156, 2.42936, -6.25368)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48614, 2.42936, 7.2696)
 
 [node name="gun_action" parent="test_gun2" index="0"]
-gun_stats = SubResource("Resource_pbs5x")
+gun_stats = SubResource("Resource_3rhod")
 
 [node name="MeshInstance3D" parent="test_gun2/gun_action" index="2"]
 mesh = SubResource("TextMesh_40mmv")
 
 [node name="CollisionShape3D" parent="test_gun2/Area3D" index="0"]
+shape = SubResource("CapsuleShape3D_hgwig")
+
+[node name="test_gun3" parent="." instance=ExtResource("4_xast0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9346, 2.42936, 3.68948)
+
+[node name="gun_action" parent="test_gun3" index="0"]
+gun_stats = SubResource("Resource_pbs5x")
+
+[node name="MeshInstance3D" parent="test_gun3/gun_action" index="2"]
+mesh = SubResource("TextMesh_0qasl")
+
+[node name="CollisionShape3D" parent="test_gun3/Area3D" index="0"]
 shape = SubResource("CapsuleShape3D_hgwig")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
@@ -286,7 +373,7 @@ transform = Transform3D(0.0109081, 0, -0.99994, 0, 1, 0, 0.99994, 0, 0.0109081, 
 [node name="Building2" parent="." instance=ExtResource("9_gcrq5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.368, -1.52035, -14.453)
 
-[node name="UILayer" parent="." instance=ExtResource("10_hqlv0")]
+[node name="CollisionDamager1" parent="." instance=ExtResource("10_hqlv0")]
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.39754, 0)
@@ -325,6 +412,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9229, -0.684845, 15.4939)
 [node name="TestCollisionDamager2" parent="." instance=ExtResource("10_hqlv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23405, 0.65, 1.61859)
 
-[node name="UILayer2" parent="." instance=ExtResource("15_vxxs0")]
+[node name="UILayer" parent="." instance=ExtResource("15_vxxs0")]
 
 [editable path="test_gun2"]
+[editable path="test_gun3"]

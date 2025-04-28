@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c86ur1pluawt6"]
+[gd_scene load_steps=7 format=3 uid="uid://c86ur1pluawt6"]
 
 [ext_resource type="Texture2D" uid="uid://bo83mo5as3wq1" path="res://ui/UI.png" id="1_3otji"]
 [ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
 [ext_resource type="Texture2D" uid="uid://cn3yfh764eatl" path="res://ui/ui_icon_bullet.png" id="2_xqqt7"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="4_vu3t1"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/ui_missions.tscn" id="5_vu3t1"]
+[ext_resource type="PackedScene" uid="uid://cm631cj21p7ph" path="res://ui/mission_indicators/mission_objective_indicator.tscn" id="6_kfnbm"]
 
 [node name="UILayer" type="CanvasLayer"]
 script = ExtResource("1_gjtyb")
@@ -58,3 +59,5 @@ offset_left = 400.0
 offset_top = 7.0
 offset_right = 440.0
 offset_bottom = 47.0
+
+[node name="MissionObjectiveIndicator" parent="." instance=ExtResource("6_kfnbm")]
