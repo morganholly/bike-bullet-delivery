@@ -11,6 +11,7 @@ enum TimeMode {
 	Hertz
 }
 @export var time_mode: TimeMode = TimeMode.Interval
+@export var initial_damage: bool = true
 
 
 func damage(calling_node: Node, health_manager: Node):
@@ -20,4 +21,9 @@ func damage(calling_node: Node, health_manager: Node):
 	if forever:
 		loop_times = 0
 	tween_timer.set_loops(loop_times)
-	tween_timer.tween_callback(damage_res.damage.bind(calling_node, health_manager)).set_delay(1)
+	var wait_time = time
+	if time_mode == TimeMode.Hertz:
+		wait_time = 1 / time
+	if initial_damage:
+		damage_res.damage(calling_node, health_manager)
+	tween_timer.tween_callback(damage_res.damage.bind(calling_node, health_manager)).set_delay(wait_time)
