@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=35 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_tyw03"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
+[ext_resource type="PackedScene" uid="uid://dpep6wedv5iwj" path="res://audio/ambient_audio.tscn" id="2_i2lq6"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="4_xast0"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="5_mvq67"]
@@ -112,6 +113,8 @@ transform = Transform3D(-0.692143, -0.286646, 0.662399, 0, 0.917755, 0.397148, -
 light_color = Color(0.766264, 0.587737, 0.388044, 1)
 light_energy = 2.2
 shadow_enabled = true
+
+[node name="Ambient Audio" parent="." instance=ExtResource("2_i2lq6")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
