@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var stair_climb_area: Area3D = $Rotate/stair_climb_area
 @onready var hold_container: Node3D = $HoldContainer
 @onready var uniform_health: Node = $UniformHealth
+@onready var footsteps: Node3D = $Footsteps
 
 
 @export var is_player: bool = true
@@ -80,6 +81,9 @@ var rb_delta_accum: float
 var rb_actual_speed: float
 var rb_accel_timer: float
 
+var landed_jump: bool = false
+var last_air_y_vel: float = 0
+
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
 
@@ -142,6 +146,7 @@ func get_move_speed(is_action_crouching: bool, is_action_sprint: bool) -> float:
 	return speed_scale * res
 
 func _air_physics_process(delta: float, is_action_crouching: bool, is_action_sprint: bool, speed: float, air_control: float) -> void:
+	#print(self.velocity.y)
 	self.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
 	self.velocity.x = lerp(self.velocity.x, wish_dir.x * speed, air_control)
 	self.velocity.z = lerp(self.velocity.z, wish_dir.z * speed, air_control)
@@ -281,6 +286,7 @@ func _internal_physics_process(delta: float,
 		if (coyote_timer <= coyote_time) and not is_on_floor():
 			self.velocity.y *= 0.5
 		if (auto_bhop and is_action_jump) or just_action_jump:
+			footsteps.is_walking = false
 			did_jump = true
 			self.velocity.y = 0 # otherwise jumping in coyote time seems very weak
 			var y_jump: float = jump_velo * (1 - jump_recharge_inv)
@@ -295,21 +301,53 @@ func _internal_physics_process(delta: float,
 			coyote_timer = coyote_time
 	if not is_rollerblade:
 		if was_on_floor_at_start_of_frame or snapped_to_stairs_last_frame: # after implementing crouching, switch based on crouch state
+			if landed_jump:
+				last_air_y_vel = -last_air_y_vel
+				#print(last_air_y_vel)
+				var air_vel_sq: float = last_air_y_vel * last_air_y_vel
+				var first_step_strength = 2 + (1 - (1 / (air_vel_sq * last_air_y_vel * 0.0015 + 1))) * 8
+				var second_step_strength = 2 + (1 - (1 / (air_vel_sq * air_vel_sq * 0.00005 + 1))) * 8
+				print(first_step_strength, " ", second_step_strength)
+				footsteps.play_now_with_strength(
+					first_step_strength, 2,
+					randf_range(0.05, 0.5),
+					second_step_strength, 2)
 			_walkrun_physics_process(delta, is_action_crouching, is_action_sprint)
 			#floor_max_angle = deg_to_rad(50)
 			pframes_since_on_floor = 0
 			#was_on_floor_last_frame = true
 			jump_recharge_inv_wgrab = 0
+			#print((self.velocity * Vector3(1, 0, 1)).length())
+				#play_now_with_strength()
+			landed_jump = false
+			if (self.velocity * Vector3(1, 0, 1)).length() > 0:
+				footsteps.is_walking = true
+				var step_strength: float = 2
+				var step_time_jitter: float = 0.25
+				if is_action_crouching:
+					step_strength = 1.0
+					step_time_jitter = 0.5
+				else:
+					if is_action_sprint:
+						step_strength = 4.0
+						step_time_jitter = 0.05
+				footsteps.time = lerp(footsteps.time, 0.25 * (self.velocity * Vector3(1, 0, 1)).length(), 0.2)
+				footsteps.step_strength = lerp(footsteps.step_strength, step_strength, 0.15)
+				footsteps.time_jitter = lerp(footsteps.time_jitter, step_time_jitter, 0.15)
+			else:
+				footsteps.is_walking = false
 		else:
+			landed_jump = true
+			footsteps.is_walking = false
 			floor_max_angle = deg_to_rad(80)
 			_air_physics_process(delta, is_action_crouching, is_action_sprint, get_move_speed(is_action_crouching, is_action_sprint), air_speed_control)
+			last_air_y_vel = self.velocity.y
 			#self.velocity += ground_velo
 			pframes_since_on_floor += 1
 			#was_on_floor_last_frame = false
 		
 		#it would be nice to have some better way of combining forward and up movement. it should probably be mainly up, but forward would be super cool for wall jumping
 		if stair_climb_area.has_overlapping_bodies():
-			#if Input.is_action_just_pressed("jump"):
 			if is_action_jump:
 				self.velocity *= Vector3(0, 0.5, 0.5)
 				self.velocity += (climb_speed * Vector3.UP)

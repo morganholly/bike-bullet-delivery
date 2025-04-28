@@ -75,9 +75,6 @@ target_position = Vector3(0, -10000, 0)
 collision_mask = 485
 collide_with_areas = true
 
-[node name="AudioListener3D" type="AudioListener3D" parent="Rotate/Flip/SpringArm3D"]
-current = true
-
 [node name="FirstPerson" type="Node3D" parent="Rotate/Flip"]
 
 [node name="CameraFirstPerson" type="Camera3D" parent="Rotate/Flip/FirstPerson"]

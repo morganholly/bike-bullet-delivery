@@ -10,6 +10,9 @@ extends Node3D
 @onready var camera_third_person: Camera3D = $Rotate/Flip/SpringArm3D/CameraThirdPerson
 @onready var camera_first_person: Camera3D = $Rotate/Flip/FirstPerson/CameraFirstPerson
 
+@onready var listener_3p: AudioListener3D = $"Rotate/Flip/SpringArm3D/listener 3p"
+@onready var listener_1p: AudioListener3D = $"Rotate/Flip/FirstPerson/listener 1p"
+
 @onready var hold_position: Node3D = $Rotate/Flip/FirstPerson/HoldPosition
 @onready var gun_position_r: Marker3D = $Rotate/Flip/FirstPerson/GunPositionR
 
@@ -140,11 +143,15 @@ func _input(event):
 				camera_first_person.current = false and is_active
 				camera_third_person.current = true and is_active
 				nodeSpringarm.spring_length = camera_distance
+				#listener_3p.current = false
+				#listener_1p.current = true
 			else:
 				third_person_select = true
 				camera_third_person.current = false and is_active
 				camera_first_person.current = true and is_active
 				nodeSpringarm.spring_length = 0
+				#listener_3p.current = true
+				#listener_1p.current = false
 		elif event.is_action_pressed("release_mouse"):
 			set_mode_menu()
 

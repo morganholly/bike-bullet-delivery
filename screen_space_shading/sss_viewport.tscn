@@ -31,6 +31,8 @@ script = ExtResource("1_68sve")
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 size = Vector2i(1280, 720)
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 render_target_update_mode = 4
 
 [node name="Test03" parent="SubViewport" instance=ExtResource("2_ex0h6")]

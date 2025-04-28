@@ -49,6 +49,14 @@ theme/custom_font="uid://7kp3j8uwkhom"
 
 [input]
 
+ui_focus_next={
+"deadzone": 0.5,
+"events": []
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": []
+}
 left={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
@@ -187,6 +195,8 @@ test_indicators={
 [physics]
 
 3d/physics_engine="Jolt Physics (Extension)"
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
+jolt_physics_extension_3d/collisions/areas_detect_static_bodies=true
 
 [rendering]
 

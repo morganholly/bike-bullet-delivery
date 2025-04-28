@@ -1,0 +1,251 @@
+[gd_scene load_steps=93 format=3 uid="uid://cwc3bq6cub00w"]
+
+[ext_resource type="AudioStream" uid="uid://cr4yxkf7ww4r3" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-6GDI.wav" id="1_c0se1"]
+[ext_resource type="Script" uid="uid://k2fu2pnf21e7" path="res://audio/footsteps.gd" id="1_g84l2"]
+[ext_resource type="AudioStream" uid="uid://c27mvf16imb7m" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-901Q.wav" id="2_1vovo"]
+[ext_resource type="AudioStream" uid="uid://6fsdckxso3oc" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-FGNI.wav" id="3_hsron"]
+[ext_resource type="AudioStream" uid="uid://w78j1wxmvn1w" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-J4VZ.wav" id="4_4dtel"]
+[ext_resource type="AudioStream" uid="uid://dquh061f0lpxb" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-LRZG.wav" id="5_k1f2m"]
+[ext_resource type="AudioStream" uid="uid://d3c7sfsgs5uur" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-P43V.wav" id="6_sccl2"]
+[ext_resource type="AudioStream" uid="uid://tospcqw825df" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-S1JX.wav" id="7_j73xf"]
+[ext_resource type="AudioStream" uid="uid://dfatrp3xuqcus" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V13-XOFF.wav" id="8_vsbe4"]
+[ext_resource type="AudioStream" uid="uid://bbd3isoerytmd" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-0MKZ.wav" id="9_dg1s0"]
+[ext_resource type="AudioStream" uid="uid://t1uq4ps70e8p" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-1D0R.wav" id="10_lb5cd"]
+[ext_resource type="AudioStream" uid="uid://c2baij4n2f61y" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-37GE.wav" id="11_gyrmc"]
+[ext_resource type="AudioStream" uid="uid://dp600mk2wnijc" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-B3D9.wav" id="12_4780q"]
+[ext_resource type="AudioStream" uid="uid://bnyebos3idv88" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-CPAG.wav" id="13_eua6r"]
+[ext_resource type="AudioStream" uid="uid://dt4aysinketku" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-G4LE.wav" id="14_0sltq"]
+[ext_resource type="AudioStream" uid="uid://chxiu6sj0diiv" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-IASG.wav" id="15_qr5gh"]
+[ext_resource type="AudioStream" uid="uid://bxjpne6s4weqn" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V25-TZ0H.wav" id="16_y70ah"]
+[ext_resource type="AudioStream" uid="uid://chgxkq141wn2v" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-3G87.wav" id="17_6ycrl"]
+[ext_resource type="AudioStream" uid="uid://dblqpcxe10fbk" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-A0CX.wav" id="18_5he8q"]
+[ext_resource type="AudioStream" uid="uid://drfcsx5u4puth" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-FNRC.wav" id="19_vyp7x"]
+[ext_resource type="AudioStream" uid="uid://c7gmkw735lu10" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-PIKJ.wav" id="20_q3iq2"]
+[ext_resource type="AudioStream" uid="uid://cd0tw5lrv1sj" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-PP2L.wav" id="21_cp546"]
+[ext_resource type="AudioStream" uid="uid://msr2bhd5ws2r" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-TF9E.wav" id="22_7os0y"]
+[ext_resource type="AudioStream" uid="uid://f7ma3fn07ehr" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-USWG.wav" id="23_3pila"]
+[ext_resource type="AudioStream" uid="uid://dlqee648fnpt3" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V38-W36S.wav" id="24_paegg"]
+[ext_resource type="AudioStream" uid="uid://bg4402a8sko2p" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-5BNG.wav" id="25_2ubil"]
+[ext_resource type="AudioStream" uid="uid://bvqccamrbqvpn" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-157W.wav" id="26_jwakw"]
+[ext_resource type="AudioStream" uid="uid://b3ylbnflekfxs" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-279N.wav" id="27_gkf8f"]
+[ext_resource type="AudioStream" uid="uid://vbovjc5r5ive" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-CF6F.wav" id="28_p1p8f"]
+[ext_resource type="AudioStream" uid="uid://dgid85hf08sro" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-DFG7.wav" id="29_184ll"]
+[ext_resource type="AudioStream" uid="uid://dlbalp1nywb60" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-M994.wav" id="30_negvu"]
+[ext_resource type="AudioStream" uid="uid://crelwrkj3jqvp" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-TEC6.wav" id="31_itbq7"]
+[ext_resource type="AudioStream" uid="uid://c3q6ifhr85edb" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V51-YT7M.wav" id="32_ap4xl"]
+[ext_resource type="AudioStream" uid="uid://bvjc3fpqrdn0d" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-3WNN.wav" id="33_rcs8x"]
+[ext_resource type="AudioStream" uid="uid://cb7d4yshh3314" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-7AJT.wav" id="34_l51i5"]
+[ext_resource type="AudioStream" uid="uid://ddc7cmqn1o86h" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-8RF0.wav" id="35_jvwtr"]
+[ext_resource type="AudioStream" uid="uid://diibordrxg8jx" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-ISGZ.wav" id="36_iv5od"]
+[ext_resource type="AudioStream" uid="uid://c01fd2x51q0po" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-NX2L.wav" id="37_jq1e4"]
+[ext_resource type="AudioStream" uid="uid://b5y0nxry3a4db" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-OYXW.wav" id="38_q13y1"]
+[ext_resource type="AudioStream" uid="uid://cwfrb11wl4fg3" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-PLIT.wav" id="39_qiqy0"]
+[ext_resource type="AudioStream" uid="uid://tm1mslhg3t1v" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V64-R53D.wav" id="40_tdinb"]
+[ext_resource type="AudioStream" uid="uid://c6ppp5u2snk6k" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-1KCP.wav" id="41_h1piy"]
+[ext_resource type="AudioStream" uid="uid://cxcodjyeo5de7" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-4C2M.wav" id="42_lcxuc"]
+[ext_resource type="AudioStream" uid="uid://k7boxtm6woy6" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-4EPF.wav" id="43_upgo6"]
+[ext_resource type="AudioStream" uid="uid://b78gktmpx8q2g" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-8NR0.wav" id="44_4c6q7"]
+[ext_resource type="AudioStream" uid="uid://dspkdbkkqh8nw" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-D66L.wav" id="45_poo35"]
+[ext_resource type="AudioStream" uid="uid://bp4vd1836776n" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-LKJD.wav" id="46_bg528"]
+[ext_resource type="AudioStream" uid="uid://2t6ebmdnppxe" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-ONJ5.wav" id="47_wskji"]
+[ext_resource type="AudioStream" uid="uid://cnwjmgtyrbhvh" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V76-ZWL1.wav" id="48_i4c04"]
+[ext_resource type="AudioStream" uid="uid://br41vgm734l4a" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-5I3G.wav" id="49_22rhp"]
+[ext_resource type="AudioStream" uid="uid://o1mkkree66xk" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-BVN8.wav" id="50_v3nbe"]
+[ext_resource type="AudioStream" uid="uid://c76bvelgswk30" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-DH5F.wav" id="51_md3iv"]
+[ext_resource type="AudioStream" uid="uid://b5lkkabtmsel7" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-M6O1.wav" id="52_8m0je"]
+[ext_resource type="AudioStream" uid="uid://ww2sols4g7wm" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-O9EP.wav" id="53_jkkp5"]
+[ext_resource type="AudioStream" uid="uid://c18ljpkdt1act" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-T5LA.wav" id="54_erm53"]
+[ext_resource type="AudioStream" uid="uid://b3s1spfs1y2kj" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-TPAW.wav" id="55_5nhhn"]
+[ext_resource type="AudioStream" uid="uid://cd5w8rsef3xag" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V89-USRX.wav" id="56_efuxa"]
+[ext_resource type="AudioStream" uid="uid://8nshrmgnvsli" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-95YF.wav" id="57_nbuvc"]
+[ext_resource type="AudioStream" uid="uid://bmpj6ve7gvx8i" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-FMLQ.wav" id="58_wj8jk"]
+[ext_resource type="AudioStream" uid="uid://dcdessgudklxu" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-JDAQ.wav" id="59_270pw"]
+[ext_resource type="AudioStream" uid="uid://cu0ph37nm182y" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-JU0J.wav" id="60_6y4op"]
+[ext_resource type="AudioStream" uid="uid://ba8daso67yfq8" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-MHXS.wav" id="61_t2xy6"]
+[ext_resource type="AudioStream" uid="uid://oc4kr6xnpjj0" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-TMG1.wav" id="62_o7j7t"]
+[ext_resource type="AudioStream" uid="uid://dudq0d521m54m" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-XSFN.wav" id="63_gnhen"]
+[ext_resource type="AudioStream" uid="uid://cqxp0jjyfmww2" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V102-ZNNK.wav" id="64_tjuru"]
+[ext_resource type="AudioStream" uid="uid://bvbbs0g5u5iy" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-10VR.wav" id="65_0ntoq"]
+[ext_resource type="AudioStream" uid="uid://53dssovhfhgv" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-BGXQ.wav" id="66_1pnbw"]
+[ext_resource type="AudioStream" uid="uid://co071283qtvbd" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-DS3F.wav" id="67_17fvu"]
+[ext_resource type="AudioStream" uid="uid://bleuuuidfajya" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-EO6B.wav" id="68_syxg3"]
+[ext_resource type="AudioStream" uid="uid://tcluncnp5ufo" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-R2OY.wav" id="69_51v3i"]
+[ext_resource type="AudioStream" uid="uid://lnx3qecylvkm" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-X9BG.wav" id="70_713n1"]
+[ext_resource type="AudioStream" uid="uid://dp2g85gq5310a" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-XIF8.wav" id="71_adcj4"]
+[ext_resource type="AudioStream" uid="uid://33pdd84b1emu" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V114-ZOU8.wav" id="72_xhpir"]
+[ext_resource type="AudioStream" uid="uid://he2rpwg3jfhl" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-9GEP.wav" id="73_1pnbw"]
+[ext_resource type="AudioStream" uid="uid://dvoftmu41b4ky" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-9X1Z.wav" id="74_uy2iv"]
+[ext_resource type="AudioStream" uid="uid://c3m1uqmiblsn2" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-584Q.wav" id="75_g84l2"]
+[ext_resource type="AudioStream" uid="uid://bsmaopmadp8ue" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-BF41.wav" id="76_63oec"]
+[ext_resource type="AudioStream" uid="uid://c8rgbowh8iflb" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-F5UP.wav" id="77_fm127"]
+[ext_resource type="AudioStream" uid="uid://bitbg00h5j3f3" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-F6K8.wav" id="78_h7han"]
+[ext_resource type="AudioStream" uid="uid://bv3x828uoyqw8" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-IRAW.wav" id="79_sbuvj"]
+[ext_resource type="AudioStream" uid="uid://2tis8yhk0ngu" path="res://audio/phaseplant footsteps wav oct 1 E/phase plant footsteps 1 0E-V127-U0TV.wav" id="80_ncs2o"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q2t20"]
+streams_count = 8
+stream_0/stream = ExtResource("1_c0se1")
+stream_1/stream = ExtResource("2_1vovo")
+stream_2/stream = ExtResource("3_hsron")
+stream_3/stream = ExtResource("4_4dtel")
+stream_4/stream = ExtResource("5_k1f2m")
+stream_5/stream = ExtResource("6_sccl2")
+stream_6/stream = ExtResource("7_j73xf")
+stream_7/stream = ExtResource("8_vsbe4")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c0se1"]
+streams_count = 8
+stream_0/stream = ExtResource("9_dg1s0")
+stream_1/stream = ExtResource("10_lb5cd")
+stream_2/stream = ExtResource("11_gyrmc")
+stream_3/stream = ExtResource("12_4780q")
+stream_4/stream = ExtResource("13_eua6r")
+stream_5/stream = ExtResource("14_0sltq")
+stream_6/stream = ExtResource("15_qr5gh")
+stream_7/stream = ExtResource("16_y70ah")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lb5cd"]
+streams_count = 8
+stream_0/stream = ExtResource("17_6ycrl")
+stream_1/stream = ExtResource("18_5he8q")
+stream_2/stream = ExtResource("19_vyp7x")
+stream_3/stream = ExtResource("20_q3iq2")
+stream_4/stream = ExtResource("21_cp546")
+stream_5/stream = ExtResource("22_7os0y")
+stream_6/stream = ExtResource("23_3pila")
+stream_7/stream = ExtResource("24_paegg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rcs8x"]
+streams_count = 8
+stream_0/stream = ExtResource("25_2ubil")
+stream_1/stream = ExtResource("26_jwakw")
+stream_2/stream = ExtResource("27_gkf8f")
+stream_3/stream = ExtResource("28_p1p8f")
+stream_4/stream = ExtResource("29_184ll")
+stream_5/stream = ExtResource("30_negvu")
+stream_6/stream = ExtResource("31_itbq7")
+stream_7/stream = ExtResource("32_ap4xl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2ubil"]
+streams_count = 8
+stream_0/stream = ExtResource("33_rcs8x")
+stream_1/stream = ExtResource("34_l51i5")
+stream_2/stream = ExtResource("35_jvwtr")
+stream_3/stream = ExtResource("36_iv5od")
+stream_4/stream = ExtResource("37_jq1e4")
+stream_5/stream = ExtResource("38_q13y1")
+stream_6/stream = ExtResource("39_qiqy0")
+stream_7/stream = ExtResource("40_tdinb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l51i5"]
+streams_count = 8
+stream_0/stream = ExtResource("41_h1piy")
+stream_1/stream = ExtResource("42_lcxuc")
+stream_2/stream = ExtResource("43_upgo6")
+stream_3/stream = ExtResource("44_4c6q7")
+stream_4/stream = ExtResource("45_poo35")
+stream_5/stream = ExtResource("46_bg528")
+stream_6/stream = ExtResource("47_wskji")
+stream_7/stream = ExtResource("48_i4c04")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h1piy"]
+streams_count = 8
+stream_0/stream = ExtResource("49_22rhp")
+stream_1/stream = ExtResource("50_v3nbe")
+stream_2/stream = ExtResource("51_md3iv")
+stream_3/stream = ExtResource("52_8m0je")
+stream_4/stream = ExtResource("53_jkkp5")
+stream_5/stream = ExtResource("54_erm53")
+stream_6/stream = ExtResource("55_5nhhn")
+stream_7/stream = ExtResource("56_efuxa")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_22rhp"]
+streams_count = 8
+stream_0/stream = ExtResource("57_nbuvc")
+stream_1/stream = ExtResource("58_wj8jk")
+stream_2/stream = ExtResource("59_270pw")
+stream_3/stream = ExtResource("60_6y4op")
+stream_4/stream = ExtResource("61_t2xy6")
+stream_5/stream = ExtResource("62_o7j7t")
+stream_6/stream = ExtResource("63_gnhen")
+stream_7/stream = ExtResource("64_tjuru")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uy2iv"]
+streams_count = 8
+stream_0/stream = ExtResource("65_0ntoq")
+stream_1/stream = ExtResource("66_1pnbw")
+stream_2/stream = ExtResource("67_17fvu")
+stream_3/stream = ExtResource("68_syxg3")
+stream_4/stream = ExtResource("69_51v3i")
+stream_5/stream = ExtResource("70_713n1")
+stream_6/stream = ExtResource("71_adcj4")
+stream_7/stream = ExtResource("72_xhpir")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0ntoq"]
+streams_count = 8
+stream_0/stream = ExtResource("73_1pnbw")
+stream_1/stream = ExtResource("74_uy2iv")
+stream_2/stream = ExtResource("75_g84l2")
+stream_3/stream = ExtResource("76_63oec")
+stream_4/stream = ExtResource("77_fm127")
+stream_5/stream = ExtResource("78_h7han")
+stream_6/stream = ExtResource("79_sbuvj")
+stream_7/stream = ExtResource("80_ncs2o")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dg1s0"]
+resource_local_to_scene = true
+random_pitch = 1.15
+random_volume_offset_db = 1.5
+streams_count = 10
+stream_0/stream = SubResource("AudioStreamRandomizer_q2t20")
+stream_0/weight = 0.0
+stream_1/stream = SubResource("AudioStreamRandomizer_c0se1")
+stream_1/weight = 0.0
+stream_2/stream = SubResource("AudioStreamRandomizer_lb5cd")
+stream_2/weight = 0.0
+stream_3/stream = SubResource("AudioStreamRandomizer_rcs8x")
+stream_3/weight = 0.0
+stream_4/stream = SubResource("AudioStreamRandomizer_2ubil")
+stream_4/weight = 0.0
+stream_5/stream = SubResource("AudioStreamRandomizer_l51i5")
+stream_5/weight = 0.0
+stream_6/stream = SubResource("AudioStreamRandomizer_h1piy")
+stream_6/weight = 0.0
+stream_7/stream = SubResource("AudioStreamRandomizer_22rhp")
+stream_7/weight = 0.0
+stream_8/stream = SubResource("AudioStreamRandomizer_uy2iv")
+stream_8/weight = 0.0
+stream_9/stream = SubResource("AudioStreamRandomizer_0ntoq")
+stream_9/weight = 0.0
+
+[node name="Footsteps" type="Node3D"]
+script = ExtResource("1_g84l2")
+
+[node name="thumps" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dg1s0")
+attenuation_model = 1
+volume_db = -24.0
+max_db = 6.0
+pitch_scale = 0.5
+max_distance = 30.0
+max_polyphony = 10
+bus = &"World SFX"
+
+[node name="landing_thumps" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dg1s0")
+attenuation_model = 1
+volume_db = -24.0
+max_db = 6.0
+pitch_scale = 0.5
+max_distance = 30.0
+max_polyphony = 10
+bus = &"World SFX"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PlayNowSecondTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PlayNowSecondTimer" to="." method="_on_play_now_second_timer_timeout"]
