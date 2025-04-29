@@ -85,6 +85,7 @@ var landed_jump: bool = false
 var last_air_y_vel: float = 0
 
 @onready var rollerblade_loop: AudioStreamPlayer3D = $"rollerblade loop"
+@onready var rollerblade_clacks: AudioStreamPlayer3D = $"rollerblade clacks"
 
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
@@ -245,6 +246,11 @@ func _handle_crouch(delta: float, is_action_crouching: bool) -> void:
 	collision_shape_3d.shape.height = (orig_capsule_height - cr_h_reduce) if is_crouched else orig_capsule_height
 	collision_shape_3d.position.y = collision_shape_3d.shape.height * 0.5
 
+func rb_clack(number: int, min_delay: float, max_delay: float):
+	for i in range(number):
+		var tween_timer = get_tree().create_tween()
+		tween_timer.tween_callback(rollerblade_clacks.play).set_delay(randf_range(min_delay, max_delay))
+
 func _physics_process(delta: float) -> void:
 	if not is_riding:
 		if is_player and can_move:
@@ -301,6 +307,10 @@ func _internal_physics_process(delta: float,
 			self.velocity.z *= actual_jump_accel
 			jump_recharge_inv = 1 # lerp(jump_recharge_inv, 1.0, 0.5)
 			coyote_timer = coyote_time
+			if is_rollerblade:
+				var num_clacks = randi_range(1, 4)
+				rollerblade_clacks.volume_db = (num_clacks - 1) * -6
+				rb_clack(num_clacks, 0.01, 0.15)
 	if not is_rollerblade:
 		if was_on_floor_at_start_of_frame or snapped_to_stairs_last_frame: # after implementing crouching, switch based on crouch state
 			if landed_jump:
@@ -366,7 +376,11 @@ func _internal_physics_process(delta: float,
 			#rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, 0.0, 0.5)
 			var xz_vel = (self.velocity * Vector3(1, 0, 1)).length()
 			var rb_pitch = (1 - (1 / (xz_vel * xz_vel * xz_vel * 0.0015 + 1)))
-			rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, lerp(-24.0, 0.0, rb_pitch * rb_pitch), 0.2)
+			rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, lerp(-36.0, -18.0, clamp(rb_pitch * rb_pitch, 0, 1)), 0.2)
+			if landed_jump:
+				var num_clacks = randi_range(1, 4)
+				rollerblade_clacks.volume_db = (num_clacks - 1) * -6
+				rb_clack(num_clacks, 0.01, 0.25)
 			rb_pitch = rb_pitch * 3 - 2
 			rb_pitch = pow(2, rb_pitch)
 			rollerblade_loop.pitch_scale = lerp(rollerblade_loop.pitch_scale, rb_pitch, 0.2)
@@ -375,7 +389,9 @@ func _internal_physics_process(delta: float,
 			pframes_since_on_floor = 0
 			#was_on_floor_last_frame = true
 			jump_recharge_inv_wgrab = 0
+			landed_jump = false
 		else:
+			landed_jump = true
 			rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, -80.0, 0.05)
 			rollerblade_loop.pitch_scale = lerp(rollerblade_loop.pitch_scale, 0.5, 0.025)
 			rollerblade_direction = lerp(rollerblade_direction, wish_dir.normalized(), 0.05).normalized()
