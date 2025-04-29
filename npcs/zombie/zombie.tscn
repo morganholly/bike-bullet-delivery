@@ -176,6 +176,9 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_gqdyl")
+shoot_range = 0.0
+retreat_range = 0.0
+melee_range = 20.0
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_rnxo1")]
 max_armor = 0.0

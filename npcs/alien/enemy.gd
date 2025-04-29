@@ -4,15 +4,19 @@ extends Entity
 class_name Enemy
 
 
-
-
 var target = null
 var follow_strength = 15
 
-var shoot_range = 15
-var too_close_range = 8
+#@export var come : bool = 
 
-@export var stun_delay : float = 0.2
+@export var projectile_prefab : PackedScene = preload("res://npcs/alien/AlienProjectile.tscn")
+
+@export var shoot_range : float = 15
+@export var retreat_range : float = 10
+@export var melee_range : float = 8
+@export var melee_animation_range : float = 3
+
+@export var stun_delay : float = 0.3
 @export var shoot_delay : float = 0.3
 
 var cur_stun_delay = 0
@@ -71,19 +75,33 @@ func _physics_process(delta):
 		look_at(target_position)
 		
 		#print(global_transform.origin.distance_to(target_position))
-		if (global_transform.origin.distance_to(target_position) > shoot_range):
+		if (
+			global_transform.origin.distance_to(target_position) > shoot_range || 
+			global_transform.origin.distance_to(target_position) < melee_range):
 			
 			apply_central_force(direction * follow_strength)
 			current_state = Entity_States.Walk
-		elif (global_transform.origin.distance_to(target_position) < too_close_range):
+		elif (global_transform.origin.distance_to(target_position) < retreat_range):
 			#var direction = (target_position - global_transform.origin).normalized()
 			apply_central_force(-direction * follow_strength)
 			current_state = Entity_States.Walk
 		else:
-			current_state = Entity_States.Shoot
+			if cur_shoot_delay > 0:
+				cur_shoot_delay -= delta;
+				current_state = Entity_States.Shoot
+				if cur_shoot_delay <= 0:
+					cur_shoot_delay = shoot_delay
+					shoot(direction)
+			else:
+				cur_shoot_delay = shoot_delay
+				current_state = Entity_States.Shoot
 		
+		if global_transform.origin.distance_to(target_position) < melee_animation_range:
+			current_state = Entity_States.Shoot
 	else:
 		current_state = Entity_States.Idle
+		
+	
 
 
 func _on_Area3D_body_entered(body):
@@ -105,7 +123,13 @@ func _on_body_entered(body: Node) -> void:
 	pass # Replace with function body.
 
 
-
+func shoot(direction):
+	var clone = projectile_prefab.instantiate()
+	clone.position = self.position
+	add_sibling(clone)
+	clone.global_position += direction * 2 + Vector3(0, 1.7, 0) 
+	clone.apply_central_force(direction * 1000)
+	pass
 
 #func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	#print("_on_body_entered")

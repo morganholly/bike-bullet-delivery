@@ -1,9 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2vj1tgxdcsin"]
+[gd_scene load_steps=27 format=3 uid="uid://b2vj1tgxdcsin"]
 
 [ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_7k4kp"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_8llsw"]
 [ext_resource type="Texture2D" uid="uid://c8xdfxeljipf8" path="res://npcs/alien/alien_char_sheet/alien_spritesheet.png" id="2_klwlt"]
+[ext_resource type="PackedScene" uid="uid://cce7pakh1pe5y" path="res://weapons/collision_damage.tscn" id="2_kv57w"]
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="3_n3nxh"]
+[ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="3_qlx0e"]
+
+[sub_resource type="Resource" id="Resource_tjnlw"]
+script = ExtResource("3_qlx0e")
+normal_damage = 10.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 radius = 0.690391
@@ -140,6 +147,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_d1abx")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_d1abx")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_t2666")
 }],
 "loop": true,
@@ -176,6 +186,11 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_7k4kp")
+melee_range = 0.0
+shoot_delay = 0.6
+
+[node name="CollisionDamage" parent="." instance=ExtResource("2_kv57w")]
+damage = SubResource("Resource_tjnlw")
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_8llsw")]
 max_armor = 0.0
@@ -191,7 +206,7 @@ pixel_size = 0.0313
 alpha_hash_scale = 0.5
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_myj7t")
-animation = &"death"
+animation = &"shoot_front"
 script = ExtResource("3_n3nxh")
 designated_parent = NodePath("..")
 
