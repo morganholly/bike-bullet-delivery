@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dwfbo2tpjieh3" path="res://screen_space_shading/pass_events.gd" id="1_68sve"]
 [ext_resource type="Shader" uid="uid://ywb16dfocp8q" path="res://screen_space_shading/sss_viewport.gdshader" id="2_5mp2e"]
 [ext_resource type="PackedScene" uid="uid://bulcl2lwyyxbq" path="res://levels/testing/test03.tscn" id="2_ex0h6"]
-[ext_resource type="Texture2D" uid="uid://cvgx5r5csqhuf" path="res://graphics/crosshairs/crosshair_1_256.png" id="3_5bhby"]
+[ext_resource type="Texture2D" uid="uid://d3p12kcw6aol1" path="res://ui/crosshairs@2x.png" id="3_5bhby"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70wu8"]
 shader = ExtResource("2_5mp2e")
@@ -30,7 +30,9 @@ script = ExtResource("1_68sve")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(1280, 720)
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 render_target_update_mode = 4
 
 [node name="Test03" parent="SubViewport" instance=ExtResource("2_ex0h6")]

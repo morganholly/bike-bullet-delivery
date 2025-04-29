@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp08yx6nxr3pr"]
+
+[ext_resource type="Texture2D" uid="uid://c7kvislep5fh3" path="res://ui/bg bottom little space.png" id="1_hdww5"]
+[ext_resource type="Texture2D" uid="uid://dpbjv5yknuqra" path="res://ui/mags icon@2x.png" id="2_tlvx2"]
+[ext_resource type="Theme" uid="uid://dglq35eqxqdbb" path="res://theme/gametheme_dark.tres" id="3_ld8i4"]
+[ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="4_7q1vc"]
+
+[node name="UIBottomMags" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_hdww5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tlvx2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -82.0
+offset_top = -38.0
+offset_right = 41.0
+offset_bottom = 16.0
+theme = ExtResource("3_ld8i4")
+theme_override_fonts/font = ExtResource("4_7q1vc")
+theme_override_font_sizes/font_size = 40
+text = "00000"

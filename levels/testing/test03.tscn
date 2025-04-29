@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=52 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_tyw03"]
@@ -38,6 +38,42 @@ background_mode = 2
 sky = SubResource("Sky_xast0")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_klg6o"]
+offsets = PackedFloat32Array(0.204846, 0.799559)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hkchm"]
+noise_type = 2
+frequency = 0.0629
+fractal_type = 2
+fractal_octaves = 4
+fractal_gain = 0.8
+fractal_weighted_strength = 1.0
+cellular_jitter = 0.25
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mm7rj"]
+width = 64
+seamless = true
+color_ramp = SubResource("Gradient_klg6o")
+noise = SubResource("FastNoiseLite_hkchm")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_edee0"]
+width = 64
+seamless = true
+as_normal_map = true
+bump_strength = 3.1
+noise = SubResource("FastNoiseLite_hkchm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkelk"]
+albedo_color = Color(0.435605, 0.407829, 0.35006, 1)
+albedo_texture = SubResource("NoiseTexture2D_mm7rj")
+metallic = 1.0
+roughness = 0.65
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_edee0")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="Resource" id="Resource_klg6o"]
 script = ExtResource("9_klg6o")
@@ -225,6 +261,14 @@ size = Vector3(5, 2, 4)
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
 size = Vector3(4, 2, 41)
+
+[node name="ladder" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36186, 2.87447, 19.9227)
+material_override = SubResource("StandardMaterial3D_hkelk")
+use_collision = true
+collision_layer = 8
+collision_mask = 0
+size = Vector3(2.5, 30, 0.5)
 
 [node name="dummies" type="Node3D" parent="."]
 

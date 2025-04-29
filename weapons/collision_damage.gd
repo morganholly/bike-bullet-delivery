@@ -17,7 +17,7 @@ enum CollCheckMode {
 @export var collision_checking: CollCheckMode = CollCheckMode.RigidContactMonitor
 
 func _ready() -> void:
-	print("ready")
+	#print("ready")
 	dmg_timeout_usec = damage_timeout * 1e6
 	match collision_checking:
 		CollCheckMode.RigidContactMonitor:
@@ -27,13 +27,13 @@ func _ready() -> void:
 			self.get_parent().max_contacts_reported = max(1, self.get_parent().max_contacts_reported)
 
 func _on_body_entered(body: Node3D):
-	print("contact")
+	#print("contact")
 	if body.is_in_group("Damageable"):
-		print("damageable")
+		#print("damageable")
 		var current_time_usec = Time.get_ticks_usec()
 		if collision_times.get_or_add(body.get_instance_id(), current_time_usec - dmg_timeout_usec * 2) >= current_time_usec - dmg_timeout_usec:
 			return
-		print("damage timer up")
+		#print("damage timer up")
 		var health_manager: Node
 		var found_hm = false
 		for child in body.get_children():

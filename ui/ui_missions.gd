@@ -185,6 +185,7 @@ func update_mission_item_heights() -> void:
 
 # Resize the container based on mission items
 func resize_container() -> void:
+	return
 	if mission_items.size() <= 0:
 		# Set a minimum size when no items are present
 		custom_minimum_size.y = top_section_height + bottom_margin + 20

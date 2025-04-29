@@ -1,28 +1,139 @@
-[gd_scene load_steps=3 format=3 uid="uid://bobqsolltvkqa"]
+[gd_scene load_steps=9 format=3 uid="uid://bobqsolltvkqa"]
 
 [ext_resource type="Script" uid="uid://vhbtrf7f8xi0" path="res://ui/ui_inventory_slot.gd" id="1_vk32u"]
-[ext_resource type="Texture2D" uid="uid://54bobvceo3yo" path="res://ui/ui_inventory_slot_passive.png" id="2_5iash"]
+[ext_resource type="Texture2D" uid="uid://bdtco5bv1nasu" path="res://ui/small slot border@2x.png" id="2_vk32u"]
+[ext_resource type="Texture2D" uid="uid://ru2kje81sl4o" path="res://ui/bg small slot.png" id="3_5iash"]
+[ext_resource type="Texture2D" uid="uid://7ds2t6thondr" path="res://ui/gun r51 icon@2x.png" id="4_2eylc"]
+[ext_resource type="Texture2D" uid="uid://bdwyd1q0bmxvm" path="res://ui/small slot bullet icon@2x.png" id="4_invnb"]
+[ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="5_cib14"]
+[ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_2eylc"]
+[ext_resource type="Theme" uid="uid://dglq35eqxqdbb" path="res://theme/gametheme_dark.tres" id="7_hqkj4"]
 
 [node name="UIInventorySlot" type="Control"]
-custom_minimum_size = Vector2(84, 68)
+custom_minimum_size = Vector2(70, 68)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 70.0
+offset_bottom = 110.0
 script = ExtResource("1_vk32u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(42, 34)
-texture = ExtResource("2_5iash")
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(35, 55)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_vk32u")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(35, 55)
+texture = ExtResource("3_5iash")
 
 [node name="SlotNumber" type="Label" parent="."]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 4.0
-offset_right = 54.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_left = 42.0
+offset_top = 40.0
+offset_right = 70.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.980392, 0.878431, 0.294118, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("6_2eylc")
+theme_override_font_sizes/font_size = 30
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ActiveBar" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Top" type="Control" parent="ActiveBar"]
+anchors_preset = 0
+offset_left = 41.0
+offset_top = 49.0
+offset_right = 81.0
+offset_bottom = 89.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="ActiveBar/Top"]
+position = Vector2(-61, 37)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_invnb")
+
+[node name="CurrentAmmo" type="Label" parent="ActiveBar/Top"]
+offset_left = -15.0
+offset_top = 24.0
+offset_right = 33.0
+offset_bottom = 78.0
+theme = ExtResource("5_cib14")
+theme_override_fonts/font = ExtResource("6_2eylc")
+theme_override_font_sizes/font_size = 20
+text = "00"
+vertical_alignment = 2
+
+[node name="Seperator" type="Label" parent="ActiveBar/Top"]
+offset_left = -13.0
+offset_top = 19.0
+offset_right = 52.0
+offset_bottom = 73.0
+theme = ExtResource("7_hqkj4")
+theme_override_fonts/font = ExtResource("6_2eylc")
+theme_override_font_sizes/font_size = 14
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MaxAmmo" type="Label" parent="ActiveBar/Top"]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 81.0
+offset_bottom = 78.0
+theme = ExtResource("5_cib14")
+theme_override_fonts/font = ExtResource("6_2eylc")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Bot" type="Control" parent="ActiveBar"]
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 21.0
+offset_right = 78.0
+offset_bottom = 61.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ActiveBar/Bot"]
+position = Vector2(82, 127)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_2eylc")
+
+[node name="Label" type="Label" parent="ActiveBar/Bot"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 109.0
+offset_right = 60.0
+offset_bottom = 164.0
+theme = ExtResource("5_cib14")
+theme_override_font_sizes/font_size = 20
+text = "R51"
+
+[node name="PassiveBar" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PassiveBar"]
+position = Vector2(35, 55)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_invnb")
+
+[node name="Label" type="Label" parent="PassiveBar"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 73.0
+offset_right = 72.0
+offset_bottom = 115.0
+theme = ExtResource("7_hqkj4")
+theme_override_fonts/font = ExtResource("6_2eylc")
+theme_override_font_sizes/font_size = 24
+text = "000"

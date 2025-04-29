@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 @onready var bullet_count_label: Label = $UIBullet/UIButtonLabel
-@onready var reload_label: Label = $UIBullet/ReloadLabel  # Reference to the new reload label
 @onready var inventory_container: HBoxContainer = $UIInventory/HBoxContainer
 @onready var missions_ui: Control = $UIMissions
 
@@ -18,7 +17,6 @@ func _ready() -> void:
 	UIManager.bullet_count_changed.connect(_on_bullet_count_changed)
 	UIManager.reload_state_changed.connect(_on_reload_state_changed)
 	update_bullet_count(0, 0)
-	reload_label.visible = false  # Hide reload label initially
 	
 	# Add mission indicator layer
 	_setup_mission_indicators()
@@ -84,6 +82,7 @@ func _highlight_slot(slot_index: int) -> void:
 
 
 func update_bullet_count(mag_count: int, reserve_count: int = -1) -> void:
+	return
 	if reserve_count == -1:
 		# Only show magazine count
 		bullet_count_label.text = str(mag_count)
@@ -95,8 +94,7 @@ func _on_bullet_count_changed(mag_count: int, reserve_count: int = -1) -> void:
 	update_bullet_count(mag_count, reserve_count)
 
 func _on_reload_state_changed(is_reloading: bool) -> void:
-	# Show or hide the reload label based on reloading state
-	reload_label.visible = is_reloading
+	pass
 
 # Called every frame to update the UI based on the player's current state
 func _process(_delta: float) -> void:

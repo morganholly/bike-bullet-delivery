@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmtfn8pd0pt0n"]
+
+[ext_resource type="Texture2D" uid="uid://euwvispw4gxn" path="res://ui/bg bottom big space.png" id="1_5wwrw"]
+[ext_resource type="Texture2D" uid="uid://xf1heersoe00" path="res://ui/health icons@2x.png" id="2_aymrf"]
+[ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="3_8kkgi"]
+[ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="4_60dt1"]
+
+[node name="UIBottomHealth" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_5wwrw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_aymrf")
+
+[node name="MaxHealth" type="Label" parent="."]
+offset_left = 36.0
+offset_top = -26.0
+offset_right = 84.0
+offset_bottom = 28.0
+theme = ExtResource("3_8kkgi")
+theme_override_fonts/font = ExtResource("4_60dt1")
+theme_override_font_sizes/font_size = 32
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CurrentHealth" type="Label" parent="."]
+offset_left = -84.0
+offset_top = -71.0
+offset_right = 12.0
+offset_bottom = 37.0
+theme = ExtResource("3_8kkgi")
+theme_override_fonts/font = ExtResource("4_60dt1")
+theme_override_font_sizes/font_size = 72
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 2
