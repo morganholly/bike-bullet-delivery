@@ -10,8 +10,8 @@ extends Node3D
 @onready var camera_third_person: Camera3D = $Rotate/Flip/SpringArm3D/CameraThirdPerson
 @onready var camera_first_person: Camera3D = $Rotate/Flip/FirstPerson/CameraFirstPerson
 
-@onready var listener_3p: AudioListener3D = $"Rotate/Flip/SpringArm3D/listener 3p"
-@onready var listener_1p: AudioListener3D = $"Rotate/Flip/FirstPerson/listener 1p"
+#@onready var listener_3p: AudioListener3D = $"Rotate/Flip/SpringArm3D/listener 3p"
+#@onready var listener_1p: AudioListener3D = $"Rotate/Flip/FirstPerson/listener 1p"
 
 @onready var hold_position: Node3D = $Rotate/Flip/FirstPerson/HoldPosition
 @onready var gun_position_r: Marker3D = $Rotate/Flip/FirstPerson/GunPositionR

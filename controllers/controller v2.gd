@@ -84,6 +84,8 @@ var rb_accel_timer: float
 var landed_jump: bool = false
 var last_air_y_vel: float = 0
 
+@onready var rollerblade_loop: AudioStreamPlayer3D = $"rollerblade loop"
+
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
 
@@ -307,7 +309,7 @@ func _internal_physics_process(delta: float,
 				var air_vel_sq: float = last_air_y_vel * last_air_y_vel
 				var first_step_strength = 2 + (1 - (1 / (air_vel_sq * last_air_y_vel * 0.0015 + 1))) * 8
 				var second_step_strength = 2 + (1 - (1 / (air_vel_sq * air_vel_sq * 0.00005 + 1))) * 8
-				print(first_step_strength, " ", second_step_strength)
+				#print(first_step_strength, " ", second_step_strength)
 				footsteps.play_now_with_strength(
 					first_step_strength, 2,
 					randf_range(0.05, 0.5),
@@ -358,14 +360,24 @@ func _internal_physics_process(delta: float,
 		else:
 			self.velocity.y = 0 # prevents jump accumulating during stair up snapping
 	else:
+		footsteps.is_walking = false
 		var rb_dir_cache = rollerblade_direction
 		if was_on_floor_at_start_of_frame: # after implementing crouching, switch based on crouch state
+			#rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, 0.0, 0.5)
+			var xz_vel = (self.velocity * Vector3(1, 0, 1)).length()
+			var rb_pitch = (1 - (1 / (xz_vel * xz_vel * xz_vel * 0.0015 + 1)))
+			rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, lerp(-24.0, 0.0, rb_pitch * rb_pitch), 0.2)
+			rb_pitch = rb_pitch * 3 - 2
+			rb_pitch = pow(2, rb_pitch)
+			rollerblade_loop.pitch_scale = lerp(rollerblade_loop.pitch_scale, rb_pitch, 0.2)
 			_rollerblade_physics_process(delta, is_action_crouching, is_action_sprint, wish_dir)
 			#floor_max_angle = deg_to_rad(50)
 			pframes_since_on_floor = 0
 			#was_on_floor_last_frame = true
 			jump_recharge_inv_wgrab = 0
 		else:
+			rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, -80.0, 0.05)
+			rollerblade_loop.pitch_scale = lerp(rollerblade_loop.pitch_scale, 0.5, 0.025)
 			rollerblade_direction = lerp(rollerblade_direction, wish_dir.normalized(), 0.05).normalized()
 			floor_max_angle = deg_to_rad(80)
 			_air_physics_process(delta, is_action_crouching, is_action_sprint, rb_actual_speed / (rb_delta_accum + 1), rb_air_speed_control)

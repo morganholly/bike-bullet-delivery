@@ -1,6 +1,26 @@
-[gd_resource type="AudioBusLayout" load_steps=0 format=3 uid="uid://cthwvp7fh5v76"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://cthwvp7fh5v76"]
+
+[sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
+resource_name = "HardLimiter"
+release = 0.5
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+cutoff_hz = 200.0
+resonance = 0.4
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+cutoff_hz = 11671.0
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_j3pel"]
+resource_name = "Amplify"
+volume_db = 12.0
 
 [resource]
+bus/0/volume_db = 0.267241
+bus/0/effect/0/effect = SubResource("AudioEffectHardLimiter_j3pel")
+bus/0/effect/0/enabled = true
 bus/1/name = &"Ambient"
 bus/1/solo = false
 bus/1/mute = false
@@ -19,3 +39,15 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
+bus/4/name = &"Rollerblades"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = -0.030508
+bus/4/send = &"World SFX"
+bus/4/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/4/effect/1/enabled = true
+bus/4/effect/2/effect = SubResource("AudioEffectAmplify_j3pel")
+bus/4/effect/2/enabled = true

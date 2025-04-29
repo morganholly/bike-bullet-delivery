@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cghjxqpj25jao"]
+[gd_scene load_steps=15 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
 [ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://be8kx6fdtbf55" path="res://weapons/guns/ammo_pool.tscn" id="3_nbs7e"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
 [ext_resource type="PackedScene" uid="uid://cwc3bq6cub00w" path="res://audio/footsteps.tscn" id="7_om3tm"]
+[ext_resource type="AudioStream" uid="uid://csr5y7t5j1jxi" path="res://audio/rollerblade_noise1.wav" id="8_74jyf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
 
@@ -136,6 +137,12 @@ shape = SubResource("SphereShape3D_sa7iv")
 step_strength = 3.0
 strength_variance = 2.0
 always_update_weights = true
+
+[node name="rollerblade loop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_74jyf")
+volume_db = -80.0
+autoplay = true
+bus = &"Rollerblades"
 
 [connection signal="body_entered" from="can_ride" to="." method="_on_can_ride_body_entered"]
 [connection signal="body_exited" from="can_ride" to="." method="_on_can_ride_body_exited"]
