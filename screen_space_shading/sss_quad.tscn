@@ -1,30 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp6bdq5pahndr"]
+[gd_scene load_steps=6 format=3 uid="uid://cp6bdq5pahndr"]
 
-[ext_resource type="PackedScene" uid="uid://cumlkudt7n44b" path="res://StarterScene.tscn" id="1_28jvc"]
 [ext_resource type="Shader" uid="uid://br2s6nb6en0st" path="res://screen_space_shading/sss_quad.gdshader" id="2_s55cx"]
 
+[sub_resource type="Gradient" id="Gradient_87srx"]
+offsets = PackedFloat32Array(0, 0.193029, 0.493298, 0.873995, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.780392, 0.85098, 0.827451, 0.309804, 0.756863, 0.505882, 0.407843, 0.968627, 0.133333, 0.286275, 0.435294, 0.776471, 0.0901961, 0.0901961, 0.203922, 0.513726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_15imm"]
+gradient = SubResource("Gradient_87srx")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8ji4"]
-render_priority = 0
+render_priority = 50
 shader = ExtResource("2_s55cx")
-shader_parameter/quantize_size = 1.0
-shader_parameter/handle_scale = false
-shader_parameter/handle_subpixels = true
-shader_parameter/dither_enabled = false
-shader_parameter/bayer_pattern = 1.0
-shader_parameter/divisions = 1.0
-shader_parameter/contrast = 1.0
-shader_parameter/shift = 0.0
-shader_parameter/grayscale = false
-shader_parameter/use_palette = false
+shader_parameter/gradient = SubResource("GradientTexture1D_15imm")
+shader_parameter/fog_intensity = 0.5
+shader_parameter/fog_amount = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_6xyhj"]
 material = SubResource("ShaderMaterial_g8ji4")
 flip_faces = true
 
-[node name="Screen Space Shader" type="Node3D"]
-
-[node name="World" parent="." instance=ExtResource("1_28jvc")]
-
-[node name="quad" type="MeshInstance3D" parent="."]
+[node name="quad" type="MeshInstance3D"]
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_6xyhj")

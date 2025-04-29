@@ -203,6 +203,7 @@ shape = SubResource("CapsuleShape3D_v0wm2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0858622, 1.28948, 0)
 top_level = true
 pixel_size = 0.0313
+alpha_cut = 1
 alpha_hash_scale = 0.5
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_myj7t")

@@ -312,6 +312,7 @@ func _internal_physics_process(delta: float,
 				rollerblade_clacks.volume_db = (num_clacks - 1) * -6
 				rb_clack(num_clacks, 0.01, 0.15)
 	if not is_rollerblade:
+		rollerblade_loop.volume_db = lerp(rollerblade_loop.volume_db, -80.0, 0.05)
 		if was_on_floor_at_start_of_frame or snapped_to_stairs_last_frame: # after implementing crouching, switch based on crouch state
 			if landed_jump:
 				last_air_y_vel = -last_air_y_vel

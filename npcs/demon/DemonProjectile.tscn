@@ -36,6 +36,7 @@ light_color = Color(1, 0.717647, 0.337255, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.05
+alpha_cut = 1
 texture_filter = 2
 texture = ExtResource("4_n04s6")
 script = ExtResource("5_soobp")
