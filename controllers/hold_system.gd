@@ -116,7 +116,8 @@ func _physics_process(delta: float) -> void:
 			pass
 		ActionState.HOLDITEM:
 			go_to = camera.hold_position.global_position
-			_holdable_hold_update(holding)
+			if (holding != null):
+				_holdable_hold_update(holding)
 		ActionState.GUN:
 			go_to = camera.gun_position_r.global_position
 			_holdable_hold_update(holding)

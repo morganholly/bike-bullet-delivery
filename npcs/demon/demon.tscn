@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://4sijvv22ya5s"]
+[gd_scene load_steps=25 format=3 uid="uid://4sijvv22ya5s"]
 
 [ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_5of82"]
+[ext_resource type="PackedScene" uid="uid://bixkyrh8mubui" path="res://npcs/demon/DemonProjectile.tscn" id="2_2kk2q"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_8mso8"]
 [ext_resource type="Texture2D" uid="uid://cdxihy6cp18p3" path="res://npcs/demon/demon_spritesheet_v2.png" id="3_g3prx"]
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_ra15f"]
@@ -137,6 +138,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_m6tbp")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m6tbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6tbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oexel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oexel")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_oexel")
 }, {
 "duration": 1.0,
@@ -176,6 +189,9 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_5of82")
+projectile_prefab = ExtResource("2_2kk2q")
+retreat_range = 9.0
+shoot_delay = 1.5
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_8mso8")]
 max_armor = 0.0
@@ -191,7 +207,7 @@ pixel_size = 0.0313
 alpha_hash_scale = 0.5
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_myj7t")
-animation = &"death"
+animation = &"shoot_front"
 script = ExtResource("4_ra15f")
 designated_parent = NodePath("..")
 

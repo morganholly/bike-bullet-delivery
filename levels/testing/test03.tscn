@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://dljrobubsidxq" path="res://weapons/damage_resources/status_damage.gd" id="13_hkelk"]
 [ext_resource type="Texture2D" uid="uid://do5d78721v8c8" path="res://graphics/low res grayscale textures/gray17_128.png" id="14_hkchm"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/ui_layer.tscn" id="15_vxxs0"]
-[ext_resource type="MeshLibrary" uid="uid://ckgjl5rsf2dp2" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
+[ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
 [ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="17_40mmv"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="18_pbs5x"]
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="18_u5an1"]
@@ -399,9 +399,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48044, 0.124998, 7.0245)
 [node name="DemoBullets6" parent="." instance=ExtResource("5_mvq67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14003, 0.124998, -4.53315)
 
-[node name="Enemy" parent="." instance=ExtResource("6_x73s8")]
-transform = Transform3D(0.046967, 0, 0.998896, 0, 1, 0, -0.998896, 0, 0.046967, 18.9517, 3.44572, 20.432)
-
 [node name="Enemy2" parent="." instance=ExtResource("6_x73s8")]
 transform = Transform3D(0.528601, 0, 0.84887, 0, 1, 0, -0.84887, 0, 0.528601, 24.9667, 3.44572, 4.74257)
 
@@ -450,13 +447,16 @@ transform = Transform3D(0.227059, 0, -0.973881, 0, 1, 0, 0.973881, 0, 0.227059, 
 [node name="Demon7" parent="." instance=ExtResource("18_pbs5x")]
 transform = Transform3D(0.345118, 0, 0.938559, 0, 1, 0, -0.938559, 0, 0.345118, 53.4497, 3.44572, 1.56559)
 
-[node name="Boomguy" parent="." instance=ExtResource("18_u5an1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9229, -0.684845, 15.4939)
-
 [node name="TestCollisionDamager2" parent="." instance=ExtResource("10_hqlv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23405, 0.65, 1.61859)
 
 [node name="UILayer" parent="." instance=ExtResource("15_vxxs0")]
+
+[node name="Demon8" parent="." instance=ExtResource("17_40mmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 3.44573, 26.8115)
+
+[node name="Boomguy" parent="." instance=ExtResource("18_u5an1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.7834, 3.44573, 28.6918)
 
 [editable path="test_gun2"]
 [editable path="test_gun3"]

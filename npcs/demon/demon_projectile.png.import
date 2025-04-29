@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mcpl5khegaa5"
-path="res://.godot/imported/alien_projectile.png-13fe5f92fabc905151465fe021d95564.ctex"
+uid="uid://gq6ogt4bkap6"
+path.s3tc="res://.godot/imported/demon_projectile.png-af671c44c0dfc15c80c35ae2c2d088fb.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://npcs/boomguy/alien_projectile.png"
-dest_files=["res://.godot/imported/alien_projectile.png-13fe5f92fabc905151465fe021d95564.ctex"]
+source_file="res://npcs/demon/demon_projectile.png"
+dest_files=["res://.godot/imported/demon_projectile.png-af671c44c0dfc15c80c35ae2c2d088fb.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -15,6 +15,8 @@ enum CollCheckMode {
 	#AreaChildExpandedColliders
 }
 @export var collision_checking: CollCheckMode = CollCheckMode.RigidContactMonitor
+var collision_callback: Callable
+
 
 func _ready() -> void:
 	#print("ready")
@@ -44,6 +46,9 @@ func _on_body_entered(body: Node3D):
 		#if found_hm:
 		damage.damage(body, health_manager)
 		collision_times[body.get_instance_id()] = current_time_usec
+	
+	if collision_callback != null and collision_callback.is_valid():
+		collision_callback.call(body)
 
 func _on_body_exited(body: Node3D):
 	if collision_times.has(body.get_instance_id()):

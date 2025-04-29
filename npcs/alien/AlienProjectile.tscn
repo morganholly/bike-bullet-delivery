@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcs7rcpc5gxbn"]
+
+[ext_resource type="Script" uid="uid://d2g11rwtsbwtp" path="res://npcs/alien/projectile.gd" id="1_fy754"]
+[ext_resource type="Texture2D" uid="uid://mcpl5khegaa5" path="res://npcs/alien/alien_projectile.png" id="1_uw2u0"]
+[ext_resource type="Script" uid="uid://2h2jthr6v847" path="res://graphics/Billboard.gd" id="2_fy754"]
+[ext_resource type="PackedScene" uid="uid://cce7pakh1pe5y" path="res://weapons/collision_damage.tscn" id="3_dpdof"]
+[ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="4_gnpvy"]
+
+[sub_resource type="Resource" id="Resource_cvese"]
+script = ExtResource("4_gnpvy")
+normal_damage = 10.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_solo3"]
+radius = 0.385684
+
+[node name="AlienProjectile" type="RigidBody3D"]
+gravity_scale = 0.01
+can_sleep = false
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 12
+script = ExtResource("1_fy754")
+
+[node name="CollisionDamage" parent="." groups=["projectile"] instance=ExtResource("3_dpdof")]
+damage = SubResource("Resource_cvese")
+damage_timeout = 0.01
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_solo3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.717647, 0.337255, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.03
+texture_filter = 2
+texture = ExtResource("1_uw2u0")
+script = ExtResource("2_fy754")
