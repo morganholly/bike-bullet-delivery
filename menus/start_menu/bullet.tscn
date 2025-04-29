@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvl26ckmss6wd"]
+
+[ext_resource type="Texture2D" uid="uid://b100msnphydl3" path="res://menus/start_menu/bullet_up.png" id="1_bullet"]
+[ext_resource type="Script" uid="uid://d0htobap7h3iw" path="res://menus/start_menu/bullet.gd" id="2_bullet"]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("2_bullet")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bullet")
+
+[node name="Trail" type="ColorRect" parent="."]
+color = Color(0.914, 0.565, 0.224, 1)

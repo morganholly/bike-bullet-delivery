@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://bobqsolltvkqa"]
 
-[ext_resource type="Script" uid="uid://vhbtrf7f8xi0" path="res://ui/ui_inventory_slot.gd" id="1_vk32u"]
-[ext_resource type="Texture2D" uid="uid://bdtco5bv1nasu" path="res://ui/small slot border@2x.png" id="2_vk32u"]
-[ext_resource type="Texture2D" uid="uid://ru2kje81sl4o" path="res://ui/bg small slot.png" id="3_5iash"]
-[ext_resource type="Texture2D" uid="uid://7ds2t6thondr" path="res://ui/gun r51 icon@2x.png" id="4_2eylc"]
-[ext_resource type="Texture2D" uid="uid://bdwyd1q0bmxvm" path="res://ui/small slot bullet icon@2x.png" id="4_invnb"]
+[ext_resource type="Script" path="res://ui/ui_inventory_slot.gd" id="1_vk32u"]
+[ext_resource type="Texture2D" uid="uid://bdtco5bv1nasu" path="res://ui/assets/ui_elements/small slot border@2x.png" id="2_vk32u"]
+[ext_resource type="Texture2D" uid="uid://ru2kje81sl4o" path="res://ui/assets/backgrounds/bg small slot.png" id="3_5iash"]
+[ext_resource type="Texture2D" uid="uid://7ds2t6thondr" path="res://ui/assets/icons/weapons/gun r51 icon@2x.png" id="4_2eylc"]
+[ext_resource type="Texture2D" uid="uid://bdwyd1q0bmxvm" path="res://ui/assets/ui_elements/small slot bullet icon@2x.png" id="4_invnb"]
 [ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="5_cib14"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_2eylc"]
 [ext_resource type="Theme" uid="uid://dglq35eqxqdbb" path="res://theme/gametheme_dark.tres" id="7_hqkj4"]
@@ -61,6 +61,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_invnb")
 
 [node name="CurrentAmmo" type="Label" parent="ActiveBar/Top"]
+layout_mode = 0
 offset_left = -15.0
 offset_top = 24.0
 offset_right = 33.0
@@ -72,6 +73,7 @@ text = "00"
 vertical_alignment = 2
 
 [node name="Seperator" type="Label" parent="ActiveBar/Top"]
+layout_mode = 0
 offset_left = -13.0
 offset_top = 19.0
 offset_right = 52.0
@@ -84,6 +86,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="MaxAmmo" type="Label" parent="ActiveBar/Top"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 24.0
 offset_right = 81.0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SlideData" load_steps=5 format=3 uid="uid://cg03rx66ycnwx"]
+
+[ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="1_2u4vd"]
+[ext_resource type="Texture2D" uid="uid://71ug6fnikxjv" path="res://cutscenes/slideshow/intro_slides/story_intro2.png" id="2_3k4vd"]
+[ext_resource type="Script" uid="uid://b0u5q5sqesvnc" path="res://cutscenes/slideshow/text_entry.gd" id="3_2umon"]
+
+[sub_resource type="Resource" id="TextEntry_1"]
+script = ExtResource("3_2umon")
+character_name = "Boomguy:"
+dialogue_text = "Stupid app! It wasn't like this in the nineties"
+position = Vector2(0.5, 0.2)
+scale = Vector2(1, 1)
+
+[resource]
+script = ExtResource("1_2u4vd")
+background_texture = ExtResource("2_3k4vd")
+text_entries = Array[ExtResource("3_2umon")]([SubResource("TextEntry_1")])

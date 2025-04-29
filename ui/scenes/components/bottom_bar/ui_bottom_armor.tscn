@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://djkmbftdqbegc"]
+
+[ext_resource type="Texture2D" uid="uid://c7kvislep5fh3" path="res://ui/bg bottom little space.png" id="1_w026v"]
+[ext_resource type="Texture2D" uid="uid://dbvfp16x1l328" path="res://ui/armor icons@2x.png" id="2_cr6tu"]
+[ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="3_ejjwg"]
+[ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="4_qjd2f"]
+
+[node name="UIBottomArmor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_w026v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cr6tu")
+
+[node name="MaxHealth" type="Label" parent="."]
+layout_mode = 0
+offset_left = -36.0
+offset_top = -41.0
+offset_right = 12.0
+offset_bottom = 13.0
+theme = ExtResource("3_ejjwg")
+theme_override_fonts/font = ExtResource("4_qjd2f")
+theme_override_font_sizes/font_size = 36
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MaxHealth2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = -41.0
+offset_right = 78.0
+offset_bottom = 13.0
+theme = ExtResource("3_ejjwg")
+theme_override_fonts/font = ExtResource("4_qjd2f")
+theme_override_font_sizes/font_size = 36
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 2

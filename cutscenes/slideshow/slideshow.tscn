@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsgascquajtw1"]
+
+[ext_resource type="Script" uid="uid://b1o6u47ijor3t" path="res://cutscenes/slideshow/slideshow.gd" id="1_2u4vd"]
+[ext_resource type="Resource" uid="uid://b4q2y7q5qxmtx" path="res://cutscenes/slideshow/intro_slides/intro_slide1.tres" id="2_3k4vd"]
+[ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="2_5b346"]
+[ext_resource type="Resource" uid="uid://cg03rx66ycnwx" path="res://cutscenes/slideshow/intro_slides/intro_slide2.tres" id="3_4k4vd"]
+[ext_resource type="Resource" uid="uid://cneebfxdnn6qu" path="res://cutscenes/slideshow/intro_slides/intro_slide3.tres" id="4_5k4vd"]
+
+[node name="Slideshow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2u4vd")
+slides = Array[ExtResource("2_5b346")]([ExtResource("2_3k4vd"), ExtResource("3_4k4vd"), ExtResource("4_5k4vd")])
+next_scene_path = "/home/berke/bike-delivery/bike-bullet-delivery/screen_space_shading/sss_viewport.tscn"
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 20.0
+offset_right = 400.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Character Name"
+horizontal_alignment = 1
+
+[node name="TextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -100.0
+offset_right = 600.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Dialogue text will appear here..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+theme_override_font_sizes/font_size = 20
+text = "Click anywhere to continue..."
+horizontal_alignment = 2

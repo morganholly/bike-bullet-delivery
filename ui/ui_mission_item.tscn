@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlem5ii2q155t"]
+[gd_scene load_steps=3 format=3 uid="uid://o710dswfvrhl"]
 
 [ext_resource type="Texture2D" uid="uid://b2j24svpw612b" path="res://ui/ui_mission_item.png" id="1_rfhfu"]
 [ext_resource type="FontFile" uid="uid://7kp3j8uwkhom" path="res://fonts/Armata/Armata-Regular.ttf" id="2_7qb13"]
