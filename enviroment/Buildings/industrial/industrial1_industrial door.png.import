@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlqwgrady28ta"
-path.s3tc="res://.godot/imported/industrial1_industrial door.png-9e056b9f21f7b4807822d11105011bbb.s3tc.ctex"
+path="res://.godot/imported/industrial1_industrial door.png-9e056b9f21f7b4807822d11105011bbb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "646f985cbf314a6622a623ffb4705531"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/Buildings/industrial/industrial1_industrial door.png"
-dest_files=["res://.godot/imported/industrial1_industrial door.png-9e056b9f21f7b4807822d11105011bbb.s3tc.ctex"]
+dest_files=["res://.godot/imported/industrial1_industrial door.png-9e056b9f21f7b4807822d11105011bbb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwu2vae23yfl1"
-path.s3tc="res://.godot/imported/zombie_spritesheet_v2.png-4b214bcf0944ef1cc75887c3dac1172d.s3tc.ctex"
+path="res://.godot/imported/zombie_spritesheet_v2.png-4b214bcf0944ef1cc75887c3dac1172d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://npcs/zombie/zombie_spritesheet_v2.png"
-dest_files=["res://.godot/imported/zombie_spritesheet_v2.png-4b214bcf0944ef1cc75887c3dac1172d.s3tc.ctex"]
+dest_files=["res://.godot/imported/zombie_spritesheet_v2.png-4b214bcf0944ef1cc75887c3dac1172d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

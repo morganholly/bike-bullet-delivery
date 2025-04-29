@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://iokfl0tcoxs7"
-path.s3tc="res://.godot/imported/roadtexturepack3-amend.png-4cdc38bd7860a29b49bb6f7728e6bba3.s3tc.ctex"
+path="res://.godot/imported/roadtexturepack3-amend.png-4cdc38bd7860a29b49bb6f7728e6bba3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://enviroment/Buildings/Road/SmallRoadBits/roadtexturepack3-amend.png"
-dest_files=["res://.godot/imported/roadtexturepack3-amend.png-4cdc38bd7860a29b49bb6f7728e6bba3.s3tc.ctex"]
+dest_files=["res://.godot/imported/roadtexturepack3-amend.png-4cdc38bd7860a29b49bb6f7728e6bba3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
