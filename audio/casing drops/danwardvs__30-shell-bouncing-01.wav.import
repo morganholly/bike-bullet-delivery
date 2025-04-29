@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bsx0bkqmp3qxg"
+path="res://.godot/imported/danwardvs__30-shell-bouncing-01.wav-f2a98c60b25e084d8e137cd2c5fae21f.sample"
+
+[deps]
+
+source_file="res://audio/casing drops/danwardvs__30-shell-bouncing-01.wav"
+dest_files=["res://.godot/imported/danwardvs__30-shell-bouncing-01.wav-f2a98c60b25e084d8e137cd2c5fae21f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

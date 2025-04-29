@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dttgryov0m0ad"
+path="res://.godot/imported/janthracite__1911-pistol-cocking-02.wav-c46fd559478e05e4c75bc520a03c4c46.sample"
+
+[deps]
+
+source_file="res://audio/pistol cocking/janthracite__1911-pistol-cocking-02.wav"
+dest_files=["res://.godot/imported/janthracite__1911-pistol-cocking-02.wav-c46fd559478e05e4c75bc520a03c4c46.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
