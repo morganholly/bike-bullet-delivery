@@ -5,10 +5,10 @@ extends CanvasLayer
 @export var edge_offset: float = 20.0
 @export var in_view_vertical_offset: float = 50.0
 @export var min_distance_scale: float = 0.5
-@export var max_distance: float = 100.0
+@export var max_distance: float = 300.0
 @export var update_interval: float = 0.05  # Seconds between updates (20fps)
 @export var show_distance: bool = true  # Show distance labels
-@export var max_visible_indicators: int = 3  # Max number of indicators to show at once
+@export var max_visible_indicators: int = 7  # Max number of indicators to show at once
 
 # References
 var arrow_texture = preload("res://ui/ui_arrow.png")
