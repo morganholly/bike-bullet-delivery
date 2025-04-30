@@ -60,16 +60,23 @@ func _ready():
 	
 
 func _setup_spawn_detector() -> void:
-	# Check if spawn detector exists in the scene
-	spawn_detector = get_node_or_null("SpawnAreaDetector")
+	# First check if spawn detector exists as an autoload
+	spawn_detector = get_node_or_null("/root/SpawnAreaDetector")
 	
-	# If not, create it and add it as a child of the level
+	# Then check if it exists as a child of this node
+	if not spawn_detector:
+		spawn_detector = get_node_or_null("SpawnAreaDetector")
+	
+	# If not found anywhere, create it
 	if not spawn_detector:
 		var spawn_detector_script = load("res://managers/spawn_area_detector.gd")
 		if spawn_detector_script:
+			# Create an instance of the detector
 			spawn_detector = Node.new()
 			spawn_detector.set_script(spawn_detector_script)
 			spawn_detector.name = "SpawnAreaDetector"
+			
+			# Add it to the scene
 			add_child(spawn_detector)
 			print("Created new SpawnAreaDetector as child of level")
 		else:
@@ -84,8 +91,13 @@ func _setup_spawn_detector() -> void:
 			load("res://npcs/zombie/zombie.tscn")
 		]
 	
+	# Explicitly call initialize if not already initialized
+	if not spawn_detector.is_initialized:
+		print("Explicitly calling initialize() on SpawnAreaDetector")
+		spawn_detector.initialize()
+	
 	# Wait for initialization to complete with timeout
-	var init_timeout = 5.0 # 5 seconds timeout
+	var init_timeout = 10.0 # 10 seconds timeout
 	var start_time = Time.get_ticks_msec() / 1000.0
 	
 	while not spawn_detector.is_ready() and (Time.get_ticks_msec() / 1000.0 - start_time) < init_timeout:
@@ -93,8 +105,10 @@ func _setup_spawn_detector() -> void:
 	
 	if not spawn_detector.is_ready():
 		push_error("SpawnAreaDetector failed to initialize within timeout")
-		# Force initialize critical systems anyway
+		# Force initialize critical systems anyway to prevent game from breaking
+		print("Forcing SpawnAreaDetector initialization")
 		spawn_detector.is_initialized = true
+		spawn_detector.current_state = 2 # Should correspond to READY state
 
 func _start_enemy_spawning():
 	# Create a timer for periodic spawning

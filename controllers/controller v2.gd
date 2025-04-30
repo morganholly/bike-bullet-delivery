@@ -96,6 +96,10 @@ func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 func death_callback():
 	# this will probably glitch out the camera
 	self.is_player = false
+	
+	# Show Game Over UI when player dies
+	if is_in_group("Player"):
+		UIManager.show_game_over()
 
 func _ready() -> void:
 	# could add automatic world model hiding here

@@ -376,3 +376,35 @@ func debug_test_rollerblade_mission():
 	
 	# Start the mission
 	start_mission(mission_id)
+
+# Reset all mission state on game over
+func reset_mission_state() -> void:
+	# Clean up any existing deliverables
+	for mission_id in mission_deliverables.keys():
+		for deliverable in mission_deliverables[mission_id]:
+			if is_instance_valid(deliverable):
+				deliverable.queue_free()
+	
+	# Clear all mission data
+	active_missions.clear()
+	mission_deliverables.clear()
+	deliverable_states.clear()
+	waiting_for_rollerblade = false
+	
+	# Reset all available missions to their initial state
+	for mission in available_missions:
+		mission.completed = false
+		mission.current_phase = 0
+		# Reset all phase completion statuses
+		if mission.has_phases:
+			for i in range(mission.phase_completed.size()):
+				mission.phase_completed[i] = false
+	
+	# We don't clear completed_missions as that's a historical record,
+	# but we do need to clear it for proper game restart
+	completed_missions.clear()
+	
+	# Hide any UI prompts related to missions
+	UIManager.hide_prompt()
+	
+	# UI cleanup is handled by UIManager

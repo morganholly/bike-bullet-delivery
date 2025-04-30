@@ -23,6 +23,9 @@ const PANEL_MARGIN := 20.0
 const TEXT_COLOR = Color(0.784314, 0.784314, 0.627451, 1.0)  # Light beige color
 
 func _ready():
+	# Make sure the mouse is visible during cutscenes
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	if slides.size() > 0:
 		show_current_slide()
 	else:
@@ -64,6 +67,8 @@ func _input(event):
 				clear_text_entries()  # Clear text entries only when changing slides
 				show_current_slide()
 			else:
+				# Make sure the mouse remains visible before changing scene
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				# End of slideshow, transition to next scene
 				get_tree().change_scene_to_file(next_scene_path)
 

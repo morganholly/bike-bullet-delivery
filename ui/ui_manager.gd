@@ -17,6 +17,8 @@ signal mission_target_updated(mission_id: String, target: Node)
 # Prompt label signals
 signal prompt_visibility_changed(is_visible: bool)
 signal prompt_text_changed(text: String)
+# Game over signal
+signal game_over_visibility_changed(is_visible: bool)
 
 # Dictionary to keep track of mission UI items
 var mission_ui_items = {}
@@ -30,6 +32,9 @@ var max_armor: float = 0
 # Prompt label state
 var prompt_text: String = ""
 var is_prompt_visible: bool = false
+
+# Game over state
+var is_game_over_visible: bool = false
 
 func _ready():
 	pass
@@ -102,6 +107,30 @@ func set_prompt_text(text: String) -> void:
 
 func show_rollerblade_prompt() -> void:
 	show_prompt("Press B to rollerblade")
+
+# Game over method
+func show_game_over() -> void:
+	# Reset all manager variables
+	current_health = 0
+	current_armor = 0
+	is_prompt_visible = false
+	
+	# Clear mission data
+	for mission_id in mission_ui_items.keys():
+		if mission_ui_items[mission_id] != null:
+			mission_removed.emit(mission_id)
+	mission_ui_items.clear()
+	
+	# Reset state in MissionManager
+	MissionManager.reset_mission_state()
+	
+	# Show the game over UI first, transition to cutscene on click will be handled in ui_game_over.gd
+	is_game_over_visible = true
+	game_over_visibility_changed.emit(is_game_over_visible)
+
+func hide_game_over() -> void:
+	is_game_over_visible = false
+	game_over_visibility_changed.emit(is_game_over_visible)
 
 # Debug method to test UI integration
 func debug_mission_ui():

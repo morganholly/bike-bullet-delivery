@@ -5,6 +5,9 @@ extends Control
 @onready var quit_button = $VBoxContainer/QuitButton
 
 func _ready():
+	# Make sure cursor is visible in the start menu
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	start_button.pressed.connect(_on_start_pressed)
 	credits_button.pressed.connect(_on_credits_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)

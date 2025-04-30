@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c86ur1pluawt6"]
+[gd_scene load_steps=11 format=3 uid="uid://c86ur1pluawt6"]
 
 [ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/scenes/components/mission/ui_missions.tscn" id="5_vu3t1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://rtdd683wg8qi" path="res://ui/scenes/components/bottom_bar/ui_bottom_mags.tscn" id="9_p531k"]
 [ext_resource type="PackedScene" uid="uid://bb3hkihvpgtl2" path="res://ui/scenes/components/bottom_bar/ui_bottom_health.tscn" id="9_ss76r"]
 [ext_resource type="PackedScene" uid="uid://faugrq2xktpn" path="res://ui/scenes/components/bottom_bar/ui_bottom_gun.tscn" id="9_ywlly"]
+[ext_resource type="PackedScene" path="res://ui/ui_components/ui_game_over.tscn" id="10_xdm30"]
 
 [node name="UILayer" type="CanvasLayer"]
 script = ExtResource("1_gjtyb")
@@ -61,3 +62,5 @@ offset_right = 1195.0
 offset_bottom = 725.0
 
 [node name="UIPromptLabel" parent="." instance=ExtResource("9_p0bhb")]
+
+[node name="UIGameOver" parent="." instance=ExtResource("10_xdm30")]
