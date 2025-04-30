@@ -141,7 +141,6 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_pn60j")
 
 [node name="fog quad" parent="." instance=ExtResource("4_pn60j")]
-visible = false
 
 [node name="player" parent="." instance=ExtResource("6_5rmu0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16433, 4.16016, 0)
