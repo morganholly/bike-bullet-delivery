@@ -1,7 +1,7 @@
 extends Control
 
 @export var slides: Array[SlideData]
-@export var next_scene_path: String = "res://cutscenes/slideshow/slideshow.tscn"
+@export var next_scene_path: String = "res://screen_space_shading/sss_viewport.tscn"
 #9a826b label color
 var current_slide_index: int = 0
 var current_text_entry_index: int = 0
@@ -25,6 +25,7 @@ const TEXT_COLOR = Color(0.784314, 0.784314, 0.627451, 1.0)  # Light beige color
 func _ready():
 	# Make sure the mouse is visible during cutscenes
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	ResourceLoader.load_threaded_request(next_scene_path)
 	
 	if slides.size() > 0:
 		show_current_slide()
@@ -67,10 +68,13 @@ func _input(event):
 				clear_text_entries()  # Clear text entries only when changing slides
 				show_current_slide()
 			else:
+				#$"loading spinner".show()
 				# Make sure the mouse remains visible before changing scene
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				# End of slideshow, transition to next scene
-				get_tree().change_scene_to_file(next_scene_path)
+				#get_tree().change_scene_to_file(next_scene_path)
+				var next_scene = ResourceLoader.load_threaded_get(next_scene_path)
+				get_tree().change_scene_to_packed(next_scene)
 
 func clear_text_entries():
 	# Remove all text entries and their containers
