@@ -1,0 +1,52 @@
+[gd_scene load_steps=13 format=3 uid="uid://ew6oad1iy7rt"]
+
+[ext_resource type="PackedScene" uid="uid://cu4pd5etrta45" path="res://enviroment/PSX-Waste/PSX-Waste/glb/barrel.glb" id="1_wjtr2"]
+[ext_resource type="PackedScene" uid="uid://cdegiyorx3lm" path="res://enviroment/PSX-Waste/PSX-Waste/glb/dumpster.glb" id="2_p1xs5"]
+[ext_resource type="PackedScene" uid="uid://npm5q0lk01dp" path="res://enviroment/PSX-Waste/PSX-Waste/glb/trash-bag.glb" id="3_yrn3s"]
+[ext_resource type="PackedScene" uid="uid://dwkkw5gk6vdl0" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 01/Car.blend" id="4_3vqpf"]
+[ext_resource type="PackedScene" uid="uid://chgjv2hkowuyc" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 02/Car2.blend" id="5_i17nn"]
+[ext_resource type="PackedScene" uid="uid://nblgat3xkvm1" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 03/Car3.blend" id="6_t4bjl"]
+[ext_resource type="PackedScene" uid="uid://c3mklr4f64qlb" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 04/Car4.blend" id="7_uyduj"]
+[ext_resource type="PackedScene" uid="uid://d306rhwqpl4wb" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 05/Car5.blend" id="8_opt8a"]
+[ext_resource type="PackedScene" uid="uid://dcy41auildp5p" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 06/Car6.blend" id="9_t4noj"]
+[ext_resource type="PackedScene" uid="uid://bjtcmgju6g5r3" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 07/Car7.blend" id="10_vojd2"]
+[ext_resource type="PackedScene" uid="uid://cyhn45e7qyg7x" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 08/Car8.blend" id="11_smm25"]
+[ext_resource type="PackedScene" uid="uid://dmt8un15yha5g" path="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Wheel/Wheel.blend" id="12_dypyy"]
+
+[node name="SmallerObjectsMeshLib" type="Node3D"]
+
+[node name="barrel" parent="." instance=ExtResource("1_wjtr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00803351, 0, -0.0583034)
+
+[node name="dumpster" parent="." instance=ExtResource("2_p1xs5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2357, 0, 0.0976262)
+
+[node name="trash-bag" parent="." instance=ExtResource("3_yrn3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.671727, 0, 1.92403)
+
+[node name="Car2" parent="." instance=ExtResource("4_3vqpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6803, 0, 1.86131)
+
+[node name="Car22" parent="." instance=ExtResource("5_i17nn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4567, 0, 2.12632)
+
+[node name="Car32" parent="." instance=ExtResource("6_t4bjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0164, -9.53674e-07, 1.72409)
+
+[node name="Car42" parent="." instance=ExtResource("7_uyduj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1198, 0, 1.89627)
+
+[node name="Car52" parent="." instance=ExtResource("8_opt8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2511, 0, 2.03078)
+
+[node name="Car62" parent="." instance=ExtResource("9_t4noj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1286, 0, 2.24756)
+
+[node name="Car72" parent="." instance=ExtResource("10_vojd2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.02094, 0, 8.44283)
+
+[node name="Car82" parent="." instance=ExtResource("11_smm25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.45522, 0, 9.40474)
+
+[node name="Wheel2" parent="." instance=ExtResource("12_dypyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.15, 0, 9.09454)
