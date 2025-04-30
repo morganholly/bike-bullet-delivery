@@ -2,3 +2,5 @@
 .godot/
 .DS_Store
 */.DS_Store
+exports/*
+exports/*/*
