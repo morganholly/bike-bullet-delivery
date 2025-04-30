@@ -1,9 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://c05asq1j676ah"]
+[gd_scene load_steps=34 format=3 uid="uid://c05asq1j676ah"]
 
 [ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_gqdyl"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_rnxo1"]
 [ext_resource type="Texture2D" uid="uid://bwu2vae23yfl1" path="res://npcs/zombie/zombie_spritesheet_v2.png" id="3_osiej"]
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_6njfr"]
+[ext_resource type="AudioStream" uid="uid://dppxckeeljxt6" path="res://audio/hurt sounds/enemy_hurt.ogg" id="5_s2bcf"]
+[ext_resource type="AudioStream" uid="uid://c50ypq262ob7n" path="res://audio/hurt sounds/enemy_death_1.ogg" id="6_l2s1i"]
+[ext_resource type="AudioStream" uid="uid://ba61gyctaqmi8" path="res://audio/hurt sounds/enemy_death_2.ogg" id="7_g6qbb"]
+[ext_resource type="AudioStream" uid="uid://cungx1yoyggob" path="res://audio/hurt sounds/enemy_death_3.ogg" id="8_svj6r"]
+[ext_resource type="PackedScene" uid="uid://cce7pakh1pe5y" path="res://weapons/collision_damage.tscn" id="9_dejg6"]
+[ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="10_xn5ge"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 radius = 0.690391
@@ -168,6 +174,27 @@ animations = [{
 custom_solver_bias = 0.041
 radius = 19.526
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ff6br"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_s2bcf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o7uxy"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("6_l2s1i")
+stream_1/stream = ExtResource("7_g6qbb")
+stream_2/stream = ExtResource("8_svj6r")
+
+[sub_resource type="Resource" id="Resource_f33v6"]
+script = ExtResource("10_xn5ge")
+normal_damage = 3.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6hb4"]
+radius = 1.0
+height = 3.0
+
 [node name="Zombie" type="RigidBody3D" groups=["Damageable", "enemies_targetable_by_boomguy"]]
 collision_layer = 4
 collision_mask = 711
@@ -212,6 +239,24 @@ transform = Transform3D(-0.999999, 0.000553374, 0.00112828, 1.14177e-10, -0.8978
 visible = false
 spot_range = 6.76936
 spot_angle = 46.8611
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ff6br")
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_o7uxy")
+
+[node name="hurt area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionDamage" parent="hurt area" instance=ExtResource("9_dejg6")]
+damage = SubResource("Resource_f33v6")
+damage_repeat = 0.6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurt area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967723, 1.17078, 0)
+shape = SubResource("CapsuleShape3D_n6hb4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

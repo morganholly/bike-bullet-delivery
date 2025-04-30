@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cghjxqpj25jao"]
+[gd_scene load_steps=59 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
 [ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
@@ -34,6 +34,16 @@
 [ext_resource type="AudioStream" uid="uid://crrae6bjavfcu" path="res://audio/rollerblade clacks/bps_rollerblading_16c.wav" id="22_6m15m"]
 [ext_resource type="AudioStream" uid="uid://c3agpunyo1sxq" path="res://audio/rollerblade clacks/bps_rollerblading_17.wav" id="23_kd5ju"]
 [ext_resource type="AudioStream" uid="uid://tk2ba7ho5rj6" path="res://audio/rollerblade clacks/bps_rollerblading_18.wav" id="24_dimnp"]
+[ext_resource type="AudioStream" uid="uid://kcf8ulygfwo8" path="res://audio/hurt sounds/player_hurt_1.ogg" id="35_r3vkn"]
+[ext_resource type="AudioStream" uid="uid://c8b8pyoiup1xa" path="res://audio/hurt sounds/player_hurt_2.ogg" id="36_1xr7f"]
+[ext_resource type="AudioStream" uid="uid://c2sposbjbhab2" path="res://audio/hurt sounds/player_death.ogg" id="37_4oq1c"]
+[ext_resource type="AudioStream" uid="uid://c37qct8wd56ef" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-01.wav" id="38_80605"]
+[ext_resource type="AudioStream" uid="uid://sa061davolmn" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-02.wav" id="39_275lp"]
+[ext_resource type="AudioStream" uid="uid://cfhr77e5dppl4" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav" id="40_gnp1d"]
+[ext_resource type="AudioStream" uid="uid://48p3nk8f0dhy" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-04.wav" id="41_3520h"]
+[ext_resource type="AudioStream" uid="uid://b6ebjbyv5wtl5" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-05.wav" id="42_fgorv"]
+[ext_resource type="AudioStream" uid="uid://bfx80c646n31f" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-06.wav" id="43_udn1q"]
+[ext_resource type="AudioStream" uid="uid://dule6bd6a1me3" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-07.wav" id="44_6od26"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
 
@@ -129,6 +139,28 @@ stream_19/stream = ExtResource("20_1xr7f")
 stream_20/stream = ExtResource("22_6m15m")
 stream_21/stream = ExtResource("23_kd5ju")
 stream_22/stream = ExtResource("24_dimnp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kd5ju"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("35_r3vkn")
+stream_1/stream = ExtResource("36_1xr7f")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dimnp"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("37_4oq1c")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ubbnh"]
+random_pitch = 1.1
+streams_count = 7
+stream_0/stream = ExtResource("38_80605")
+stream_1/stream = ExtResource("39_275lp")
+stream_2/stream = ExtResource("40_gnp1d")
+stream_3/stream = ExtResource("41_3520h")
+stream_4/stream = ExtResource("42_fgorv")
+stream_5/stream = ExtResource("43_udn1q")
+stream_6/stream = ExtResource("44_6od26")
 
 [node name="CharControllerV2" type="CharacterBody3D" groups=["Damageable", "Player"]]
 collision_layer = 2
@@ -283,6 +315,15 @@ bus = &"Rollerblades"
 stream = SubResource("AudioStreamRandomizer_74jyf")
 max_polyphony = 8
 bus = &"Rollerblades"
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kd5ju")
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dimnp")
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ubbnh")
 
 [connection signal="body_entered" from="can_ride" to="." method="_on_can_ride_body_entered"]
 [connection signal="body_exited" from="can_ride" to="." method="_on_can_ride_body_exited"]
