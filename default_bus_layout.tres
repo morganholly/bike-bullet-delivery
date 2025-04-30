@@ -28,6 +28,7 @@ volume_db = 24.0
 resource_name = "Distortion"
 mode = 1
 drive = 0.2
+post_gain = 12.0
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_n8wo2"]
 resource_name = "HighPassFilter"

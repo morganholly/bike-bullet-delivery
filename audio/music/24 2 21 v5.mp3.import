@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctsuu4p83aujc"
+path="res://.godot/imported/24 2 21 v5.mp3-ea882c2a5ee357687d4157dfc5cf2b5d.mp3str"
+
+[deps]
+
+source_file="res://audio/music/24 2 21 v5.mp3"
+dest_files=["res://.godot/imported/24 2 21 v5.mp3-ea882c2a5ee357687d4157dfc5cf2b5d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
