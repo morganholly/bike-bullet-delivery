@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3htev5g2hbkd"
 path.bptc="res://.godot/imported/tree small_barktexture.png-adc9142c3f9adfc720aec854249d5eae.bptc.ctex"
+path.astc="res://.godot/imported/tree small_barktexture.png-adc9142c3f9adfc720aec854249d5eae.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/tree small_barktexture.png"
-dest_files=["res://.godot/imported/tree small_barktexture.png-adc9142c3f9adfc720aec854249d5eae.bptc.ctex"]
+dest_files=["res://.godot/imported/tree small_barktexture.png-adc9142c3f9adfc720aec854249d5eae.bptc.ctex", "res://.godot/imported/tree small_barktexture.png-adc9142c3f9adfc720aec854249d5eae.astc.ctex"]
 
 [params]
 

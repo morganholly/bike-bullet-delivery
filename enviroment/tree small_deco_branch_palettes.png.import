@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://u4s2443i7x63"
 path.bptc="res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.bptc.ctex"
+path.astc="res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/tree small_deco_branch_palettes.png"
-dest_files=["res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.bptc.ctex"]
+dest_files=["res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.bptc.ctex", "res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.astc.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://kq6f5qawg0o4"
 path.s3tc="res://.godot/imported/can128x128.png-28d59c7be89cf2e8d241195b889a0fd2.s3tc.ctex"
+path.etc2="res://.godot/imported/can128x128.png-28d59c7be89cf2e8d241195b889a0fd2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/samples/textures/can128x128.png"
-dest_files=["res://.godot/imported/can128x128.png-28d59c7be89cf2e8d241195b889a0fd2.s3tc.ctex"]
+dest_files=["res://.godot/imported/can128x128.png-28d59c7be89cf2e8d241195b889a0fd2.s3tc.ctex", "res://.godot/imported/can128x128.png-28d59c7be89cf2e8d241195b889a0fd2.etc2.ctex"]
 
 [params]
 

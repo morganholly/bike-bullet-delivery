@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://kvokvk40r0ys"
 path.bptc="res://.godot/imported/cardboard-box_cardboard-box256x256.png-04380ff2f254f9b66b3c589c1102c6a9.bptc.ctex"
+path.astc="res://.godot/imported/cardboard-box_cardboard-box256x256.png-04380ff2f254f9b66b3c589c1102c6a9.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/glb/cardboard-box_cardboard-box256x256.png"
-dest_files=["res://.godot/imported/cardboard-box_cardboard-box256x256.png-04380ff2f254f9b66b3c589c1102c6a9.bptc.ctex"]
+dest_files=["res://.godot/imported/cardboard-box_cardboard-box256x256.png-04380ff2f254f9b66b3c589c1102c6a9.bptc.ctex", "res://.godot/imported/cardboard-box_cardboard-box256x256.png-04380ff2f254f9b66b3c589c1102c6a9.astc.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c47i1yxgkq2ql"
 path.bptc="res://.godot/imported/Techno_13-256x256.png-5bf923d1fb8b36704d5e250809769e24.bptc.ctex"
+path.astc="res://.godot/imported/Techno_13-256x256.png-5bf923d1fb8b36704d5e250809769e24.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/ninetailsrabbit.terrainy/assets/SBS - Noise Texture Pack - 256x256/256x256/Techno/Techno_13-256x256.png"
-dest_files=["res://.godot/imported/Techno_13-256x256.png-5bf923d1fb8b36704d5e250809769e24.bptc.ctex"]
+dest_files=["res://.godot/imported/Techno_13-256x256.png-5bf923d1fb8b36704d5e250809769e24.bptc.ctex", "res://.godot/imported/Techno_13-256x256.png-5bf923d1fb8b36704d5e250809769e24.astc.ctex"]
 
 [params]
 

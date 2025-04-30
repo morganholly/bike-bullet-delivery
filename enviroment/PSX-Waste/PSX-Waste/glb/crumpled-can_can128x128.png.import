@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvdpg3pq16cdy"
 path.bptc="res://.godot/imported/crumpled-can_can128x128.png-a9a940dc25507cc6690ce4dac2ef1061.bptc.ctex"
+path.astc="res://.godot/imported/crumpled-can_can128x128.png-a9a940dc25507cc6690ce4dac2ef1061.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/glb/crumpled-can_can128x128.png"
-dest_files=["res://.godot/imported/crumpled-can_can128x128.png-a9a940dc25507cc6690ce4dac2ef1061.bptc.ctex"]
+dest_files=["res://.godot/imported/crumpled-can_can128x128.png-a9a940dc25507cc6690ce4dac2ef1061.bptc.ctex", "res://.godot/imported/crumpled-can_can128x128.png-a9a940dc25507cc6690ce4dac2ef1061.astc.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://60pvunuvjrjd"
 path.bptc="res://.godot/imported/rollerblader_spritesheet.png-a17646f00802cb75df03a5c194f674f6.bptc.ctex"
+path.astc="res://.godot/imported/rollerblader_spritesheet.png-a17646f00802cb75df03a5c194f674f6.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://npcs/playerEntity/rollerblader_spritesheet.png"
-dest_files=["res://.godot/imported/rollerblader_spritesheet.png-a17646f00802cb75df03a5c194f674f6.bptc.ctex"]
+dest_files=["res://.godot/imported/rollerblader_spritesheet.png-a17646f00802cb75df03a5c194f674f6.bptc.ctex", "res://.godot/imported/rollerblader_spritesheet.png-a17646f00802cb75df03a5c194f674f6.astc.ctex"]
 
 [params]
 

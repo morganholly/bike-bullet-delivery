@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf4k70uw40445"
 path.s3tc="res://.godot/imported/trash-bag128x128.001.png-b5d5d2e7c49ab444e7d60327b6cb9fef.s3tc.ctex"
+path.etc2="res://.godot/imported/trash-bag128x128.001.png-b5d5d2e7c49ab444e7d60327b6cb9fef.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/samples/textures/trash-bag128x128.001.png"
-dest_files=["res://.godot/imported/trash-bag128x128.001.png-b5d5d2e7c49ab444e7d60327b6cb9fef.s3tc.ctex"]
+dest_files=["res://.godot/imported/trash-bag128x128.001.png-b5d5d2e7c49ab444e7d60327b6cb9fef.s3tc.ctex", "res://.godot/imported/trash-bag128x128.001.png-b5d5d2e7c49ab444e7d60327b6cb9fef.etc2.ctex"]
 
 [params]
 

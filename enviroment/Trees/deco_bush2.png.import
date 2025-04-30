@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl8sp23ah0fa0"
 path.s3tc="res://.godot/imported/deco_bush2.png-eec2a23094fce95b0e8eab3eb115b6b6.s3tc.ctex"
+path.etc2="res://.godot/imported/deco_bush2.png-eec2a23094fce95b0e8eab3eb115b6b6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://enviroment/Trees/deco_bush2.png"
-dest_files=["res://.godot/imported/deco_bush2.png-eec2a23094fce95b0e8eab3eb115b6b6.s3tc.ctex"]
+dest_files=["res://.godot/imported/deco_bush2.png-eec2a23094fce95b0e8eab3eb115b6b6.s3tc.ctex", "res://.godot/imported/deco_bush2.png-eec2a23094fce95b0e8eab3eb115b6b6.etc2.ctex"]
 
 [params]
 

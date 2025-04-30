@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://pmsawglb0isx"
 path.bptc="res://.godot/imported/glass-bottle128x128.png-fa12cd75ca19597455791166e8a3222a.bptc.ctex"
+path.astc="res://.godot/imported/glass-bottle128x128.png-fa12cd75ca19597455791166e8a3222a.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/textures/glass-bottle128x128.png"
-dest_files=["res://.godot/imported/glass-bottle128x128.png-fa12cd75ca19597455791166e8a3222a.bptc.ctex"]
+dest_files=["res://.godot/imported/glass-bottle128x128.png-fa12cd75ca19597455791166e8a3222a.bptc.ctex", "res://.godot/imported/glass-bottle128x128.png-fa12cd75ca19597455791166e8a3222a.astc.ctex"]
 
 [params]
 

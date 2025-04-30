@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvw8bjvqwsf7p"
 path.s3tc="res://.godot/imported/gray31_256.png-ea6ee95b9e8084d30c8bda56eb734b4b.s3tc.ctex"
+path.etc2="res://.godot/imported/gray31_256.png-ea6ee95b9e8084d30c8bda56eb734b4b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://graphics/low res grayscale textures/gray31_256.png"
-dest_files=["res://.godot/imported/gray31_256.png-ea6ee95b9e8084d30c8bda56eb734b4b.s3tc.ctex"]
+dest_files=["res://.godot/imported/gray31_256.png-ea6ee95b9e8084d30c8bda56eb734b4b.s3tc.ctex", "res://.godot/imported/gray31_256.png-ea6ee95b9e8084d30c8bda56eb734b4b.etc2.ctex"]
 
 [params]
 

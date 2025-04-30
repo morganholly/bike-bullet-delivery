@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh30f18l8qf06"
 path.bptc="res://.godot/imported/car6.png-e00927d9bae43908493b1857f9d7f381.bptc.ctex"
+path.astc="res://.godot/imported/car6.png-e00927d9bae43908493b1857f9d7f381.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 06/car6.png"
-dest_files=["res://.godot/imported/car6.png-e00927d9bae43908493b1857f9d7f381.bptc.ctex"]
+dest_files=["res://.godot/imported/car6.png-e00927d9bae43908493b1857f9d7f381.bptc.ctex", "res://.godot/imported/car6.png-e00927d9bae43908493b1857f9d7f381.astc.ctex"]
 
 [params]
 

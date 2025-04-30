@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ct1at336c5dtv"
 path.s3tc="res://.godot/imported/crossresidential_crossresidential.png-13f6aede4b032b8a49cf2ee7fb3c0568.s3tc.ctex"
+path.etc2="res://.godot/imported/crossresidential_crossresidential.png-13f6aede4b032b8a49cf2ee7fb3c0568.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/Buildings/CrossResidential/crossresidential_crossresidential.png"
-dest_files=["res://.godot/imported/crossresidential_crossresidential.png-13f6aede4b032b8a49cf2ee7fb3c0568.s3tc.ctex"]
+dest_files=["res://.godot/imported/crossresidential_crossresidential.png-13f6aede4b032b8a49cf2ee7fb3c0568.s3tc.ctex", "res://.godot/imported/crossresidential_crossresidential.png-13f6aede4b032b8a49cf2ee7fb3c0568.etc2.ctex"]
 
 [params]
 

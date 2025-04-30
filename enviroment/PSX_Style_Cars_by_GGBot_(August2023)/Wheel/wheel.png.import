@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4cad3desxtwq"
 path.bptc="res://.godot/imported/wheel.png-319fa5b8d5226fd2461f01157ae42557.bptc.ctex"
+path.astc="res://.godot/imported/wheel.png-319fa5b8d5226fd2461f01157ae42557.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Wheel/wheel.png"
-dest_files=["res://.godot/imported/wheel.png-319fa5b8d5226fd2461f01157ae42557.bptc.ctex"]
+dest_files=["res://.godot/imported/wheel.png-319fa5b8d5226fd2461f01157ae42557.bptc.ctex", "res://.godot/imported/wheel.png-319fa5b8d5226fd2461f01157ae42557.astc.ctex"]
 
 [params]
 

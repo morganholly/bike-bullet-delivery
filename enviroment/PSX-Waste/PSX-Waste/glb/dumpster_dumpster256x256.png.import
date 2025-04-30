@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjnxdwpo0eye4"
 path.bptc="res://.godot/imported/dumpster_dumpster256x256.png-0daeadf62e23883cf0e7a517623012cf.bptc.ctex"
+path.astc="res://.godot/imported/dumpster_dumpster256x256.png-0daeadf62e23883cf0e7a517623012cf.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/glb/dumpster_dumpster256x256.png"
-dest_files=["res://.godot/imported/dumpster_dumpster256x256.png-0daeadf62e23883cf0e7a517623012cf.bptc.ctex"]
+dest_files=["res://.godot/imported/dumpster_dumpster256x256.png-0daeadf62e23883cf0e7a517623012cf.bptc.ctex", "res://.godot/imported/dumpster_dumpster256x256.png-0daeadf62e23883cf0e7a517623012cf.astc.ctex"]
 
 [params]
 

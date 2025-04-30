@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bratj2ahekm12"
 path.bptc="res://.godot/imported/sbs pano 21 quantize 4k.png-47bdd06b2f1420e9d7daffb422940c2e.bptc.ctex"
+path.astc="res://.godot/imported/sbs pano 21 quantize 4k.png-47bdd06b2f1420e9d7daffb422940c2e.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://graphics/sbs pano 21 quantize 4k.png"
-dest_files=["res://.godot/imported/sbs pano 21 quantize 4k.png-47bdd06b2f1420e9d7daffb422940c2e.bptc.ctex"]
+dest_files=["res://.godot/imported/sbs pano 21 quantize 4k.png-47bdd06b2f1420e9d7daffb422940c2e.bptc.ctex", "res://.godot/imported/sbs pano 21 quantize 4k.png-47bdd06b2f1420e9d7daffb422940c2e.astc.ctex"]
 
 [params]
 
