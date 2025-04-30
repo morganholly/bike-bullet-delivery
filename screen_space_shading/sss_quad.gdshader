@@ -39,7 +39,7 @@ void fragment() {
 	if (depth > 1.0)
 		ALBEDO =  mix(original.rgb, fog_color.rgb, fog_color.a * fog_intensity);
 	else
-		ALBEDO = fog_color.rgb;
+		ALBEDO = original.rgb;
 }
 
 //void light() {
