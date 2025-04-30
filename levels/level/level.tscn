@@ -158,6 +158,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8864, 11.3567, 0)
 [node name="Boomguy2" parent="Boomguys" instance=ExtResource("9_qgq1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
 
+[node name="Boomguy3" parent="Boomguys" instance=ExtResource("9_qgq1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Ammo" type="Node" parent="."]

@@ -73,17 +73,18 @@ func _create_next_mission() -> void:
 	while is_mission_active(mission_id) or is_mission_completed(mission_id):
 		mission_id = "mission_" + str(randi() % 1000)
 	
-	# Find Boomguy
+	# Find all Boomguys
 	var boomguys = get_tree().get_nodes_in_group("Boomguy")
 	var target = null
 	
 	if boomguys.size() > 0:
-		target = boomguys[0]
+		# Randomly select a boomguy
+		target = boomguys[randi() % boomguys.size()]
 	else:
-		# If Boomguy not found, find any NPC
+		# If no Boomguys found, find any NPC
 		var npcs = get_tree().get_nodes_in_group("NPC")
 		if npcs.size() > 0:
-			target = npcs[0]
+			target = npcs[randi() % npcs.size()]
 	
 	# If no targets found, create a dummy target
 	if target == null:

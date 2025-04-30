@@ -15,7 +15,7 @@ var current_state: SpawnDetectorState = SpawnDetectorState.UNINITIALIZED
 @export var grid_size: float = 5.0  # Size of each grid cell
 @export var max_height: float = 2.0  # Maximum height above ground for valid spawn
 @export var min_height: float = 0.1  # Minimum height above ground for valid spawn
-@export var check_radius: float = 0.5  # Reduced radius to check around spawn point
+@export var check_radius: float = 5  # Reduced radius to check around spawn point
 @export var show_debug_visualization: bool = true  # Whether to show debug visualization
 @export var debug_mode: bool = false  # Enable detailed debug logging
 @export var use_all_collision_layers: bool = false  # Only use ground layer for ground detection
@@ -76,13 +76,13 @@ func _get_level_bounds() -> Dictionary:
 		var pos = player.global_position
 		print("SpawnAreaDetector: Using player position for bounds: ", pos)
 		return {
-			"min": Vector3(pos.x - 50, -10, pos.z - 50),
-			"max": Vector3(pos.x + 50, 10, pos.z + 50)
+			"min": Vector3(pos.x - 500, -10, pos.z - 500),
+			"max": Vector3(pos.x + 500, 10, pos.z + 500)
 		}
 	
 	# Fallback to a small area around origin
 	print("SpawnAreaDetector: No player found, using default bounds")
-	return {"min": Vector3(-50, -10, -50), "max": Vector3(50, 10, 50)}
+	return {"min": Vector3(-300, -10, -300), "max": Vector3(300, 10, 300)}
 
 func _create_spawn_grid(bounds: Dictionary):
 	print("SpawnAreaDetector: Creating spawn grid")
