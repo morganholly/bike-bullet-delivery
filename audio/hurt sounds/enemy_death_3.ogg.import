@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cungx1yoyggob"
+path="res://.godot/imported/enemy_death_3.ogg-d3941bb5e61a76037050420da9672e96.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/hurt sounds/enemy_death_3.ogg"
+dest_files=["res://.godot/imported/enemy_death_3.ogg-d3941bb5e61a76037050420da9672e96.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
