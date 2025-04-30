@@ -156,22 +156,23 @@ func _input(event):
 		#elif event is InputEventKey:
 		#	if event.keycode == KEY_ESCAPE and event.pressed:
 		#		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		#elif event.is_action_pressed("swap_cameras"):
-			#if third_person_select:
-				#third_person_select = false
-				#camera_first_person.current = false and is_active
-				#camera_third_person.current = true and is_active
-				#nodeSpringarm.spring_length = camera_distance
-				#$Rotate/Flip/FirstPerson/hands.hide()
-				##listener_3p.current = false
-				##listener_1p.current = true
-			#else:
-				#third_person_select = true
-				#camera_third_person.current = false and is_active
-				#camera_first_person.current = true and is_active
-				#nodeSpringarm.spring_length = 0
-				##listener_3p.current = true
-				##listener_1p.current = false
+		elif event.is_action_pressed("swap_cameras"):
+			if third_person_select:
+				third_person_select = false
+				camera_first_person.current = false and is_active
+				camera_third_person.current = true and is_active
+				nodeSpringarm.spring_length = camera_distance
+				$Rotate/Flip/FirstPerson/hands.hide()
+				#listener_3p.current = false
+				#listener_1p.current = true
+			else:
+				third_person_select = true
+				camera_third_person.current = false and is_active
+				camera_first_person.current = true and is_active
+				nodeSpringarm.spring_length = 0
+				$Rotate/Flip/FirstPerson/hands.show()
+				#listener_3p.current = true
+				#listener_1p.current = false
 		elif event.is_action_pressed("release_mouse"):
 			set_mode_menu()
 

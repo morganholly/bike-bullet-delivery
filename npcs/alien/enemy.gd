@@ -5,7 +5,7 @@ class_name Enemy
 
 
 var target = null
-var follow_strength = 15
+@export var follow_strength = 4
 
 #@export var come : bool = 
 
@@ -78,12 +78,16 @@ func _physics_process(delta):
 		if (
 			global_transform.origin.distance_to(target_position) > shoot_range || 
 			global_transform.origin.distance_to(target_position) < melee_range):
-			
-			apply_central_force(direction * follow_strength)
+			#linear_velocity = Vector3.ZERO;
+			if (linear_velocity.length() < follow_strength):
+				apply_central_force(direction * 15)
+			print(linear_velocity.length())
 			current_state = Entity_States.Walk
 		elif (global_transform.origin.distance_to(target_position) < retreat_range):
 			#var direction = (target_position - global_transform.origin).normalized()
-			apply_central_force(-direction * follow_strength)
+			#linear_velocity = Vector3.ZERO;
+			if (linear_velocity.length() < follow_strength):
+				apply_central_force(-direction * 20)
 			current_state = Entity_States.Walk
 		else:
 			if cur_shoot_delay > 0:
