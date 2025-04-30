@@ -263,6 +263,6 @@ func active_slot_input(event) -> void:
 				camera.gun_sprite_firing(true)
 				camera.gun_position_r.get_node("gun_action").shoot(ammo_pool, 1)
 				var tween_delay_end_firing_sprite = get_tree().create_tween()
-				tween_delay_end_firing_sprite.tween_callback(camera.gun_sprite_firing.bind(false)).set_delay(randf_range(0.3, 0.5))
+				tween_delay_end_firing_sprite.tween_callback(camera.gun_sprite_firing.bind(false)).set_delay(randf_range(0.2, 0.3))
 		ActionState.MELEEITEM:
 			pass

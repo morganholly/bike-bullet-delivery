@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3c6a8wdlech2"
-path="res://.godot/imported/pistol_hand_extend.png-fbec1767942c108fad89f83053f71ebe.ctex"
+uid="uid://d3ulvhvwp0xjw"
+path="res://.godot/imported/pistol_ground.png-af7ef00b122c96b3c6a83e82d65ca941.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/guns/pistol_hand_extend.png"
-dest_files=["res://.godot/imported/pistol_hand_extend.png-fbec1767942c108fad89f83053f71ebe.ctex"]
+source_file="res://graphics/hands/pistol_ground.png"
+dest_files=["res://.godot/imported/pistol_ground.png-af7ef00b122c96b3c6a83e82d65ca941.ctex"]
 
 [params]
 

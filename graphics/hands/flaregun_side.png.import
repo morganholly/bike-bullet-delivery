@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8seexhcpjuxl"
-path="res://.godot/imported/pistol_hand_muzzleflare2.png-32644643de201fa71820ab8baed421bc.ctex"
+uid="uid://ccfd8vfls1k8w"
+path="res://.godot/imported/flaregun_side.png-c0e5f9c4e6576737582ba755f05039ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/guns/pistol_hand_muzzleflare2.png"
-dest_files=["res://.godot/imported/pistol_hand_muzzleflare2.png-32644643de201fa71820ab8baed421bc.ctex"]
+source_file="res://graphics/hands/flaregun_side.png"
+dest_files=["res://.godot/imported/flaregun_side.png-c0e5f9c4e6576737582ba755f05039ed.ctex"]
 
 [params]
 

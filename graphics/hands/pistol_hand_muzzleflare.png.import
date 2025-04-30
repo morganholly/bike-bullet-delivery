@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnkvsmgytc4x2"
-path="res://.godot/imported/pistol_hand_muzzleflare.png-7a7f36db206657a2cd347b78057da27e.ctex"
+path="res://.godot/imported/pistol_hand_muzzleflare.png-7ca4ebf739e55264121f943eeb5cc7b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/guns/pistol_hand_muzzleflare.png"
-dest_files=["res://.godot/imported/pistol_hand_muzzleflare.png-7a7f36db206657a2cd347b78057da27e.ctex"]
+source_file="res://graphics/hands/pistol_hand_muzzleflare.png"
+dest_files=["res://.godot/imported/pistol_hand_muzzleflare.png-7ca4ebf739e55264121f943eeb5cc7b1.ctex"]
 
 [params]
 

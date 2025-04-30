@@ -26,6 +26,8 @@ extends Node3D
 
 @onready var hands_aim: Node3D = $Rotate/Flip/FirstPerson/hands/aim
 @onready var hands_normal: Node3D = $Rotate/Flip/FirstPerson/hands/normal
+@onready var hands_empty: Node3D = $Rotate/Flip/FirstPerson/hands/empty
+
 @onready var hands: Node3D = $Rotate/Flip/FirstPerson/hands
 
 enum HandsMode {
@@ -214,15 +216,19 @@ func _process(delta):
 			HandsMode.Empty:
 				hands_aim.hide()
 				hands_normal.hide()
+				hands_empty.show()
 			HandsMode.Hold:
 				hands_aim.hide()
 				hands_normal.hide()
+				hands_empty.hide()
 			HandsMode.GunNormal:
 				hands_aim.hide()
 				hands_normal.show()
+				hands_empty.hide()
 			HandsMode.GunAim:
 				hands_aim.show()
 				hands_normal.hide()
+				hands_empty.hide()
 		
 		if process_aim:
 			nodePointer.visible = true

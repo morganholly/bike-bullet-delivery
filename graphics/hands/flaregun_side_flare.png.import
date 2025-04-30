@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ykuo0bytko"
-path="res://.godot/imported/flaregun_ground.png-9657f32346cc941a20ac2bc17ee64b99.ctex"
+uid="uid://cuxawigd8xku6"
+path="res://.godot/imported/flaregun_side_flare.png-6df891600027ff518438bf487da985da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/guns/flaregun_ground.png"
-dest_files=["res://.godot/imported/flaregun_ground.png-9657f32346cc941a20ac2bc17ee64b99.ctex"]
+source_file="res://graphics/hands/flaregun_side_flare.png"
+dest_files=["res://.godot/imported/flaregun_side_flare.png-6df891600027ff518438bf487da985da.ctex"]
 
 [params]
 
