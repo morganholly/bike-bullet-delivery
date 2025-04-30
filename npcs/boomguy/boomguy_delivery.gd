@@ -157,30 +157,42 @@ func _on_delivery_area_body_entered(body):
 			if mission_id != "":
 				print("BoomguyDelivery: Mission bullet entered delivery area: " + mission_id)
 				
-				# Show feedback - Make it more noticeable
-				feedback_label.text = "Delivery Received!"
-				feedback_label.modulate = Color(0.0, 1.0, 0.2)  # Bright green
+				# Deliver to this NPC and check if it was successful
+				var delivery_successful = body.deliver_to_target(get_parent())
 				
-				# Make it bigger temporarily for emphasis
-				feedback_label.scale = Vector3(1.5, 1.5, 1.5)
-				
-				# Deliver to this NPC
-				body.deliver_to_target(get_parent())
-				
-				# Create a timer to reset label
-				var timer = get_tree().create_timer(2.0)
-				timer.timeout.connect(func(): 
-					feedback_label.text = ""
-					feedback_label.scale = Vector3(1, 1, 1)
-				)
-				
-				# Mark bullet for delayed removal instead of trying to free it immediately
-				if not delivered_bullets.has(body):
-					delivered_bullets.append(body)
+				# Only process the bullet if delivery was successful
+				if delivery_successful:
+					# Show feedback - Make it more noticeable
+					feedback_label.text = "Delivery Received!"
+					feedback_label.modulate = Color(0.0, 1.0, 0.2)  # Bright green
 					
-					# Make it invisible to indicate it's been delivered
-					if body.has_node("MeshInstance3D"):
-						body.get_node("MeshInstance3D").visible = false
+					# Make it bigger temporarily for emphasis
+					feedback_label.scale = Vector3(1.5, 1.5, 1.5)
+					
+					# Create a timer to reset label
+					var timer = get_tree().create_timer(2.0)
+					timer.timeout.connect(func(): 
+						feedback_label.text = ""
+						feedback_label.scale = Vector3(1, 1, 1)
+					)
+					
+					# Mark bullet for delayed removal instead of trying to free it immediately
+					if not delivered_bullets.has(body):
+						delivered_bullets.append(body)
+						
+						# Make it invisible to indicate it's been delivered
+						if body.has_node("MeshInstance3D"):
+							body.get_node("MeshInstance3D").visible = false
+				else:
+					# Delivery was rejected
+					feedback_label.text = "You need to use rollerblades first!"
+					feedback_label.modulate = Color.RED
+					
+					# Create a timer to reset label
+					var timer = get_tree().create_timer(2.0)
+					timer.timeout.connect(func(): 
+						feedback_label.text = ""
+					)
 	
 	# If it's a player, show a hint
 	elif body.is_in_group("Player"):

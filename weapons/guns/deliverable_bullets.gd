@@ -42,9 +42,9 @@ func _on_bullet_pickup_ammo_transferred():
 # Called when delivering to the target
 func deliver_to_target(target_npc: Node):
 	if mission_id in MissionManager.active_missions:
-		MissionManager.deliver_to_npc(mission_id, target_npc)
+		var delivery_successful = MissionManager.deliver_to_npc(mission_id, target_npc)
 		emit_signal("delivered_to_target", self, target_npc)
-		return true
+		return delivery_successful
 	return false
 
 # Function to set mission association after creation

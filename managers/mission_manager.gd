@@ -334,6 +334,11 @@ func deliver_to_npc(mission_id: String, npc: Node):
 		
 		# Check if this is the correct target
 		if mission.target == npc or (mission.target_id != "" and mission.target_id == npc.name):
+			# For tutorial mission, reject delivery if player hasn't completed the rollerblade phase
+			if mission_id == "mission_1" and mission.has_phases and mission.current_phase < 2:
+				# Player tried to deliver before using rollerblades
+				return false
+			
 			# Successful delivery to target: " + npc.name + " for mission: " + mission_id
 			deliverable_states[mission_id] = "delivered"
 			emit_signal("delivery_made", mission_id, npc)
