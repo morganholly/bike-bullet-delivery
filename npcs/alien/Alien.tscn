@@ -187,6 +187,7 @@ contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_7k4kp")
 follow_strength = 5
+shoot_range = 20.0
 melee_range = 0.0
 shoot_delay = 0.6
 
@@ -217,7 +218,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.0463)
 shape = SubResource("SphereShape3D_4rmfa")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]

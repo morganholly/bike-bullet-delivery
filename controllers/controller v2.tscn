@@ -208,11 +208,12 @@ visible = false
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
+visible = false
 pixel_size = 0.03
 alpha_cut = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_rdatg")
-animation = &"idle_back"
+animation = &"idle_front"
 
 [node name="capsule_view_mesh" type="MeshInstance3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

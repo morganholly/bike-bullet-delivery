@@ -179,7 +179,7 @@ animations = [{
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
 custom_solver_bias = 0.041
-radius = 19.526
+radius = 21.063
 
 [node name="Demon" type="RigidBody3D" groups=["Damageable", "enemies_targetable_by_boomguy"]]
 collision_layer = 4
@@ -191,6 +191,7 @@ max_contacts_reported = 10
 script = ExtResource("1_5of82")
 follow_strength = 5
 projectile_prefab = ExtResource("2_2kk2q")
+shoot_range = 25.0
 retreat_range = 9.0
 shoot_delay = 1.5
 
@@ -218,7 +219,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.4594)
 shape = SubResource("SphereShape3D_4rmfa")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]
