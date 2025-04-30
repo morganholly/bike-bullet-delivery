@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://djkmbftdqbegc"]
+[gd_scene load_steps=6 format=3 uid="uid://slid2ng8bgy"]
 
-[ext_resource type="Texture2D" uid="uid://c7kvislep5fh3" path="res://ui/bg bottom little space.png" id="1_w026v"]
-[ext_resource type="Texture2D" uid="uid://dbvfp16x1l328" path="res://ui/armor icons@2x.png" id="2_cr6tu"]
+[ext_resource type="Script" uid="uid://ckb88af8q5tgc" path="res://ui/scenes/components/bottom_bar/ui_bottom_armor.gd" id="1_crsck"]
+[ext_resource type="Texture2D" uid="uid://c7kvislep5fh3" path="res://ui/assets/backgrounds/bg bottom little space.png" id="1_w026v"]
+[ext_resource type="Texture2D" uid="uid://dbvfp16x1l328" path="res://ui/assets/icons/armor icons@2x.png" id="2_cr6tu"]
 [ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="3_ejjwg"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="4_qjd2f"]
 
@@ -10,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_crsck")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_w026v")

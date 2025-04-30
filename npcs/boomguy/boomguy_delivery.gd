@@ -145,7 +145,6 @@ func _exit_tree():
 		feedback_label.queue_free()
 
 func _on_delivery_area_body_entered(body):
-	print("BoomguyDelivery: Object entered delivery area: " + body.name)
 	
 	# Check if it's a deliverable bullet
 	if body.is_in_group("Deliverable"):

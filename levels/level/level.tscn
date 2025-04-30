@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://qguhnpgbrv0a"]
+[gd_scene load_steps=10 format=4 uid="uid://qguhnpgbrv0a"]
 
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="1_mmlqq"]
 [ext_resource type="Texture2D" uid="uid://b60co5adnskoy" path="res://enviroment/Buildings/Townhall/oldtownhall_v2.png" id="2_jww0w"]
 [ext_resource type="MeshLibrary" uid="uid://bwvpkbtnv6luj" path="res://enviroment/SmallerObjectsLib.tres" id="2_k0d2v"]
+[ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="4_pn60j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou7fu"]
 resource_name = "Material.001"
@@ -120,3 +121,5 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_003/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pn60j")
+
+[node name="CharControllerV2" parent="." instance=ExtResource("4_pn60j")]

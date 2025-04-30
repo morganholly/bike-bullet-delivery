@@ -99,6 +99,10 @@ func _ready() -> void:
 	camera.is_active = is_player
 	camera.add_raycast_exception(self)
 	uniform_health.death_callback = death_callback
+	
+	# Initialize UI with current values
+	UIManager.update_health(uniform_health.current_health, uniform_health.max_health)
+	UIManager.update_armor(uniform_health.current_armor, uniform_health.max_armor)
 
 
 func _process(delta: float) -> void:
