@@ -90,7 +90,7 @@ tap2_active = false
 [resource]
 bus/0/volume_db = 0.267241
 bus/0/effect/0/effect = SubResource("AudioEffectDistortion_g28q7")
-bus/0/effect/0/enabled = true
+bus/0/effect/0/enabled = false
 bus/0/effect/1/effect = SubResource("AudioEffectHardLimiter_j3pel")
 bus/0/effect/1/enabled = true
 bus/1/name = &"Ambient"
