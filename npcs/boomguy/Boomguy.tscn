@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://db2eyvfi8wple"]
+[gd_scene load_steps=28 format=3 uid="uid://db2eyvfi8wple"]
 
 [ext_resource type="Script" uid="uid://b8uwuxg31f8bo" path="res://npcs/boomguy/boomguy.gd" id="1_6xrnp"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_7u3ht"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_4j5tw"]
 [ext_resource type="Texture2D" uid="uid://bkpnghooq0hhw" path="res://npcs/boomguy/spritesheet/boomguy_spritesheet.png" id="4_d4htd"]
 [ext_resource type="Script" uid="uid://cg6nf2nd681lf" path="res://npcs/boomguy/boomguy_delivery.gd" id="6_j4m4r"]
+[ext_resource type="AudioStream" uid="uid://dafkxuf21l1js" path="res://audio/areniporgen__hk51_corrected_tail.wav" id="7_ewwtt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 radius = 0.690391
@@ -232,6 +233,10 @@ spot_angle = 46.8611
 
 [node name="DeliveryController" type="Node" parent="."]
 script = ExtResource("6_j4m4r")
+
+[node name="gun sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_ewwtt")
+bus = &"Gunshots"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
