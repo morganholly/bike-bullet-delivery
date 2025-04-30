@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy08jqws17hju"
-path.s3tc="res://.godot/imported/threestoryhouse_threestoreybuilding.png-0766d3e76a627c738e80e3c28397170a.s3tc.ctex"
+path="res://.godot/imported/threestoryhouse_threestoreybuilding.png-0766d3e76a627c738e80e3c28397170a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "137ae38ed61a0425dd70f1e76d140702"
@@ -15,12 +14,12 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/Buildings/Threestory/threestoryhouse_threestoreybuilding.png"
-dest_files=["res://.godot/imported/threestoryhouse_threestoreybuilding.png-0766d3e76a627c738e80e3c28397170a.s3tc.ctex"]
+dest_files=["res://.godot/imported/threestoryhouse_threestoreybuilding.png-0766d3e76a627c738e80e3c28397170a.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=false
+compress/mode=0
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

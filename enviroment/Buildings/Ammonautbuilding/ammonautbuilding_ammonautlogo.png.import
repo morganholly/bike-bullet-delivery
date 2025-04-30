@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4bup43nvdbhx"
-path.s3tc="res://.godot/imported/ammonautbuilding_ammonautlogo.png-2f6eaa4258cc6b2bbab7f547734fe780.s3tc.ctex"
+path="res://.godot/imported/ammonautbuilding_ammonautlogo.png-2f6eaa4258cc6b2bbab7f547734fe780.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "dffbe6b2cba459aa412f7ed6dab5496e"
@@ -15,12 +14,12 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/Buildings/Ammonautbuilding/ammonautbuilding_ammonautlogo.png"
-dest_files=["res://.godot/imported/ammonautbuilding_ammonautlogo.png-2f6eaa4258cc6b2bbab7f547734fe780.s3tc.ctex"]
+dest_files=["res://.godot/imported/ammonautbuilding_ammonautlogo.png-2f6eaa4258cc6b2bbab7f547734fe780.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=false
+compress/mode=0
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
