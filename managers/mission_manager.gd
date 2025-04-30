@@ -151,12 +151,15 @@ func assign_random_names_to_boomguys() -> void:
 
 # Create a special 3-part mission for getting ammo, rollerblading, and delivery
 func create_rollerblade_delivery_mission(id: String, title: String, target_npc) -> Mission:
-	var mission = Mission.new(id, title, "", "Bullets", target_npc)
-	
 	# Get target name (use random name if it's a Boomguy)
 	var target_name = target_npc.name
 	if target_npc.is_in_group("Boomguy") and target_npc.name in boomguy_names:
 		target_name = boomguy_names[target_npc.name]
+	
+	# Include target name in the mission title
+	var mission_title = "Tutorial Delivery to " + target_name
+	
+	var mission = Mission.new(id, mission_title, "", "Bullets", target_npc)
 	
 	# Setup the three phases with clearer text
 	var phases: Array[String] = [
