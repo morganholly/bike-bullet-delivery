@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cghjxqpj25jao"]
+[gd_scene load_steps=46 format=3 uid="uid://cghjxqpj25jao"]
 
 [ext_resource type="Script" uid="uid://b64skp8ctgsb8" path="res://controllers/controller v2.gd" id="1_skear"]
 [ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="2_3qjgo"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_nlpru"]
 [ext_resource type="PackedScene" uid="uid://be8kx6fdtbf55" path="res://weapons/guns/ammo_pool.tscn" id="3_nbs7e"]
 [ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="3_rbxf3"]
+[ext_resource type="Script" uid="uid://bcm71tef8knec" path="res://controllers/player_entity.gd" id="6_hnsjt"]
+[ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="7_gr3rn"]
 [ext_resource type="PackedScene" uid="uid://cwc3bq6cub00w" path="res://audio/footsteps.tscn" id="7_om3tm"]
+[ext_resource type="Texture2D" uid="uid://60pvunuvjrjd" path="res://npcs/playerEntity/rollerblader_spritesheet.png" id="7_rdatg"]
 [ext_resource type="AudioStream" uid="uid://csr5y7t5j1jxi" path="res://audio/rollerblade_noise1.wav" id="8_74jyf"]
 [ext_resource type="AudioStream" uid="uid://bgrtt1q55f1jf" path="res://audio/rollerblade clacks/bps_rollerblading_01.wav" id="9_jud7s"]
 [ext_resource type="AudioStream" uid="uid://cxow54t7y8pdo" path="res://audio/rollerblade clacks/bps_rollerblading_02a.wav" id="10_ah8wp"]
@@ -33,6 +36,53 @@
 [ext_resource type="AudioStream" uid="uid://tk2ba7ho5rj6" path="res://audio/rollerblade clacks/bps_rollerblading_18.wav" id="24_dimnp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr3rn"]
+atlas = ExtResource("7_rdatg")
+region = Rect2(114, 0, 57, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdatg"]
+atlas = ExtResource("7_rdatg")
+region = Rect2(57, 0, 57, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oq1c"]
+atlas = ExtResource("7_rdatg")
+region = Rect2(171, 0, 57, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdatg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3rn")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3rn")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdatg")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oq1c")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jjtsd"]
 
@@ -86,7 +136,6 @@ collision_mask = 33
 floor_max_angle = 1.0472
 platform_on_leave = 2
 script = ExtResource("1_skear")
-cr_jump_raise_scale = 0.8
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_nlpru")]
 max_health = 50.0
@@ -133,23 +182,57 @@ script = ExtResource("2_3qjgo")
 [node name="10" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
 script = ExtResource("2_3qjgo")
 
+[node name="WorldModel2" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.0590102, 0, 0.998257, 0, 1, 0, -0.998257, 0, -0.0590102, 0, 0, 0)
+input_ray_pickable = false
+mass = 0.001
+gravity_scale = 0.0
+sleeping = true
+freeze = true
+script = ExtResource("6_hnsjt")
+speed = null
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel2" node_paths=PackedStringArray("designated_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
+top_level = true
+layers = 2
+pixel_size = 0.03
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_rdatg")
+animation = &"idle_back"
+script = ExtResource("7_gr3rn")
+designated_parent = NodePath("..")
+
 [node name="WorldModel" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
+visible = false
+pixel_size = 0.03
+texture_filter = 2
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_rdatg")
+animation = &"idle_back"
 
 [node name="capsule_view_mesh" type="MeshInstance3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 layers = 2
 mesh = SubResource("CapsuleMesh_jjtsd")
 
 [node name="hat" type="Node3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 
 [node name="hat_brim" type="MeshInstance3D" parent="WorldModel/hat"]
+visible = false
 layers = 2
 mesh = SubResource("TorusMesh_ik8fk")
 skeleton = NodePath("../..")
 
 [node name="hat_center" type="MeshInstance3D" parent="WorldModel/hat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
 layers = 2
 mesh = SubResource("CylinderMesh_3wbva")
 skeleton = NodePath("../..")

@@ -26,6 +26,7 @@ var AnimationDict = {
 var current_state = Entity_States.Walk
 
 @export var speed = 5.0
+#@export var speed = 5.0
 
 @onready var sprite_3d: AnimatedSprite3D = $Sprite3D
 

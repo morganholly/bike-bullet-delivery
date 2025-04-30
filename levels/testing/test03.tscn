@@ -339,6 +339,7 @@ transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
 
 [node name="CharControllerV2" parent="." instance=ExtResource("3_nln6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45777, 0, 24.8445)
 
 [node name="test_gun" parent="." instance=ExtResource("4_xast0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645156, 2.42936, -6.25368)
