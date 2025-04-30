@@ -50,21 +50,19 @@ func _on_mission_completed(mission_id: String) -> void:
 	# Removing mission from UI: " + mission_id
 	UIManager.remove_mission_from_ui(mission_id)
 	
-	# Set up a timer to create a new mission after 3 seconds
-	var timer = Timer.new()
-	timer.one_shot = true
-	timer.wait_time = 3.0
-	add_child(timer)
+	# Clean up any remaining deliverables
+	if mission_id in mission_deliverables:
+		for deliverable in mission_deliverables[mission_id]:
+			if is_instance_valid(deliverable):
+				deliverable.queue_free()
+		mission_deliverables.erase(mission_id)
 	
-	# Connect the timer to a function that creates a new mission
-	timer.timeout.connect(func():
-		# Create a new mission with a unique ID
-		_create_next_mission()
-		timer.queue_free()  # Clean up the timer
-	)
+	# Clean up deliverable state
+	if mission_id in deliverable_states:
+		deliverable_states.erase(mission_id)
 	
-	# Start the timer
-	timer.start()
+	# Mission spawning is now handled by the level's intensity system
+	# No need to create a timer here
 
 # Create a new mission with a unique ID
 func _create_next_mission() -> void:

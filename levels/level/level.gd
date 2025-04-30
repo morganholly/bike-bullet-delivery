@@ -11,8 +11,18 @@ var mission_targets = []
 @export var enemy_types: Array[PackedScene] = []  # Types of enemies to spawn
 @export var debug_spawn_info: bool = true  # Print detailed spawn information
 
+# Mission spawning configuration
+@export var min_mission_interval: float = 5.0  # Minimum time between missions (high intensity)
+@export var max_mission_interval: float = 30.0  # Maximum time between missions (low intensity)
+@export var mission_spawn_timer: Timer
+var last_mission_spawn_time: float = 0.0
+var empty_task_list_timer: Timer  # Timer for 5-second rule when task list is empty
+
 # Game intensity tracking
 var game_intensity: float = 0.0  # Ranges from 0.0 to 1.0
+@export var passive_intensity_increase_interval: float = 10.0  # Seconds between passive intensity increases
+@export var passive_intensity_step: float = 0.05  # Amount to increase intensity by each step
+var passive_intensity_timer: Timer
 
 # Spawn area detector reference
 var spawn_detector: Node
@@ -25,6 +35,7 @@ var manual_spawn_cooldown: float = 1.0  # 1 second cooldown between manual spawn
 func _ready():
 	# Connect to MissionManager signals for deliverable spawning
 	MissionManager.request_spawn_deliverable.connect(_on_request_spawn_deliverable)
+	MissionManager.mission_completed.connect(_on_mission_completed)
 	
 	# Give the scene a moment to initialize
 	await get_tree().create_timer(2.0).timeout
@@ -41,8 +52,12 @@ func _ready():
 	# Start enemy spawning timer
 	_start_enemy_spawning()
 	
-	# Start intensity updates
-	_start_intensity_tracking()
+	# Start mission spawning timer
+	_start_mission_spawning()
+
+	
+	# Start passive intensity increase
+	_start_passive_intensity_increase()
 
 func _setup_spawn_detector() -> void:
 	# Check if spawn detector exists in the scene
@@ -68,29 +83,6 @@ func _setup_spawn_detector() -> void:
 	
 	
 
-func _start_intensity_tracking():
-	# Create a timer to update spawn interval based on current intensity
-	var intensity_timer = Timer.new()
-	intensity_timer.name = "IntensityTimer"
-	intensity_timer.wait_time = 1.0  # Update every second
-	intensity_timer.one_shot = false
-	intensity_timer.timeout.connect(_update_spawn_interval)
-	add_child(intensity_timer)
-	intensity_timer.start()
-
-func _update_spawn_interval():
-	if not spawn_timer:
-		return
-		
-	# Use exponential decay function for non-linear progression
-	# This creates a curve that starts at max_interval and approaches min_interval
-	var current_interval = max_spawn_interval * pow(min_spawn_interval / max_spawn_interval, game_intensity)
-	
-	# Update the timer's wait time
-	spawn_timer.wait_time = current_interval
-	
-	if debug_spawn_info:
-		print("Updated spawn interval: ", current_interval, " (intensity: ", game_intensity, ")")
 
 func _start_enemy_spawning():
 	# Create a timer for periodic spawning
@@ -221,3 +213,58 @@ func _create_test_missions():
 	
 	# Start the first mission
 	MissionManager.start_mission("mission_1")
+
+func _start_mission_spawning():
+	mission_spawn_timer = Timer.new()
+	mission_spawn_timer.wait_time = max_mission_interval
+	mission_spawn_timer.one_shot = false
+	add_child(mission_spawn_timer)
+	mission_spawn_timer.timeout.connect(_on_mission_spawn_timer_timeout)
+	mission_spawn_timer.start()  # Explicitly start the timer
+	
+	# Create timer for empty task list rule
+	empty_task_list_timer = Timer.new()
+	empty_task_list_timer.wait_time = 5.0
+	empty_task_list_timer.one_shot = true
+	add_child(empty_task_list_timer)
+	empty_task_list_timer.timeout.connect(_on_empty_task_list_timeout)
+
+func _on_mission_spawn_timer_timeout():
+	MissionManager._create_next_mission()
+
+	
+	# Update timer interval for next cycle based on intensity
+	mission_spawn_timer.wait_time = lerp(min_mission_interval, max_mission_interval, 1.0 - game_intensity)
+	
+	if debug_spawn_info:
+		print("Mission spawn timer interval updated to: ", mission_spawn_timer.wait_time)
+
+func _on_empty_task_list_timeout():
+	# Only spawn if there are still no missions
+	if MissionManager.active_missions.size() == 0:
+		MissionManager._create_next_mission()
+		# Update timer interval for next cycle based on intensity
+		mission_spawn_timer.wait_time = lerp(min_mission_interval, max_mission_interval, 1.0 - game_intensity)
+		mission_spawn_timer.start()  # Restart the timer with new interval
+
+func _on_mission_completed(mission_id: String) -> void:
+	# Start the 5-second timer when a mission is completed and there are no other active missions
+	if MissionManager.active_missions.size() == 0:
+		empty_task_list_timer.start()
+
+func _start_passive_intensity_increase():
+	passive_intensity_timer = Timer.new()
+	passive_intensity_timer.wait_time = passive_intensity_increase_interval
+	passive_intensity_timer.autostart = true
+	passive_intensity_timer.one_shot = false
+	add_child(passive_intensity_timer)
+	passive_intensity_timer.timeout.connect(_on_passive_intensity_increase)
+
+func _on_passive_intensity_increase():
+	# Increase intensity by the step amount, but don't exceed 1.0
+	game_intensity = min(game_intensity + passive_intensity_step, 1.0)
+	
+	if debug_spawn_info:
+		print("Passive intensity increase: ", game_intensity)
+	
+	# Don't update the timer's wait time here - it will be updated when the timer times out

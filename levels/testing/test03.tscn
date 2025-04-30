@@ -1,7 +1,7 @@
 [gd_scene load_steps=52 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
-[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/level/level.gd" id="1_tyw03"]
+[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_tyw03"]
 [ext_resource type="PackedScene" uid="uid://cuqy1l8g8a877" path="res://npcs/enemy_dummy.tscn" id="2_fuc8a"]
 [ext_resource type="PackedScene" uid="uid://dpep6wedv5iwj" path="res://audio/ambient_audio.tscn" id="2_i2lq6"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="3_nln6s"]

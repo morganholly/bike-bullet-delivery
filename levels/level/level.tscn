@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://dq8uucqyty7x2"]
 
-[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/level/level.gd" id="1_gmn8u"]
+[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_gmn8u"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="1_mmlqq"]
 [ext_resource type="Texture2D" uid="uid://b60co5adnskoy" path="res://enviroment/Buildings/Townhall/oldtownhall_v2.png" id="2_jww0w"]
