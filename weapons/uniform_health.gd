@@ -39,10 +39,7 @@ func _ready() -> void:
 	if armor_condition_pass_scale != null:
 		armor_condition_pass_scale.bake()
 		pass_curve_is_01 = abs(armor_condition_pass_scale.min_domain) < 0.001 and abs(armor_condition_pass_scale.min_value) < 0.001 and abs(armor_condition_pass_scale.max_domain - 1) < 0.001 and abs(armor_condition_pass_scale.max_value - 1) < 0.001
-	
-	# Initialize UI with current values
-	UIManager.update_health(current_health, max_health)
-	UIManager.update_armor(current_armor, max_armor)
+
 
 func _process(delta: float) -> void:
 	if not is_dead:
@@ -52,6 +49,15 @@ func _process(delta: float) -> void:
 		current_health = min(current_health + delta * health_regen, max_health)
 		current_armor = min(current_armor + delta * armor_regen, max_armor)
 		
+		# Call callbacks if health/armor changed due to regeneration
+		if current_health != old_health and current_health > old_health:
+			if damaged_callback != null and damaged_callback.is_valid():
+				damaged_callback.call()
+		
+		if current_armor != old_armor and current_armor > old_armor:
+			if hit_callback != null and hit_callback.is_valid():
+				hit_callback.call()
+
 
 func get_block_chance(armor_percent: float) -> float:
 	var chance: float
@@ -113,11 +119,7 @@ func damage(amount: float) -> void:
 			if death_callback != null and death_callback.is_valid():
 				death_callback.call()
 				
-		# Update UI if values changed
-		if current_health != old_health:
-			UIManager.update_health(current_health, max_health)
-		if current_armor != old_armor:
-			UIManager.update_armor(current_armor, max_armor)
+
 
 func damage_penetrate(amount_health: float, amount_armor: float) -> void:
 	var old_health = current_health
@@ -141,11 +143,7 @@ func damage_penetrate(amount_health: float, amount_armor: float) -> void:
 			if death_callback != null and death_callback.is_valid():
 				death_callback.call()
 				
-		# Update UI if values changed
-		if current_health != old_health:
-			UIManager.update_health(current_health, max_health)
-		if current_armor != old_armor:
-			UIManager.update_armor(current_armor, max_armor)
+
 
 func randi_range_wrapper(lower: int, upper: int) -> int:
 	return randi_range(lower, upper)
@@ -153,9 +151,6 @@ func randi_range_wrapper(lower: int, upper: int) -> int:
 
 func _on_timer_timeout() -> void:
 	var current_time_usec = Time.get_ticks_usec()
-	#if len(status_effects.values()) > 0:
-		#print("has status effects, ", status_effects)
-	#else:
 	if len(status_effects.values()) == 0:
 		status_effect_check_timer.paused = true
 	else:

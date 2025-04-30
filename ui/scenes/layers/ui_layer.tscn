@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://c86ur1pluawt6"]
 
 [ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
-[ext_resource type="PackedScene" uid="uid://b01evpqudalpq" path="res://ui/ui_components/ui_bottom_gun.tscn" id="4_gjtyb"]
-[ext_resource type="PackedScene" uid="uid://cp08yx6nxr3pr" path="res://ui/ui_components/ui_bottom_mags.tscn" id="5_8aggs"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/scenes/components/mission/ui_missions.tscn" id="5_vu3t1"]
-[ext_resource type="PackedScene" uid="uid://cdsvbnxi1usrd" path="res://ui/ui_components/ui_bottom_current_ammo.tscn" id="6_8fbwa"]
 [ext_resource type="PackedScene" uid="uid://cm631cj21p7ph" path="res://ui/mission_indicators/mission_objective_indicator.tscn" id="6_kfnbm"]
-[ext_resource type="PackedScene" uid="uid://cmtfn8pd0pt0n" path="res://ui/ui_components/ui_bottom_health.tscn" id="7_rrf4f"]
-[ext_resource type="PackedScene" uid="uid://djkmbftdqbegc" path="res://ui/ui_components/ui_bottom_armor.tscn" id="8_e1sdc"]
+[ext_resource type="PackedScene" uid="uid://slid2ng8bgy" path="res://ui/scenes/components/bottom_bar/ui_bottom_armor.tscn" id="9_gjn2m"]
+[ext_resource type="PackedScene" uid="uid://bvf30llpjnocd" path="res://ui/scenes/components/bottom_bar/ui_bottom_current_ammo.tscn" id="9_ocipa"]
+[ext_resource type="PackedScene" uid="uid://rtdd683wg8qi" path="res://ui/scenes/components/bottom_bar/ui_bottom_mags.tscn" id="9_p531k"]
+[ext_resource type="PackedScene" uid="uid://bb3hkihvpgtl2" path="res://ui/scenes/components/bottom_bar/ui_bottom_health.tscn" id="9_ss76r"]
+[ext_resource type="PackedScene" uid="uid://faugrq2xktpn" path="res://ui/scenes/components/bottom_bar/ui_bottom_gun.tscn" id="9_ywlly"]
 
 [node name="UILayer" type="CanvasLayer"]
 script = ExtResource("1_gjtyb")
@@ -29,32 +29,32 @@ theme_override_constants/separation = 10
 
 [node name="MissionObjectiveIndicator" parent="." instance=ExtResource("6_kfnbm")]
 
-[node name="UIBottomGun" parent="." instance=ExtResource("4_gjtyb")]
-offset_left = 1155.0
-offset_top = 685.0
-offset_right = 1195.0
-offset_bottom = 725.0
+[node name="UIBottomHealth" parent="." instance=ExtResource("9_ss76r")]
+offset_left = 526.0
+offset_top = 671.0
+offset_right = 566.0
+offset_bottom = 711.0
 
-[node name="UIBottomMags" parent="." instance=ExtResource("5_8aggs")]
+[node name="UIBottomArmor" parent="." instance=ExtResource("9_gjn2m")]
+offset_left = 348.0
+offset_top = 685.0
+offset_right = 348.0
+offset_bottom = 685.0
+
+[node name="UIBottomCurrentAmmo" parent="." instance=ExtResource("9_ocipa")]
+offset_left = 755.0
+offset_top = 670.0
+offset_right = 795.0
+offset_bottom = 710.0
+
+[node name="UIBottomMags" parent="." instance=ExtResource("9_p531k")]
 offset_left = 938.0
 offset_top = 685.0
 offset_right = 978.0
 offset_bottom = 725.0
 
-[node name="UIBottomCurrentAmmo" parent="." instance=ExtResource("6_8fbwa")]
-offset_left = 756.0
-offset_top = 670.0
-offset_right = 796.0
-offset_bottom = 710.0
-
-[node name="UIBottomHealth" parent="." instance=ExtResource("7_rrf4f")]
-offset_left = 526.0
-offset_top = 670.0
-offset_right = 566.0
-offset_bottom = 710.0
-
-[node name="UIBottomArmor" parent="." instance=ExtResource("8_e1sdc")]
-offset_left = 349.0
+[node name="UIBottomGun" parent="." instance=ExtResource("9_ywlly")]
+offset_left = 1155.0
 offset_top = 685.0
-offset_right = 389.0
+offset_right = 1195.0
 offset_bottom = 725.0
