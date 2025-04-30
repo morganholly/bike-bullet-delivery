@@ -3,8 +3,8 @@
 [ext_resource type="Shader" uid="uid://br2s6nb6en0st" path="res://screen_space_shading/sss_quad.gdshader" id="2_s55cx"]
 
 [sub_resource type="Gradient" id="Gradient_87srx"]
-offsets = PackedFloat32Array(0, 0.193029, 0.493298, 0.873995, 1)
-colors = PackedColorArray(1, 1, 1, 0, 0.780392, 0.85098, 0.827451, 0.309804, 0.756863, 0.505882, 0.407843, 0.968627, 0.133333, 0.286275, 0.435294, 0.776471, 0.0901961, 0.0901961, 0.203922, 0.513726)
+offsets = PackedFloat32Array(0, 0.0743707, 0.289474, 0.654462, 1)
+colors = PackedColorArray(0.443777, 0.497732, 0.118684, 0.0352941, 0.225325, 0.380583, 0.158934, 0.254902, 0.508382, 0.424429, 0.309458, 0.431373, 0.858824, 0.439216, 0.270588, 0.705882, 0.980392, 0.788235, 0.556863, 0.843137)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_15imm"]
 gradient = SubResource("Gradient_87srx")
@@ -14,7 +14,7 @@ render_priority = 50
 shader = ExtResource("2_s55cx")
 shader_parameter/gradient = SubResource("GradientTexture1D_15imm")
 shader_parameter/fog_intensity = 0.5
-shader_parameter/fog_amount = 0.1
+shader_parameter/fog_amount = 0.025
 
 [sub_resource type="QuadMesh" id="QuadMesh_6xyhj"]
 material = SubResource("ShaderMaterial_g8ji4")

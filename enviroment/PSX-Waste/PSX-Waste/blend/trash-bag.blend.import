@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://boq6eblbngr0h"
-path="res://.godot/imported/trash-bag.blend-9af1f14f2e77451a7950f6b909b30d56.scn"
+valid=false
 
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/blend/trash-bag.blend"
-dest_files=["res://.godot/imported/trash-bag.blend-9af1f14f2e77451a7950f6b909b30d56.scn"]
 
 [params]
 

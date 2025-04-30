@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://4hi5ptuygs3q"
-path="res://.godot/imported/crumpled-can.blend-cea8390c8805d61db21244b6516b50dc.scn"
+valid=false
 
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/blend/crumpled-can.blend"
-dest_files=["res://.godot/imported/crumpled-can.blend-cea8390c8805d61db21244b6516b50dc.scn"]
 
 [params]
 

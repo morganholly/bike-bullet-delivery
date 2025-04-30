@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cxcvjm1sqel8j"
-path="res://.godot/imported/barrel.blend-bff88610f5eda472111492c0d93ce12f.scn"
+valid=false
 
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/blend/barrel.blend"
-dest_files=["res://.godot/imported/barrel.blend-bff88610f5eda472111492c0d93ce12f.scn"]
 
 [params]
 

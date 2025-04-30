@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bc02lbkxqlpb"
-path="res://.godot/imported/sample-scene.blend-60c9c55bcdf1f92f1c407c908fd31cc2.scn"
+valid=false
 
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/samples/sample-scene.blend"
-dest_files=["res://.godot/imported/sample-scene.blend-60c9c55bcdf1f92f1c407c908fd31cc2.scn"]
 
 [params]
 

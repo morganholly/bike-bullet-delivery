@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://e4saquxmbu25"
-path="res://.godot/imported/glass-bottle.blend-fb327a921ba98cc9427b9bc36803a5b4.scn"
+valid=false
 
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/blend/glass-bottle.blend"
-dest_files=["res://.godot/imported/glass-bottle.blend-fb327a921ba98cc9427b9bc36803a5b4.scn"]
 
 [params]
 

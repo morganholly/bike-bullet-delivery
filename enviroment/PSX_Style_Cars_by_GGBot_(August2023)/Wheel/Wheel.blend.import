@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dmt8un15yha5g"
-path="res://.godot/imported/Wheel.blend-927dc0127c15494305b7150681169724.scn"
+valid=false
 
 [deps]
 
 source_file="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Wheel/Wheel.blend"
-dest_files=["res://.godot/imported/Wheel.blend-927dc0127c15494305b7150681169724.scn"]
 
 [params]
 
