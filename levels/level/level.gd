@@ -57,6 +57,8 @@ func _ready():
 	
 	# Start passive intensity increase
 	_start_passive_intensity_increase()
+
+	MissionManager.assign_random_names_to_boomguys()
 	
 
 func _setup_spawn_detector() -> void:

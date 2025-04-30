@@ -7,6 +7,22 @@ const Mission = MissionResource
 # Preload the deliverable bullets scene
 const DeliverableBulletsScene = preload("res://weapons/guns/deliverable_bullets.tscn")
 
+# Name dictionaries for Boomguys
+var first_names = [
+	"Mike", "Johnny", "Frank", "Dave", "Steve", "Tony", "Rick", "Jimmy", 
+	"Bobby", "Chuck", "Max", "Jack", "Sam", "Pete", "Ray", "Vinny", 
+	"Spike", "Duke", "Mack", "Hank", "Nathan"
+]
+
+var last_names = [
+	"Bullétblast", "Boomguy", "Bang", "Powder", "Buckshot", "Trigger", "Gunner", 
+	"Cannon", "Shells", "Thunder", "Nitro", "Slugger", "Smoke", "Ammo", 
+	"Bullet", "Caliber", "Recoil", "Flash", "Barrel", "Shrapnel"
+]
+
+# Track Boomguy names
+var boomguy_names = {}
+
 # Signal declarations
 signal mission_started(mission_id)
 signal mission_completed(mission_id)
@@ -32,8 +48,6 @@ func _ready():
 	mission_completed.connect(_on_mission_completed)
 	mission_phase_completed.connect(_on_mission_phase_completed)
 	
-	# We don't need to change input accumulation globally
-	# Input.set_use_accumulated_input(false)
 
 func _input(event):
 	# Handle 'B' key input for rollerblade phase
@@ -118,15 +132,37 @@ func _on_mission_phase_completed(mission_id: String, phase_index: int) -> void:
 					if mission.target != null:
 						UIManager.update_mission_target(mission_id, mission.target)
 
+# Generate a random name by combining a first and last name
+func generate_random_name() -> String:
+	var first_name = first_names[randi() % first_names.size()]
+	var last_name = last_names[randi() % last_names.size()]
+	return first_name + " " + last_name
+
+# Assign random names to all Boomguys in the level
+func assign_random_names_to_boomguys() -> void:
+	var boomguys = get_tree().get_nodes_in_group("Boomguy")
+	
+	for boomguy in boomguys:
+		var random_name = generate_random_name()
+		# Store using the node name as the key instead of the object reference
+		boomguy_names[boomguy.name] = random_name
+		# We don't change the actual node name to avoid breaking references
+	print(boomguy_names)
+
 # Create a special 3-part mission for getting ammo, rollerblading, and delivery
 func create_rollerblade_delivery_mission(id: String, title: String, target_npc) -> Mission:
 	var mission = Mission.new(id, title, "", "Bullets", target_npc)
+	
+	# Get target name (use random name if it's a Boomguy)
+	var target_name = target_npc.name
+	if target_npc.is_in_group("Boomguy") and target_npc.name in boomguy_names:
+		target_name = boomguy_names[target_npc.name]
 	
 	# Setup the three phases with clearer text
 	var phases: Array[String] = [
 		"Step 1: Pick up these special ammo boxes.",
 		"Step 2: Press B to rollerblade for faster delivery.",
-		"Step 3: Deliver the ammo to " + target_npc.name + "."
+		"Step 3: Deliver the ammo to " + target_name + "."
 	]
 	mission.setup_phases(phases)
 	
@@ -191,11 +227,16 @@ func _create_next_mission() -> void:
 		if player:
 			target.global_position = player.global_position + Vector3(10, 0, 10)
 	
+	# Get target name (use random name if it's a Boomguy)
+	var target_name = target.name
+	if target.name in boomguy_names:
+		target_name = boomguy_names[target.name]
+	
 	# Create a standard delivery mission for all dynamically spawned missions
 	var mission = create_delivery_mission(
 		mission_id,
-		"Ammo Delivery: " + target.name,
-		"Deliver bullets to " + target.name + ".",
+		"Ammo Delivery: " + target_name,
+		"Deliver bullets to " + target_name + ".",
 		"Bullets",
 		target
 	)
@@ -333,10 +374,15 @@ func _get_mission_by_id(mission_id: String) -> Mission:
 func create_delivery_mission(id: String, title: String, description: String, deliverable: String, target_npc) -> Mission:
 	var mission = Mission.new(id, title, description, deliverable, target_npc)
 	
+	# Get target name (use random name if it's a Boomguy)
+	var target_name = target_npc.name
+	if target_npc.is_in_group("Boomguy") and target_npc.name in boomguy_names:
+		target_name = boomguy_names[target_npc.name]
+	
 	# Setup as a two-part mission (pickup and deliver, no rollerblade)
 	var phases: Array[String] = [
 		"Pick up ammo for delivery.",
-		"Deliver ammo to " + target_npc.name + "."
+		"Deliver ammo to " + target_name + "."
 	]
 	mission.setup_phases(phases)
 	
@@ -410,6 +456,10 @@ func reset_mission_state() -> void:
 	# We don't clear completed_missions as that's a historical record,
 	# but we do need to clear it for proper game restart
 	completed_missions.clear()
+	
+	# Re-assign random names to Boomguys
+	boomguy_names.clear()
+	assign_random_names_to_boomguys()
 	
 	# Hide any UI prompts related to missions
 	UIManager.hide_prompt()
