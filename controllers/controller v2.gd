@@ -96,7 +96,7 @@ func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 func death_callback():
 	# this will probably glitch out the camera
 	self.is_player = false
-	
+	$die.play(0.5)
 	# Show Game Over UI when player dies
 	if is_in_group("Player"):
 		UIManager.show_game_over()
@@ -142,12 +142,13 @@ func _process(delta: float) -> void:
 func _on_damaged() -> void:
 	# Update UI immediately when damage occurs
 	if is_player:
+		$hurt.play()
 		UIManager.update_health(uniform_health.current_health, uniform_health.max_health)
 		UIManager.update_armor(uniform_health.current_armor, uniform_health.max_armor)
 
 func _on_hit() -> void:
 	# Handle any player-specific hit effects here
-	pass
+	$hit.play()
 
 func is_surface_too_steep(normal: Vector3) -> bool:
 	return normal.angle_to(Vector3.UP) > deg_to_rad(50)

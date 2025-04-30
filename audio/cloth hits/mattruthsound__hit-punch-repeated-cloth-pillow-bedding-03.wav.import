@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfhr77e5dppl4"
+path="res://.godot/imported/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav-96f2eb2675c7e52ce0e2db0a02035ee2.sample"
+
+[deps]
+
+source_file="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav"
+dest_files=["res://.godot/imported/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav-96f2eb2675c7e52ce0e2db0a02035ee2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

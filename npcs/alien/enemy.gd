@@ -25,7 +25,8 @@ var cur_shoot_delay = 0
 @onready var uniform_health: Node = $UniformHealth
 
 func damaged_set_state():
-	print("ow!")
+	#print("ow!")
+	$hurt.play()
 	current_state = Entity_States.Damaged 
 	cur_stun_delay = stun_delay
 	if target == null:
@@ -33,7 +34,8 @@ func damaged_set_state():
 	
 
 func death_set_state():
-	print("aughh")
+	#print("aughh")
+	$die.play()
 	current_state = Entity_States.Death 
 	cur_stun_delay = 1000
 	await get_tree().create_timer(0.75).timeout
@@ -124,7 +126,11 @@ func _on_body_entered(body: Node) -> void:
 		#recieve_damage(100)
 		uniform_health.damage(100)
 		body.queue_free()
-	pass # Replace with function body.
+	#if (body.is_in_group("Player")):
+		#for child in body.get_children():
+			#if child.is_in_group(&"HealthManager"):
+				#health_manager.damage()
+				#break
 
 
 func shoot(direction):
