@@ -20,6 +20,7 @@ offset_right = -16.24
 offset_bottom = 452.32
 
 [node name="UIInventory" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -44,18 +45,21 @@ offset_right = 348.0
 offset_bottom = 685.0
 
 [node name="UIBottomCurrentAmmo" parent="." instance=ExtResource("9_ocipa")]
+visible = false
 offset_left = 755.0
 offset_top = 670.0
 offset_right = 795.0
 offset_bottom = 710.0
 
 [node name="UIBottomMags" parent="." instance=ExtResource("9_p531k")]
+visible = false
 offset_left = 938.0
 offset_top = 685.0
 offset_right = 978.0
 offset_bottom = 725.0
 
 [node name="UIBottomGun" parent="." instance=ExtResource("9_ywlly")]
+visible = false
 offset_left = 1155.0
 offset_top = 685.0
 offset_right = 1195.0
