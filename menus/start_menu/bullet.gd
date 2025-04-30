@@ -43,15 +43,6 @@ func _ready():
 	# Store start position at screen bottom
 	start_position = Vector2(position.x, viewport_size.y)
 	
-	# Debug print only for first bullet
-	if is_first_bullet:
-		print("First bullet created:")
-		print("Trail width: ", line_width)
-		print("Trail position: ", trail.position)
-		print("Trail size: ", trail.size)
-		print("Bullet height: ", bullet_height)
-		print("Start position:", start_position)
-		print("Viewport size: ", viewport_size)
 
 func _process(delta: float) -> void:
 	time_alive += delta
@@ -80,14 +71,7 @@ func _process(delta: float) -> void:
 		trail.modulate.a = max(0, trail.modulate.a - delta)
 		if trail.modulate.a <= 0:
 			queue_free()
-	
-	# Debug print only for first bullet
-	if is_first_bullet and int(time_alive) % 1 == 0:
-		print("First bullet update:")
-		print("Current trail height: ", current_trail_height)
-		print("Max trail height: ", max_trail_height)
-		print("Bullet top: ", current_top)
-		print("Is off screen: ", is_off_screen)
+
 
 func move(delta: float) -> void:
 	_process(delta) 
