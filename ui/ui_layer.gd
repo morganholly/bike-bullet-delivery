@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var bullet_count_label: Label = $UIBullet/UIButtonLabel
 @onready var inventory_container: HBoxContainer = $UIInventory/HBoxContainer
 @onready var missions_ui: Control = $UIMissions
+@onready var prompt_label: Control = $UIPromptLabel
 
 # Reference to the inventory slot scene
 var inventory_slot_scene = preload("res://ui/ui_inventory_slot.tscn")
@@ -28,6 +29,12 @@ func _ready() -> void:
 	# Connect to slot selection signal if it exists
 	if UIManager.has_signal("slot_selected"):
 		UIManager.slot_selected.connect(_on_slot_selected)
+	
+	# Check if prompt label exists and is accessible
+	if prompt_label:
+		print("Prompt label found and set up")
+	else:
+		print("Prompt label not found in the scene")
 	
 	# NOTE: We don't need to add a "no missions" message here as it's already handled in ui_missions.gd
 	# The UIMissions control will show this message on its own
@@ -122,3 +129,7 @@ func _setup_mission_indicators() -> void:
 		print("Created mission indicator layer dynamically")
 	else:
 		print("Using mission indicator layer from scene")
+
+# Method to show the rollerblade prompt when level is ready
+func show_rollerblade_prompt() -> void:
+	UIManager.show_rollerblade_prompt()

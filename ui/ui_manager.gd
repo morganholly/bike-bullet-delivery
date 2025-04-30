@@ -14,6 +14,9 @@ signal mission_added(mission_id: String, title: String, description: String)
 signal mission_removed(mission_id: String)
 signal mission_updated(mission_id: String, title: String, description: String)
 signal mission_target_updated(mission_id: String, target: Node)
+# Prompt label signals
+signal prompt_visibility_changed(is_visible: bool)
+signal prompt_text_changed(text: String)
 
 # Dictionary to keep track of mission UI items
 var mission_ui_items = {}
@@ -23,6 +26,10 @@ var current_health: float = 0
 var current_armor: float = 0
 var max_health: float = 0
 var max_armor: float = 0
+
+# Prompt label state
+var prompt_text: String = ""
+var is_prompt_visible: bool = false
 
 func _ready():
 	pass
@@ -76,6 +83,25 @@ func get_mission_ui_item(mission_id: String) -> Control:
 # Method to update a mission target for indicators
 func update_mission_target(mission_id: String, target: Node) -> void:
 	mission_target_updated.emit(mission_id, target)
+
+# Prompt label methods
+func show_prompt(text: String = "") -> void:
+	if text != "":
+		prompt_text = text
+		prompt_text_changed.emit(prompt_text)
+	is_prompt_visible = true
+	prompt_visibility_changed.emit(is_prompt_visible)
+
+func hide_prompt() -> void:
+	is_prompt_visible = false
+	prompt_visibility_changed.emit(is_prompt_visible)
+
+func set_prompt_text(text: String) -> void:
+	prompt_text = text
+	prompt_text_changed.emit(prompt_text)
+
+func show_rollerblade_prompt() -> void:
+	show_prompt("Press B to rollerblade")
 
 # Debug method to test UI integration
 func debug_mission_ui():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c86ur1pluawt6"]
+[gd_scene load_steps=10 format=3 uid="uid://c86ur1pluawt6"]
 
 [ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/scenes/components/mission/ui_missions.tscn" id="5_vu3t1"]
 [ext_resource type="PackedScene" uid="uid://cm631cj21p7ph" path="res://ui/mission_indicators/mission_objective_indicator.tscn" id="6_kfnbm"]
 [ext_resource type="PackedScene" uid="uid://slid2ng8bgy" path="res://ui/scenes/components/bottom_bar/ui_bottom_armor.tscn" id="9_gjn2m"]
 [ext_resource type="PackedScene" uid="uid://bvf30llpjnocd" path="res://ui/scenes/components/bottom_bar/ui_bottom_current_ammo.tscn" id="9_ocipa"]
+[ext_resource type="PackedScene" uid="uid://46je1w0jr4r0" path="res://ui/ui_components/ui_prompt_label.tscn" id="9_p0bhb"]
 [ext_resource type="PackedScene" uid="uid://rtdd683wg8qi" path="res://ui/scenes/components/bottom_bar/ui_bottom_mags.tscn" id="9_p531k"]
 [ext_resource type="PackedScene" uid="uid://bb3hkihvpgtl2" path="res://ui/scenes/components/bottom_bar/ui_bottom_health.tscn" id="9_ss76r"]
 [ext_resource type="PackedScene" uid="uid://faugrq2xktpn" path="res://ui/scenes/components/bottom_bar/ui_bottom_gun.tscn" id="9_ywlly"]
@@ -58,3 +59,5 @@ offset_left = 1155.0
 offset_top = 685.0
 offset_right = 1195.0
 offset_bottom = 725.0
+
+[node name="UIPromptLabel" parent="." instance=ExtResource("9_p0bhb")]

@@ -90,18 +90,15 @@ func _create_test_missions():
 	# Wait a bit to ensure UI is fully ready
 	await get_tree().create_timer(0.5).timeout
 	
-	# Create first mission with first target
+	# Create first mission with first target - special rollerblade mission
 	var target1 = mission_targets[0]
-	var mission1 = MissionManager.create_delivery_mission(
+	var mission1 = MissionManager.create_rollerblade_delivery_mission(
 		"mission_1", 
-		"Ammo Delivery: " + target1.name,
-		"Deliver bullets to " + target1.name + " for testing.",
-		"Bullets",
+		"Special Delivery: " + target1.name,
 		target1
 	)
 	
 	# Start the first mission
 	MissionManager.start_mission("mission_1")
-	# LevelTest03: Started mission 1: Deliver to " + target1.name
-	print("LevelTest03: Started mission 1: Deliver to " + target1.name)
-	
+	# LevelTest03: Started mission 1: Special Delivery to " + target1.name
+	print("LevelTest03: Started first mission: Special rollerblade delivery to " + target1.name)

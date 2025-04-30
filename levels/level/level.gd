@@ -13,9 +13,9 @@ var mission_targets = []
 
 # Mission spawning configuration
 @export var min_mission_interval: float = 5.0  # Minimum time between missions (high intensity)
-@export var max_mission_interval: float = 5.0  # Maximum time between missions (low intensity)
+@export var max_mission_interval: float = 30.0  # Maximum time between missions (low intensity)
 @export var mission_spawn_timer: Timer
-var last_mission_spawn_time: float = 0.0
+var last_mission_spawn_time: float = 3.0
 var empty_task_list_timer: Timer  # Timer for 5-second rule when task list is empty
 
 # Game intensity tracking
@@ -54,10 +54,10 @@ func _ready():
 	
 	# Start mission spawning timer
 	_start_mission_spawning()
-
 	
 	# Start passive intensity increase
 	_start_passive_intensity_increase()
+	
 
 func _setup_spawn_detector() -> void:
 	# Check if spawn detector exists in the scene
@@ -213,18 +213,19 @@ func _create_test_missions():
 	# Wait a bit to ensure UI is fully ready
 	await get_tree().create_timer(0.5).timeout
 	
-	# Create first mission with first target
+	# Create first mission with first target - special rollerblade mission
 	var target1 = mission_targets[0]
-	var mission1 = MissionManager.create_delivery_mission(
+	var mission1 = MissionManager.create_rollerblade_delivery_mission(
 		"mission_1", 
-		"Ammo Delivery: " + target1.name,
-		"Deliver bullets to " + target1.name + " for testing.",
-		"Bullets",
+		"Special Delivery: " + target1.name,
 		target1
 	)
 	
 	# Start the first mission
 	MissionManager.start_mission("mission_1")
+	
+	if debug_spawn_info:
+		print("Created special rollerblade mission as first mission")
 
 func _start_mission_spawning():
 	mission_spawn_timer = Timer.new()
