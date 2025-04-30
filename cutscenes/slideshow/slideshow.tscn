@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2u4vd")
 slides = Array[ExtResource("2_5b346")]([ExtResource("2_3k4vd"), ExtResource("3_4k4vd"), ExtResource("4_5k4vd")])
-next_scene_path = "/home/berke/bike-delivery/bike-bullet-delivery/screen_space_shading/sss_viewport.tscn"
+next_scene_path = "res://screen_space_shading/sss_viewport.tscn"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ciqx1d74mng24" path="res://enviroment/Buildings/CrossResidential/CrossResidentialbuilding.tscn" id="9_gcrq5"]
 [ext_resource type="Script" uid="uid://6xgppkkctk46" path="res://weapons/damage_resources/penetrating_damage.gd" id="9_klg6o"]
 [ext_resource type="PackedScene" uid="uid://bpfmruy1t3xy4" path="res://weapons/test_collision_damager.tscn" id="10_hqlv0"]
-[ext_resource type="Script" path="res://weapons/damage_resources/status_damage.gd" id="13_hkelk"]
+[ext_resource type="Script" uid="uid://dljrobubsidxq" path="res://weapons/damage_resources/status_damage.gd" id="13_hkelk"]
 [ext_resource type="Texture2D" uid="uid://do5d78721v8c8" path="res://graphics/low res grayscale textures/gray17_128.png" id="14_hkchm"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="15_vxxs0"]
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="16_pb3sh"]
@@ -349,7 +349,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48614, 2.42936, 7.2696)
 [node name="gun_action" parent="test_gun2" index="0"]
 gun_stats = SubResource("Resource_3rhod")
 
-[node name="MeshInstance3D" parent="test_gun2/gun_action" index="2"]
+[node name="MeshInstance3D" parent="test_gun2/gun_action" index="7"]
 mesh = SubResource("TextMesh_40mmv")
 
 [node name="CollisionShape3D" parent="test_gun2/Area3D" index="0"]
@@ -361,7 +361,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9346, 2.42936, 3.68948)
 [node name="gun_action" parent="test_gun3" index="0"]
 gun_stats = SubResource("Resource_pbs5x")
 
-[node name="MeshInstance3D" parent="test_gun3/gun_action" index="2"]
+[node name="MeshInstance3D" parent="test_gun3/gun_action" index="7"]
 mesh = SubResource("TextMesh_0qasl")
 
 [node name="CollisionShape3D" parent="test_gun3/Area3D" index="0"]
