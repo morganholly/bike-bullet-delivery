@@ -7,7 +7,7 @@ var mission_targets = []
 # Enemy spawning configuration
 @export var min_spawn_interval: float = 0.5  # Minimum time between spawns (high intensity)
 @export var max_spawn_interval: float = 10.0  # Maximum time between spawns (low intensity)
-@export var max_enemies: int = 10  # Maximum number of enemies to have at once
+@export var max_enemies: int = 100  # Maximum number of enemies to have at once
 @export var enemy_types: Array[PackedScene] = []  # Types of enemies to spawn
 @export var debug_spawn_info: bool = true  # Print detailed spawn information
 

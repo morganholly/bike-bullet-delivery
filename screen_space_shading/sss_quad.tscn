@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cp6bdq5pahndr"]
 
-[ext_resource type="Script" uid="uid://muoxxa11kvch" path="res://screen_space_shading/sss_quad.gd" id="2_15imm"]
+[ext_resource type="Script" path="res://screen_space_shading/sss_quad.gd" id="2_15imm"]
 [ext_resource type="Shader" uid="uid://br2s6nb6en0st" path="res://screen_space_shading/sss_quad.gdshader" id="2_s55cx"]
 
 [sub_resource type="Gradient" id="Gradient_87srx"]
