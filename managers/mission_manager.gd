@@ -27,7 +27,7 @@ func _ready():
 	mission_started.connect(_on_mission_started)
 	mission_completed.connect(_on_mission_completed)
 	
-	print("MissionManager initialized")
+	# MissionManager initialized
 
 # Event handlers for mission state changes
 func _on_mission_started(mission_id: String) -> void:
@@ -35,7 +35,7 @@ func _on_mission_started(mission_id: String) -> void:
 		var mission = active_missions[mission_id]
 		
 		# Update the UI to show this mission
-		print("Adding mission to UI: " + mission_id + " - " + mission.title)
+		# Adding mission to UI: " + mission_id + " - " + mission.title
 		UIManager.add_mission_to_ui(mission_id, mission.title, mission.description)
 		
 		# Notify the UI about the mission target for indicators
@@ -47,7 +47,7 @@ func _on_mission_started(mission_id: String) -> void:
 
 func _on_mission_completed(mission_id: String) -> void:
 	# Remove the mission from UI when completed
-	print("Removing mission from UI: " + mission_id)
+	# Removing mission from UI: " + mission_id
 	UIManager.remove_mission_from_ui(mission_id)
 	
 	# Set up a timer to create a new mission after 3 seconds
@@ -106,7 +106,7 @@ func _create_next_mission() -> void:
 	)
 	
 	start_mission(mission_id)
-	print("Created and started new Boomguy delivery mission: " + mission_id)
+	# Created and started new Boomguy delivery mission: " + mission_id
 
 # Core mission management functions
 func register_mission(mission: Mission):
@@ -117,7 +117,7 @@ func start_mission(mission_id: String):
 	var mission = _get_mission_by_id(mission_id)
 	if mission and mission not in active_missions.values():
 		active_missions[mission_id] = mission
-		print("Starting mission: " + mission_id + " - " + mission.title)
+		# Starting mission: " + mission_id + " - " + mission.title
 		emit_signal("mission_started", mission_id)
 		return true
 	return false
@@ -132,7 +132,7 @@ func request_deliverable_spawn(mission_id: String) -> void:
 		var spawn_position = player.global_position + (forward_vector * 5) + Vector3.UP
 		
 		# Emit signal for level to handle spawning
-		print("Requesting spawn of deliverable for mission: " + mission_id)
+		# Requesting spawn of deliverable for mission: " + mission_id
 		emit_signal("request_spawn_deliverable", mission_id, spawn_position)
 
 # Create a deliverable bullet instance - Level script should call this and handle adding to tree
@@ -182,7 +182,7 @@ func complete_mission(mission_id: String):
 		mission.completed = true
 		completed_missions.append(mission)
 		active_missions.erase(mission_id)
-		print("Completing mission: " + mission_id)
+		# Completing mission: " + mission_id
 		emit_signal("mission_completed", mission_id)
 		return true
 	return false
@@ -194,7 +194,7 @@ func deliver_to_npc(mission_id: String, npc: Node):
 		
 		# Check if this is the correct target
 		if mission.target == npc or (mission.target_id != "" and mission.target_id == npc.name):
-			print("Successful delivery to target: " + npc.name + " for mission: " + mission_id)
+			# Successful delivery to target: " + npc.name + " for mission: " + mission_id
 			deliverable_states[mission_id] = "delivered"
 			emit_signal("delivery_made", mission_id, npc)
 			return complete_mission(mission_id)
@@ -256,4 +256,4 @@ func debug_create_test_mission() -> void:
 	
 	# Start the mission - this will trigger the request_spawn_deliverable signal
 	start_mission("test_mission")
-	print("Created and started test mission")
+	# Created and started test mission

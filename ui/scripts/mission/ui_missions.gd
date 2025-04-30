@@ -16,8 +16,6 @@ var mission_map = {}  # Maps mission_ids to UI mission items
 var no_missions_item: Control = null
 
 func _ready() -> void:
-	print("UIMissions: Initializing...")
-	
 	# Set the top margin for the title section
 	margin_container.add_theme_constant_override("margin_top", top_section_height)
 	margin_container.add_theme_constant_override("margin_bottom", bottom_margin)
@@ -26,12 +24,6 @@ func _ready() -> void:
 	vbox_container.add_theme_constant_override("separation", gap_height)
 	
 	# Connect to UIManager mission signals
-	print("UIMissions: Connecting to UIManager signals...")
-	UIManager.mission_added.connect(_on_mission_added)
-	UIManager.mission_removed.connect(_on_mission_removed)
-	UIManager.mission_updated.connect(_on_mission_updated)
-	print("UIMissions: Connected to UIManager signals successfully")
-	
 	# Initial resize with no missions
 	resize_container()
 	
@@ -41,25 +33,12 @@ func _ready() -> void:
 
 # Debug function to check signal connections
 func _debug_check_signal_connections() -> void:
-	print("UIMissions Debug: Checking signal connections...")
-	print("UIMissions Debug: UIManager singleton exists")
-	var connections = {
-		"mission_added": UIManager.mission_added.is_connected(_on_mission_added),
-		"mission_removed": UIManager.mission_removed.is_connected(_on_mission_removed),
-		"mission_updated": UIManager.mission_updated.is_connected(_on_mission_updated)
-	}
-	print("UIMissions Debug: Signal connections - " + str(connections))
-	
 	# Test emitting a debug mission
-	if connections["mission_added"]:
-		print("UIMissions Debug: Asking UIManager to emit test mission signal")
-		if UIManager.has_method("debug_mission_ui"):
-			UIManager.debug_mission_ui()
+	if UIManager.has_method("debug_mission_ui"):
+		UIManager.debug_mission_ui()
 
 # Handler for when a mission is added
 func _on_mission_added(mission_id: String, title: String, description: String) -> void:
-	print("UIMissions: Mission added signal received: " + mission_id)
-	
 	# Remove ALL "no missions" items
 	# Find and remove any existing "No Active Missions" item
 	if "no_mission" in mission_map:
@@ -80,13 +59,9 @@ func _on_mission_added(mission_id: String, title: String, description: String) -
 	
 	# Register this item with the UIManager
 	UIManager.register_mission_ui_item(mission_id, item)
-	
-	print("UIMissions: Mission added to UI: " + mission_id)
 
 # Handler for when a mission is removed
 func _on_mission_removed(mission_id: String) -> void:
-	print("UIMissions: Mission removed signal received: " + mission_id)
-	
 	if mission_id in mission_map:
 		var item = mission_map[mission_id]
 		remove_mission_item(item)
@@ -95,13 +70,9 @@ func _on_mission_removed(mission_id: String) -> void:
 		# If no missions left, show the "no missions" message
 		if mission_map.is_empty():
 			show_no_missions_message()
-	
-	print("UIMissions: Mission removed from UI: " + mission_id)
 
 # Handler for when a mission is updated
 func _on_mission_updated(mission_id: String, title: String, description: String) -> void:
-	print("UIMissions: Mission updated signal received: " + mission_id)
-	
 	if mission_id in mission_map:
 		var item = mission_map[mission_id]
 		
@@ -110,8 +81,6 @@ func _on_mission_updated(mission_id: String, title: String, description: String)
 			item.get_node("MarginContainer/VBoxContainer/Title").text = title
 		if item.has_node("MarginContainer/VBoxContainer/Label"):
 			item.get_node("MarginContainer/VBoxContainer/Label").text = description
-	
-	print("UIMissions: Mission updated in UI: " + mission_id)
 
 # Non-coroutine version for signal handlers
 func add_mission_item_sync(title: String, description: String) -> Control:
@@ -164,7 +133,6 @@ func show_no_missions_message() -> void:
 	# Then create a new one
 	no_missions_item = add_mission_item_sync("No Active Missions", "Check back later for new missions")
 	mission_map["no_mission"] = no_missions_item
-	print("UIMissions: Showing 'No Missions' message")
 
 # Get the height of a mission item based on its content
 func get_item_height(item: Control) -> float:
@@ -185,7 +153,6 @@ func update_mission_item_heights() -> void:
 
 # Resize the container based on mission items
 func resize_container() -> void:
-	return
 	if mission_items.size() <= 0:
 		# Set a minimum size when no items are present
 		custom_minimum_size.y = top_section_height + bottom_margin + 20

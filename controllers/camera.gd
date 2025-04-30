@@ -19,6 +19,25 @@ extends Node3D
 @onready var vector_pointer: Node3D = $Rotate/Flip/FirstPerson/HoldPosition/VectorPointer
 @onready var aim_debug_pointer: Node3D = $AimDebugPointer
 
+@onready var aim_rest: Sprite3D = $Rotate/Flip/FirstPerson/hands/aim/rest
+@onready var aim_fire: Sprite3D = $Rotate/Flip/FirstPerson/hands/aim/fire
+@onready var norm_rest: Sprite3D = $Rotate/Flip/FirstPerson/hands/normal/rest
+@onready var norm_fire: Sprite3D = $Rotate/Flip/FirstPerson/hands/normal/fire
+
+@onready var hands_aim: Node3D = $Rotate/Flip/FirstPerson/hands/aim
+@onready var hands_normal: Node3D = $Rotate/Flip/FirstPerson/hands/normal
+@onready var hands_empty: Node3D = $Rotate/Flip/FirstPerson/hands/empty
+@onready var hands_grab: Node3D = $Rotate/Flip/FirstPerson/hands/grab
+
+@onready var hands: Node3D = $Rotate/Flip/FirstPerson/hands
+
+enum HandsMode {
+	Empty,
+	Hold,
+	GunNormal,
+	GunAim
+}
+var hands_mode: HandsMode = HandsMode.Empty
 
 var next_distance: float = 10
 var camera_distance: float = 10
@@ -180,26 +199,73 @@ func _process(delta):
 			camera_transform = camera_third_person.global_transform
 		else:
 			camera_transform = camera_first_person.global_transform
-
+		
+		if Input.is_action_pressed("zoom"):
+			camera_first_person.fov = 30
+			#hands_aim.show()
+			#hands_normal.hide()
+			if hands_mode == HandsMode.GunNormal:
+				hands_mode = HandsMode.GunAim
+		else:
+			camera_first_person.fov = 80
+			#hands_aim.hide()
+			#hands_normal.show()
+			if hands_mode == HandsMode.GunAim:
+				hands_mode = HandsMode.GunNormal
+		
+		match hands_mode:
+			HandsMode.Empty:
+				hands_aim.hide()
+				hands_normal.hide()
+				hands_empty.show()
+				hands_grab.hide()
+			HandsMode.Hold:
+				hands_aim.hide()
+				hands_normal.hide()
+				hands_empty.hide()
+				hands_grab.show()
+			HandsMode.GunNormal:
+				hands_aim.hide()
+				hands_normal.show()
+				hands_empty.hide()
+				hands_grab.hide()
+			HandsMode.GunAim:
+				hands_aim.show()
+				hands_normal.hide()
+				hands_empty.hide()
+				hands_grab.hide()
+		
 		if process_aim:
 			nodePointer.visible = true
 			if(nodeRaycast.is_colliding()):
 				colliding = true
-				nodePointer.visible = true
+				#nodePointer.visible = true
 				aim_pos = nodeRaycast.get_collision_point()
-				nodePointer.global_transform.origin = aim_pos
+				#nodePointer.global_transform.origin = aim_pos
 				aim_dist = nodeRaycast.global_transform.origin.distance_to(aim_pos)
 				aim_norm = nodeRaycast.get_collision_normal()
-				if aim_norm.is_equal_approx(Vector3(0, 1, 0)) or aim_norm.is_equal_approx(Vector3(0, -1, 0)):
-					nodePointer.global_transform.basis = Basis.looking_at(aim_norm, Vector3(1, 0, 0))
-				else:
-					nodePointer.global_transform.basis = Basis.looking_at(aim_norm)
+				#if aim_norm.is_equal_approx(Vector3(0, 1, 0)) or aim_norm.is_equal_approx(Vector3(0, -1, 0)):
+					#nodePointer.global_transform.basis = Basis.looking_at(aim_norm, Vector3(1, 0, 0))
+				#else:
+					#nodePointer.global_transform.basis = Basis.looking_at(aim_norm)
 			else:
 				colliding = false
-				nodePointer.visible = false
+				#nodePointer.visible = false
 				var hold_pos_global_vec = hold_position.global_position - self.global_position
 				aim_pos = hold_pos_global_vec * 10 + self.global_position
 				aim_dist = hold_pos_global_vec.length() * 10
 				aim_norm = Vector3.UP
-		else:
-			nodePointer.visible = false
+		#else:
+			#nodePointer.visible = false
+
+func gun_sprite_firing(firing: bool):
+	if firing:
+		aim_rest.hide()
+		aim_fire.show()
+		norm_rest.hide()
+		norm_fire.show()
+	else:
+		aim_rest.show()
+		aim_fire.hide()
+		norm_rest.show()
+		norm_fire.hide()

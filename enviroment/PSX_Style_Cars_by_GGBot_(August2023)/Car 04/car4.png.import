@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2ua527q0qnc8"
-path.s3tc="res://.godot/imported/car4.png-eaef34a76f48a4847b67aabc317e6e2f.s3tc.ctex"
+path.bptc="res://.godot/imported/car4.png-eaef34a76f48a4847b67aabc317e6e2f.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 04/car4.png"
-dest_files=["res://.godot/imported/car4.png-eaef34a76f48a4847b67aabc317e6e2f.s3tc.ctex"]
+dest_files=["res://.godot/imported/car4.png-eaef34a76f48a4847b67aabc317e6e2f.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

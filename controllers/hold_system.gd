@@ -53,9 +53,11 @@ func make_active() -> void:
 		ActionState.EMPTY:
 			pass
 		ActionState.HOLDITEM:
+			camera.hands_mode = camera.HandsMode.Hold
 			holding.collision_mask = holding_old_collision_mask
 			holding.visible = true
 		ActionState.GUN:
+			camera.hands_mode = camera.HandsMode.GunNormal
 			holding.get_node("gun_action").reparent(camera.gun_position_r)
 			camera.gun_position_r.get_node("gun_action").visible = true
 			gun_state_slot_inactive = false
@@ -63,6 +65,7 @@ func make_active() -> void:
 			pass
 
 func make_inactive() -> void:
+	camera.hands_mode = camera.HandsMode.Empty
 	match current_action_state:
 		ActionState.EMPTY:
 			pass
@@ -162,6 +165,7 @@ func active_slot_input(event) -> void:
 						# i aint retyping all that
 						#match [could_holditem, could_gun, could_meleeitem, prefer_holditem, prefer_gun, prefer_meleeitem]:
 						obj_over.add_to_group(&"IsHeld")
+						camera.hands_mode = camera.HandsMode.Hold
 						match [could_holditem, could_gun, could_meleeitem]:
 							[true, false, false]: # only hold
 								#print("only hold")
@@ -177,6 +181,7 @@ func active_slot_input(event) -> void:
 								# else:
 								#	# use as melee
 								
+								camera.hands_mode = camera.HandsMode.GunNormal
 								gun_tween_to_hold()
 								
 								current_action_state = ActionState.GUN
@@ -226,6 +231,8 @@ func active_slot_input(event) -> void:
 					var gun_node = camera.gun_position_r.get_node("gun_action")
 					gun_node.update_ui_ammo_display(ammo_pool)
 					
+					camera.hands_mode = camera.HandsMode.GunNormal
+					
 					current_action_state = ActionState.GUN
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
@@ -238,6 +245,7 @@ func active_slot_input(event) -> void:
 					camera.nodeRaycast.remove_exception(holding)
 					camera.nodeRaycast.collision_mask |= 0b1_0000_0000
 					holding.remove_from_group(&"IsHeld")
+					camera.hands_mode = camera.HandsMode.Empty
 					holding = null
 		ActionState.GUN:
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
@@ -250,7 +258,11 @@ func active_slot_input(event) -> void:
 				tween_pos.set_ease(Tween.EASE_OUT)
 				tween_pos.tween_property(holding.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
 				current_action_state = ActionState.HOLDITEM
+				camera.hands_mode = camera.HandsMode.Hold
 			elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+				camera.gun_sprite_firing(true)
 				camera.gun_position_r.get_node("gun_action").shoot(ammo_pool, 1)
+				var tween_delay_end_firing_sprite = get_tree().create_tween()
+				tween_delay_end_firing_sprite.tween_callback(camera.gun_sprite_firing.bind(false)).set_delay(randf_range(0.2, 0.3))
 		ActionState.MELEEITEM:
 			pass

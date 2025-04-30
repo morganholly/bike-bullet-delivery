@@ -26,6 +26,8 @@ size = Vector3(0.25, 0.25, 0.25)
 [node name="DemoBullets" type="RigidBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visibility_range_end = 150.0
+visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_pisua")
 skeleton = NodePath("../BulletPickup")
 

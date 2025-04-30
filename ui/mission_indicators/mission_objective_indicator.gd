@@ -329,5 +329,5 @@ func create_red_arrow_texture():
 		# We can't directly modify the pixels efficiently in GDScript
 		# So we'll just use modulate on the TextureRect instead
 	else:
-		# Fallback if the arrow texture isn't available
-		print("Warning: Could not create red arrow texture, original texture not found")
+		# Warning: Could not create red arrow texture, original texture not found
+		pass

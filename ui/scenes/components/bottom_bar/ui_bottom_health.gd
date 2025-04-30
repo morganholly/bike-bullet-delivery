@@ -11,6 +11,6 @@ func _ready():
 	_on_health_updated(UIManager.current_health, UIManager.max_health)
 
 func _on_health_updated(current: float, maximum: float):
-	print("Health updated: ", current, maximum)
+	# Health updated: ", current, maximum
 	current_health_label.text = str(round(current))
 	max_health_label.text = str(round(maximum)) 

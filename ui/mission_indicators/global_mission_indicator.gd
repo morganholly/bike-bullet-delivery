@@ -7,7 +7,7 @@ var mission_indicator_scene = preload("res://ui/mission_indicators/mission_objec
 var mission_indicator_instance: CanvasLayer = null
 
 func _ready():
-	print("Global Mission Indicator Manager initialized")
+	# Global Mission Indicator Manager initialized
 	
 	# Wait a frame to ensure other systems are initialized
 	await get_tree().process_frame
@@ -20,15 +20,13 @@ func ensure_indicator_exists():
 	var existing = get_tree().get_nodes_in_group("MissionIndicator")
 	
 	if existing.size() > 0:
-		# Use existing indicator
+		# Using existing mission indicator
 		mission_indicator_instance = existing[0]
-		print("Using existing mission indicator")
 	else:
 		# Create new indicator instance
 		mission_indicator_instance = mission_indicator_scene.instantiate()
 		get_tree().root.add_child(mission_indicator_instance)
 		mission_indicator_instance.add_to_group("MissionIndicator")
-		print("Created global mission indicator")
 
 # Public API - can be used to control indicator behavior
 func set_max_visible_indicators(count: int):

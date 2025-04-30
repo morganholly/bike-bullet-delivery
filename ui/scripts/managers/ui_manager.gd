@@ -16,7 +16,8 @@ signal mission_target_updated(mission_id: String, target: Node)
 var mission_ui_items = {}
 
 func _ready():
-	print("UIManager initialized")
+	# UIManager initialized
+	pass
 
 # Method to broadcast bullet count updates from anywhere
 # mag_count = -1 means reloading, reserve_count = -1 means don't show reserve
@@ -33,23 +34,23 @@ func update_selected_slot(slot_index: int) -> void:
 
 # Method to add a mission to the UI
 func add_mission_to_ui(mission_id: String, title: String, description: String) -> void:
-	print("UIManager: Adding mission to UI: " + mission_id + " - " + title)
+	# UIManager: Adding mission to UI: " + mission_id + " - " + title
 	mission_added.emit(mission_id, title, description)
 
 # Method to remove a mission from the UI
 func remove_mission_from_ui(mission_id: String) -> void:
-	print("UIManager: Removing mission from UI: " + mission_id)
+	# UIManager: Removing mission from UI: " + mission_id
 	mission_removed.emit(mission_id)
 
 # Method to update mission details in the UI
 func update_mission_in_ui(mission_id: String, title: String, description: String) -> void:
-	print("UIManager: Updating mission in UI: " + mission_id)
+	# UIManager: Updating mission in UI: " + mission_id
 	mission_updated.emit(mission_id, title, description)
 
 # Method to register a mission's UI element for later reference
 func register_mission_ui_item(mission_id: String, ui_item: Control) -> void:
 	mission_ui_items[mission_id] = ui_item
-	print("UIManager: Registered UI item for mission: " + mission_id)
+	# UIManager: Registered UI item for mission: " + mission_id
 
 # Method to get a mission's UI element
 func get_mission_ui_item(mission_id: String) -> Control:
@@ -59,16 +60,16 @@ func get_mission_ui_item(mission_id: String) -> Control:
 
 # Method to update a mission target for indicators
 func update_mission_target(mission_id: String, target: Node) -> void:
-	print("UIManager: Updated target for mission: " + mission_id)
+	# UIManager: Updated target for mission: " + mission_id
 	mission_target_updated.emit(mission_id, target)
 
 # Debug method to test UI integration
 func debug_mission_ui():
-	print("UIManager Debug: Signal connections:")
-	print("  - mission_added connected to: " + str(mission_added.get_connections().size()) + " objects")
-	print("  - mission_removed connected to: " + str(mission_removed.get_connections().size()) + " objects")
-	print("  - mission_updated connected to: " + str(mission_updated.get_connections().size()) + " objects")
+	# UIManager Debug: Signal connections:
+	#   - mission_added connected to: " + str(mission_added.get_connections().size()) + " objects"
+	#   - mission_removed connected to: " + str(mission_removed.get_connections().size()) + " objects"
+	#   - mission_updated connected to: " + str(mission_updated.get_connections().size()) + " objects"
 	
 	# Test emit a mission
-	print("UIManager Debug: Emitting test mission signal")
+	# UIManager Debug: Emitting test mission signal
 	add_mission_to_ui("debug_mission", "Debug Test Mission", "This mission is emitted directly from UIManager.")

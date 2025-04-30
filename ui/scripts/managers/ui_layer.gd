@@ -119,6 +119,7 @@ func _setup_mission_indicators() -> void:
 	if mission_indicator_layer == null:
 		mission_indicator_layer = mission_indicator_scene.instantiate()
 		add_child(mission_indicator_layer)
-		print("Created mission indicator layer dynamically")
+		# Created mission indicator layer dynamically
 	else:
-		print("Using mission indicator layer from scene")
+		# Using mission indicator layer from scene
+		pass

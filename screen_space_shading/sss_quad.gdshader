@@ -35,11 +35,16 @@ void fragment() {
 
 	float fog = depth * fog_amount * 0.1;
 
+	//ALBEDO = vec3(float((depth > 2000.0)));
 	vec4 fog_color = texture(gradient, vec2(fog, 0.0));
-	if (depth > 1.0)
-		ALBEDO =  mix(original.rgb, fog_color.rgb, fog_color.a * fog_intensity);
-	else
+	if (depth > 3000.0) {
 		ALBEDO = original.rgb;
+	} else {
+		if (depth > 0.0)
+			ALBEDO =  mix(original.rgb, fog_color.rgb, fog_color.a * fog_intensity);
+		else
+			ALBEDO = original.rgb;
+	}
 }
 
 //void light() {

@@ -4,7 +4,7 @@ extends Node
 # Attach this to an empty node in your test scene
 
 func _ready():
-	print("Mission Indicator Test script loaded")
+	# Mission Indicator Test script loaded
 	
 	# Wait a moment to ensure everything is initialized
 	await get_tree().create_timer(1.0).timeout
@@ -20,7 +20,8 @@ func _unhandled_input(event):
 func call_debug_function():
 	var mission_manager = get_node("/root/MissionManager")
 	if mission_manager and mission_manager.has_method("debug_test_mission_indicators"):
-		print("Calling test function")
+		# Calling test function
 		mission_manager.debug_test_mission_indicators()
 	else:
+		# Could not find MissionManager or debug function
 		print("Could not find MissionManager or debug function") 

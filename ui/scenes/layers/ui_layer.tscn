@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c86ur1pluawt6"]
 
-[ext_resource type="Script" path="res://ui/ui_layer.gd" id="1_gjtyb"]
+[ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
 [ext_resource type="PackedScene" uid="uid://b01evpqudalpq" path="res://ui/ui_components/ui_bottom_gun.tscn" id="4_gjtyb"]
 [ext_resource type="PackedScene" uid="uid://cp08yx6nxr3pr" path="res://ui/ui_components/ui_bottom_mags.tscn" id="5_8aggs"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/scenes/components/mission/ui_missions.tscn" id="5_vu3t1"]

@@ -35,7 +35,6 @@ func set_selected(selected: bool) -> void:
 		return  # No change needed
 	
 	is_selected = selected
-	print(self, selected)
 	if is_selected:
 		# Switch to active sprite
 		frame.texture = active_texture
