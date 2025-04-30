@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvqhmpmp433mm"]
+
+[ext_resource type="Script" uid="uid://bl2edtwqi0lvn" path="res://utils/thing_spawner.gd" id="1_wp3vy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_38k5x"]
+size = Vector3(200, 20, 200)
+
+[node name="ThingSpawner" type="Node3D"]
+script = ExtResource("1_wp3vy")
+num_items = null
+height_up_check = null
+
+[node name="Things" type="Node3D" parent="."]
+
+[node name="Valid Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Valid Area"]
+shape = SubResource("BoxShape3D_38k5x")
