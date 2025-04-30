@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://db2eyvfi8wple"]
+[gd_scene load_steps=27 format=3 uid="uid://db2eyvfi8wple"]
 
-[ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_26o6u"]
+[ext_resource type="Script" uid="uid://b8uwuxg31f8bo" path="res://npcs/boomguy/boomguy.gd" id="1_6xrnp"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_7u3ht"]
 [ext_resource type="Texture2D" uid="uid://c8xdfxeljipf8" path="res://npcs/alien/alien_char_sheet/alien_spritesheet.png" id="3_l35ol"]
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_4j5tw"]
@@ -47,6 +47,14 @@ region = Rect2(342, 0, 114, 69)
 atlas = ExtResource("4_d4htd")
 region = Rect2(114, 0, 114, 69)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjmat"]
+atlas = ExtResource("4_d4htd")
+region = Rect2(684, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dx7c"]
+atlas = ExtResource("4_d4htd")
+region = Rect2(1140, 0, 114, 69)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wg6su"]
 atlas = ExtResource("4_d4htd")
 region = Rect2(456, 0, 114, 69)
@@ -55,9 +63,21 @@ region = Rect2(456, 0, 114, 69)
 atlas = ExtResource("4_d4htd")
 region = Rect2(912, 0, 114, 69)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjmat"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k06oe"]
 atlas = ExtResource("4_d4htd")
-region = Rect2(0, 0, 114, 69)
+region = Rect2(798, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yya7s"]
+atlas = ExtResource("4_d4htd")
+region = Rect2(1254, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bri6p"]
+atlas = ExtResource("4_d4htd")
+region = Rect2(570, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ccej"]
+atlas = ExtResource("4_d4htd")
+region = Rect2(1026, 0, 114, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_myj7t"]
 animations = [{
@@ -120,6 +140,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sjmat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dx7c")
+}],
+"loop": true,
+"name": &"shoot_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wg6su")
 }, {
 "duration": 1.0,
@@ -131,16 +162,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sjmat")
+"texture": SubResource("AtlasTexture_k06oe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yya7s")
 }],
 "loop": true,
-"name": &"walk_front",
+"name": &"shoot_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bri6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ccej")
+}],
+"loop": true,
+"name": &"shoot_right",
 "speed": 5.0
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
 custom_solver_bias = 0.041
-radius = 19.526
+radius = 26.2117
 
 [node name="Boomguy" type="RigidBody3D" groups=["Boomguy", "Damageable", "NPC"]]
 collision_layer = 4
@@ -149,8 +194,7 @@ can_sleep = false
 lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 10
-script = ExtResource("1_26o6u")
-follow_strength = 6
+script = ExtResource("1_6xrnp")
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_7u3ht")]
 max_armor = 0.0
@@ -167,13 +211,14 @@ alpha_cut = 1
 alpha_hash_scale = 0.5
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_myj7t")
-animation = &"damaged"
+animation = &"shoot_left"
 script = ExtResource("4_4j5tw")
 designated_parent = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.809)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)

@@ -81,7 +81,7 @@ func _physics_process(delta):
 			#linear_velocity = Vector3.ZERO;
 			if (linear_velocity.length() < follow_strength):
 				apply_central_force(direction * 15)
-			print(linear_velocity.length())
+			#print(linear_velocity.length())
 			current_state = Entity_States.Walk
 		elif (global_transform.origin.distance_to(target_position) < retreat_range):
 			#var direction = (target_position - global_transform.origin).normalized()

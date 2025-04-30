@@ -44,6 +44,8 @@ holdable_could_melee=""
 AmmoPool=""
 IsHeld=""
 projectile=""
+Enemies=""
+enemies_targetable_by_boomguy=""
 
 [gui]
 

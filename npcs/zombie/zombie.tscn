@@ -168,7 +168,7 @@ animations = [{
 custom_solver_bias = 0.041
 radius = 19.526
 
-[node name="Demon" type="RigidBody3D" groups=["Damageable"]]
+[node name="Zombie" type="RigidBody3D" groups=["Damageable", "enemies_targetable_by_boomguy"]]
 collision_layer = 4
 collision_mask = 711
 can_sleep = false
@@ -201,7 +201,7 @@ designated_parent = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)
