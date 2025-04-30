@@ -5,22 +5,22 @@ var boomguy: Node3D
 var mission_targets = []
 
 # Enemy spawning configuration
-@export var min_spawn_interval: float = 1.0  # Minimum time between spawns (high intensity)
-@export var max_spawn_interval: float = 30.0  # Maximum time between spawns (low intensity)
+@export var min_spawn_interval: float = 0.5  # Minimum time between spawns (high intensity)
+@export var max_spawn_interval: float = 10.0  # Maximum time between spawns (low intensity)
 @export var max_enemies: int = 10  # Maximum number of enemies to have at once
 @export var enemy_types: Array[PackedScene] = []  # Types of enemies to spawn
 @export var debug_spawn_info: bool = true  # Print detailed spawn information
 
 # Mission spawning configuration
 @export var min_mission_interval: float = 5.0  # Minimum time between missions (high intensity)
-@export var max_mission_interval: float = 30.0  # Maximum time between missions (low intensity)
+@export var max_mission_interval: float = 10.0  # Maximum time between missions (low intensity)
 @export var mission_spawn_timer: Timer
 var last_mission_spawn_time: float = 3.0
 var empty_task_list_timer: Timer  # Timer for 5-second rule when task list is empty
 
 # Game intensity tracking
 var game_intensity: float = 0.0  # Ranges from 0.0 to 1.0
-@export var passive_intensity_increase_interval: float = 10.0  # Seconds between passive intensity increases
+@export var passive_intensity_increase_interval: float = 5.0  # Seconds between passive intensity increases
 @export var passive_intensity_step: float = 0.05  # Amount to increase intensity by each step
 var passive_intensity_timer: Timer
 

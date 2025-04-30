@@ -76,8 +76,8 @@ func _get_level_bounds() -> Dictionary:
 		var pos = player.global_position
 		print("SpawnAreaDetector: Using player position for bounds: ", pos)
 		return {
-			"min": Vector3(pos.x - 500, -10, pos.z - 500),
-			"max": Vector3(pos.x + 500, 10, pos.z + 500)
+			"min": Vector3(pos.x - 300, -10, pos.z - 300),
+			"max": Vector3(pos.x + 300, 10, pos.z + 300)
 		}
 	
 	# Fallback to a small area around origin

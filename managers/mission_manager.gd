@@ -24,6 +24,7 @@ var available_missions = []
 var mission_deliverables = {}  # Track deliverables for each mission
 var deliverable_states = {}  # Track state of deliverables: "spawned", "picked_up", "delivered"
 var waiting_for_rollerblade = false  # Flag to track if we're waiting for the player to press B
+var max_active_missions = 7  # Maximum number of active missions allowed at once
 
 func _ready():
 	# Connect our own signals to handle UI updates
@@ -155,6 +156,12 @@ func advance_mission_phase(mission_id: String) -> bool:
 
 # Create a new mission with a unique ID
 func _create_next_mission() -> void:
+	# Check if we've reached the maximum number of active missions
+	if active_missions.size() >= max_active_missions:
+		if get_tree().get_first_node_in_group("Level") and get_tree().get_first_node_in_group("Level").debug_spawn_info:
+			print("Mission limit reached (%d/%d), not creating new mission" % [active_missions.size(), max_active_missions])
+		return
+		
 	# Generate a unique mission ID
 	var mission_id = "mission_" + str(randi() % 1000)
 	while is_mission_active(mission_id) or is_mission_completed(mission_id):

@@ -12,6 +12,7 @@ extends CanvasLayer
 
 # References
 var arrow_texture = preload("res://ui/ui_arrow.png")
+var green_arrow_texture = preload("res://ui/ui_arrow-green.png")
 var mission_manager
 var current_camera: Camera3D
 var red_arrow_texture: ImageTexture
@@ -133,33 +134,41 @@ func _ensure_indicators_exist(mission_id, deliverable = null, target = null):
 	
 	# Create deliverable indicator if needed and deliverable is provided
 	if deliverable != null and (!mission_indicators[mission_id].has("deliverable") or !is_instance_valid(mission_indicators[mission_id]["deliverable"])):
-		var container = _create_indicator(Color(1, 0, 0))  # Red for deliverable
+		var container = _create_indicator("deliverable")  # Use deliverable type instead of color
 		mission_indicators[mission_id]["deliverable"] = container
 		mission_indicators[mission_id]["deliverable_target"] = deliverable
 	
 	# Create target indicator if needed and target is provided
 	if target != null and (!mission_indicators[mission_id].has("target") or !is_instance_valid(mission_indicators[mission_id]["target"])):
-		var container = _create_indicator(Color(0, 1, 0))  # Green for target
+		var container = _create_indicator("target")  # Use target type instead of color
 		mission_indicators[mission_id]["target"] = container
 		mission_indicators[mission_id]["target_object"] = target
 	
 	# Update visibility based on current state
 	_update_indicators_for_mission(mission_id)
 
-# Create an indicator with specified color
-func _create_indicator(color):
+# Create an indicator with specified type (deliverable or target)
+func _create_indicator(type):
 	var container = Control.new()
 	var indicator = TextureRect.new()
+	var color
 	
 	container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	container.visible = false  # Hidden by default
 	
-	indicator.texture = arrow_texture
+	# Set appropriate texture and color based on type
+	if type == "deliverable":
+		indicator.texture = arrow_texture  # Red arrow for deliverable
+		color = Color(1, 0, 0)
+	else:  # target
+		indicator.texture = green_arrow_texture  # Green arrow for target
+		color = Color(0, 1, 0)
+	
 	indicator.custom_minimum_size = arrow_size
 	indicator.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	indicator.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	indicator.modulate = color
+	# Remove modulate color since we're using specific textures
 	
 	container.add_child(indicator)
 	
@@ -265,13 +274,13 @@ func update_indicator_position(container, target):
 			indicator.rotation = 0 # Point down
 		else:
 			# Target is outside screen, position arrow at screen edge
-			position_at_screen_edge(container, indicator, screen_pos, viewport_size)
+			position_at_screen_edge(container, indicator, screen_pos, viewport_size, direction_to_target)
 	else:
 		# Target is behind camera, position arrow at screen edge
 		var behind_screen_pos = Vector2(viewport_size.x / 2, viewport_size.y)
-		position_at_screen_edge(container, indicator, behind_screen_pos, viewport_size)
+		position_at_screen_edge(container, indicator, behind_screen_pos, viewport_size, direction_to_target)
 
-func position_at_screen_edge(container, indicator, screen_pos, viewport_size):
+func position_at_screen_edge(container, indicator, screen_pos, viewport_size, direction_3d):
 	# Ensure we're working with Vector2
 	screen_pos = Vector2(screen_pos)
 	viewport_size = Vector2(viewport_size)
@@ -289,9 +298,35 @@ func position_at_screen_edge(container, indicator, screen_pos, viewport_size):
 	# Position the container
 	container.position = edge_point - Vector2(indicator.size.x / 2, indicator.size.y / 2)
 	
-	# Rotate indicator to point towards target
-	var angle = direction.angle()
-	indicator.rotation = angle
+	# Get the player (assuming player is in a "Player" group)
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		# Get direction from player to target in world space
+		var player_to_target = direction_3d
+		
+		# Get player's forward direction (assuming this is their "y" in user terminology)
+		var player_forward = -player.global_transform.basis.z.normalized()
+		
+		# Get player's right direction (their "x" axis - along their arms)
+		var player_right = player.global_transform.basis.x.normalized()
+		
+		# Get player's up direction (their "y" axis - their height)
+		var player_up = player.global_transform.basis.y.normalized()
+		
+		# Calculate how much the target is to the right/left of the player
+		var right_component = player_to_target.dot(player_right)
+		
+		# Calculate how much the target is above/below the player
+		var up_component = player_to_target.dot(player_up)
+		
+		# Map these directly to screen space (x = right/left, y = up/down)
+		var angle = atan2(up_component, right_component)
+		
+		# Apply the rotation
+		indicator.rotation = angle
+	else:
+		# Fallback to basic screen space direction if player not found
+		indicator.rotation = direction.angle()
 
 func find_edge_intersection(screen_center, direction, viewport_size):
 	# Ensure we're working with Vector2
