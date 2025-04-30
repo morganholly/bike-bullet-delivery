@@ -247,47 +247,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
 
 [node name="Boundaries" type="Node" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Boundaries"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61041, 7.88885, -140.756)
 size = Vector3(20.5174, 14.848, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(0.0213089, 0, 0.999773, 0, 1, 0, -0.999773, 0, 0.0213089, -123.325, 7.88885, -62.3749)
 size = Vector3(20.5174, 14.848, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.9478, 7.59653, -157.073)
 size = Vector3(24.2333, 14.2634, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.985, 4.09515, -196.954)
 size = Vector3(24.2333, 14.2634, 14.6955)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, 259.289, 4.09515, -45.7057)
 size = Vector3(24.2333, 14.2634, 15.4937)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, 224.424, 4.09515, 177.775)
 size = Vector3(14.4948, 14.2634, 36.7936)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, 24.6996, 4.09515, 175.138)
 size = Vector3(15.0534, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, -84.0141, 4.09515, 175.402)
 size = Vector3(12.3045, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
 transform = Transform3D(-0.997666, 0, -0.0682766, 0, 1, 0, 0.0682766, 0, -0.997666, -58.2522, 4.09515, 46.0335)
 size = Vector3(12.3045, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
