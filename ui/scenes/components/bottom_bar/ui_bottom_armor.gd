@@ -11,5 +11,5 @@ func _ready():
 	_on_armor_updated(UIManager.current_armor, UIManager.max_armor)
 
 func _on_armor_updated(current: float, maximum: float):
-	current_armor_label.text = str(round(current))
-	max_armor_label.text = str(round(maximum)) 
+	current_armor_label.text = str(int(current))
+	max_armor_label.text = str(int(maximum)) 

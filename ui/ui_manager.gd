@@ -29,13 +29,11 @@ func _ready():
 
 # Health and armor update methods
 func update_health(health: float, max_hp: float) -> void:
-	# asdsa", health, max_hp
 	current_health = health
 	max_health = max_hp
 	emit_signal("health_updated", current_health, max_health)
 
 func update_armor(armor: float, max_arm: float) -> void:
-	# armor", armor, max_arm
 	current_armor = armor
 	max_armor = max_arm
 	emit_signal("armor_updated", current_armor, max_armor)

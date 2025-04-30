@@ -87,6 +87,9 @@ var last_air_y_vel: float = 0
 @onready var rollerblade_loop: AudioStreamPlayer3D = $"rollerblade loop"
 @onready var rollerblade_clacks: AudioStreamPlayer3D = $"rollerblade clacks"
 
+var last_health: float = 0
+var last_armor: float = 0
+
 func exp_decay(a: float, b: float, d: float, delta: float) -> float:
 	return b + (a - b) * exp(-d * delta)
 
@@ -98,22 +101,49 @@ func _ready() -> void:
 	# could add automatic world model hiding here
 	camera.is_active = is_player
 	camera.add_raycast_exception(self)
-	uniform_health.death_callback = death_callback
 	
-	# Initialize UI with current values
-	UIManager.update_health(uniform_health.current_health, uniform_health.max_health)
-	UIManager.update_armor(uniform_health.current_armor, uniform_health.max_armor)
-
+	# Set up health callbacks
+	uniform_health.death_callback = death_callback
+	uniform_health.damaged_callback = _on_damaged
+	uniform_health.hit_callback = _on_hit
+	
+	# Initialize tracking variables
+	last_health = uniform_health.current_health
+	last_armor = uniform_health.current_armor
+	
+	# Initialize UI if this is a player
+	if is_player:
+		UIManager.update_health(uniform_health.current_health, uniform_health.max_health)
+		UIManager.update_armor(uniform_health.current_armor, uniform_health.max_armor)
 
 func _process(delta: float) -> void:
 	if is_player:
 		var last_y = camera.global_position.y
 		camera.global_position = self.global_position
 		camera.global_position.y = exp_decay(last_y, self.global_position.y + camera_actual_height, camera_y_smooth, delta)
+		
+		# Check for health/armor changes and update UI if needed
+		if last_health != uniform_health.current_health:
+			last_health = uniform_health.current_health
+			UIManager.update_health(uniform_health.current_health, uniform_health.max_health)
+		
+		if last_armor != uniform_health.current_armor:
+			last_armor = uniform_health.current_armor
+			UIManager.update_armor(uniform_health.current_armor, uniform_health.max_armor)
+	
 	capsule_view_mesh.mesh.height = (orig_capsule_height - cr_h_reduce) if is_crouched else orig_capsule_height
 	capsule_view_mesh.position.y = capsule_view_mesh.mesh.height * 0.5
 	hat.position.y = capsule_view_mesh.mesh.height
 
+func _on_damaged() -> void:
+	# Update UI immediately when damage occurs
+	if is_player:
+		UIManager.update_health(uniform_health.current_health, uniform_health.max_health)
+		UIManager.update_armor(uniform_health.current_armor, uniform_health.max_armor)
+
+func _on_hit() -> void:
+	# Handle any player-specific hit effects here
+	pass
 
 func is_surface_too_steep(normal: Vector3) -> bool:
 	return normal.angle_to(Vector3.UP) > deg_to_rad(50)

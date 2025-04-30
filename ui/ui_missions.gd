@@ -58,10 +58,7 @@ func _debug_check_signal_connections() -> void:
 
 # Handler for when a mission is added
 func _on_mission_added(mission_id: String, title: String, description: String) -> void:
-	print("UIMissions: Mission added signal received: " + mission_id)
-	
-	# Remove ALL "no missions" items
-	# Find and remove any existing "No Active Missions" item
+
 	if "no_mission" in mission_map:
 		var no_mission_item = mission_map["no_mission"]
 		if no_mission_item != null:

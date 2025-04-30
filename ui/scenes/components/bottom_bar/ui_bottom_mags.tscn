@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://rtdd683wg8qi"]
 
-[ext_resource type="Texture2D" uid="uid://c7kvislep5fh3" path="res://ui/bg bottom little space.png" id="1_hdww5"]
-[ext_resource type="Texture2D" uid="uid://dpbjv5yknuqra" path="res://ui/mags icon@2x.png" id="2_tlvx2"]
+[ext_resource type="Texture2D" uid="uid://c7kvislep5fh3" path="res://ui/assets/backgrounds/bg bottom little space.png" id="1_hdww5"]
+[ext_resource type="Texture2D" uid="uid://dpbjv5yknuqra" path="res://ui/assets/icons/weapons/mags icon@2x.png" id="2_tlvx2"]
 [ext_resource type="Theme" uid="uid://dglq35eqxqdbb" path="res://theme/gametheme_dark.tres" id="3_ld8i4"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="4_7q1vc"]
 

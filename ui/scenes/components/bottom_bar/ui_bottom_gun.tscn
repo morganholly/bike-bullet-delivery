@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://faugrq2xktpn"]
 
-[ext_resource type="Texture2D" uid="uid://dig03ea0r0mwd" path="res://ui/bg bottom gun space.png" id="1_gmwxv"]
-[ext_resource type="Texture2D" uid="uid://7ds2t6thondr" path="res://ui/gun r51 icon@2x.png" id="2_lbw0g"]
+[ext_resource type="Texture2D" uid="uid://dig03ea0r0mwd" path="res://ui/assets/backgrounds/bg bottom gun space.png" id="1_gmwxv"]
+[ext_resource type="Texture2D" uid="uid://7ds2t6thondr" path="res://ui/assets/icons/weapons/gun r51 icon@2x.png" id="2_lbw0g"]
 [ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="3_kxose"]
 
 [node name="UIBottomGun" type="Control"]

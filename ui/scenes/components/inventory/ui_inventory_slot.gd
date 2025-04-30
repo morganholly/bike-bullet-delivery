@@ -63,4 +63,4 @@ func set_selected(selected: bool) -> void:
 		$ActiveBar.visible = false
 		$PassiveBar.visible = true
 		slot_number.position.x -= number_offset_x
-		slot_number.position.y -= number_offset_y
+		slot_number.position.y -= number_offset_y 
