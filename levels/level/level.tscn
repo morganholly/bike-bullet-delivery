@@ -1,16 +1,14 @@
-[gd_scene load_steps=25 format=4 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=19 format=4 uid="uid://dq8uucqyty7x2"]
 
-[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/level/level.gd" id="1_gmn8u"]
+[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_gmn8u"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="1_mmlqq"]
 [ext_resource type="Texture2D" uid="uid://b60co5adnskoy" path="res://enviroment/Buildings/Townhall/oldtownhall_v2.png" id="2_jww0w"]
 [ext_resource type="MeshLibrary" uid="uid://bwvpkbtnv6luj" path="res://enviroment/SmallerObjectsLib.tres" id="2_k0d2v"]
-[ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="4_pn60j"]
-[ext_resource type="Texture2D" uid="uid://60pvunuvjrjd" path="res://npcs/playerEntity/rollerblader_spritesheet.png" id="5_1ub4c"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="6_5rmu0"]
-[ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="6_gspqf"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="7_vfugj"]
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="9_qgq1o"]
+[ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="12_gspqf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
 panorama = ExtResource("1_jb04a")
@@ -24,53 +22,6 @@ background_mode = 2
 sky = SubResource("Sky_vfugj")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gr3rn"]
-atlas = ExtResource("5_1ub4c")
-region = Rect2(114, 0, 57, 59)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rdatg"]
-atlas = ExtResource("5_1ub4c")
-region = Rect2(57, 0, 57, 59)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4oq1c"]
-atlas = ExtResource("5_1ub4c")
-region = Rect2(171, 0, 57, 59)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vw4be"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gr3rn")
-}],
-"loop": true,
-"name": &"idle_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gr3rn")
-}],
-"loop": true,
-"name": &"idle_front",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rdatg")
-}],
-"loop": true,
-"name": &"idle_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4oq1c")
-}],
-"loop": true,
-"name": &"idle_right",
-"speed": 5.0
-}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou7fu"]
 resource_name = "Material.001"
@@ -145,6 +96,7 @@ data = PackedVector3Array(-1.1381, 1.7527, 0.3921, -1.1381, 2.0042, 0.0065, -1.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgq1o"]
 transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_gmn8u")
@@ -193,26 +145,6 @@ data = {
 "cells": PackedInt32Array(65479, 65389, 1441807)
 }
 
-[node name="WorldModel3" type="RigidBody3D" parent="."]
-transform = Transform3D(-0.0590102, 0, 0.998257, 0, 1, 0, -0.998257, 0, -0.0590102, -40.2121, -0.215884, -82.9318)
-mass = 0.001
-gravity_scale = 0.0
-sleeping = true
-freeze = true
-
-[node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel3" node_paths=PackedStringArray("designated_parent")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5098, 5.74414, -88.2653)
-top_level = true
-layers = 3
-pixel_size = 0.03
-transparent = false
-texture_filter = 2
-render_priority = 3
-sprite_frames = SubResource("SpriteFrames_vw4be")
-animation = &"idle_back"
-script = ExtResource("6_gspqf")
-designated_parent = NodePath("..")
-
 [node name="CharControllerV2" parent="." instance=ExtResource("6_5rmu0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.3574, 1.00227, -84.5391)
 
@@ -225,8 +157,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_003/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pn60j")
-
-[node name="fog quad" parent="." instance=ExtResource("4_pn60j")]
 
 [node name="UILayer" parent="." instance=ExtResource("7_vfugj")]
 
@@ -294,3 +224,6 @@ material = SubResource("StandardMaterial3D_qgq1o")
 transform = Transform3D(-0.997666, 0, -0.0682766, 0, 1, 0, 0.0682766, 0, -0.997666, -58.2522, 4.09515, 46.0335)
 size = Vector3(12.3045, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="Demon" parent="." instance=ExtResource("12_gspqf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.2336, 6.44571, -66.8296)

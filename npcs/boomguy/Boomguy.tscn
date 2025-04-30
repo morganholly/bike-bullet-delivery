@@ -150,6 +150,7 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_26o6u")
+follow_strength = 6
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_7u3ht")]
 max_armor = 0.0
@@ -180,6 +181,7 @@ shape = SubResource("SphereShape3D_4rmfa")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]
 transform = Transform3D(-0.999999, 0.000553374, 0.00112828, 1.14177e-10, -0.897828, 0.440346, 0.00125668, 0.440346, 0.897827, 0, 1.97005, 0.0749006)
+visible = false
 spot_range = 6.76936
 spot_angle = 46.8611
 
