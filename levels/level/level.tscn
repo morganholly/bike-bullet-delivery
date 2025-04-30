@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://qguhnpgbrv0a"]
+[gd_scene load_steps=16 format=4 uid="uid://qguhnpgbrv0a"]
 
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="1_mmlqq"]
@@ -6,6 +6,7 @@
 [ext_resource type="MeshLibrary" uid="uid://bwvpkbtnv6luj" path="res://enviroment/SmallerObjectsLib.tres" id="2_k0d2v"]
 [ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="4_pn60j"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="6_5rmu0"]
+[ext_resource type="PackedScene" uid="uid://dla5mj6dnjwc8" path="res://enviroment/tree small.glb" id="7_vfugj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
 panorama = ExtResource("1_jb04a")
@@ -144,3 +145,18 @@ shape = SubResource("ConcavePolygonShape3D_pn60j")
 
 [node name="player" parent="." instance=ExtResource("6_5rmu0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16433, 4.16016, 0)
+
+[node name="tree small" parent="." instance=ExtResource("7_vfugj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5342, 1.2, 22.4658)
+
+[node name="tree small2" parent="." instance=ExtResource("7_vfugj")]
+transform = Transform3D(0.120397, 0, -0.992726, 0, 1, 0, 0.992726, 0, 0.120397, -1.29564, 1.2, -73.3952)
+
+[node name="tree small3" parent="." instance=ExtResource("7_vfugj")]
+transform = Transform3D(0.964783, 0, -0.263048, 0, 1, 0, 0.263048, 0, 0.964783, -16.0725, 1.19999, -99.6294)
+
+[node name="tree small4" parent="." instance=ExtResource("7_vfugj")]
+transform = Transform3D(-0.770969, 0, 0.636872, 0, 1, 0, -0.636872, 0, -0.770969, -3.37669, 1.2, -91.9582)
+
+[node name="tree small5" parent="." instance=ExtResource("7_vfugj")]
+transform = Transform3D(0.027503, 0, 0.999622, 0, 1, 0, -0.999622, 0, 0.027503, -8.14493, 1.2, -84.682)
