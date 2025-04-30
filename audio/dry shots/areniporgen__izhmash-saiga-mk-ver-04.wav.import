@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgnifwyhy0ake"
+path="res://.godot/imported/areniporgen__izhmash-saiga-mk-ver-04.wav-c07b7581c760eee1c7c52dbb2cd11daf.sample"
+
+[deps]
+
+source_file="res://audio/dry shots/areniporgen__izhmash-saiga-mk-ver-04.wav"
+dest_files=["res://.godot/imported/areniporgen__izhmash-saiga-mk-ver-04.wav-c07b7581c760eee1c7c52dbb2cd11daf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

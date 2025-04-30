@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bl2n3jggbbfal"
+path="res://.godot/imported/isbeorn__holster-12.wav-c8644b1af8190f25ababd3b980698403.sample"
+
+[deps]
+
+source_file="res://audio/holster slot change sounds/isbeorn__holster-12.wav"
+dest_files=["res://.godot/imported/isbeorn__holster-12.wav-c8644b1af8190f25ababd3b980698403.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

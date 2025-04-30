@@ -1,9 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://xrks1ho84k4w"]
+[gd_scene load_steps=31 format=3 uid="uid://xrks1ho84k4w"]
 
 [ext_resource type="Script" uid="uid://cdegx4otnhpbw" path="res://weapons/guns/gun.gd" id="1_tsf64"]
 [ext_resource type="Script" uid="uid://dic641n02q3ww" path="res://weapons/guns/gun_stats.gd" id="2_14xyu"]
 [ext_resource type="Texture2D" uid="uid://cu48mpcxhj886" path="res://graphics/crosshairs/crosshair_2b_512.png" id="3_14xyu"]
 [ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="3_xl871"]
+[ext_resource type="AudioStream" uid="uid://bj3wjl3rsch32" path="res://audio/dry shots/areniporgen__izhmash-saiga-mk-ver-01.wav" id="5_y87yb"]
+[ext_resource type="AudioStream" uid="uid://jarcbeoap774" path="res://audio/dry shots/areniporgen__izhmash-saiga-mk-ver-03.wav" id="7_xon38"]
+[ext_resource type="AudioStream" uid="uid://cgnifwyhy0ake" path="res://audio/dry shots/areniporgen__izhmash-saiga-mk-ver-04.wav" id="8_ttmdg"]
+[ext_resource type="AudioStream" uid="uid://dwbma0nmjgedl" path="res://audio/dry shots/areniporgen__izhmash-saiga-mk-ver-05.wav" id="9_s3848"]
+[ext_resource type="AudioStream" uid="uid://crkm5vkcywp7n" path="res://audio/dry shots/areniporgen__izhmash-saiga-mk-ver-06.wav" id="10_qsts4"]
+[ext_resource type="AudioStream" uid="uid://xmtgvoyddfat" path="res://audio/gunshot tails/blacklightkabuki__gunshot-open-area-01.wav" id="10_s3848"]
+[ext_resource type="AudioStream" uid="uid://dhedospfbx0dy" path="res://audio/gunshot tails/blacklightkabuki__gunshot-open-area-02.wav" id="11_qsts4"]
+[ext_resource type="AudioStream" uid="uid://5mws28xa1l2l" path="res://audio/gunshot tails/blacklightkabuki__gunshot-open-area-03.wav" id="12_gdxst"]
+[ext_resource type="AudioStream" uid="uid://cdaxshg5j6w7i" path="res://audio/gunshot tails/blacklightkabuki__gunshot-open-area-04.wav" id="13_4volq"]
+[ext_resource type="AudioStream" uid="uid://jel5emilerre" path="res://audio/gunshot tails/blacklightkabuki__gunshot-open-area-05.wav" id="14_jejxk"]
+[ext_resource type="AudioStream" uid="uid://dm34xaouxho62" path="res://audio/pistol cocking/janthracite__1911-pistol-cocking-01.wav" id="15_xdie4"]
+[ext_resource type="AudioStream" uid="uid://dttgryov0m0ad" path="res://audio/pistol cocking/janthracite__1911-pistol-cocking-02.wav" id="16_fqcat"]
+[ext_resource type="AudioStream" uid="uid://c4e24012iorxj" path="res://audio/pistol cocking/janthracite__1911-pistol-cocking-03.wav" id="17_qw2vc"]
+[ext_resource type="AudioStream" uid="uid://r4s03s4tegvs" path="res://audio/pistol cocking/janthracite__1911-pistol-cocking-04.wav" id="18_fj4u8"]
+[ext_resource type="AudioStream" uid="uid://bv6f3wq6grk2c" path="res://audio/pistol cocking/janthracite__1911-pistol-cocking-05.wav" id="19_nndib"]
+[ext_resource type="AudioStream" uid="uid://2ykaoabkrojn" path="res://audio/empty shot/mpierluissi__gunrif_m1-garand-dry-fire_mp-01.wav" id="20_fj4u8"]
+[ext_resource type="AudioStream" uid="uid://cjy04ddkv4w46" path="res://audio/empty shot/mpierluissi__gunrif_m1-garand-dry-fire_mp-02.wav" id="21_nndib"]
+[ext_resource type="AudioStream" uid="uid://di5hdatyc2ihn" path="res://audio/empty shot/mpierluissi__gunrif_m1-garand-dry-fire_mp-03.wav" id="22_1f2y5"]
 
 [sub_resource type="Resource" id="Resource_crcux"]
 script = ExtResource("3_xl871")
@@ -37,6 +55,40 @@ fixed_size = true
 material = SubResource("StandardMaterial3D_tsf64")
 size = Vector2(0.25, 0.25)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xl871"]
+random_pitch = 1.05
+streams_count = 5
+stream_0/stream = ExtResource("5_y87yb")
+stream_1/stream = ExtResource("7_xon38")
+stream_2/stream = ExtResource("8_ttmdg")
+stream_3/stream = ExtResource("9_s3848")
+stream_4/stream = ExtResource("10_qsts4")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xdie4"]
+random_pitch = 1.05
+streams_count = 5
+stream_0/stream = ExtResource("10_s3848")
+stream_1/stream = ExtResource("11_qsts4")
+stream_2/stream = ExtResource("12_gdxst")
+stream_3/stream = ExtResource("13_4volq")
+stream_4/stream = ExtResource("14_jejxk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1f2y5"]
+random_pitch = 1.1
+streams_count = 5
+stream_0/stream = ExtResource("15_xdie4")
+stream_1/stream = ExtResource("16_fqcat")
+stream_2/stream = ExtResource("17_qw2vc")
+stream_3/stream = ExtResource("18_fj4u8")
+stream_4/stream = ExtResource("19_nndib")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fqcat"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("20_fj4u8")
+stream_1/stream = ExtResource("21_nndib")
+stream_2/stream = ExtResource("22_1f2y5")
+
 [node name="gun_action" type="Node3D"]
 script = ExtResource("1_tsf64")
 gun_stats = SubResource("Resource_tan0m")
@@ -52,3 +104,26 @@ visible = false
 sorting_offset = 20.0
 mesh = SubResource("QuadMesh_14xyu")
 skeleton = NodePath("")
+
+[node name="dry shots" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_xl871")
+max_polyphony = 4
+bus = &"Gunshots"
+
+[node name="tails" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_xdie4")
+max_polyphony = 8
+bus = &"Gun Tails"
+
+[node name="cocking" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_1f2y5")
+bus = &"World SFX"
+
+[node name="trigger" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fqcat")
+max_polyphony = 3
+bus = &"World SFX"
+
+[node name="casing" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 8
+bus = &"World SFX"

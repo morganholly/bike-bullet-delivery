@@ -1,4 +1,7 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://cthwvp7fh5v76"]
+[gd_resource type="AudioBusLayout" load_steps=14 format=3 uid="uid://cthwvp7fh5v76"]
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_g28q7"]
+resource_name = "Distortion"
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
@@ -17,10 +20,60 @@ cutoff_hz = 11671.0
 resource_name = "Amplify"
 volume_db = 24.0
 
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_g28q7"]
+resource_name = "Amplify"
+volume_db = 24.0
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+mode = 1
+drive = 0.2
+post_gain = 12.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_n8wo2"]
+resource_name = "HighPassFilter"
+cutoff_hz = 30.0
+db = 2
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.9
+damping = 0.8
+dry = 0.9
+wet = 0.1
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
+resource_name = "Delay"
+tap1_delay_ms = 194.0
+tap1_level_db = -12.0
+tap1_pan = 0.0
+tap2_delay_ms = 589.0
+tap2_level_db = -24.0
+tap2_pan = 0.0
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_n8wo2"]
+resource_name = "Amplify"
+volume_db = 12.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_g28q7"]
+resource_name = "HighPassFilter"
+cutoff_hz = 60.0
+db = 2
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_g28q7"]
+resource_name = "Delay"
+dry = 0.0
+tap1_delay_ms = 90.0
+tap1_level_db = 0.0
+tap1_pan = 0.0
+tap2_active = false
+
 [resource]
 bus/0/volume_db = 0.267241
-bus/0/effect/0/effect = SubResource("AudioEffectHardLimiter_j3pel")
+bus/0/effect/0/effect = SubResource("AudioEffectDistortion_g28q7")
 bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectHardLimiter_j3pel")
+bus/0/effect/1/enabled = true
 bus/1/name = &"Ambient"
 bus/1/solo = false
 bus/1/mute = false
@@ -51,3 +104,31 @@ bus/4/effect/1/effect = SubResource("AudioEffectLowPassFilter_j3pel")
 bus/4/effect/1/enabled = true
 bus/4/effect/2/effect = SubResource("AudioEffectAmplify_j3pel")
 bus/4/effect/2/enabled = true
+bus/5/name = &"Gunshots"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"World SFX"
+bus/5/effect/0/effect = SubResource("AudioEffectAmplify_g28q7")
+bus/5/effect/0/enabled = true
+bus/5/effect/1/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/5/effect/1/enabled = true
+bus/5/effect/2/effect = SubResource("AudioEffectHighPassFilter_n8wo2")
+bus/5/effect/2/enabled = true
+bus/6/name = &"Gun Tails"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = -5.93075
+bus/6/send = &"World SFX"
+bus/6/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
+bus/6/effect/0/enabled = true
+bus/6/effect/1/effect = SubResource("AudioEffectDelay_j3pel")
+bus/6/effect/1/enabled = true
+bus/6/effect/2/effect = SubResource("AudioEffectAmplify_n8wo2")
+bus/6/effect/2/enabled = true
+bus/6/effect/3/effect = SubResource("AudioEffectHighPassFilter_g28q7")
+bus/6/effect/3/enabled = true
+bus/6/effect/4/effect = SubResource("AudioEffectDelay_g28q7")
+bus/6/effect/4/enabled = true

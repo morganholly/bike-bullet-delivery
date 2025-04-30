@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3fs0c6k7u0v5"
+path="res://.godot/imported/joblez__m1911-pistol-27.wav-8d4801b03c0656cdd226a7b334df4834.sample"
+
+[deps]
+
+source_file="res://audio/pistol random clicks/joblez__m1911-pistol-27.wav"
+dest_files=["res://.godot/imported/joblez__m1911-pistol-27.wav-8d4801b03c0656cdd226a7b334df4834.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

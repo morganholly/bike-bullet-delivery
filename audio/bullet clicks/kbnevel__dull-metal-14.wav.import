@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wh7wg2t33k7e"
+path="res://.godot/imported/kbnevel__dull-metal-14.wav-27aa639727f299b9a9a8a04b9669c017.sample"
+
+[deps]
+
+source_file="res://audio/bullet clicks/kbnevel__dull-metal-14.wav"
+dest_files=["res://.godot/imported/kbnevel__dull-metal-14.wav-27aa639727f299b9a9a8a04b9669c017.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

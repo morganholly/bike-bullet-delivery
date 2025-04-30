@@ -17,6 +17,13 @@ var reload_timer: float = 0
 var is_reloading: bool = false  # Flag to track reload state
 var ammo_pool_ref: Node = null  # Reference to the ammo pool
 
+@onready var audio_dry_shots: AudioStreamPlayer3D = $"dry shots"
+@onready var audio_tails: AudioStreamPlayer = $tails
+@onready var audio_cocking: AudioStreamPlayer3D = $cocking
+@onready var trigger: AudioStreamPlayer3D = $trigger
+
+var tween_timer_cocking: Tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#var instance = gun_mesh.instantiate()
@@ -26,6 +33,8 @@ func _ready() -> void:
 	bullets_in_mag = randi_range(mag_rand_fill_min, min(mag_rand_fill_max, gun_stats.mag_capacity))
 	extra_mags = randi_range(extra_mag_rand_min, extra_mag_rand_max)
 	ray_cast_3d.add_exception(self.get_parent())
+	
+	tween_timer_cocking = get_tree().create_tween()
 	
 	# Don't update UI yet - wait until we have an ammo pool reference
 
@@ -45,6 +54,7 @@ func _process(delta: float) -> void:
 		
 		# Check if reload just completed this frame
 		if previous_reload_timer > 0 and reload_timer == 0:
+			audio_cocking.play()
 			is_reloading = false
 			# Update reload state and bullet count when reload is complete
 			UIManager.set_reload_state(false)
@@ -71,87 +81,48 @@ func update_ui_ammo_display(ammo_pool: Node) -> void:
 	var reserve_ammo = calculate_reserve_ammo(ammo_pool)
 	UIManager.update_bullet_display(bullets_in_mag, reserve_ammo)
 
+func gun_cocking(min_delay: float, max_delay: float):
+	tween_timer_cocking.tween_callback(audio_cocking.play).set_delay(randf_range(min_delay, max_delay))
+
 ## returns if entering reload time
 func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 	ammo_pool_ref = ammo_pool  # Store reference to ammo pool
 	
+	trigger.play()
 	#print("shoot", gun_stats.hit_type)
 	match gun_stats.hit_type:
 		GunStats.HitType.Hitscan:
 			#print("is hitscan gun")
+			var hit_target: bool
+			var parent_object: Node3D
+			var health_manager: Node
 			if ray_cast_3d.is_colliding():
 				print("hit!")
 				if ray_cast_3d.get_collider().get_collision_layer() & 0b01000100 > 0:
 					#print("has right coll mask")
 					if ray_cast_3d.get_collider().is_in_group(&"Damageable"):
 						#print("is damageable")
-						var parent_object = ray_cast_3d.get_collider()
-						var health_manager: Node
+						parent_object = ray_cast_3d.get_collider()
 						for child in parent_object.get_children():
 							if child.is_in_group(&"HealthManager"):
 								health_manager = child
 								break
-						if not gun_stats.infinite_ammo:
-							var can_shoot = min(shots, bullets_in_mag)
-							if can_shoot > 0 and reload_timer <= 0:
-								bullets_in_mag -= can_shoot
-								#health_manager.damage(gun_stats.shot_damage * can_shoot)
-								gun_stats.shot_damage.damage(parent_object, health_manager)
-								print("bang, bullets left: ", bullets_in_mag)
-								# Update UI after shooting
-								update_ui_ammo_display(ammo_pool)
-								if bullets_in_mag > 0:
-									return false
-								else:
-									var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
-									bullets_in_mag = reload_result.mag_count
-									reload_timer = reload_result.reload_time
-									print("reloading, bullets left: ", bullets_in_mag)
-									# Mark as reloading and show reload label
-									is_reloading = true
-									UIManager.set_reload_state(true)
-									update_ui_ammo_display(ammo_pool)  # Still show ammo count (0)
-									return true
-							elif reload_timer <= 0:
-								var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
-								bullets_in_mag = reload_result.mag_count
-								reload_timer = reload_result.reload_time
-								print("reloading, bullets left: ", bullets_in_mag)
-								# Mark as reloading and show reload label
-								is_reloading = true
-								UIManager.set_reload_state(true)
-								update_ui_ammo_display(ammo_pool)  # Still show ammo count
-								return true
-							else:
-								print("wait for reload timer, time: ", reload_timer)
-								return true
-						else:
-							#health_manager.damage(gun_stats.shot_damage * shots)
-							gun_stats.shot_damage.damage(parent_object, health_manager)
-							return false
-				# could add else here to spawn bullet hole decal
-			else:
-				print("missed!")
-				if not gun_stats.infinite_ammo:
-					var can_shoot = min(shots, bullets_in_mag)
-					if can_shoot > 0 and reload_timer <= 0:
-						bullets_in_mag -= can_shoot
-						print("bang, bullets left: ", bullets_in_mag)
-						# Update UI after shooting
-						update_ui_ammo_display(ammo_pool)
-						if bullets_in_mag > 0:
-							return false
-						else:
-							var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
-							bullets_in_mag = reload_result.mag_count
-							reload_timer = reload_result.reload_time
-							print("reloading, bullets left: ", bullets_in_mag)
-							# Mark as reloading and show reload label
-							is_reloading = true
-							UIManager.set_reload_state(true)
-							update_ui_ammo_display(ammo_pool)  # Still show ammo count
-							return true
-					elif reload_timer <= 0:
+						hit_target = true
+			if not gun_stats.infinite_ammo:
+				var can_shoot = min(shots, bullets_in_mag)
+				if can_shoot > 0 and reload_timer <= 0:
+					audio_dry_shots.play()
+					audio_tails.play()
+					bullets_in_mag -= can_shoot
+					#health_manager.damage(gun_stats.shot_damage * can_shoot)
+					if hit_target:
+						gun_stats.shot_damage.damage(parent_object, health_manager)
+					print("bang, bullets left: ", bullets_in_mag)
+					# Update UI after shooting
+					update_ui_ammo_display(ammo_pool)
+					if bullets_in_mag > 0:
+						return false
+					else:
 						var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
 						bullets_in_mag = reload_result.mag_count
 						reload_timer = reload_result.reload_time
@@ -159,11 +130,63 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 						# Mark as reloading and show reload label
 						is_reloading = true
 						UIManager.set_reload_state(true)
-						update_ui_ammo_display(ammo_pool)  # Still show ammo count
+						update_ui_ammo_display(ammo_pool)  # Still show ammo count (0)
 						return true
-					else:
-						print("wait for reload timer, time: ", reload_timer)
-						return true
+				elif reload_timer <= 0:
+					var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
+					bullets_in_mag = reload_result.mag_count
+					reload_timer = reload_result.reload_time
+					print("reloading, bullets left: ", bullets_in_mag)
+					# Mark as reloading and show reload label
+					is_reloading = true
+					UIManager.set_reload_state(true)
+					update_ui_ammo_display(ammo_pool)  # Still show ammo count
+					return true
+				else:
+					print("wait for reload timer, time: ", reload_timer)
+					return true
+			else:
+				audio_dry_shots.play()
+				audio_tails.play()
+				#health_manager.damage(gun_stats.shot_damage * shots)
+				if hit_target:
+					gun_stats.shot_damage.damage(parent_object, health_manager)
+				return false
+				# could add else here to spawn bullet hole decal
+			#else:
+				#print("missed!")
+				#if not gun_stats.infinite_ammo:
+					#var can_shoot = min(shots, bullets_in_mag)
+					#if can_shoot > 0 and reload_timer <= 0:
+						#bullets_in_mag -= can_shoot
+						#print("bang, bullets left: ", bullets_in_mag)
+						## Update UI after shooting
+						#update_ui_ammo_display(ammo_pool)
+						#if bullets_in_mag > 0:
+							#return false
+						#else:
+							#var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
+							#bullets_in_mag = reload_result.mag_count
+							#reload_timer = reload_result.reload_time
+							#print("reloading, bullets left: ", bullets_in_mag)
+							## Mark as reloading and show reload label
+							#is_reloading = true
+							#UIManager.set_reload_state(true)
+							#update_ui_ammo_display(ammo_pool)  # Still show ammo count
+							#return true
+					#elif reload_timer <= 0:
+						#var reload_result: Dictionary = ammo_pool.reload(gun_stats.bullet_id, gun_stats.mag_capacity, gun_stats.reload_time, gun_stats.partial_refill_time)
+						#bullets_in_mag = reload_result.mag_count
+						#reload_timer = reload_result.reload_time
+						#print("reloading, bullets left: ", bullets_in_mag)
+						## Mark as reloading and show reload label
+						#is_reloading = true
+						#UIManager.set_reload_state(true)
+						#update_ui_ammo_display(ammo_pool)  # Still show ammo count
+						#return true
+					#else:
+						#print("wait for reload timer, time: ", reload_timer)
+						#return true
 	return false
 
 

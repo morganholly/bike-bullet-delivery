@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjy04ddkv4w46"
+path="res://.godot/imported/mpierluissi__gunrif_m1-garand-dry-fire_mp-02.wav-8f01e0cd8892ba4bc9971be57ada1b9e.sample"
+
+[deps]
+
+source_file="res://audio/empty shot/mpierluissi__gunrif_m1-garand-dry-fire_mp-02.wav"
+dest_files=["res://.godot/imported/mpierluissi__gunrif_m1-garand-dry-fire_mp-02.wav-8f01e0cd8892ba4bc9971be57ada1b9e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
