@@ -8,12 +8,10 @@ var mission_targets = []
 @export var spawn_timer_interval: float = 30.0  # Time between spawns in seconds
 @export var max_enemies: int = 10  # Maximum number of enemies to have at once
 @export var enemy_types: Array[PackedScene] = []  # Types of enemies to spawn
-@export var fallback_spawn_points: Array[NodePath] = []  # Fallback spawn points if detector fails
 @export var debug_spawn_info: bool = true  # Print detailed spawn information
 
 # Spawn area detector reference
 var spawn_detector: Node
-var fallback_spawn_nodes: Array[Node3D] = []
 var spawn_count: int = 0  # Count of enemies spawned
 
 func _ready():
@@ -30,15 +28,12 @@ func _ready():
 	_create_test_missions()
 	
 	# Initialize spawn area detector
-	_setup_spawn_detector()
-	
-	# Setup fallback spawn points
-	_setup_fallback_spawn_points()
+	await _setup_spawn_detector()
 	
 	# Start enemy spawning timer
 	_start_enemy_spawning()
 
-func _setup_spawn_detector():
+func _setup_spawn_detector() -> void:
 	# Check if spawn detector exists in the scene
 	spawn_detector = get_node_or_null("/root/SpawnAreaDetector")
 	
@@ -57,48 +52,10 @@ func _setup_spawn_detector():
 			load("res://npcs/zombie/zombie.tscn")
 		]
 	
-	# Wait a moment for the spawn detector to initialize
-	await get_tree().create_timer(1.0).timeout
+	# Wait for initialization to complete
+	await spawn_detector.initialize()
 	
-	# Check if the spawn detector found any valid points
-	if spawn_detector.valid_spawn_points.size() == 0:
-		# Force reinitialization
-		spawn_detector.reinitialize_spawn_points()
-		
-		# If still no points, we'll use fallback points
-		if spawn_detector.valid_spawn_points.size() == 0:
-			# Force reinitialization
-			spawn_detector.reinitialize_spawn_points()
-
-func _setup_fallback_spawn_points():
-	# Convert NodePaths to actual nodes
-	for path in fallback_spawn_points:
-		var node = get_node_or_null(path)
-		if node:
-			fallback_spawn_nodes.append(node)
 	
-	# If no fallback points specified, create some default ones
-	if fallback_spawn_nodes.size() == 0:
-		# Create a container for fallback points
-		var container = Node3D.new()
-		container.name = "FallbackSpawnPoints"
-		add_child(container)
-		
-		# Create some default fallback points around the level
-		var default_points = [
-			Vector3(0, 0, 0),
-			Vector3(20, 0, 20),
-			Vector3(-20, 0, -20),
-			Vector3(20, 0, -20),
-			Vector3(-20, 0, 20)
-		]
-		
-		for i in range(default_points.size()):
-			var point = Node3D.new()
-			point.name = "FallbackPoint" + str(i)
-			point.global_position = default_points[i]
-			container.add_child(point)
-			fallback_spawn_nodes.append(point)
 
 func _start_enemy_spawning():
 	# Create a timer for periodic spawning
@@ -116,9 +73,20 @@ func _on_spawn_timer_timeout():
 	if current_enemies >= max_enemies:
 		return
 	
-	# Get a spawn point
-	var spawn_point = _get_spawn_point()
+	# Get player position for spawn point selection
+	var player = get_tree().get_first_node_in_group("Player")
+	var spawn_point = Vector3.ZERO
+	
+	if player:
+		# For regular enemy spawning, we want them to spawn away from the player
+		spawn_point = spawn_detector.get_spawn_point_away(player.global_position)
+	else:
+		# If no player, just get a random spawn point
+		spawn_point = spawn_detector.get_spawn_point()
+	
 	if spawn_point == Vector3.ZERO:
+		if debug_spawn_info:
+			print("Failed to get valid spawn point")
 		return
 	
 	# Choose a random enemy type
@@ -127,32 +95,21 @@ func _on_spawn_timer_timeout():
 	# Spawn the enemy
 	_spawn_enemy(enemy_type, spawn_point)
 
-func _get_spawn_point() -> Vector3:
-	# Try to get a point from the spawn detector
-	if spawn_detector and spawn_detector.valid_spawn_points.size() > 0:
-		var point = spawn_detector.get_random_spawn_point()
-		return point
-	
-	# If no valid points from detector, use a fallback point
-	if fallback_spawn_nodes.size() > 0:
-		var fallback_node = fallback_spawn_nodes[randi() % fallback_spawn_nodes.size()]
-		return fallback_node.global_position
-	
-	# If no fallback points, use a default position
-	return Vector3(0, 0, 0)
-
 func _spawn_enemy(enemy_scene: PackedScene, position: Vector3):
 	# Create the enemy instance
 	var enemy = enemy_scene.instantiate()
-	
-	# Set position
-	enemy.global_position = position
+	print("a")
+	# Set position with a small vertical offset to prevent ground clipping
+	enemy.global_position = position + Vector3(0, 0.5, 0)  # Add 0.5 units up
 	
 	# Add to scene
 	add_child(enemy)
 	
 	# Increment spawn count
 	spawn_count += 1
+	
+	if debug_spawn_info:
+		print("Spawned enemy #", spawn_count, " at position: ", position)
 
 func _input(event):
 	# Add a key to manually trigger enemy spawning for testing
@@ -161,13 +118,30 @@ func _input(event):
 
 # Signal handler for when MissionManager requests a deliverable to be spawned
 func _on_request_spawn_deliverable(mission_id: String, position: Vector3) -> void:
+	var spawn_point = Vector3.ZERO
+	var player = get_tree().get_first_node_in_group("Player")
+	
+	# For the first mission, spawn in front of player
+	if mission_id == "mission_1" and player:
+		# Get a point in front of the player
+		var forward = -player.global_transform.basis.z
+		spawn_point = player.global_position + (forward * 3.0)  # 3 units in front
+		spawn_point.y += 1.0  # Lift it up more
+	else:
+		# For other missions, get a random spawn point
+		spawn_point = spawn_detector.get_spawn_point()
+		if spawn_point == Vector3.ZERO:
+			print("Level: Failed to get valid spawn point for deliverable")
+			return
+		spawn_point.y += 1.0  # Lift it up more
+	
 	# Create the deliverable instance using MissionManager
-	var deliverable = MissionManager.create_deliverable_instance(mission_id, position)
+	var deliverable = MissionManager.create_deliverable_instance(mission_id, spawn_point)
 	if deliverable:
 		# Add the instance to the scene tree
 		add_child(deliverable)
 	else:
-		print("LevelTest03: Failed to create deliverable instance for mission: " + mission_id)
+		print("Level: Failed to create deliverable instance for mission: " + mission_id)
 
 # Find NPCs in the scene to use as mission targets
 func _find_mission_targets():
