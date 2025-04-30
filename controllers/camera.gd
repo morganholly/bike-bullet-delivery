@@ -180,6 +180,11 @@ func _process(delta):
 			camera_transform = camera_third_person.global_transform
 		else:
 			camera_transform = camera_first_person.global_transform
+		
+		if Input.is_action_pressed("zoom"):
+			camera_first_person.fov = 30
+		else:
+			camera_first_person.fov = 80
 
 		if process_aim:
 			nodePointer.visible = true

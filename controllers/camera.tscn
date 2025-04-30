@@ -68,6 +68,7 @@ script = ExtResource("1_tf3c0")
 [node name="SpringArm3D" type="SpringArm3D" parent="Rotate/Flip"]
 
 [node name="CameraThirdPerson" type="Camera3D" parent="Rotate/Flip/SpringArm3D"]
+fov = 70.0
 
 [node name="AimRaycast" type="RayCast3D" parent="Rotate/Flip/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
@@ -80,6 +81,7 @@ collide_with_areas = true
 [node name="CameraFirstPerson" type="Camera3D" parent="Rotate/Flip/FirstPerson"]
 cull_mask = 1048573
 current = true
+fov = 80.0
 
 [node name="HoldPosition" type="Node3D" parent="Rotate/Flip/FirstPerson"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
