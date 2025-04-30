@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_ols0k"]
 script = ExtResource("3_ols0k")
 character_name = ""
-dialogue_text = "Big orders coming through! Get going. GO!"
+dialogue_text = "Big orders coming through!ROLLER BLADES on now! GO!"
 position = Vector2(-200, 0)
 scale = Vector2(1, 1)
 metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
