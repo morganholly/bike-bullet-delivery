@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=24 format=4 uid="uid://dq8uucqyty7x2"]
 
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/level/level.gd" id="1_gspqf"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="9_qgq1o"]
 [ext_resource type="PackedScene" uid="uid://dla5mj6dnjwc8" path="res://enviroment/tree small.glb" id="11_1ub4c"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="12_gspqf"]
+[ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="13_a4beh"]
+[ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="14_n1gn4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
 panorama = ExtResource("1_jb04a")
@@ -189,47 +191,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61041, 7.88885, -140.756)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93923, 7.88885, -146.21)
 size = Vector3(20.5174, 14.848, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(0.0213089, 0, 0.999773, 0, 1, 0, -0.999773, 0, 0.0213089, -123.325, 7.88885, -62.3749)
+transform = Transform3D(0.0213089, 0, 0.999773, 0, 1, 0, -0.999773, 0, 0.0213089, -127.284, 7.88885, -63.2352)
 size = Vector3(20.5174, 14.848, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.9478, 7.59653, -157.073)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.3498, 7.59653, -164.3)
 size = Vector3(24.2333, 14.2634, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135.985, 4.09515, -196.954)
+transform = Transform3D(0.979911, 0, 0.199436, 0, 1, 0, -0.199436, 0, 0.979911, 133.087, 4.09515, -203.042)
 size = Vector3(24.2333, 14.2634, 14.6955)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, 259.289, 4.09515, -45.7057)
+transform = Transform3D(-0.145461, 0, -0.989364, 0, 1, 0, 0.989364, 0, -0.145461, 263.263, 4.09515, -43.3191)
 size = Vector3(24.2333, 14.2634, 15.4937)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, 224.424, 4.09515, 177.775)
+transform = Transform3D(0.054166, 0, -0.998532, 0, 1, 0, 0.998532, 0, 0.054166, 223.866, 4.09515, 183.866)
 size = Vector3(14.4948, 14.2634, 36.7936)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, 24.6996, 4.09515, 175.138)
+transform = Transform3D(0.0570937, 0, -0.998369, 0, 1, 0, 0.998369, 0, 0.0570937, 24.0528, 4.09515, 184.327)
 size = Vector3(15.0534, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(0.0794161, 0, -0.996842, 0, 1, 0, 0.996842, 0, 0.0794161, -84.0141, 4.09515, 175.402)
+transform = Transform3D(0.0350042, 0, -0.999388, 0, 1, 0, 0.999388, 0, 0.0350042, -82.709, 4.09515, 182.745)
 size = Vector3(12.3045, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
-transform = Transform3D(-0.997666, 0, -0.0682766, 0, 1, 0, 0.0682766, 0, -0.997666, -58.2522, 4.09515, 46.0335)
+transform = Transform3D(-0.997666, 0, -0.0682766, 0, 1, 0, 0.0682766, 0, -0.997666, -62.783, 4.09515, 41.3948)
 size = Vector3(12.3045, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
@@ -300,3 +302,98 @@ transform = Transform3D(-0.370736, 0, -0.928738, 0, 1, 0, 0.928738, 0, -0.370736
 
 [node name="tree small12" parent="Tree" instance=ExtResource("11_1ub4c")]
 transform = Transform3D(0.743845, 0, -0.668352, 0, 1, 0, 0.668352, 0, 0.743845, 214.429, 1.98625, -186.654)
+
+[node name="player weapons" type="Node3D" parent="."]
+
+[node name="test_gun" parent="player weapons" instance=ExtResource("13_a4beh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.4493, 1.55283, -122.415)
+
+[node name="DemoBullets" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.9405, 1.125, -121.881)
+
+[node name="DemoBullets2" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.0742, 1.125, -122.061)
+
+[node name="DemoBullets3" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.848, 1.125, -120.028)
+
+[node name="DemoBullets4" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3815, 1.125, -122.356)
+
+[node name="DemoBullets5" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.826, 1.125, -120.759)
+
+[node name="DemoBullets6" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7022, 1.125, -121.437)
+
+[node name="DemoBullets7" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.1649, 6.425, -121.36)
+
+[node name="DemoBullets8" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.7419, 1.325, -124.917)
+
+[node name="DemoBullets9" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.807, 1.125, -121.354)
+
+[node name="DemoBullets10" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.7034, 1.125, -121.386)
+
+[node name="DemoBullets11" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2658, 1.125, -121.066)
+
+[node name="DemoBullets12" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8545, 2.82241, 24.9547)
+
+[node name="DemoBullets13" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1139, 2.74655, 25.4465)
+
+[node name="DemoBullets14" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1643, 2.83528, 25.7204)
+
+[node name="DemoBullets15" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5256, 1.325, 8.01295)
+
+[node name="DemoBullets16" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0758, 1.325, -108.796)
+
+[node name="DemoBullets17" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8748, 2.85814, -107.93)
+
+[node name="DemoBullets18" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4391, 1.325, -108.966)
+
+[node name="DemoBullets19" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.202, 1.325, -20.624)
+
+[node name="DemoBullets20" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.82, 1.325, 132.817)
+
+[node name="DemoBullets21" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.059, 1.325, 112.641)
+
+[node name="DemoBullets22" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42467, 1.325, 87.3273)
+
+[node name="DemoBullets23" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.65489, 1.325, 72.7041)
+
+[node name="DemoBullets24" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3398, 1.325, 100.056)
+
+[node name="DemoBullets25" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7507, 1.325, 103.976)
+
+[node name="DemoBullets26" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5977, 1.325, 136.211)
+
+[node name="DemoBullets27" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39503, 2.77783, 130.344)
+
+[node name="DemoBullets28" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6895, 1.325, 159.313)
+
+[node name="DemoBullets29" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.7382, 1.325, 156.497)
+
+[node name="DemoBullets30" parent="player weapons" instance=ExtResource("14_n1gn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.4834, 4.5207, 145.005)
