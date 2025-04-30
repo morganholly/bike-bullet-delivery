@@ -1,6 +1,5 @@
 extends Node
 
-
 @export_group("Health")
 @export var max_health: float = 20
 ## regen per second
@@ -15,17 +14,6 @@ extends Node
 @export var armor_condition_block_rate: Curve
 ## curve of armor percent to chance of letting thru some percent of damage
 @export var armor_condition_pass_scale: Curve
-
-#@export_group("Energy Armor")
-### energy level available for blocking damage
-#@export var max_energy_armor: float = 0
-### energy level overall
-#@export var max_energy: float = 0
-### energy overall feed rate into energy available for blocking damage
-#@export var energy_armor_recharge: float = 0
-### energy overall recharge rate
-#@export var energy_recharge: float = 0
-
 
 var current_health: float
 var current_armor: float
@@ -51,11 +39,19 @@ func _ready() -> void:
 	if armor_condition_pass_scale != null:
 		armor_condition_pass_scale.bake()
 		pass_curve_is_01 = abs(armor_condition_pass_scale.min_domain) < 0.001 and abs(armor_condition_pass_scale.min_value) < 0.001 and abs(armor_condition_pass_scale.max_domain - 1) < 0.001 and abs(armor_condition_pass_scale.max_value - 1) < 0.001
+	
+	# Initialize UI with current values
+	UIManager.update_health(current_health, max_health)
+	UIManager.update_armor(current_armor, max_armor)
 
 func _process(delta: float) -> void:
 	if not is_dead:
+		var old_health = current_health
+		var old_armor = current_armor
+		
 		current_health = min(current_health + delta * health_regen, max_health)
 		current_armor = min(current_armor + delta * armor_regen, max_armor)
+		
 
 func get_block_chance(armor_percent: float) -> float:
 	var chance: float
@@ -88,26 +84,25 @@ func get_pass_scale(armor_percent: float) -> float:
 	return scale
 
 func damage(amount: float) -> void:
+	var old_health = current_health
+	var old_armor = current_armor
+	
 	var chance: float = get_block_chance(current_armor / max_armor)
 	if randf() >= chance:
-		#print("hitting")
-		# do damage
 		var did_health_damage: bool = false
 		if current_armor >= amount:
-			#print("armor block")
 			var pass_scale = get_pass_scale(current_armor / max_armor)
 			current_armor = min(max_armor, max(0, current_armor - amount))
 			current_health = min(max_health, max(0, current_health - pass_scale * amount))
 			if pass_scale * amount > 0:
 				did_health_damage = true
 		else:
-			#print("insufficient armor")
 			did_health_damage = true
 			var pass_scale = get_pass_scale(current_armor / max_armor)
 			var remaining = amount - current_armor
 			current_armor = 0
 			current_health = min(max_health, max(0, current_health - remaining - pass_scale * amount))
-			#print(current_health)
+		
 		if hit_callback != null and hit_callback.is_valid():
 			hit_callback.call()
 		if did_health_damage:
@@ -117,8 +112,17 @@ func damage(amount: float) -> void:
 			is_dead = true
 			if death_callback != null and death_callback.is_valid():
 				death_callback.call()
+				
+		# Update UI if values changed
+		if current_health != old_health:
+			UIManager.update_health(current_health, max_health)
+		if current_armor != old_armor:
+			UIManager.update_armor(current_armor, max_armor)
 
 func damage_penetrate(amount_health: float, amount_armor: float) -> void:
+	var old_health = current_health
+	var old_armor = current_armor
+	
 	var damage_health: bool = abs(amount_health) > 0.0001
 	var damage_armor: bool = abs(amount_armor) > 0.0001
 	if damage_health or damage_armor:
@@ -136,6 +140,12 @@ func damage_penetrate(amount_health: float, amount_armor: float) -> void:
 			is_dead = true
 			if death_callback != null and death_callback.is_valid():
 				death_callback.call()
+				
+		# Update UI if values changed
+		if current_health != old_health:
+			UIManager.update_health(current_health, max_health)
+		if current_armor != old_armor:
+			UIManager.update_armor(current_armor, max_armor)
 
 func randi_range_wrapper(lower: int, upper: int) -> int:
 	return randi_range(lower, upper)

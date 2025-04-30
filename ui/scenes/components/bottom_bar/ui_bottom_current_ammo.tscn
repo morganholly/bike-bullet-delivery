@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdsvbnxi1usrd"]
+[gd_scene load_steps=5 format=3 uid="uid://bvf30llpjnocd"]
 
 [ext_resource type="Texture2D" uid="uid://euwvispw4gxn" path="res://ui/bg bottom big space.png" id="1_oed5u"]
 [ext_resource type="Texture2D" uid="uid://d0ycvgj2ldq5" path="res://ui/bullets icons@2x.png" id="2_1xt14"]

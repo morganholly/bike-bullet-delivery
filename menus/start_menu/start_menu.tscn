@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4sjqmxxive3p"]
+[gd_scene load_steps=4 format=3 uid="uid://b4sjqmxxive3p"]
 
-[ext_resource type="Script" uid="uid://cw77seiowm3nq" path="res://menus/start_menu/start_menu.gd" id="1_2u4vx"]
+[ext_resource type="Script" path="res://menus/start_menu/start_menu.gd" id="1_2u4vx"]
 [ext_resource type="PackedScene" uid="uid://dd2kfb0603a08" path="res://menus/start_menu/bullet_background.tscn" id="2_background"]
+[ext_resource type="Texture2D" uid="uid://cpmeh54dmly3u" path="res://menus/start_menu/bullet_buffet.png" id="3_ct3sm"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -23,7 +24,13 @@ color = Color(0.427451, 0.101961, 0.239216, 1)
 
 [node name="BulletBackground" parent="." instance=ExtResource("2_background")]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(658, 153)
+texture = ExtResource("3_ct3sm")
+
 [node name="Title" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
