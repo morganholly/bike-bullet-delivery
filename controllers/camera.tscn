@@ -85,6 +85,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="VectorPointer" type="Node3D" parent="Rotate/Flip/FirstPerson/HoldPosition"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rotate/Flip/FirstPerson/HoldPosition/VectorPointer"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.2)
@@ -92,6 +93,7 @@ mesh = SubResource("CylinderMesh_pceqe")
 skeleton = NodePath("../..")
 
 [node name="VectorPointer2" type="Node3D" parent="Rotate/Flip/FirstPerson/HoldPosition"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rotate/Flip/FirstPerson/HoldPosition/VectorPointer2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.2)

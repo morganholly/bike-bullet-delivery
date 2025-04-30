@@ -185,21 +185,21 @@ func _process(delta):
 			nodePointer.visible = true
 			if(nodeRaycast.is_colliding()):
 				colliding = true
-				nodePointer.visible = true
+				#nodePointer.visible = true
 				aim_pos = nodeRaycast.get_collision_point()
-				nodePointer.global_transform.origin = aim_pos
+				#nodePointer.global_transform.origin = aim_pos
 				aim_dist = nodeRaycast.global_transform.origin.distance_to(aim_pos)
 				aim_norm = nodeRaycast.get_collision_normal()
-				if aim_norm.is_equal_approx(Vector3(0, 1, 0)) or aim_norm.is_equal_approx(Vector3(0, -1, 0)):
-					nodePointer.global_transform.basis = Basis.looking_at(aim_norm, Vector3(1, 0, 0))
-				else:
-					nodePointer.global_transform.basis = Basis.looking_at(aim_norm)
+				#if aim_norm.is_equal_approx(Vector3(0, 1, 0)) or aim_norm.is_equal_approx(Vector3(0, -1, 0)):
+					#nodePointer.global_transform.basis = Basis.looking_at(aim_norm, Vector3(1, 0, 0))
+				#else:
+					#nodePointer.global_transform.basis = Basis.looking_at(aim_norm)
 			else:
 				colliding = false
-				nodePointer.visible = false
+				#nodePointer.visible = false
 				var hold_pos_global_vec = hold_position.global_position - self.global_position
 				aim_pos = hold_pos_global_vec * 10 + self.global_position
 				aim_dist = hold_pos_global_vec.length() * 10
 				aim_norm = Vector3.UP
-		else:
-			nodePointer.visible = false
+		#else:
+			#nodePointer.visible = false
