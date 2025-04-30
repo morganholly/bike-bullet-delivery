@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://hl8invlcxyuh"]
+[gd_scene load_steps=16 format=3 uid="uid://hl8invlcxyuh"]
 
 [ext_resource type="Script" uid="uid://dcgpdo2u1xsi0" path="res://controllers/camera.gd" id="1_tf3c0"]
 [ext_resource type="Texture2D" uid="uid://dvec65wcvwmre" path="res://graphics/guns/pistol_hand_angle.png" id="2_0h5nk"]
@@ -46,6 +46,54 @@ height = 0.4
 radial_segments = 8
 rings = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgs54"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 2
+diffuse_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("2_yu7di")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6wqp"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 2
+diffuse_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("3_1qon4")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qon4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 2
+diffuse_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("2_0h5nk")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyjsj"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 2
+diffuse_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("3_7p6mk")
+texture_filter = 0
+texture_repeat = false
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifya2"]
 shading_mode = 0
 disable_ambient_light = true
@@ -85,7 +133,7 @@ collide_with_areas = true
 [node name="CameraFirstPerson" type="Camera3D" parent="Rotate/Flip/FirstPerson"]
 cull_mask = 1048573
 current = true
-fov = 30.0
+fov = 80.0
 
 [node name="HoldPosition" type="Node3D" parent="Rotate/Flip/FirstPerson"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
@@ -113,8 +161,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
 [node name="aim" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.763, -5)
+visible = false
 
 [node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/aim"]
+material_override = SubResource("StandardMaterial3D_bgs54")
 cast_shadow = 0
 shaded = true
 no_depth_test = true
@@ -123,6 +173,7 @@ texture = ExtResource("2_yu7di")
 
 [node name="fire" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/aim"]
 visible = false
+material_override = SubResource("StandardMaterial3D_n6wqp")
 cast_shadow = 0
 shaded = true
 no_depth_test = true
@@ -133,6 +184,7 @@ texture = ExtResource("3_1qon4")
 transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 0.173648, -0.0858316, 0.98106, 1.856, -0.709, -1.758)
 
 [node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/normal"]
+material_override = SubResource("StandardMaterial3D_1qon4")
 cast_shadow = 0
 shaded = true
 no_depth_test = true
@@ -143,6 +195,7 @@ region_rect = Rect2(0, 200, 0, 0)
 [node name="fire" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/normal"]
 transform = Transform3D(0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 0, 0, 1, -0.007, 0.122, 0)
 visible = false
+material_override = SubResource("StandardMaterial3D_xyjsj")
 cast_shadow = 0
 shaded = true
 no_depth_test = true
