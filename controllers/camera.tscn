@@ -52,7 +52,6 @@ rings = 1
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-no_depth_test = true
 shading_mode = 2
 diffuse_mode = 2
 specular_mode = 2
@@ -64,7 +63,6 @@ texture_repeat = false
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-no_depth_test = true
 shading_mode = 2
 diffuse_mode = 2
 specular_mode = 2
@@ -76,7 +74,6 @@ texture_repeat = false
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-no_depth_test = true
 shading_mode = 2
 diffuse_mode = 2
 specular_mode = 2
@@ -88,7 +85,6 @@ texture_repeat = false
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-no_depth_test = true
 shading_mode = 2
 diffuse_mode = 2
 specular_mode = 2
@@ -100,7 +96,6 @@ texture_repeat = false
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-no_depth_test = true
 shading_mode = 2
 diffuse_mode = 2
 specular_mode = 2
@@ -112,7 +107,6 @@ texture_repeat = false
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-no_depth_test = true
 shading_mode = 2
 diffuse_mode = 2
 specular_mode = 2
@@ -184,6 +178,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
 [node name="hands" type="Node3D" parent="Rotate/Flip/FirstPerson"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
 [node name="aim" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.556, -4)
@@ -194,8 +189,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0, 0)
 material_override = SubResource("StandardMaterial3D_bgs54")
 cast_shadow = 0
 shaded = true
-no_depth_test = true
+alpha_cut = 1
 texture_filter = 2
+render_priority = 100
 texture = ExtResource("2_yu7di")
 
 [node name="fire" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/aim"]
@@ -204,8 +200,9 @@ visible = false
 material_override = SubResource("StandardMaterial3D_n6wqp")
 cast_shadow = 0
 shaded = true
-no_depth_test = true
+alpha_cut = 1
 texture_filter = 2
+render_priority = 100
 texture = ExtResource("3_1qon4")
 
 [node name="normal" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
@@ -217,8 +214,9 @@ visible = false
 material_override = SubResource("StandardMaterial3D_1qon4")
 cast_shadow = 0
 shaded = true
-no_depth_test = true
+alpha_cut = 1
 texture_filter = 0
+render_priority = 100
 texture = ExtResource("2_0h5nk")
 region_rect = Rect2(0, 200, 0, 0)
 
@@ -228,8 +226,9 @@ visible = false
 material_override = SubResource("StandardMaterial3D_xyjsj")
 cast_shadow = 0
 shaded = true
-no_depth_test = true
+alpha_cut = 1
 texture_filter = 0
+render_priority = 100
 texture = ExtResource("3_7p6mk")
 
 [node name="grab" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
@@ -240,8 +239,9 @@ visible = false
 material_override = SubResource("StandardMaterial3D_kat4e")
 cast_shadow = 0
 shaded = true
-no_depth_test = true
+alpha_cut = 1
 texture_filter = 0
+render_priority = 100
 texture = ExtResource("6_bgs54")
 region_rect = Rect2(0, 200, 0, 0)
 
@@ -253,8 +253,9 @@ transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 
 material_override = SubResource("StandardMaterial3D_lwn5h")
 cast_shadow = 0
 shaded = true
-no_depth_test = true
+alpha_cut = 1
 texture_filter = 0
+render_priority = 100
 texture = ExtResource("6_xyjsj")
 region_rect = Rect2(0, 200, 0, 0)
 

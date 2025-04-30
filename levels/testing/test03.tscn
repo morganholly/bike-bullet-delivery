@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bulcl2lwyyxbq"]
+[gd_scene load_steps=53 format=3 uid="uid://bulcl2lwyyxbq"]
 
 [ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://utils/CSGStairMaker3D.tscn" id="1_o7pxr"]
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_tyw03"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="5_mvq67"]
 [ext_resource type="Script" uid="uid://dic641n02q3ww" path="res://weapons/guns/gun_stats.gd" id="5_wbiaj"]
 [ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="6_hgwig"]
+[ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="6_hkchm"]
 [ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="6_x73s8"]
 [ext_resource type="PackedScene" uid="uid://b2kvbarovxss2" path="res://enviroment/Buildings/Building/building.tscn" id="7_hxiib"]
 [ext_resource type="Script" uid="uid://bneyvukm2fm7v" path="res://weapons/damage_resources/repeating_damage.gd" id="7_vxxs0"]
@@ -337,6 +338,8 @@ transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 
 
 [node name="EnemyDummy" parent="dummies/Node3D11" instance=ExtResource("2_fuc8a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 0)
+
+[node name="quad" parent="." instance=ExtResource("6_hkchm")]
 
 [node name="CharControllerV2" parent="." instance=ExtResource("3_nln6s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.45777, 0, 24.8445)
