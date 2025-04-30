@@ -168,6 +168,17 @@ func get_item_height(item: Control) -> float:
 	# Force the item to update its minimum size
 	if item.has_node("MarginContainer/VBoxContainer"):
 		var vbox = item.get_node("MarginContainer/VBoxContainer")
+		
+		# Force labels to update their sizes
+		if vbox.has_node("Title"):
+			var title = vbox.get_node("Title")
+			title.size.x = vbox.size.x
+		
+		if vbox.has_node("Label"):
+			var description = vbox.get_node("Label")
+			description.size.x = vbox.size.x
+		
+		# Calculate content height
 		var content_height = vbox.get_combined_minimum_size().y
 		var margin_height = 14  # Top and bottom margins
 		return max(content_height + margin_height, min_item_height)
@@ -182,7 +193,6 @@ func update_mission_item_heights() -> void:
 
 # Resize the container based on mission items
 func resize_container() -> void:
-	return
 	if mission_items.size() <= 0:
 		# Set a minimum size when no items are present
 		custom_minimum_size.y = top_section_height + bottom_margin + 20
@@ -203,4 +213,6 @@ func resize_container() -> void:
 	
 	# Request a layout update
 	size = custom_minimum_size
-	reset_size()
+	
+	# Ensure VBoxContainer stays within the bounds of the parent container
+	vbox_container.size.y = size.y - top_section_height - bottom_margin

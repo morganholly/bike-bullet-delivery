@@ -13,7 +13,7 @@ var mission_targets = []
 
 # Mission spawning configuration
 @export var min_mission_interval: float = 5.0  # Minimum time between missions (high intensity)
-@export var max_mission_interval: float = 30.0  # Maximum time between missions (low intensity)
+@export var max_mission_interval: float = 5.0  # Maximum time between missions (low intensity)
 @export var mission_spawn_timer: Timer
 var last_mission_spawn_time: float = 0.0
 var empty_task_list_timer: Timer  # Timer for 5-second rule when task list is empty
@@ -61,14 +61,20 @@ func _ready():
 
 func _setup_spawn_detector() -> void:
 	# Check if spawn detector exists in the scene
-	spawn_detector = get_node_or_null("/root/SpawnAreaDetector")
+	spawn_detector = get_node_or_null("SpawnAreaDetector")
 	
-	# If not, create it
+	# If not, create it and add it as a child of the level
 	if not spawn_detector:
 		var spawn_detector_script = load("res://managers/spawn_area_detector.gd")
-		spawn_detector = spawn_detector_script.new()
-		spawn_detector.name = "SpawnAreaDetector"
-		get_tree().root.add_child(spawn_detector)
+		if spawn_detector_script:
+			spawn_detector = Node.new()
+			spawn_detector.set_script(spawn_detector_script)
+			spawn_detector.name = "SpawnAreaDetector"
+			add_child(spawn_detector)
+			print("Created new SpawnAreaDetector as child of level")
+		else:
+			push_error("Failed to load spawn_area_detector.gd script")
+			return
 	
 	# Load enemy types if not set
 	if enemy_types.size() == 0:
@@ -78,11 +84,17 @@ func _setup_spawn_detector() -> void:
 			load("res://npcs/zombie/zombie.tscn")
 		]
 	
-	# Wait for initialization to complete
-	await spawn_detector.initialize()
+	# Wait for initialization to complete with timeout
+	var init_timeout = 5.0 # 5 seconds timeout
+	var start_time = Time.get_ticks_msec() / 1000.0
 	
+	while not spawn_detector.is_ready() and (Time.get_ticks_msec() / 1000.0 - start_time) < init_timeout:
+		await get_tree().process_frame
 	
-
+	if not spawn_detector.is_ready():
+		push_error("SpawnAreaDetector failed to initialize within timeout")
+		# Force initialize critical systems anyway
+		spawn_detector.is_initialized = true
 
 func _start_enemy_spawning():
 	# Create a timer for periodic spawning

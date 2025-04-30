@@ -146,7 +146,7 @@ shape = SubResource("ConcavePolygonShape3D_pn60j")
 [node name="fog quad" parent="." instance=ExtResource("4_pn60j")]
 
 [node name="CharControllerV2" parent="." instance=ExtResource("6_5rmu0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5376, 16.6609, -69.6901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5376, 6.14676, -104.021)
 
 [node name="UILayer" parent="." instance=ExtResource("7_vfugj")]
 
