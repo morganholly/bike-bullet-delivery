@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvuaylawdiw72"
-path.s3tc="res://.godot/imported/barrel_barrel256x256.png-caf384177813184750011a41b851f601.s3tc.ctex"
+path.bptc="res://.godot/imported/barrel_barrel256x256.png-caf384177813184750011a41b851f601.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -15,12 +15,12 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/PSX-Waste/PSX-Waste/glb/barrel_barrel256x256.png"
-dest_files=["res://.godot/imported/barrel_barrel256x256.png-caf384177813184750011a41b851f601.s3tc.ctex"]
+dest_files=["res://.godot/imported/barrel_barrel256x256.png-caf384177813184750011a41b851f601.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

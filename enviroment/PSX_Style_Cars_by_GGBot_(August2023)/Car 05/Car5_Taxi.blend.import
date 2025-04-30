@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b3wsop06l7ahv"
-valid=false
+path="res://.godot/imported/Car5_Taxi.blend-26935fede509dcc25e15a1771d18404c.scn"
 
 [deps]
 
 source_file="res://enviroment/PSX_Style_Cars_by_GGBot_(August2023)/Car 05/Car5_Taxi.blend"
+dest_files=["res://.godot/imported/Car5_Taxi.blend-26935fede509dcc25e15a1771d18404c.scn"]
 
 [params]
 
