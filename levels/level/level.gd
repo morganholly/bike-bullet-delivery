@@ -248,6 +248,31 @@ func _on_empty_task_list_timeout():
 		mission_spawn_timer.start()  # Restart the timer with new interval
 
 func _on_mission_completed(mission_id: String) -> void:
+	# Decrease intensity by two steps (0.1 each step)
+	game_intensity = max(0.0, game_intensity - 0.2)
+	
+	# Get player position
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		# Spawn two enemies near player using spawn detector
+		for i in range(2):
+			var spawn_point = spawn_detector.get_spawn_point_near(player.global_position)
+			if spawn_point != Vector3.ZERO:
+				_spawn_enemy(enemy_types[randi() % enemy_types.size()], spawn_point)
+		
+		# Get the mission target
+		var mission = MissionManager._get_mission_by_id(mission_id)
+		var mission_target = mission.target if mission else null
+		
+		# Move non-target boomguys to far locations
+		var boomguys = get_tree().get_nodes_in_group("Boomguy")
+		for boomguy in boomguys:
+			if boomguy != player and boomguy != mission_target:  # Don't move player or mission target
+				# Get a random far point
+				var far_point = spawn_detector.get_spawn_point_away(player.global_position)
+				if far_point != Vector3.ZERO:
+					boomguy.global_position = far_point
+	
 	# Start the 5-second timer when a mission is completed and there are no other active missions
 	if MissionManager.active_missions.size() == 0:
 		empty_task_list_timer.start()

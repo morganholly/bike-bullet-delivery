@@ -237,16 +237,17 @@ func active_slot_input(event) -> void:
 			if event is InputEventMouseButton and event.pressed:
 				if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
 					current_action_state = ActionState.EMPTY
-					holding.gravity_scale = holding_old_gravity_scale
-					if event.button_index == MOUSE_BUTTON_LEFT:
-						holding.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(holding.mass)
-					var vel_clamped = 20 * (1 - (1 / (1 + 0.05 * holding.linear_velocity.length())))
-					holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
-					camera.nodeRaycast.remove_exception(holding)
-					camera.nodeRaycast.collision_mask |= 0b1_0000_0000
-					holding.remove_from_group(&"IsHeld")
+					if holding != null:  # Add null check
+						holding.gravity_scale = holding_old_gravity_scale
+						if event.button_index == MOUSE_BUTTON_LEFT:
+							holding.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(holding.mass)
+						var vel_clamped = 20 * (1 - (1 / (1 + 0.05 * holding.linear_velocity.length())))
+						holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
+						camera.nodeRaycast.remove_exception(holding)
+						camera.nodeRaycast.collision_mask |= 0b1_0000_0000
+						holding.remove_from_group(&"IsHeld")
+						holding = null
 					camera.hands_mode = camera.HandsMode.Empty
-					holding = null
 		ActionState.GUN:
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
 				debounce_gun_hold_swap = 0.5
