@@ -45,5 +45,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event: InputEvent):
+	if pick_scene and event is InputEventKey and event.is_pressed() and event.keycode == KEY_BACKSLASH:
+		push_events = false
+		sub_viewport.get_child(0).queue_free()
+		control_2.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if push_events:
 		sub_viewport.push_input(event)
