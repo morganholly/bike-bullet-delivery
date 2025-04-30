@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SlideData" load_steps=5 format=3 uid="uid://cg03rx66ycnwx"]
 
 [ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="1_2u4vd"]
-[ext_resource type="Texture2D" uid="uid://71ug6fnikxjv" path="res://cutscenes/slideshow/intro_slides/story_intro2.png" id="2_3k4vd"]
+[ext_resource type="Texture2D" uid="uid://u23s0eklyb5r" path="res://cutscenes/slideshow/intro_slides/story_intro2.png" id="2_3k4vd"]
 [ext_resource type="Script" uid="uid://b0u5q5sqesvnc" path="res://cutscenes/slideshow/text_entry.gd" id="3_2umon"]
 
 [sub_resource type="Resource" id="TextEntry_1"]

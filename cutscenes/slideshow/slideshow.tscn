@@ -1,10 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsgascquajtw1"]
+[gd_scene load_steps=11 format=3 uid="uid://bsgascquajtw1"]
 
 [ext_resource type="Script" uid="uid://b1o6u47ijor3t" path="res://cutscenes/slideshow/slideshow.gd" id="1_2u4vd"]
 [ext_resource type="Resource" uid="uid://b4q2y7q5qxmtx" path="res://cutscenes/slideshow/intro_slides/intro_slide1.tres" id="2_3k4vd"]
 [ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="2_5b346"]
 [ext_resource type="Resource" uid="uid://cg03rx66ycnwx" path="res://cutscenes/slideshow/intro_slides/intro_slide2.tres" id="3_4k4vd"]
 [ext_resource type="Resource" uid="uid://cneebfxdnn6qu" path="res://cutscenes/slideshow/intro_slides/intro_slide3.tres" id="4_5k4vd"]
+[ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_xksoj"]
+
+[sub_resource type="Animation" id="Animation_xksoj"]
+resource_name = "spin"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("loading spinner/Label:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_yd5k5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("loading spinner/Label:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxhc8"]
+_data = {
+&"RESET": SubResource("Animation_yd5k5"),
+&"spin": SubResource("Animation_xksoj")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_yd5k5"]
+font = ExtResource("6_xksoj")
+font_size = 40
 
 [node name="Slideshow" type="Control"]
 layout_mode = 3
@@ -15,7 +58,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2u4vd")
 slides = Array[ExtResource("2_5b346")]([ExtResource("2_3k4vd"), ExtResource("3_4k4vd"), ExtResource("4_5k4vd")])
-next_scene_path = "res://screen_space_shading/sss_viewport.tscn"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -76,3 +118,34 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.8)
 theme_override_font_sizes/font_size = 20
 text = "Click anywhere to continue..."
 horizontal_alignment = 2
+
+[node name="loading spinner" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="loading spinner"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_kxhc8")
+}
+
+[node name="Label" type="Label" parent="loading spinner"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -150.0
+offset_right = -28.0
+offset_bottom = -96.0
+pivot_offset = Vector2(36, 27)
+text = "↑ ↓"
+label_settings = SubResource("LabelSettings_yd5k5")
+horizontal_alignment = 1
+vertical_alignment = 1
