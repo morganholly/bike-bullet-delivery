@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://hl8invlcxyuh"]
+[gd_scene load_steps=20 format=3 uid="uid://hl8invlcxyuh"]
 
 [ext_resource type="Script" uid="uid://dcgpdo2u1xsi0" path="res://controllers/camera.gd" id="1_tf3c0"]
 [ext_resource type="Texture2D" uid="uid://dvec65wcvwmre" path="res://graphics/hands/pistol_hand_angle.png" id="2_0h5nk"]
 [ext_resource type="Texture2D" uid="uid://c355tdvfly4s6" path="res://graphics/hands/pistol_hand.png" id="2_yu7di"]
 [ext_resource type="Texture2D" uid="uid://dnkvsmgytc4x2" path="res://graphics/hands/pistol_hand_muzzleflare.png" id="3_1qon4"]
 [ext_resource type="Texture2D" uid="uid://dn0gbami32fq" path="res://graphics/hands/pistol_hand_angle_muzzleflare.png" id="3_7p6mk"]
+[ext_resource type="Texture2D" uid="uid://bv3jyxyq1wmgn" path="res://graphics/hands/fist.png" id="6_bgs54"]
 [ext_resource type="Texture2D" uid="uid://f60ubvnpd6lu" path="res://graphics/hands/grabbinghand.png" id="6_xyjsj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48gdj"]
@@ -95,6 +96,18 @@ albedo_texture = ExtResource("3_7p6mk")
 texture_filter = 0
 texture_repeat = false
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kat4e"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+no_depth_test = true
+shading_mode = 2
+diffuse_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("6_bgs54")
+texture_filter = 0
+texture_repeat = false
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwn5h"]
 transparency = 2
 alpha_scissor_threshold = 0.5
@@ -146,7 +159,7 @@ collide_with_areas = true
 [node name="CameraFirstPerson" type="Camera3D" parent="Rotate/Flip/FirstPerson"]
 cull_mask = 1048573
 current = true
-fov = 30.0
+fov = 80.0
 
 [node name="HoldPosition" type="Node3D" parent="Rotate/Flip/FirstPerson"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
@@ -174,6 +187,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
 [node name="aim" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.556, -4)
+visible = false
 
 [node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/aim"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0, 0)
@@ -199,6 +213,7 @@ transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 
 visible = false
 
 [node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/normal"]
+visible = false
 material_override = SubResource("StandardMaterial3D_1qon4")
 cast_shadow = 0
 shaded = true
@@ -217,9 +232,21 @@ no_depth_test = true
 texture_filter = 0
 texture = ExtResource("3_7p6mk")
 
-[node name="empty" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
+[node name="grab" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
 transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 0.173648, -0.0858316, 0.98106, 1.856, -0.709, -1.758)
 visible = false
+
+[node name="hand" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/grab"]
+material_override = SubResource("StandardMaterial3D_kat4e")
+cast_shadow = 0
+shaded = true
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("6_bgs54")
+region_rect = Rect2(0, 200, 0, 0)
+
+[node name="empty" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
+transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 0.173648, -0.0858316, 0.98106, 1.856, -0.709, -1.758)
 
 [node name="hand" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/empty"]
 transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, -0.24, 0)
