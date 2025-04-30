@@ -1,6 +1,9 @@
 extends Enemy
+@onready var gun_sound: AudioStreamPlayer3D = $"gun sound"
 
 var targets = []
+var shooting: bool = false
+var started_shooting: bool = false
 
 func _ready():
 	#$Area3D.connect("body_entered", self._on_Area3D_body_entered)
@@ -28,11 +31,20 @@ func _ready():
 func _physics_process(delta):
 	#print(target)
 	if targets.size() > 0:
+		if not shooting:
+			started_shooting = true
+			shooting = true
 		target = targets[0]
 		var target_position = target.global_transform.origin
 		var direction = (target_position - global_transform.origin).normalized()
 		look_at(target_position)
 		print("BOOMGUY SEES ENEMIES")
+		if started_shooting:
+			gun_sound.stream.loop_begin = 98400
+			gun_sound.stream.loop_end = 208320
+			gun_sound.stream.loop_mode = 1
+			gun_sound.play(98400/48000)
+			started_shooting = false
 		current_state = Entity_States.Shoot
 		
 		if cur_shoot_delay > 0:
@@ -45,6 +57,8 @@ func _physics_process(delta):
 			cur_shoot_delay = shoot_delay
 			current_state = Entity_States.Shoot
 	else:
+		shooting = false
+		gun_sound.stream.loop_mode = 0
 		current_state = Entity_States.Idle
 		
 		

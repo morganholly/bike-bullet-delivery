@@ -14,7 +14,7 @@ var push_events: bool = false
 
 @onready var control_2: Control = $CanvasLayer/Control/Control2
 @onready var level_select_v_box: VBoxContainer = $CanvasLayer/Control/Control2/VBoxContainer
-@onready var template_button: Button = $CanvasLayer/Control/Control2/HBoxContainer/button
+#@onready var template_button: Button = $CanvasLayer/Control/Control2/HBoxContainer/button
 var button = preload("res://screen_space_shading/level_pick_button.tscn")
 
 # Called when the node enters the scene tree for the first time.

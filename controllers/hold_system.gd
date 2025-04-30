@@ -66,6 +66,8 @@ func make_active() -> void:
 
 func make_inactive() -> void:
 	camera.hands_mode = camera.HandsMode.Empty
+	if holding == null:
+		current_action_state = ActionState.EMPTY
 	match current_action_state:
 		ActionState.EMPTY:
 			pass
@@ -121,6 +123,8 @@ func _physics_process(delta: float) -> void:
 			go_to = camera.hold_position.global_position
 			if (holding != null):
 				_holdable_hold_update(holding)
+			else:
+				camera.hands_mode = camera.HandsMode.Empty
 		ActionState.GUN:
 			go_to = camera.gun_position_r.global_position
 			_holdable_hold_update(holding)
