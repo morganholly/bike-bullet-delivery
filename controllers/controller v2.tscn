@@ -190,13 +190,13 @@ gravity_scale = 0.0
 sleeping = true
 freeze = true
 script = ExtResource("6_hnsjt")
-speed = null
 
-[node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel2" node_paths=PackedStringArray("designated_parent")]
+[node name="player_sprite" type="AnimatedSprite3D" parent="WorldModel2" node_paths=PackedStringArray("designated_parent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
 top_level = true
 layers = 2
 pixel_size = 0.03
+alpha_cut = 1
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_rdatg")
 animation = &"idle_back"
@@ -204,13 +204,13 @@ script = ExtResource("7_gr3rn")
 designated_parent = NodePath("..")
 
 [node name="WorldModel" type="Node3D" parent="."]
+visible = false
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
-visible = false
 pixel_size = 0.03
+alpha_cut = 1
 texture_filter = 2
-render_priority = 1
 sprite_frames = SubResource("SpriteFrames_rdatg")
 animation = &"idle_back"
 

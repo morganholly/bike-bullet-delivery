@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=4 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=20 format=4 uid="uid://dq8uucqyty7x2"]
 
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/level/level.gd" id="1_gmn8u"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="1_mmlqq"]
 [ext_resource type="Texture2D" uid="uid://b60co5adnskoy" path="res://enviroment/Buildings/Townhall/oldtownhall_v2.png" id="2_jww0w"]
 [ext_resource type="MeshLibrary" uid="uid://bwvpkbtnv6luj" path="res://enviroment/SmallerObjectsLib.tres" id="2_k0d2v"]
+[ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="5_sk3dq"]
 [ext_resource type="PackedScene" uid="uid://cghjxqpj25jao" path="res://controllers/controller v2.tscn" id="6_5rmu0"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="7_vfugj"]
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="9_qgq1o"]
@@ -144,6 +145,9 @@ cell_size = Vector3(0.8, 0.8, 0.8)
 data = {
 "cells": PackedInt32Array(65479, 65389, 1441807)
 }
+
+[node name="quad" parent="." instance=ExtResource("5_sk3dq")]
+visible = false
 
 [node name="CharControllerV2" parent="." instance=ExtResource("6_5rmu0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.3574, 1.00227, -84.5391)

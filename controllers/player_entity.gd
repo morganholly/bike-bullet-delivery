@@ -1,5 +1,7 @@
 extends Entity
 
+@onready var camera: Node3D = $"../Camera"
+@onready var player_sprite: AnimatedSprite3D = $player_sprite
 
 
 func _ready() -> void:
@@ -10,4 +12,6 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	look_at($"..".global_position+$"..".velocity.normalized()*100)
+	player_sprite.disable_rotation_to_camera = not camera.third_person_select
+	if camera.third_person_select:
+		look_at(camera.global_position+$"..".velocity.normalized()*100)
