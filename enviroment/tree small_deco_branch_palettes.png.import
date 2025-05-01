@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://u4s2443i7x63"
-path.bptc="res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.bptc.ctex"
-path.astc="res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.astc.ctex"
+path="res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "69eb8bb255878159991b35444915369d"
@@ -16,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://enviroment/tree small_deco_branch_palettes.png"
-dest_files=["res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.bptc.ctex", "res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.astc.ctex"]
+dest_files=["res://.godot/imported/tree small_deco_branch_palettes.png-e6d994b27649765f383846b8d1ca33ea.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
