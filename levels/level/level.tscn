@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=26 format=4 uid="uid://dq8uucqyty7x2"]
 
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_a4beh"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="7_vfugj"]
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="9_qgq1o"]
 [ext_resource type="PackedScene" uid="uid://dla5mj6dnjwc8" path="res://enviroment/tree small.glb" id="11_1ub4c"]
+[ext_resource type="PackedScene" uid="uid://cvqhmpmp433mm" path="res://utils/thing_spawner.tscn" id="11_n1gn4"]
+[ext_resource type="PackedScene" uid="uid://cdegiyorx3lm" path="res://enviroment/PSX-Waste/PSX-Waste/glb/dumpster.glb" id="12_bbyy4"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="12_gspqf"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="13_a4beh"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="14_n1gn4"]
@@ -184,6 +186,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Ammo" type="Node" parent="."]
+
+[node name="ThingSpawner" parent="." node_paths=PackedStringArray("things_list") instance=ExtResource("11_n1gn4")]
+min_y = -2.0
+max_y = 5.0
+min_x = -120.0
+max_x = 250.0
+min_z = -200.0
+max_z = 170.0
+scenes = Array[PackedScene]([ExtResource("12_bbyy4")])
+normal_dot_threshold = 0.4
+things_list = [NodePath("Things/dumpster"), NodePath("Things/@Node3D@156151"), NodePath("Things/@Node3D@156152"), NodePath("Things/@Node3D@156153"), NodePath("Things/@Node3D@156154"), NodePath("Things/@Node3D@156155"), NodePath("Things/@Node3D@156156"), NodePath("Things/@Node3D@156157"), NodePath("Things/@Node3D@156158"), NodePath("Things/@Node3D@156159"), NodePath("Things/@Node3D@156160"), NodePath("Things/@Node3D@156161"), NodePath("Things/@Node3D@156162"), NodePath("Things/@Node3D@156163"), NodePath("Things/@Node3D@156164"), NodePath("Things/@Node3D@156165"), NodePath("Things/@Node3D@156166"), NodePath("Things/@Node3D@156167"), NodePath("Things/@Node3D@156168"), NodePath("Things/@Node3D@156169"), NodePath("Things/@Node3D@156170"), NodePath("Things/@Node3D@156171"), NodePath("Things/@Node3D@156172"), NodePath("Things/@Node3D@156173"), NodePath("Things/@Node3D@156174"), NodePath("Things/@Node3D@156175"), NodePath("Things/@Node3D@156176"), NodePath("Things/@Node3D@156177"), NodePath("Things/@Node3D@156178"), NodePath("Things/@Node3D@156179"), NodePath("Things/@Node3D@156180"), NodePath("Things/@Node3D@156181"), NodePath("Things/@Node3D@156182"), NodePath("Things/@Node3D@156183"), NodePath("Things/@Node3D@156184"), NodePath("Things/@Node3D@156185"), NodePath("Things/@Node3D@156186"), NodePath("Things/@Node3D@156187"), NodePath("Things/@Node3D@156188"), NodePath("Things/@Node3D@156189"), NodePath("Things/@Node3D@156190"), NodePath("Things/@Node3D@156191"), NodePath("Things/@Node3D@156192"), NodePath("Things/@Node3D@156193"), NodePath("Things/@Node3D@156194"), NodePath("Things/@Node3D@156195"), NodePath("Things/@Node3D@156196"), NodePath("Things/@Node3D@156197"), NodePath("Things/@Node3D@156198"), NodePath("Things/@Node3D@156199"), NodePath("Things/@Node3D@156200"), NodePath("Things/@Node3D@156201"), NodePath("Things/@Node3D@156202"), NodePath("Things/@Node3D@156203"), NodePath("Things/@Node3D@156204"), NodePath("Things/@Node3D@156205"), NodePath("Things/@Node3D@156206"), NodePath("Things/@Node3D@156207"), NodePath("Things/@Node3D@156208"), NodePath("Things/@Node3D@156209"), NodePath("Things/@Node3D@156210"), NodePath("Things/@Node3D@156211"), NodePath("Things/@Node3D@156212"), NodePath("Things/@Node3D@156213"), NodePath("Things/@Node3D@156214"), NodePath("Things/@Node3D@156215"), NodePath("Things/@Node3D@156216"), NodePath("Things/@Node3D@156217"), NodePath("Things/@Node3D@156218"), NodePath("Things/@Node3D@156219"), NodePath("Things/@Node3D@156220"), NodePath("Things/@Node3D@156221"), NodePath("Things/@Node3D@156222"), NodePath("Things/@Node3D@156223"), NodePath("Things/@Node3D@156224"), NodePath("Things/@Node3D@156225"), NodePath("Things/@Node3D@156226"), NodePath("Things/@Node3D@156227"), NodePath("Things/@Node3D@156228"), NodePath("Things/@Node3D@156229"), NodePath("Things/@Node3D@156230"), NodePath("Things/@Node3D@156231"), NodePath("Things/@Node3D@156232"), NodePath("Things/@Node3D@156233"), NodePath("Things/@Node3D@156234"), NodePath("Things/@Node3D@156235"), NodePath("Things/@Node3D@156236"), NodePath("Things/@Node3D@156237"), NodePath("Things/@Node3D@156238"), NodePath("Things/@Node3D@156239"), NodePath("Things/@Node3D@156240"), NodePath("Things/@Node3D@156241"), NodePath("Things/@Node3D@156242"), NodePath("Things/@Node3D@156243"), NodePath("Things/@Node3D@156244"), NodePath("Things/@Node3D@156245"), NodePath("Things/@Node3D@156246"), NodePath("Things/@Node3D@156247"), NodePath("Things/@Node3D@156248"), NodePath("Things/@Node3D@156249")]
 
 [node name="Boundaries" type="Node" parent="."]
 
