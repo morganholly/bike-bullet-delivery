@@ -3,15 +3,20 @@
 [ext_resource type="Script" uid="uid://bl2edtwqi0lvn" path="res://utils/thing_spawner.gd" id="1_wp3vy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_38k5x"]
-size = Vector3(370, 7, 370)
+size = Vector3(380, 7, 380)
 
 [node name="ThingSpawner" type="Node3D"]
 script = ExtResource("1_wp3vy")
 check_shape_fit = false
+things_list = Array[Dictionary]([])
 
 [node name="Things" type="Node3D" parent="."]
 
 [node name="Valid Area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Valid Area"]
 shape = SubResource("BoxShape3D_38k5x")

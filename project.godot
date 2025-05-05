@@ -47,6 +47,8 @@ IsHeld=""
 projectile=""
 Enemies=""
 enemies_targetable_by_boomguy=""
+SpawnerExclusionArea="an Area3D node used by ThingSpawner for shape checking"
+SpawnerExclusionAreaRemovable="same as normal but will be removed automatically"
 
 [gui]
 
@@ -202,6 +204,7 @@ zoom={
 3d_physics/layer_8="SmallProp"
 3d_physics/layer_9="ExtraPickupArea"
 3d_physics/layer_10="Projectile"
+3d_physics/layer_11="SpawnBlock"
 
 [physics]
 

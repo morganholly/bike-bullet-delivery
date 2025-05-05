@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=27 format=4 uid="uid://dq8uucqyty7x2"]
 
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_a4beh"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
@@ -12,9 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="9_qgq1o"]
 [ext_resource type="PackedScene" uid="uid://dla5mj6dnjwc8" path="res://enviroment/tree small.glb" id="11_1ub4c"]
 [ext_resource type="PackedScene" uid="uid://cvqhmpmp433mm" path="res://utils/thing_spawner.tscn" id="11_n1gn4"]
-[ext_resource type="PackedScene" uid="uid://cdegiyorx3lm" path="res://enviroment/PSX-Waste/PSX-Waste/glb/dumpster.glb" id="12_bbyy4"]
+[ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="12_flftk"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="12_gspqf"]
 [ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="13_a4beh"]
+[ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="13_ayj5j"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="14_n1gn4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
@@ -183,69 +184,953 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
 [node name="Boomguy3" parent="Boomguys" instance=ExtResource("9_qgq1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
 
-[node name="Enemies" type="Node" parent="."]
+[node name="EnemySpawner" parent="." instance=ExtResource("11_n1gn4")]
+scenes = Array[PackedScene]([ExtResource("12_flftk"), ExtResource("13_ayj5j"), ExtResource("12_gspqf")])
+num_items = 50
+normal_dot_threshold = 0.7
+respawn_player_distance = 100.0
+things_list = Array[Dictionary]([{
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(29.7767, 1.1, 93.3379)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(59.9196, 1.1, -68.5164)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(87.5434, 1.09998, -21.4041)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(2.89011, 1.1, 39.5904)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(62.4613, 1.10003, 72.1192)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(24.0927, 1.10002, 74.7415)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(74.163, 1.09998, -50.7491)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(30.5364, 1.1, 96.5809)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(67.753, 1.1, 65.4174)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(89.3199, 1.1, -64.0183)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(71.973, 1.29998, -71.8615)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(68.6086, 1.1, -21.3513)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-6.73225, 1.3, 38.086)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(10.3523, 1.10002, 62.9216)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(94.5822, 4.08972, -95.5199)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(43.161, 1.29998, 53.5013)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-96.3966, 9.1, 86.5941)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(-48.1043, 1.10002, 24.3665)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(28.271, 1.1, 79.1307)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-82.6903, 9.1, 64.8991)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(-61.623, 1.10002, 80.1456)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(29.0267, 1.10003, 73.1821)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(38.5999, 1.1, -13.734)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(7.53112, 1.10002, 38.6696)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(38.9015, 1.1, -4.79824)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(16.3003, 1.29998, 33.6973)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(-22.6205, 1.29998, 89.7608)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(83.6568, 1.1, -42.6765)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(-41.5849, 1.1, 58.4328)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(-54.1327, 1.10002, 76.6859)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(79.1409, 4.09351, 48.7507)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(-16.4558, 1.29998, 83.6223)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(-99.8766, 9.1, 92.1053)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(-47.0313, 1.1, 74.7542)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(89.9063, 1.29998, 35.7828)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-54.119, 9.1, 16.9704)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(94.2493, 1.09998, -58.7882)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(92.4834, 4.08155, 96.736)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(-82.3555, 9.1, 66.0706)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(54.7365, 1.29998, 2.4253)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(-62.7672, 9.1, 71.9434)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(53.3566, 1.3, 0.161673)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(63.6326, 1.10002, 76.3962)
+}, {
+"node": ExtResource("13_ayj5j"),
+"position": Vector3(-32.0278, 1.1, 50.3545)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(91.7028, 1.1, -57.3446)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(90.1162, 1.29998, -36.3938)
+}, {
+"node": ExtResource("12_flftk"),
+"position": Vector3(96.0528, 1.1, 98.8643)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-76.3078, 1.1, 94.8218)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-2.29824, 2.67721, 88.3923)
+}, {
+"node": ExtResource("12_gspqf"),
+"position": Vector3(-26.5698, 2.56658, 25.3762)
+}])
 
-[node name="Ammo" type="Node" parent="."]
-
-[node name="ThingSpawner" parent="." node_paths=PackedStringArray("things_list") instance=ExtResource("11_n1gn4")]
+[node name="AmmoSpawner" parent="." instance=ExtResource("11_n1gn4")]
 min_y = -2.0
 max_y = 5.0
 min_x = -120.0
-max_x = 250.0
+max_x = 260.0
 min_z = -200.0
-max_z = 170.0
-scenes = Array[PackedScene]([ExtResource("12_bbyy4")])
+max_z = 180.0
+scenes = Array[PackedScene]([ExtResource("14_n1gn4")])
+num_items = 200
+frames_per_spawn_in_game = 6
 normal_dot_threshold = 0.4
-things_list = [NodePath("Things/dumpster"), NodePath("Things/@Node3D@156151"), NodePath("Things/@Node3D@156152"), NodePath("Things/@Node3D@156153"), NodePath("Things/@Node3D@156154"), NodePath("Things/@Node3D@156155"), NodePath("Things/@Node3D@156156"), NodePath("Things/@Node3D@156157"), NodePath("Things/@Node3D@156158"), NodePath("Things/@Node3D@156159"), NodePath("Things/@Node3D@156160"), NodePath("Things/@Node3D@156161"), NodePath("Things/@Node3D@156162"), NodePath("Things/@Node3D@156163"), NodePath("Things/@Node3D@156164"), NodePath("Things/@Node3D@156165"), NodePath("Things/@Node3D@156166"), NodePath("Things/@Node3D@156167"), NodePath("Things/@Node3D@156168"), NodePath("Things/@Node3D@156169"), NodePath("Things/@Node3D@156170"), NodePath("Things/@Node3D@156171"), NodePath("Things/@Node3D@156172"), NodePath("Things/@Node3D@156173"), NodePath("Things/@Node3D@156174"), NodePath("Things/@Node3D@156175"), NodePath("Things/@Node3D@156176"), NodePath("Things/@Node3D@156177"), NodePath("Things/@Node3D@156178"), NodePath("Things/@Node3D@156179"), NodePath("Things/@Node3D@156180"), NodePath("Things/@Node3D@156181"), NodePath("Things/@Node3D@156182"), NodePath("Things/@Node3D@156183"), NodePath("Things/@Node3D@156184"), NodePath("Things/@Node3D@156185"), NodePath("Things/@Node3D@156186"), NodePath("Things/@Node3D@156187"), NodePath("Things/@Node3D@156188"), NodePath("Things/@Node3D@156189"), NodePath("Things/@Node3D@156190"), NodePath("Things/@Node3D@156191"), NodePath("Things/@Node3D@156192"), NodePath("Things/@Node3D@156193"), NodePath("Things/@Node3D@156194"), NodePath("Things/@Node3D@156195"), NodePath("Things/@Node3D@156196"), NodePath("Things/@Node3D@156197"), NodePath("Things/@Node3D@156198"), NodePath("Things/@Node3D@156199"), NodePath("Things/@Node3D@156200"), NodePath("Things/@Node3D@156201"), NodePath("Things/@Node3D@156202"), NodePath("Things/@Node3D@156203"), NodePath("Things/@Node3D@156204"), NodePath("Things/@Node3D@156205"), NodePath("Things/@Node3D@156206"), NodePath("Things/@Node3D@156207"), NodePath("Things/@Node3D@156208"), NodePath("Things/@Node3D@156209"), NodePath("Things/@Node3D@156210"), NodePath("Things/@Node3D@156211"), NodePath("Things/@Node3D@156212"), NodePath("Things/@Node3D@156213"), NodePath("Things/@Node3D@156214"), NodePath("Things/@Node3D@156215"), NodePath("Things/@Node3D@156216"), NodePath("Things/@Node3D@156217"), NodePath("Things/@Node3D@156218"), NodePath("Things/@Node3D@156219"), NodePath("Things/@Node3D@156220"), NodePath("Things/@Node3D@156221"), NodePath("Things/@Node3D@156222"), NodePath("Things/@Node3D@156223"), NodePath("Things/@Node3D@156224"), NodePath("Things/@Node3D@156225"), NodePath("Things/@Node3D@156226"), NodePath("Things/@Node3D@156227"), NodePath("Things/@Node3D@156228"), NodePath("Things/@Node3D@156229"), NodePath("Things/@Node3D@156230"), NodePath("Things/@Node3D@156231"), NodePath("Things/@Node3D@156232"), NodePath("Things/@Node3D@156233"), NodePath("Things/@Node3D@156234"), NodePath("Things/@Node3D@156235"), NodePath("Things/@Node3D@156236"), NodePath("Things/@Node3D@156237"), NodePath("Things/@Node3D@156238"), NodePath("Things/@Node3D@156239"), NodePath("Things/@Node3D@156240"), NodePath("Things/@Node3D@156241"), NodePath("Things/@Node3D@156242"), NodePath("Things/@Node3D@156243"), NodePath("Things/@Node3D@156244"), NodePath("Things/@Node3D@156245"), NodePath("Things/@Node3D@156246"), NodePath("Things/@Node3D@156247"), NodePath("Things/@Node3D@156248"), NodePath("Things/@Node3D@156249")]
+height_up_place = 0.25
+things_list = Array[Dictionary]([{
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(132.772, 1.25, -59.9484)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(215.277, 1.44998, -108.463)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(231.914, 1.44998, 113.873)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-15.3947, 1.25, 95.9665)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(114.596, 1.24997, -137.427)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(100.728, 1.25, 96.9092)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(80.321, 1.25, -141.748)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(248.945, 1.25, -40.0295)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(166.244, 1.44998, 101.158)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(198.878, 1.24998, 48.6244)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-76.981, 1.25, 103.419)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(182.304, 1.44998, -148.952)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(82.5856, 1.44998, 72.7625)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(137.258, 1.25, -138.88)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(103.714, 1.25, 50.7171)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(211.602, 1.44998, -87.5541)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-38.406, 1.44998, 29.911)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(203.78, 1.44998, -99.5779)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(227.279, 1.25002, 88.3305)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(155.669, 1.25003, 58.5632)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(235.2, 1.45, -52.7549)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(64.6652, 1.25, -28.9012)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-80.0139, 1.24998, 137.025)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-61.4486, 1.24998, 78.6672)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(145.13, 1.44998, -140.508)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(160.203, 1.44998, 91.5802)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(8.67424, 1.25, 38.869)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-78.6074, 1.25002, 161.634)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(126.479, 1.25002, -139.426)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-57.7064, 1.25, 75.9404)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(147.118, 1.44998, -112.066)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(115.818, 1.25, -121.191)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(188.785, 1.25002, 43.8529)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(116.266, 1.25003, 67.1462)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(74.9066, 1.25002, -91.0412)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(76.8336, 1.25, 120.97)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(103.005, 1.44998, -161.105)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(151.656, 1.44998, 93.3926)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(101.103, 1.25, -33.3155)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(49.9507, 1.25002, -0.992228)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(41.8189, 1.25, -119.815)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(64.4184, 1.25, 26.5317)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(128.696, 1.25003, 106.837)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(52.602, 1.45, -56.4273)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(174.19, 1.44998, -91.3765)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(111.071, 1.25002, -64.8642)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(232.854, 1.45, 114.617)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(93.4555, 1.25, 67.4137)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(34.7226, 1.25, -115.792)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(134.162, 1.25, 19.1281)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-77.6155, 1.25, 144.468)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-24.9241, 1.25, 123.011)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(169.312, 1.44998, -161.282)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(232.055, 1.44998, 46.4879)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(240.974, 1.44998, -98.2101)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-26.6726, 1.24998, -5.00721)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(128.266, 1.45, -28.2496)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(159.294, 2.5708, 115.259)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(181.596, 1.25, 151.771)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(166.369, 1.44998, 117.996)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(228.057, 1.25002, 17.3744)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(226.273, 1.25003, 57.6799)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(154.279, 1.44998, -141.805)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(14.566, 1.25, 32.6464)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(44.5066, 1.24998, -68.3019)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-61.241, 1.25002, 116.422)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(35.1985, 1.24998, 156.42)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(236.335, 1.44998, 6.38441)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(231.871, 1.44998, 28.7923)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(144.625, 1.44998, -98.8825)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(109.418, 1.24998, -130.889)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(251.256, 1.44998, -185.754)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(236.912, 1.44998, -155.375)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(94.8594, 2.73816, 138.479)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(180.852, 1.44998, 112.713)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(190.238, 1.44998, -80.0507)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(106.605, 1.24998, -118.846)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(212.198, 1.44998, 99.3294)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(233.723, 1.44998, 30.1464)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-77.4638, 1.25, 172.123)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(131.294, 1.25002, -54.3117)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(26.3837, 1.25, 85.9476)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(173.951, 1.44998, -116.272)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(87.1393, 1.25, -138.15)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(144.831, 1.44998, 101.775)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(210.922, 1.44998, -141.057)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(37.3258, 1.25002, 68.6834)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(247.891, 1.44998, -92.1014)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(22.9089, 1.25003, -120.644)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(184.989, 1.44998, 92.9221)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(81.9035, 1.25, -101.176)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-85.2164, 1.25, 122.9)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-28.8563, 1.44998, 23.8712)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-74.1114, 1.44998, 123.481)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(216.524, 1.44998, 22.1486)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(187.129, 1.44998, -191.216)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(217.933, 1.44998, -184.117)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(222.131, 1.25003, 41.7474)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(249.219, 1.44998, -141.313)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(98.4669, 1.44998, -73.0506)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(20.2491, 1.37747, 73.4141)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(126.842, 1.44998, 21.5479)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(232.686, 1.45, -3.53806)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(118.944, 1.25, 63.6573)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(104.975, 1.25003, 46.2851)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(64.0246, 1.25, -59.6591)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-79.117, 1.24998, 135.328)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(222.586, 1.44998, -113.41)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(193.733, 1.44998, -193.108)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-35.4028, 2.45, 106.552)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(64.1448, 1.45001, 161.642)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(85.9456, 1.25, -33.2648)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-6.38853, 1.44998, 76.8924)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(171.862, 1.25, 83.792)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(184.997, 1.44998, 109.529)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(219.19, 1.25, 134.628)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(139.963, 1.25003, -17.5702)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(130.831, 1.25002, -36.3658)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(232.117, 1.44998, 77.3223)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(222.105, 1.25, -13.9971)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(2.58613, 1.24998, -106.969)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(198.887, 1.44998, -143.877)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(129.437, 1.25002, -54.3932)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-43.7232, 1.25, 55.6879)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(228.429, 1.44998, -123.044)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(11.3148, 1.25, 39.6669)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(215.2, 1.25002, 50.3529)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(251.377, 1.44998, -98.3958)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(194.048, 1.44998, -121.567)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(47.7497, 1.25, 31.8226)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(12.9321, 1.25, -85.7001)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(22.5382, 1.25002, 136.582)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(80.5389, 1.25002, -89.223)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-68.8736, 2.0928, 125.446)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(131.492, 1.25002, -122.848)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(133.581, 1.25, -164.021)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(136.322, 1.25, 74.9079)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(1.85656, 1.25, -6.1667)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(161.17, 1.44998, -69.7724)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(41.5979, 1.24998, 17.7023)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(176.811, 1.44998, -60.3212)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(107.739, 1.25, 78.9094)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-81.2578, 1.25, 82.4812)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-41.7404, 1.25, -5.57025)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(209.31, 1.44998, -168.149)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(168.353, 1.25, -42.8636)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(203.665, 1.44998, -186.311)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(97.3271, 1.25, 102.387)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(4.19157, 1.25002, 18.6463)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(154.154, 1.44998, -118.024)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(195.912, 1.44998, -174.125)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(74.8998, 1.25, -44.5686)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(51.2309, 1.25, -135.577)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(179.838, 1.45001, 55.7596)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-49.7197, 1.25003, 82.2291)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-9.21874, 1.44998, 73.9984)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(135.777, 1.25, 92.9475)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-3.22256, 1.44998, -38.3254)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(154.129, 1.44998, -155.445)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(159.872, 1.44998, -155.286)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-4.71012, 1.44998, -52.1251)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(130.513, 1.25003, -18.9208)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(187.489, 1.24998, 81.9548)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(231.466, 1.25, 78.4199)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(209.495, 1.44998, -87.1754)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(199.194, 1.44998, -55.7674)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(123.499, 1.25, 146.534)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-38.0389, 1.44998, 63.1028)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-78.5605, 1.25002, 106.342)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(81.0987, 1.25002, -156.9)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(30.3247, 1.25, 83.2921)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(76.0268, 1.25, 135.733)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(140.857, 1.25003, -115.445)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(141.077, 1.25, 121.606)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(133.871, 1.25, 22.3694)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(45.7418, 1.25003, -141.389)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(56.5527, 1.25, 45.7949)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(70.0033, 1.24998, -57.7352)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(145.905, 4.13892, 39.8607)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-77.9079, 1.25, 119.421)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(148.685, 1.44998, -56.4737)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(70.8381, 1.45, -34.7923)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(94.2401, 1.25003, 45.8541)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(-67.2418, 1.25, 119.711)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(227.803, 1.44998, -112.152)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(157.295, 1.44998, -27.267)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(178.177, 1.25, 152.178)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(89.7375, 1.25002, -58.6255)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(208.305, 1.44998, -163.049)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(136.405, 1.25, -23.2291)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(42.4788, 1.25, -15.154)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(138.989, 1.25, -191.093)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(208.918, 1.44998, -88.541)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(73.4233, 1.44998, -71.9819)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(232.88, 1.44998, 43.645)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(198.06, 1.44998, -136.475)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(175.501, 1.44998, -98.4542)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(241.08, 1.44998, -195.061)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(206.042, 1.44998, -11.7398)
+}, {
+"node": ExtResource("14_n1gn4"),
+"position": Vector3(185.264, 1.25, 48.9573)
+}])
 
 [node name="Boundaries" type="Node" parent="."]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Boundaries"]
+[node name="boundaries" type="CSGCombiner3D" parent="Boundaries"]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93923, 7.88885, -146.21)
 size = Vector3(20.5174, 14.848, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(0.0213089, 0, 0.999773, 0, 1, 0, -0.999773, 0, 0.0213089, -127.284, 7.88885, -63.2352)
 size = Vector3(20.5174, 14.848, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.3498, 7.59653, -164.3)
 size = Vector3(24.2333, 14.2634, 10.5722)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(0.979911, 0, 0.199436, 0, 1, 0, -0.199436, 0, 0.979911, 133.087, 4.09515, -203.042)
 size = Vector3(24.2333, 14.2634, 14.6955)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(-0.145461, 0, -0.989364, 0, 1, 0, 0.989364, 0, -0.145461, 263.263, 4.09515, -43.3191)
 size = Vector3(24.2333, 14.2634, 15.4937)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(0.054166, 0, -0.998532, 0, 1, 0, 0.998532, 0, 0.054166, 223.866, 4.09515, 183.866)
 size = Vector3(14.4948, 14.2634, 36.7936)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(0.0570937, 0, -0.998369, 0, 1, 0, 0.998369, 0, 0.0570937, 24.0528, 4.09515, 184.327)
 size = Vector3(15.0534, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(0.0350042, 0, -0.999388, 0, 1, 0, 0.999388, 0, 0.0350042, -82.709, 4.09515, 182.745)
 size = Vector3(12.3045, 14.2634, 39.3064)
 material = SubResource("StandardMaterial3D_qgq1o")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/CSGCombiner3D"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/boundaries"]
 transform = Transform3D(-0.997666, 0, -0.0682766, 0, 1, 0, 0.0682766, 0, -0.997666, -62.783, 4.09515, 41.3948)
 size = Vector3(12.3045, 14.2634, 39.3064)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="no_spawn" type="CSGCombiner3D" parent="Boundaries"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.2356, 5.00043, -189.893)
+size = Vector3(200, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.162, 5.00043, -211.864)
+size = Vector3(100, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.404, 5.00043, -249.986)
+size = Vector3(100, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.548, 5.00043, 39.8161)
+size = Vector3(100, 10, 50)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.573, 5.00043, -23.7454)
+size = Vector3(100, 10, 50)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.015, 5.00043, -129.361)
+size = Vector3(100, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.8189, 5.00043, -84.0263)
+size = Vector3(40, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.2622, 5.00043, -88.2942)
+size = Vector3(40, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.8019, 5.00043, -95.9125)
+size = Vector3(40, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.796, 5.00043, -102.867)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.9862, 5.00043, -112.088)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.3812, 5.00043, -118.099)
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5427, 5.00043, -81.1431)
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9868, 5.00043, -140.234)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3095, 5.00043, -37.0947)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92847, 5.00043, 99.7498)
+size = Vector3(15, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.105, 5.00043, 131.168)
+size = Vector3(15, 10, 15)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 202.209, 5.00043, 106.592)
+size = Vector3(15, 10, 15)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.889, 5.00043, 11.918)
+size = Vector3(40, 10, 40)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.975, 5.00043, 16.9449)
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 267.123, 5.00043, -44.8982)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.508, 5.00043, 187.221)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51283, 5.00043, 173.625)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4916, 5.00043, 172.465)
+size = Vector3(60, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.3355, 5.00043, 166.496)
+size = Vector3(20, 10, 20)
 material = SubResource("StandardMaterial3D_qgq1o")
 
 [node name="Demon" parent="." instance=ExtResource("12_gspqf")]
