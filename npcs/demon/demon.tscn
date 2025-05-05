@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://4sijvv22ya5s"]
+[gd_scene load_steps=36 format=3 uid="uid://4sijvv22ya5s"]
 
 [ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_5of82"]
 [ext_resource type="PackedScene" uid="uid://bixkyrh8mubui" path="res://npcs/demon/DemonProjectile.tscn" id="2_2kk2q"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cungx1yoyggob" path="res://audio/hurt sounds/enemy_death_3.ogg" id="9_m6tbp"]
 [ext_resource type="PackedScene" uid="uid://cce7pakh1pe5y" path="res://weapons/collision_damage.tscn" id="10_oexel"]
 [ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="11_81w5a"]
+[ext_resource type="PackedScene" uid="uid://b1wlucj585wc2" path="res://utils/freeze_away_from_player.tscn" id="12_013mq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 radius = 0.690391
@@ -271,6 +272,8 @@ damage = SubResource("Resource_0u5v7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hurt area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967723, 1.17078, 0)
 shape = SubResource("CapsuleShape3D_ce07t")
+
+[node name="FreezeAwayFromPlayer" parent="." instance=ExtResource("12_013mq")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
