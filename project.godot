@@ -21,6 +21,7 @@ boot_splash/show_image=false
 UIManager="*res://ui/ui_manager.gd"
 MissionManager="*res://managers/mission_manager.gd"
 MissionIndicatorTest="*res://ui/mission_indicators/test_indicator_system.gd"
+GlobalPlayerData="*res://utils/globals/global_player_data.gd"
 
 [display]
 

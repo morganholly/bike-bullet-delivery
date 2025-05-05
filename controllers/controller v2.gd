@@ -483,6 +483,8 @@ func _internal_physics_process(delta: float,
 	floor_max_angle = deg_to_rad(50 + 45 * (1 - (1 / ((self.velocity * Vector3(1, 0, 1)).length() * 0.1 + 1))))
 	jump_recharge_inv *= 1 - jump_accel_recharge
 	coyote_timer += delta
+	
+	GlobalPlayerData.player_position = self.global_position
 
 # fall prevention (crouching or in some areas)
 
