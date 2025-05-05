@@ -95,7 +95,7 @@ func play_now_with_strength(step_strength_now: float, strength_variance_now: flo
 	for i in range(0, landing_thumps.stream.streams_count):
 		landing_thumps.stream.set_stream_probability_weight(i, temp_weights[i] * total_inv)
 	landing_thumps.volume_db = lerp(-24, 0, clampf((step_strength_now - 1) / 9, 0, 1))
-	print(step_strength_now, " ", landing_thumps.volume_db)
+	#print(step_strength_now, " ", landing_thumps.volume_db)
 	landing_thumps.play()
 	
 	# restore
@@ -164,7 +164,7 @@ func _process(delta: float) -> void:
 			if always_update_weights or redo_weights:
 				update_weights()
 			thumps.volume_db = lerp(-24, -12, clampf((step_strength - 1) / 9, 0, 1))
-			print(step_strength, " ", thumps.volume_db)
+			#print(step_strength, " ", thumps.volume_db)
 			thumps.play()
 			last_step_time_usec = current_time_usec
 
@@ -173,7 +173,7 @@ func _on_play_now_second_timer_timeout() -> void:
 	#for i in range(0, thumps.stream.streams_count):
 		#landing_thumps.stream.set_stream_probability_weight(i, play_now_second_foot_weights[i])
 	landing_thumps.volume_db = lerp(-24, 0, clampf((second_foot_strength - 1) / 9, 0, 1))
-	print(second_foot_strength, " ", landing_thumps.volume_db)
+	#print(second_foot_strength, " ", landing_thumps.volume_db)
 	landing_thumps.play()
 	#for i in range(0, landing_thumps.stream.streams_count):
 		#landing_thumps.stream.set_stream_probability_weight(i, normal_weights_backup[i])

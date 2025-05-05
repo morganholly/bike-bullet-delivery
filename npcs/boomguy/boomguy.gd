@@ -38,7 +38,7 @@ func _physics_process(delta):
 		var target_position = target.global_transform.origin
 		var direction = (target_position - global_transform.origin).normalized()
 		look_at(target_position)
-		print("BOOMGUY SEES ENEMIES")
+		#print("BOOMGUY SEES ENEMIES")
 		if started_shooting:
 			gun_sound.stream.loop_begin = 98400
 			gun_sound.stream.loop_end = 208320
@@ -66,7 +66,7 @@ func _physics_process(delta):
 
 func _on_Area3D_body_entered(body):
 	if body.is_in_group("enemies_targetable_by_boomguy"):
-		print("Enemy detected!")
+		#print("Enemy detected!")
 		targets.append(body)
 
 func _on_Area3D_body_exited(body):
