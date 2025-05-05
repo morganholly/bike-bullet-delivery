@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1wlucj585wc2"]
+
+[ext_resource type="Script" uid="uid://dj6k0pa15sr5u" path="res://utils/freeze_away_from_player.gd" id="1_vq4on"]
+
+[node name="FreezeAwayFromPlayer" type="Node3D"]
+script = ExtResource("1_vq4on")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
