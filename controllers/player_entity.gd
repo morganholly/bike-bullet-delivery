@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	#player_sprite.disable_rotation_to_camera = not camera.third_person_select
+	player_sprite.disable_rotation_to_camera = not camera.third_person_select
 	if camera.third_person_select:
 		$".".look_at(camera.global_position+$"..".velocity.normalized()*100)
 	
