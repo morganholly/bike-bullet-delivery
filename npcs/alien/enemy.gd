@@ -23,10 +23,13 @@ var cur_stun_delay = 0
 var cur_shoot_delay = 0
 
 @onready var uniform_health: Node = $UniformHealth
+@onready var sound_hurt: AudioStreamPlayer3D = $hurt
+@onready var sound_die: AudioStreamPlayer3D = $die
 
 func damaged_set_state():
 	#print("ow!")
-	$hurt.play()
+	if sound_hurt:
+		sound_hurt.play()
 	current_state = Entity_States.Damaged 
 	cur_stun_delay = stun_delay
 	if target == null:
@@ -35,7 +38,8 @@ func damaged_set_state():
 
 func death_set_state():
 	#print("aughh")
-	$die.play()
+	if sound_die:
+		sound_die.play()
 	current_state = Entity_States.Death 
 	cur_stun_delay = 1000
 	await get_tree().create_timer(0.75).timeout

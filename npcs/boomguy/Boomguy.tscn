@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://db2eyvfi8wple"]
+[gd_scene load_steps=41 format=3 uid="uid://db2eyvfi8wple"]
 
 [ext_resource type="Script" uid="uid://b8uwuxg31f8bo" path="res://npcs/boomguy/boomguy.gd" id="1_6xrnp"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_7u3ht"]
@@ -7,6 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bkpnghooq0hhw" path="res://npcs/boomguy/spritesheet/boomguy_spritesheet.png" id="4_d4htd"]
 [ext_resource type="Script" uid="uid://cg6nf2nd681lf" path="res://npcs/boomguy/boomguy_delivery.gd" id="6_j4m4r"]
 [ext_resource type="AudioStream" uid="uid://dafkxuf21l1js" path="res://audio/areniporgen__hk51_corrected_tail.wav" id="7_ewwtt"]
+[ext_resource type="AudioStream" uid="uid://kcf8ulygfwo8" path="res://audio/hurt sounds/player_hurt_1.ogg" id="8_7ccej"]
+[ext_resource type="AudioStream" uid="uid://c8b8pyoiup1xa" path="res://audio/hurt sounds/player_hurt_2.ogg" id="9_mqy2c"]
+[ext_resource type="AudioStream" uid="uid://c2sposbjbhab2" path="res://audio/hurt sounds/player_death.ogg" id="10_mo0bv"]
+[ext_resource type="AudioStream" uid="uid://c37qct8wd56ef" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-01.wav" id="11_y80ou"]
+[ext_resource type="AudioStream" uid="uid://sa061davolmn" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-02.wav" id="12_pq8gc"]
+[ext_resource type="AudioStream" uid="uid://cfhr77e5dppl4" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav" id="13_lfwpd"]
+[ext_resource type="AudioStream" uid="uid://48p3nk8f0dhy" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-04.wav" id="14_uwego"]
+[ext_resource type="AudioStream" uid="uid://b6ebjbyv5wtl5" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-05.wav" id="15_ogq6v"]
+[ext_resource type="AudioStream" uid="uid://bfx80c646n31f" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-06.wav" id="16_of4sk"]
+[ext_resource type="AudioStream" uid="uid://dule6bd6a1me3" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-07.wav" id="17_g0bwl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 radius = 0.690391
@@ -185,8 +195,29 @@ animations = [{
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
-custom_solver_bias = 0.041
-radius = 26.2117
+radius = 35.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dt2ni"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("8_7ccej")
+stream_1/stream = ExtResource("9_mqy2c")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pv4w4"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("10_mo0bv")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kuybt"]
+random_pitch = 1.1
+streams_count = 7
+stream_0/stream = ExtResource("11_y80ou")
+stream_1/stream = ExtResource("12_pq8gc")
+stream_2/stream = ExtResource("13_lfwpd")
+stream_3/stream = ExtResource("14_uwego")
+stream_4/stream = ExtResource("15_ogq6v")
+stream_5/stream = ExtResource("16_of4sk")
+stream_6/stream = ExtResource("17_g0bwl")
 
 [node name="Boomguy" type="RigidBody3D" groups=["Boomguy", "Damageable", "NPC"]]
 collision_layer = 4
@@ -196,6 +227,8 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_6xrnp")
+collision_hit = 69
+collision_sight = 68
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_7u3ht")]
 max_armor = 0.0
@@ -217,12 +250,16 @@ script = ExtResource("4_4j5tw")
 designated_parent = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.809)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+[node name="shifted" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)
+visible = false
+shape = SubResource("SphereShape3D_4rmfa")
+disabled = true
+
+[node name="centered" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_4rmfa")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]
@@ -237,6 +274,15 @@ script = ExtResource("6_j4m4r")
 [node name="gun sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_ewwtt")
 bus = &"Gunshots"
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dt2ni")
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pv4w4")
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kuybt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
