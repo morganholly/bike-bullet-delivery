@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygsyrr2ah6by"]
+
+[ext_resource type="Texture2D" uid="uid://bbsie2h0y5tqv" path="res://enviroment/Alien/deco_alienhead.png" id="1_271cb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_himwa"]
+height = 1.92383
+radius = 0.90918
+
+[node name="Alieny_head" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00582123, 0.942833, -0.00170135)
+pixel_size = 0.03
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_271cb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614929, 0.95394, 0.0015564)
+shape = SubResource("CylinderShape3D_himwa")
