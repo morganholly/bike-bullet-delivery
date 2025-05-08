@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ihwu4ke7sxcb"]
+
+[ext_resource type="Texture2D" uid="uid://bgdy38b5ngtoi" path="res://enviroment/Alien/deco_bigsphere.png" id="1_d8qej"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a1dwm"]
+radius = 1.95544
+
+[node name="Alieny_maxisphere" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00582123, 2.0378, -0.00170135)
+pixel_size = 0.03
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_d8qej")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614929, 2.262, 0.0015564)
+shape = SubResource("SphereShape3D_a1dwm")

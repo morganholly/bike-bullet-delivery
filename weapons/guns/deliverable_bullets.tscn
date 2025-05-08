@@ -1,42 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxlhw3r5j6p0u"]
+[gd_scene load_steps=5 format=3 uid="uid://cxlhw3r5j6p0u"]
 
-[ext_resource type="Texture2D" uid="uid://bvw8bjvqwsf7p" path="res://graphics/low res grayscale textures/gray31_256.png" id="1_oeyj5"]
-[ext_resource type="Texture2D" uid="uid://uwmlhh773s5a" path="res://graphics/low res grayscale textures/gray13_128.png" id="2_bkj76"]
+[ext_resource type="PackedScene" uid="uid://b5d7jte31kth1" path="res://weapons/guns/ammonautbag.glb" id="3_c6756"]
 [ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="3_uwa27"]
 [ext_resource type="Script" uid="uid://cdf8p1kxpsbr1" path="res://weapons/guns/deliverable_bullets.gd" id="4_bxj1c"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd4l6"]
-albedo_texture = ExtResource("1_oeyj5")
-metallic = 1.0
-metallic_specular = 1.0
-roughness_texture = ExtResource("2_bkj76")
-uv1_scale = Vector3(5, 5, 5)
-uv1_triplanar = true
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_pisua"]
-material = SubResource("StandardMaterial3D_qd4l6")
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.25
-radial_segments = 8
-rings = 0
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_538jo"]
-size = Vector3(0.25, 0.25, 0.25)
+size = Vector3(0.25, 0.545898, 0.473633)
 
 [node name="DeliverableBullets" type="RigidBody3D" groups=["Deliverable"]]
 collision_layer = 257
 script = ExtResource("4_bxj1c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_pisua")
-skeleton = NodePath("../BulletPickup")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147949, 0.0209961)
 shape = SubResource("BoxShape3D_538jo")
 
 [node name="BulletPickup" parent="." instance=ExtResource("3_uwa27")]
 take_while_holding = false
 disable_equip = true
+
+[node name="ammonautbag" parent="." instance=ExtResource("3_c6756")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189304, -0.105548, 0.0197861)
 
 [connection signal="body_entered" from="BulletPickup" to="." method="_on_bullet_pickup_ammo_transferred"]
