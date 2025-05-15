@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsgascquajtw1"]
+[gd_scene load_steps=11 format=3 uid="uid://bsgascquajtw1"]
 
 [ext_resource type="Script" uid="uid://b1o6u47ijor3t" path="res://cutscenes/slideshow/slideshow.gd" id="1_2u4vd"]
 [ext_resource type="Resource" uid="uid://b4q2y7q5qxmtx" path="res://cutscenes/slideshow/intro_slides/intro_slide1.tres" id="2_3k4vd"]
@@ -6,10 +6,6 @@
 [ext_resource type="Resource" uid="uid://cg03rx66ycnwx" path="res://cutscenes/slideshow/intro_slides/intro_slide2.tres" id="3_4k4vd"]
 [ext_resource type="Resource" uid="uid://cneebfxdnn6qu" path="res://cutscenes/slideshow/intro_slides/intro_slide3.tres" id="4_5k4vd"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_xksoj"]
-[ext_resource type="AudioStream" uid="uid://c5iierni8b14t" path="res://audio/dark ambience/loops/weird tonal 2x.wav" id="7_d07hd"]
-[ext_resource type="AudioStream" uid="uid://bl7rmqcmnjbo1" path="res://audio/dark ambience/loops/cacaphony 1 2x.wav" id="8_aoqtg"]
-[ext_resource type="AudioStream" uid="uid://c8doqv1hk0ce0" path="res://audio/dark ambience/loops/cacaphony 2 4x.wav" id="9_3be4e"]
-[ext_resource type="AudioStream" uid="uid://dunx1n8xwd7ii" path="res://audio/dark ambience/loops/distance gunshots loop 2x.wav" id="10_2a5qm"]
 
 [sub_resource type="Animation" id="Animation_yd5k5"]
 length = 0.001
@@ -107,20 +103,39 @@ autowrap_mode = 3
 
 [node name="ContinueLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -100.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
+offset_left = -146.0
+offset_top = -67.0
+offset_right = 153.0
+offset_bottom = 13.0
+grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+theme_override_colors/font_color = Color(1, 0.458824, 0.462745, 0.839216)
 theme_override_font_sizes/font_size = 20
 text = "Click anywhere to continue..."
+horizontal_alignment = 2
+
+[node name="Loading Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -67.0
+offset_right = 153.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.458824, 0.462745, 0.839216)
+theme_override_font_sizes/font_size = 20
+text = "LOADING"
 horizontal_alignment = 2
 
 [node name="loading spinner" type="Control" parent="."]
@@ -153,32 +168,3 @@ text = "↑ ↓"
 label_settings = SubResource("LabelSettings_yd5k5")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="sounds" type="Node" parent="."]
-
-[node name="weird tonal" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("7_d07hd")
-pitch_scale = 0.5
-autoplay = true
-bus = &"Ambient"
-
-[node name="cacaphony 1" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("8_aoqtg")
-volume_db = -9.0
-pitch_scale = 0.5
-autoplay = true
-bus = &"Ambient"
-
-[node name="cacaphony 2" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("9_3be4e")
-volume_db = -9.0
-pitch_scale = 0.25
-autoplay = true
-bus = &"Ambient"
-
-[node name="distant gunshots" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("10_2a5qm")
-volume_db = -9.0
-pitch_scale = 0.5
-autoplay = true
-bus = &"Ambient"

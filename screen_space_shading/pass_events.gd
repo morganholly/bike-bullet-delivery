@@ -7,6 +7,7 @@ var push_events: bool = false
 @export var pick_scene: bool = false
 @export var scenes: Array = [
 	preload("res://levels/level/level.tscn"),
+	preload("res://levels/level/level_old.tscn"),
 	preload("res://levels/testing/test01.tscn"),
 	preload("res://levels/testing/test02.tscn"),
 	preload("res://levels/testing/test03.tscn"),

@@ -1,0 +1,181 @@
+[gd_scene load_steps=25 format=3 uid="uid://cqjwi6dlovtlr"]
+
+[ext_resource type="Script" uid="uid://b1o6u47ijor3t" path="res://cutscenes/slideshow/slideshow.gd" id="1_p7ctf"]
+[ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="2_jrrp2"]
+[ext_resource type="Texture2D" uid="uid://sjfgi2gnv2rl" path="res://cutscenes/slideshow/win_slides/story_win1.png" id="3_byicj"]
+[ext_resource type="Texture2D" uid="uid://180hxnltk4bo" path="res://cutscenes/slideshow/win_slides/story_win2.png" id="4_byicj"]
+[ext_resource type="Script" uid="uid://b0u5q5sqesvnc" path="res://cutscenes/slideshow/text_entry.gd" id="6_5aahf"]
+[ext_resource type="Texture2D" uid="uid://cl4io74duw2hu" path="res://cutscenes/slideshow/win_slides/story_win3.png" id="6_k4a47"]
+[ext_resource type="Texture2D" uid="uid://6n85sp327frv" path="res://cutscenes/slideshow/win_slides/story_win4.png" id="7_mgre5"]
+[ext_resource type="Texture2D" uid="uid://00ksyp8kwh5o" path="res://cutscenes/slideshow/win_slides/story_win5.png" id="8_nxhwv"]
+[ext_resource type="Texture2D" uid="uid://bh7qrackte4kf" path="res://cutscenes/slideshow/win_slides/story_win6.png" id="9_rqvce"]
+[ext_resource type="Texture2D" uid="uid://dvkc6hfr81m1u" path="res://cutscenes/slideshow/win_slides/story_win7.png" id="10_v0omj"]
+
+[sub_resource type="Resource" id="Resource_5aahf"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "He actually did it!"
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_k4a47"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("3_byicj")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_5aahf")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[sub_resource type="Resource" id="Resource_1rq6d"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "Boomguy destroyed the alien mothership and saved the world."
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_m0csr"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("4_byicj")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_1rq6d")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[sub_resource type="Resource" id="Resource_32gmt"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "Course he did. That guy's a professional."
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_8qlxf"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("6_k4a47")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_32gmt")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[sub_resource type="Resource" id="Resource_f1emv"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "Hey, I guess he won't be needing all that ammo anymore."
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_ua8m2"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("7_mgre5")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_f1emv")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[sub_resource type="Resource" id="Resource_uadfc"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "Good point. Hey, could you check your phone?"
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_47s8g"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("8_nxhwv")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_uadfc")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[sub_resource type="Resource" id="Resource_l6hv8"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "      "
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_b17s8"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("9_rqvce")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_l6hv8")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[sub_resource type="Resource" id="Resource_kcj2g"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "      "
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_jl42w"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("10_v0omj")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_kcj2g")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
+[node name="Slideshow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p7ctf")
+slides = Array[ExtResource("2_jrrp2")]([SubResource("Resource_k4a47"), SubResource("Resource_m0csr"), SubResource("Resource_8qlxf"), SubResource("Resource_ua8m2"), SubResource("Resource_47s8g"), SubResource("Resource_b17s8"), SubResource("Resource_jl42w")])
+next_scene_path = "res://menus/start_menu/start_menu.tscn"
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 20.0
+offset_right = 400.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Character Name"
+horizontal_alignment = 1
+
+[node name="TextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -100.0
+offset_right = 600.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Dialogue text will appear here..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -67.0
+offset_right = 153.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.458824, 0.462745, 0.839216)
+theme_override_font_sizes/font_size = 20
+text = "Click anywhere to continue..."
+horizontal_alignment = 2
