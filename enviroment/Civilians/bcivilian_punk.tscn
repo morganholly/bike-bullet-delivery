@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqoon5njxx8gl"]
+
+[ext_resource type="Texture2D" uid="uid://b4efh5eqkm7c6" path="res://enviroment/Civilians/civilian-punk.png" id="1_53euc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ayj5j"]
+height = 1.51379
+radius = 0.348633
+
+[node name="BCivilian Punk" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816599, 0)
+pixel_size = 0.03
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_53euc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614929, 0.769632, 0.0015564)
+shape = SubResource("CylinderShape3D_ayj5j")

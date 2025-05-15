@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://skyfnhebjq7u"]
+
+[ext_resource type="Texture2D" uid="uid://deux1f823fd6c" path="res://enviroment/Alien/deco_eye sphere.png" id="1_y0vpd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y0vpd"]
+radius = 0.963102
+
+[node name="Alieny_sphere" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00582123, 0.942833, -0.00170135)
+pixel_size = 0.03
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_y0vpd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614929, 0.941224, 0.0015564)
+shape = SubResource("SphereShape3D_y0vpd")

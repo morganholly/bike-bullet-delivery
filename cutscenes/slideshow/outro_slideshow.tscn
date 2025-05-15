@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://b48hf51n5o14f"]
+[gd_scene load_steps=9 format=3 uid="uid://b48hf51n5o14f"]
 
 [ext_resource type="Script" uid="uid://b1o6u47ijor3t" path="res://cutscenes/slideshow/slideshow.gd" id="1_2u4vd"]
-[ext_resource type="Resource" uid="uid://c6rn0x8pglrwo" path="res://cutscenes/slideshow/outro_slides/outro_slide1.tres" id="2_3k4vd"]
+[ext_resource type="Resource" uid="uid://duxhxgfafweaq" path="res://cutscenes/slideshow/outro_slides/outro_slide1.tres" id="2_3k4vd"]
 [ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="2_5b346"]
-[ext_resource type="Resource" uid="uid://crlafxc1ihe2r" path="res://cutscenes/slideshow/outro_slides/outro_slide2.tres" id="3_4k4vd"]
+[ext_resource type="Resource" uid="uid://bre5o7a47o7qi" path="res://cutscenes/slideshow/outro_slides/outro_slide2.tres" id="3_4k4vd"]
+[ext_resource type="Texture2D" uid="uid://bbh4fj7nqkrgw" path="res://cutscenes/slideshow/outro_slides/story_outro3.png" id="5_8dex4"]
+[ext_resource type="Script" uid="uid://b0u5q5sqesvnc" path="res://cutscenes/slideshow/text_entry.gd" id="6_ymrrb"]
+
+[sub_resource type="Resource" id="Resource_1rq6d"]
+script = ExtResource("6_ymrrb")
+character_name = ""
+dialogue_text = "     "
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_m0csr"]
+script = ExtResource("2_5b346")
+background_texture = ExtResource("5_8dex4")
+text_entries = Array[ExtResource("6_ymrrb")]([SubResource("Resource_1rq6d")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
 
 [node name="Slideshow" type="Control"]
 layout_mode = 3
@@ -13,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2u4vd")
-slides = Array[ExtResource("2_5b346")]([ExtResource("2_3k4vd"), ExtResource("3_4k4vd")])
+slides = Array[ExtResource("2_5b346")]([ExtResource("2_3k4vd"), ExtResource("3_4k4vd"), SubResource("Resource_m0csr")])
 next_scene_path = "res://menus/start_menu/start_menu.tscn"
 
 [node name="Background" type="TextureRect" parent="."]
@@ -60,18 +76,18 @@ autowrap_mode = 3
 
 [node name="ContinueLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -100.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
+offset_left = -146.0
+offset_top = -67.0
+offset_right = 153.0
+offset_bottom = 13.0
+grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.8)
+theme_override_colors/font_color = Color(1, 0.458824, 0.462745, 0.839216)
 theme_override_font_sizes/font_size = 20
 text = "Click anywhere to continue..."
-horizontal_alignment = 2 
+horizontal_alignment = 2

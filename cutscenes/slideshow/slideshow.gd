@@ -15,6 +15,7 @@ var visible_text_entries: Array[Dictionary] = []  # Array of dictionaries contai
 @onready var name_label: Label = $NameLabel
 @onready var text_label: Label = $TextLabel
 @onready var continue_label: Label = $ContinueLabel
+@onready var loading_label: Label = $ContinueLabel
 
 # Panel styling constants
 const PANEL_COLOR := Color(0, 0, 0, 0.5)
@@ -73,6 +74,8 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				# End of slideshow, transition to next scene
 				#get_tree().change_scene_to_file(next_scene_path)
+				continue_label.hide()
+				loading_label.show()
 				var next_scene = ResourceLoader.load_threaded_get(next_scene_path)
 				get_tree().change_scene_to_packed(next_scene)
 

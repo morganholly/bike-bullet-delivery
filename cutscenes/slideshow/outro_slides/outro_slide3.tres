@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SlideData" load_steps=5 format=3 uid="uid://cbfi1315esywr"]
+
+[ext_resource type="Texture2D" uid="uid://cnsij07s5nalq" path="res://cutscenes/slideshow/outro_slides/story outro3.png" id="1_3aews"]
+[ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="2_wctmn"]
+[ext_resource type="Script" uid="uid://b0u5q5sqesvnc" path="res://cutscenes/slideshow/text_entry.gd" id="3_uvm0h"]
+
+[sub_resource type="Resource" id="Resource_1"]
+script = ExtResource("3_uvm0h")
+character_name = ""
+dialogue_text = "I NEED MY AMMO!!!!"
+position = Vector2(0.5, 0.2)
+scale = Vector2(1, 1)
+
+[resource]
+script = ExtResource("2_wctmn")
+background_texture = ExtResource("1_3aews")
+text_entries = Array[ExtResource("3_uvm0h")]([SubResource("Resource_1")])

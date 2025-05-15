@@ -26,7 +26,7 @@ color = Color(0.427451, 0.101961, 0.239216, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 5
-position = Vector2(658, 153)
+position = Vector2(658, 353)
 texture = ExtResource("3_ct3sm")
 
 [node name="Title" type="Label" parent="."]
@@ -45,7 +45,7 @@ text = "BULLET BUFFET"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-z_index = 5
+z_index = 13
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,9 +53,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = 2.0
+offset_top = 121.0
 offset_right = 200.0
-offset_bottom = 222.0
+offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20

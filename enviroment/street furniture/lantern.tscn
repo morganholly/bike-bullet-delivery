@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d13aalm43crg3"]
+
+[ext_resource type="Texture2D" uid="uid://jvokss7pvybk" path="res://enviroment/street furniture/lantern.png" id="1_j2cvq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ayj5j"]
+height = 2.60986
+radius = 0.237793
+
+[node name="Lantern" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00582123, 1.90663, -0.00170135)
+pixel_size = 0.03
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_j2cvq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614929, 1.51441, 0.0015564)
+shape = SubResource("CylinderShape3D_ayj5j")
