@@ -4,8 +4,9 @@ extends Node
 signal bullet_count_changed(mag_count: int, reserve_count: int)
 # Separate signal for reload state
 signal reload_state_changed(is_reloading: bool)
-# Signal for inventory slot selection
+# Signal for inventory slots
 signal slot_selected(slot_index: int)
+#signal slot_update(slot_index:int, slot_type:String, slot_ammo: int)#TIDYUP
 # Health and armor signals
 signal health_updated(current_health: float, max_health: float)
 signal armor_updated(current_armor: float, max_armor: float)
@@ -36,6 +37,11 @@ var is_prompt_visible: bool = false
 # Game over state
 var is_game_over_visible: bool = false
 
+# gun stuff
+var pistolindex=-1 #TIDYUP
+var pistolreloading=false
+var flareindex=-1 #TIDYUP
+
 func _ready():
 	pass
 
@@ -51,17 +57,30 @@ func update_armor(armor: float, max_arm: float) -> void:
 	emit_signal("armor_updated", current_armor, max_armor)
 
 # Method to broadcast bullet count updates from anywhere
-# mag_count = -1 means reloading, reserve_count = -1 means don't show reserve
+# mag_count = -1 means reloading, 
+# mag_count = -2 mean use previous mag count for display
+# reserve_count = -1 means don't show reserve
 func update_bullet_display(mag_count: int, reserve_count: int = -1) -> void:
+	if pistolreloading == true:
+		mag_count = -1
 	bullet_count_changed.emit(mag_count, reserve_count)
+	#print("UPDATE BULLET",mag_count,",",reserve_count)
 
 # Method to broadcast reload state changes
 func set_reload_state(is_reloading: bool) -> void:
+	pistolreloading=is_reloading
 	reload_state_changed.emit(is_reloading)
 
 # Method to update the selected inventory slot in the UI
 func update_selected_slot(slot_index: int) -> void:
 	slot_selected.emit(slot_index)
+
+func update_slots(slot_index:int, slot_type:String, slot_ammo: int):
+	#TIDYUP
+	#print("UPDATE SLOTS: UIMANAGER")
+	#$UILayer.update_slots()
+	#slot_update.emit(1,"",10) #index, gun, ammo
+	pass
 
 # Method to add a mission to the UI
 func add_mission_to_ui(mission_id: String, title: String, description: String) -> void:

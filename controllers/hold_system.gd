@@ -1,9 +1,9 @@
 extends Node3D
 
-
 @onready var camera: Node3D = $"../../Camera"
 @onready var character_body_3d: CharacterBody3D = $"../.."
 
+@export var slotindex = 0 #TIDYUP
 
 enum ActionState {EMPTY, HOLDITEM, GUN, MELEEITEM}
 var current_action_state: ActionState = ActionState.EMPTY
@@ -138,7 +138,10 @@ func _physics_process(delta: float) -> void:
 
 
 func gun_tween_to_hold():
+	#hide the gun
+	#camera.gun_position_r.hide()#TIDYUP
 	var tween_pos = get_tree().create_tween()
+	tween_pos.finished.connect(gun_hidewhentweened)#TIDYUP
 	tween_pos.set_ease(Tween.EASE_OUT)
 	tween_pos.tween_property(camera.gun_position_r.get_node("gun_action"), "position", Vector3.ZERO, 0.5)
 	
@@ -149,6 +152,18 @@ func gun_tween_to_hold():
 			camera.gun_position_r.get_node("gun_action").global_basis = camera.gun_position_r.get_node("gun_action").global_basis.slerp(camera.gun_position_r.global_basis, weight * weight)
 	tween_face.tween_method(facing_callable, 0.0, 1.0, 1.0)
 
+func gun_hidewhentweened():
+	#hides the gun model at the end of the tween
+	#TIDYUP
+	#holding.remove_from_group("holdable_could_gun")
+	camera.gun_position_r.hide()
+	#holding.get_node("CollisionShape3D").disabled=true
+	holding.get_node("Area3D/CollisionShape3D2").disabled=true #if you don't do this it gets accidentally picked up in other slots
+	camera.gun_sprite_firing(false)
+	#holding.get_node("gun_action").reparent(camera.gun_position_r)
+	camera.gun_position_r.get_node("gun_action").visible = true
+	pass
+	
 
 func active_slot_input(event) -> void:
 	match current_action_state:
@@ -175,7 +190,7 @@ func active_slot_input(event) -> void:
 								#print("only hold")
 								current_action_state = ActionState.HOLDITEM
 							[_, true, false], [_, true, true]: # only gun, maybe hold
-								#print("only gun, maybe hold")
+								print("only gun, maybe hold")
 								holding_old_collision_mask = obj_over.collision_mask
 								obj_over.collision_mask = 0
 								obj_over.get_node("gun_action").stash_extra_mags(ammo_pool)
@@ -189,6 +204,9 @@ func active_slot_input(event) -> void:
 								gun_tween_to_hold()
 								
 								current_action_state = ActionState.GUN
+								print("set the gun slotindex")
+								UIManager.pistolindex=slotindex
+								camera.gun_position_r.get_node("gun_action").update_ui_ammo_display(ammo_pool)
 							[_, false, true]: # only melee, maybe hold
 								#print("only melee, maybe hold")
 								current_action_state = ActionState.MELEEITEM
@@ -271,3 +289,27 @@ func active_slot_input(event) -> void:
 				tween_delay_end_firing_sprite.tween_callback(camera.gun_sprite_firing.bind(false)).set_delay(randf_range(0.2, 0.3))
 		ActionState.MELEEITEM:
 			pass
+			
+func get_slotisgun()->bool:
+	var isgun = false
+	match current_action_state:
+		ActionState.GUN:
+			isgun = true
+			pass
+	return isgun
+	pass
+	
+func throwobject():
+	#TIDYUP
+	match current_action_state:
+		ActionState.HOLDITEM:
+			if holding != null:  # Add null check
+				holding.gravity_scale = holding_old_gravity_scale
+				holding.linear_velocity += 20 * (camera.hold_position.global_position - camera.global_position) / sqrt(holding.mass)
+				var vel_clamped = 20 * (1 - (1 / (1 + 0.05 * holding.linear_velocity.length())))
+				holding.linear_velocity = holding.linear_velocity.normalized() * vel_clamped
+				camera.nodeRaycast.remove_exception(holding)
+				camera.nodeRaycast.collision_mask |= 0b1_0000_0000
+				holding.remove_from_group(&"IsHeld")
+				holding = null
+	pass

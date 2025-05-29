@@ -39,6 +39,7 @@ func _ready():
 
 func _process(delta):
 	if is_typing:
+		$AudioText.play()
 		typing_timer += delta
 		if typing_timer >= typing_speed:
 			typing_timer = 0
@@ -57,7 +58,9 @@ func _input(event):
 			current_entry.text_label.text = current_entry.full_text
 			is_typing = false
 			continue_label.show()
+			$AudioClick.play()
 		else:
+			$AudioClick.play()
 			# Check if there are more text entries in the current slide
 			if current_text_entry_index < slides[current_slide_index].text_entries.size() - 1:
 				current_text_entry_index += 1
@@ -76,6 +79,7 @@ func _input(event):
 				#get_tree().change_scene_to_file(next_scene_path)
 				continue_label.hide()
 				loading_label.show()
+				await get_tree().create_timer(.1).timeout
 				var next_scene = ResourceLoader.load_threaded_get(next_scene_path)
 				get_tree().change_scene_to_packed(next_scene)
 
@@ -91,10 +95,10 @@ func show_current_slide():
 	background.texture = slide.background_texture
 	show_current_text_entry()
 
-func create_panel(size: Vector2, position: Vector2) -> Panel:
+func create_panel(psize: Vector2, pposition: Vector2) -> Panel:
 	var panel = Panel.new()
-	panel.custom_minimum_size = size
-	panel.position = position
+	panel.custom_minimum_size = psize
+	panel.position = pposition
 	panel.modulate = PANEL_COLOR
 	return panel
 

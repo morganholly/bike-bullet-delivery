@@ -148,20 +148,21 @@ func _on_delivery_area_body_entered(body):
 	
 	# Check if it's a deliverable bullet
 	if body.is_in_group("Deliverable"):
-		print("BoomguyDelivery: Deliverable entered area")
+		print("BOOMGUY DELIVERY: Deliverable entered area")
 		
 		# Check if it has the expected script
 		if body.has_method("get_mission_id"):
 			var mission_id = body.get_mission_id()
 			
 			if mission_id != "":
-				print("BoomguyDelivery: Mission bullet entered delivery area: " + mission_id)
+				print("BOOMGUY DELIVERY: Mission bullet entered delivery area: " + mission_id)
 				
 				# Deliver to this NPC and check if it was successful
 				var delivery_successful = body.deliver_to_target(get_parent())
 				
 				# Only process the bullet if delivery was successful
 				if delivery_successful:
+					print("delivery received")
 					# Show feedback - Make it more noticeable
 					feedback_label.text = "Delivery Received!"
 					feedback_label.modulate = Color(0.0, 1.0, 0.2)  # Bright green

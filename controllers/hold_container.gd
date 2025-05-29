@@ -28,6 +28,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		var key_idx = event.keycode - KEY_0
 		if key_idx >= 0 and key_idx <= 9:
+			slots[selected_slot].throwobject() #TIDYUP
 			slots[selected_slot].make_inactive()
 			key_idx -= 1
 			if key_idx == -1:
@@ -49,6 +50,7 @@ func _input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_LEFT:
 				slot_offset = 1 if flip_scroll_ud else -1
 			MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_RIGHT, MOUSE_BUTTON_WHEEL_LEFT:
+				slots[selected_slot].throwobject() #TIDYUP
 				slots[selected_slot].make_inactive()
 				selected_slot += slot_offset
 				slots[selected_slot].make_active()
@@ -57,3 +59,8 @@ func _input(event: InputEvent) -> void:
 				was_handled = true
 	if not was_handled:
 		slots[selected_slot].active_slot_input(event)
+		
+func get_slotisgun(slotnumber):
+	slots[slotnumber].get_slotisgun()
+	return true
+	pass

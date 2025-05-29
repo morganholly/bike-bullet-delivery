@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpl1271apupa6"]
+
+[ext_resource type="PackedScene" uid="uid://xrks1ho84k4w" path="res://weapons/guns/gun.tscn" id="1_pg3p4"]
+[ext_resource type="Texture2D" uid="uid://bkyelpuvr3pda" path="res://graphics/low res grayscale textures/gray4_128.png" id="2_vllv6"]
+[ext_resource type="Texture2D" uid="uid://bl3aqeev7dkhb" path="res://graphics/low res grayscale textures/gray4_128_normal.png" id="3_4h4we"]
+[ext_resource type="Texture2D" uid="uid://d3ulvhvwp0xjw" path="res://graphics/hands/pistol_ground.png" id="4_brbkf"]
+
+[sub_resource type="FontVariation" id="FontVariation_fq6e1"]
+variation_transform = Transform2D(1, 0.1, 0.2, 1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2l6d"]
+albedo_color = Color(0.456946, 0.514388, 0.543045, 1)
+albedo_texture = ExtResource("2_vllv6")
+metallic = 0.7
+roughness = 0.5
+normal_enabled = true
+normal_scale = 0.7
+normal_texture = ExtResource("3_4h4we")
+uv1_scale = Vector3(30, 2, 3)
+uv1_triplanar = true
+
+[sub_resource type="TextMesh" id="TextMesh_fq6e1"]
+material = SubResource("StandardMaterial3D_x2l6d")
+text = "F"
+font = SubResource("FontVariation_fq6e1")
+font_size = 40
+depth = 0.03
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vllv6"]
+size = Vector3(1, 1, 0.71814)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pg3p4"]
+size = Vector3(1, 0.745117, 0.944824)
+
+[node name="pistol_gun" type="RigidBody3D" groups=["holdable_could_gun"]]
+collision_layer = 128
+collision_mask = 103
+angular_damp = 0.1
+
+[node name="gun_action" parent="." instance=ExtResource("1_pg3p4")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gun_action"]
+transform = Transform3D(1.08453e-08, 1.30685e-07, -1, -0.996574, 0.0827038, -2.22045e-16, 0.0827038, 0.996574, 1.31134e-07, 0, -0.027, -0.107)
+visible = false
+mesh = SubResource("TextMesh_fq6e1")
+
+[node name="Sprite3D" type="Sprite3D" parent="gun_action"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0776929, 0)
+pixel_size = 0.03
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_brbkf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0983755, -0.033)
+shape = SubResource("BoxShape3D_vllv6")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 256
+collision_mask = 0
+priority = -10
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.127441, 0.0275879)
+shape = SubResource("BoxShape3D_pg3p4")

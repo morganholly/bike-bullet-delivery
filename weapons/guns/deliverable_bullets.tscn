@@ -1,25 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxlhw3r5j6p0u"]
+[gd_scene load_steps=5 format=3 uid="uid://bf44eko6lw4g1"]
 
-[ext_resource type="PackedScene" uid="uid://b5d7jte31kth1" path="res://weapons/guns/ammonautbag.glb" id="3_c6756"]
-[ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="3_uwa27"]
-[ext_resource type="Script" uid="uid://cdf8p1kxpsbr1" path="res://weapons/guns/deliverable_bullets.gd" id="4_bxj1c"]
+[ext_resource type="Script" uid="uid://cdf8p1kxpsbr1" path="res://weapons/guns/deliverable_bullets.gd" id="1_gpqno"]
+[ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="2_7dgyu"]
+[ext_resource type="PackedScene" uid="uid://b5d7jte31kth1" path="res://weapons/guns/ammonautbag.glb" id="3_6lj33"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_538jo"]
 size = Vector3(0.25, 0.545898, 0.473633)
 
 [node name="DeliverableBullets" type="RigidBody3D" groups=["Deliverable"]]
 collision_layer = 257
-script = ExtResource("4_bxj1c")
+script = ExtResource("1_gpqno")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147949, 0.0209961)
 shape = SubResource("BoxShape3D_538jo")
 
-[node name="BulletPickup" parent="." instance=ExtResource("3_uwa27")]
-take_while_holding = false
+[node name="BulletPickup" parent="." instance=ExtResource("2_7dgyu")]
 disable_equip = true
 
-[node name="ammonautbag" parent="." instance=ExtResource("3_c6756")]
+[node name="ammonautbag" parent="." instance=ExtResource("3_6lj33")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0189304, -0.105548, 0.0197861)
 
 [connection signal="body_entered" from="BulletPickup" to="." method="_on_bullet_pickup_ammo_transferred"]

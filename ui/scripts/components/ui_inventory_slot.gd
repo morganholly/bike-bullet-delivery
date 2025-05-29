@@ -10,8 +10,8 @@ var is_selected: bool = false
 var passive_texture = preload("res://ui/assets/ui_elements/small slot border@2x.png")
 var active_texture = preload("res://ui/assets/ui_elements/selected slot border@2x.png")
 
-var active_bg = preload("res://ui/assets/ui_elements/ui_inventory_slot_active.png")
-var passive_bg = preload("res://ui/assets/ui_elements/ui_inventory_slot_passive.png")
+#var active_bg = preload("res://ui/assets/ui_elements/ui_inventory_slot_active.png")
+#var passive_bg = preload("res://ui/assets/ui_elements/ui_inventory_slot_passive.png")
 
 var active_width = 150
 var passive_width = 70
@@ -28,17 +28,15 @@ var number_offset_y = 20
 func _ready() -> void:
 	# Initialize with default state
 	set_selected(false)
-
-# Set the slot as selected or not
+# Set the slot asselected or not
 func set_selected(selected: bool) -> void:
 	if is_selected == selected:
 		return  # No change needed
-	
 	is_selected = selected
 	if is_selected:
 		# Switch to active sprite
 		frame.texture = active_texture
-		background.texture = active_bg
+		#background.texture = active_bg
 		size.x = active_width
 		custom_minimum_size.x = active_width
 		frame.position.x += x_offset
@@ -53,7 +51,7 @@ func set_selected(selected: bool) -> void:
 	else:
 		# Switch to passive sprite
 		frame.texture = passive_texture
-		background.texture = passive_bg
+		#background.texture = passive_bg
 		size.x = passive_width
 		custom_minimum_size.x = passive_width
 		frame.position.x -= x_offset

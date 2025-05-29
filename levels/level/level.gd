@@ -32,6 +32,7 @@ var spawn_timer: Timer
 var last_manual_spawn_time: float = 0.0
 var manual_spawn_cooldown: float = 1.0  # 1 second cooldown between manual spawns
 
+
 func _ready():
 	# Connect to MissionManager signals for deliverable spawning
 	MissionManager.request_spawn_deliverable.connect(_on_request_spawn_deliverable)
@@ -150,12 +151,12 @@ func _on_spawn_timer_timeout():
 	# Spawn the enemy
 	_spawn_enemy(enemy_type, spawn_point)
 
-func _spawn_enemy(enemy_scene: PackedScene, position: Vector3):
+func _spawn_enemy(enemy_scene: PackedScene, position1: Vector3):
 	# Create the enemy instance
 	var enemy = enemy_scene.instantiate()
 	
 	# Set position with a small vertical offset to prevent ground clipping
-	enemy.global_position = position + Vector3(0, 0.5, 0)  # Add 0.5 units up
+	enemy.global_position = position1 + Vector3(0, 0.5, 0)  # Add 0.5 units up
 	
 	# Add to scene
 	add_child(enemy)
@@ -164,7 +165,7 @@ func _spawn_enemy(enemy_scene: PackedScene, position: Vector3):
 	spawn_count += 1
 	
 	if debug_spawn_info:
-		print("Spawned enemy #", spawn_count, " at position: ", position, " (current enemies: ", get_tree().get_nodes_in_group("Enemies").size(), ")")
+		print("Spawned enemy #", spawn_count, " at position: ", position1, " (current enemies: ", get_tree().get_nodes_in_group("Enemies").size(), ")")
 
 func _input(event):
 	pass
@@ -187,6 +188,11 @@ func _on_request_spawn_deliverable(mission_id: String, position: Vector3) -> voi
 			print("Level: Failed to get valid spawn point for deliverable")
 			return
 		spawn_point.y += 2.0  # Lift it up more to prevent underground spawning
+		
+		#spawn behind Ammonaut
+		spawn_point.x=-48.3
+		spawn_point.y=3
+		spawn_point.z=-123
 	
 	if debug_spawn_info:
 		print("Spawning deliverable for mission ", mission_id, " at position: ", spawn_point)
@@ -223,6 +229,7 @@ func _find_mission_targets():
 
 # Create test missions for the level
 func _create_test_missions():
+	print("LEVEL: _create_test_missions")
 	if mission_targets.size() <= 0:
 		return
 	
@@ -230,7 +237,7 @@ func _create_test_missions():
 	await get_tree().create_timer(0.5).timeout
 	
 	# Create first mission with first target - special rollerblade mission
-	var target1 = mission_targets[0]
+	var target1 = $Boomguys/Boomguy #mission_targets[0]
 	var mission1 = MissionManager.create_rollerblade_delivery_mission(
 		"mission_1", 
 		"Special Delivery: " + target1.name,
@@ -249,16 +256,17 @@ func _start_mission_spawning():
 	mission_spawn_timer.one_shot = false
 	add_child(mission_spawn_timer)
 	mission_spawn_timer.timeout.connect(_on_mission_spawn_timer_timeout)
-	mission_spawn_timer.start()  # Explicitly start the timer
+	#mission_spawn_timer.start()  # Explicitly start the timer
 	
 	# Create timer for empty task list rule
 	empty_task_list_timer = Timer.new()
 	empty_task_list_timer.wait_time = 5.0
-	empty_task_list_timer.one_shot = true
+	empty_task_list_timer.one_shot = false
 	add_child(empty_task_list_timer)
 	empty_task_list_timer.timeout.connect(_on_empty_task_list_timeout)
 
 func _on_mission_spawn_timer_timeout():
+	print("LEVEL:_on_mission_spawn_timer_timeout")
 	MissionManager._create_next_mission()
 
 	
@@ -269,6 +277,7 @@ func _on_mission_spawn_timer_timeout():
 		print("Mission spawn timer interval updated to: ", mission_spawn_timer.wait_time)
 
 func _on_empty_task_list_timeout():
+	print("LEVEL:_on_empty_task_list_timeout")
 	# Only spawn if there are still no missions
 	if MissionManager.active_missions.size() == 0:
 		MissionManager._create_next_mission()
@@ -299,12 +308,14 @@ func _on_mission_completed(mission_id: String) -> void:
 			if boomguy != player and boomguy != mission_target:  # Don't move player or mission target
 				# Get a random far point
 				var far_point = spawn_detector.get_spawn_point_away(player.global_position)
-				if far_point != Vector3.ZERO:
-					boomguy.global_position = far_point
+				#TIDY UP got rid of this for testing purposes
+				#if far_point != Vector3.ZERO:
+				#	boomguy.global_position = far_point
 	
 	# Start the 5-second timer when a mission is completed and there are no other active missions
-	if MissionManager.active_missions.size() == 0:
-		empty_task_list_timer.start()
+	#if MissionManager.active_missions.size() == 0:
+	#	empty_task_list_timer.start()
+	mission_spawn_timer.start()
 
 func _start_passive_intensity_increase():
 	passive_intensity_timer = Timer.new()

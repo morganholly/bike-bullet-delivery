@@ -96,7 +96,7 @@ func shoot(ammo_pool: Node, shots: int = 1) -> bool:
 			var hit_target: bool
 			var parent_object: Node3D
 			var health_manager: Node
-			if ray_cast_3d.is_colliding():
+			if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider()!=null:
 				print("hit!")
 				if ray_cast_3d.get_collider().get_collision_layer() & 0b01000100 > 0:
 					#print("has right coll mask")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bntfpvbd6b3ok"]
 
-[ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/ui_layer.gd" id="1_gjtyb"]
+[ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/scenes/layers/ui_layer.gd" id="1_gjtyb"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/scenes/components/mission/ui_missions.tscn" id="5_vu3t1"]
 [ext_resource type="PackedScene" uid="uid://cm631cj21p7ph" path="res://ui/mission_indicators/mission_objective_indicator.tscn" id="6_kfnbm"]
 [ext_resource type="PackedScene" uid="uid://c1ieskek27uuw" path="res://ui/ui_components/ui_bottom_health.tscn" id="7_rrf4f"]
@@ -28,75 +28,11 @@ theme_override_constants/separation = 10
 
 [node name="MissionObjectiveIndicator" parent="." instance=ExtResource("6_kfnbm")]
 
-[node name="UIBottomGun" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-offset_left = 1155.0
-offset_top = 685.0
-offset_right = 1195.0
-offset_bottom = 725.0
-script = null
-
-[node name="UIBottomMags" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-offset_left = 938.0
-offset_top = 685.0
-offset_right = 978.0
-offset_bottom = 725.0
-script = null
-
-[node name="UIBottomCurrentAmmo" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-offset_left = 756.0
-offset_top = 670.0
-offset_right = 796.0
-offset_bottom = 710.0
-script = null
-
 [node name="UIBottomHealth" parent="." instance=ExtResource("7_rrf4f")]
 offset_left = 526.0
 offset_top = 670.0
 offset_right = 566.0
 offset_bottom = 710.0
-
-[node name="UIBottomArmor" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-offset_left = 349.0
-offset_top = 685.0
-offset_right = 389.0
-offset_bottom = 725.0
-script = null
 
 [node name="UIPromptLabel" parent="." instance=ExtResource("9_nv6gp")]
 

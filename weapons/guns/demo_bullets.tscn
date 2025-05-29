@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbbfu2jutj4bf"]
+[gd_scene load_steps=10 format=3 uid="uid://cbbfu2jutj4bf"]
 
 [ext_resource type="Texture2D" uid="uid://bvw8bjvqwsf7p" path="res://graphics/low res grayscale textures/gray31_256.png" id="1_oeyj5"]
 [ext_resource type="Texture2D" uid="uid://uwmlhh773s5a" path="res://graphics/low res grayscale textures/gray13_128.png" id="2_bkj76"]
 [ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="3_uwa27"]
 [ext_resource type="PackedScene" uid="uid://b1wlucj585wc2" path="res://utils/freeze_away_from_player.tscn" id="4_e7od0"]
+[ext_resource type="Texture2D" uid="uid://dikew53j24k4g" path="res://weapons/guns/pistol_ammo.png" id="5_kiem3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd4l6"]
 albedo_texture = ExtResource("1_oeyj5")
@@ -32,6 +33,7 @@ collision_layer = 128
 freeze = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 visibility_range_end = 150.0
 visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_pisua")
@@ -50,3 +52,11 @@ collision_mask = 128
 shape = SubResource("SphereShape3D_pg6cv")
 
 [node name="FreezeAwayFromPlayer" parent="." instance=ExtResource("4_e7od0")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0787585, 0)
+pixel_size = 0.03
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_kiem3")

@@ -6,6 +6,7 @@ const MissionResource = preload("res://managers/mission_resource.gd")
 const Mission = MissionResource
 # Preload the deliverable bullets scene
 const DeliverableBulletsScene = preload("res://weapons/guns/deliverable_bullets.tscn")
+const DeliverableBulletsScene2 = preload("res://weapons/guns/deliverable_bullets2.tscn")
 
 # Name dictionaries for Boomguys
 var first_names = [
@@ -40,7 +41,7 @@ var available_missions = []
 var mission_deliverables = {}  # Track deliverables for each mission
 var deliverable_states = {}  # Track state of deliverables: "spawned", "picked_up", "delivered"
 var waiting_for_rollerblade = false  # Flag to track if we're waiting for the player to press B
-var max_active_missions = 7  # Maximum number of active missions allowed at once
+var max_active_missions = 4  # Maximum number of active missions allowed at once
 
 func _ready():
 	# Connect our own signals to handle UI updates
@@ -69,12 +70,14 @@ func handle_rollerblade_input():
 
 # Event handlers for mission state changes
 func _on_mission_started(mission_id: String) -> void:
+	#print("MISSION: _on_mission_started")
 	if mission_id in active_missions:
 		var mission = active_missions[mission_id]
 		
 		# Update the UI to show this mission
 		# Adding mission to UI: " + mission_id + " - " + mission.title
 		if mission.has_phases:
+			print("mission has phases")
 			var current_description = mission.get_current_phase_description()
 			UIManager.add_mission_to_ui(mission_id, mission.title, current_description)
 			
@@ -94,6 +97,7 @@ func _on_mission_started(mission_id: String) -> void:
 			request_deliverable_spawn(mission_id)
 
 func _on_mission_completed(mission_id: String) -> void:
+	#print("MISSION: _on_mission_completed")
 	# Remove the mission from UI when completed
 	# Removing mission from UI: " + mission_id
 	UIManager.remove_mission_from_ui(mission_id)
@@ -110,6 +114,7 @@ func _on_mission_completed(mission_id: String) -> void:
 		deliverable_states.erase(mission_id)
 
 func _on_mission_phase_completed(mission_id: String, phase_index: int) -> void:
+	#print("MISSION: _on_mission_phase_completed")
 	if mission_id in active_missions:
 		var mission = active_missions[mission_id]
 		
@@ -151,10 +156,15 @@ func assign_random_names_to_boomguys() -> void:
 
 # Create a special 3-part mission for getting ammo, rollerblading, and delivery
 func create_rollerblade_delivery_mission(id: String, title: String, target_npc) -> Mission:
+	#print("MISSION: create_rollerblade_delivery_mission")
 	# Get target name (use random name if it's a Boomguy)
 	var target_name = target_npc.name
-	if target_npc.is_in_group("Boomguy") and target_npc.name in boomguy_names:
-		target_name = boomguy_names[target_npc.name]
+	#if target_npc.is_in_group("Boomguy") and target_npc.name in boomguy_names:
+	#		if target_npc.name == "Boomguy":
+	boomguy_names[target_npc.name]= "Nathan Boomguy"
+	target_name = boomguy_names[target_npc.name]
+
+			
 	
 	# Include target name in the mission title
 	var mission_title = "Tutorial Delivery to " + target_name
@@ -164,8 +174,8 @@ func create_rollerblade_delivery_mission(id: String, title: String, target_npc) 
 	# Setup the three phases with clearer text
 	var phases: Array[String] = [
 		"Step 1: Pick up these special ammo boxes.",
-		"Step 2: Press B to rollerblade for faster delivery.",
-		"Step 3: Deliver the ammo to " + target_name + "."
+		"Step 2: Press B for rollerblade speed delivery.",
+		"Step 3: Deliver to " + target_name + "."
 	]
 	mission.setup_phases(phases)
 	
@@ -174,6 +184,7 @@ func create_rollerblade_delivery_mission(id: String, title: String, target_npc) 
 
 # Advance to the next phase of a mission
 func advance_mission_phase(mission_id: String) -> bool:
+	#print("MISSION: advance_mission_phase")
 	if mission_id in active_missions:
 		var mission = active_missions[mission_id]
 		
@@ -195,6 +206,7 @@ func advance_mission_phase(mission_id: String) -> bool:
 
 # Create a new mission with a unique ID
 func _create_next_mission() -> void:
+	#print("MISSION: _create_next_mission")
 	# Check if we've reached the maximum number of active missions
 	if active_missions.size() >= max_active_missions:
 		if get_tree().get_first_node_in_group("Level") and get_tree().get_first_node_in_group("Level").debug_spawn_info:
@@ -205,6 +217,7 @@ func _create_next_mission() -> void:
 	var mission_id = "mission_" + str(randi() % 1000)
 	while is_mission_active(mission_id) or is_mission_completed(mission_id):
 		mission_id = "mission_" + str(randi() % 1000)
+	print("MISSION ID CREATED: ",mission_id)
 	
 	# Find all Boomguys
 	var boomguys = get_tree().get_nodes_in_group("Boomguy")
@@ -234,12 +247,13 @@ func _create_next_mission() -> void:
 	var target_name = target.name
 	if target.name in boomguy_names:
 		target_name = boomguy_names[target.name]
+	print("MISSION TARGET: ",target_name)
 	
 	# Create a standard delivery mission for all dynamically spawned missions
 	var mission = create_delivery_mission(
 		mission_id,
 		"Ammo Delivery: " + target_name,
-		"Deliver bullets to " + target_name + ".",
+		"Deliver to " + target_name + ".",
 		"Bullets",
 		target
 	)
@@ -248,10 +262,12 @@ func _create_next_mission() -> void:
 
 # Core mission management functions
 func register_mission(mission: Mission):
+	print("MISSION: register_mission ", mission.id)
 	if not mission in available_missions:
 		available_missions.append(mission)
 
 func start_mission(mission_id: String):
+	#print("MISSION: start_mission")
 	var mission = _get_mission_by_id(mission_id)
 	if mission and mission not in active_missions.values():
 		active_missions[mission_id] = mission
@@ -262,6 +278,7 @@ func start_mission(mission_id: String):
 
 # Request a deliverable to be spawned - emits signal for level to handle
 func request_deliverable_spawn(mission_id: String) -> void:
+	#print("MISSION: request_deliverable_spawn")
 	# Find player
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
@@ -275,9 +292,14 @@ func request_deliverable_spawn(mission_id: String) -> void:
 
 # Create a deliverable bullet instance - Level script should call this and handle adding to tree
 func create_deliverable_instance(mission_id: String, position: Vector3) -> Node:
+	#print("MISSION: create_deliverable_instance")
 	var mission = _get_mission_by_id(mission_id)
 	if mission:
-		var deliverable = DeliverableBulletsScene.instantiate()
+		var deliverable 
+		if randi_range(1,3) ==1:
+			deliverable= DeliverableBulletsScene.instantiate()
+		else:
+			deliverable= DeliverableBulletsScene2.instantiate()
 		deliverable.set_mission(mission_id)
 		deliverable.global_position = position
 		
@@ -305,6 +327,7 @@ func create_deliverable_instance(mission_id: String, position: Vector3) -> Node:
 
 # Handle deliverable pickup event
 func _on_deliverable_picked_up(mission_id: String) -> void:
+	#print("MISSION: _on_deliverable_picked up")
 	if mission_id in active_missions:
 		deliverable_states[mission_id] = "picked_up"
 		emit_signal("deliverable_picked_up", mission_id)
@@ -320,6 +343,7 @@ func _on_deliverable_picked_up(mission_id: String) -> void:
 			UIManager.update_mission_target(mission_id, mission.target)
 
 func complete_mission(mission_id: String):
+	#print("MISSION: complete_mission")
 	if mission_id in active_missions:
 		var mission = active_missions[mission_id]
 		mission.completed = true
@@ -332,6 +356,7 @@ func complete_mission(mission_id: String):
 
 # Called when player delivers to the target NPC
 func deliver_to_npc(mission_id: String, npc: Node):
+	#print("MISSION: deliver_to_npc")
 	if mission_id in active_missions:
 		var mission = active_missions[mission_id]
 		
@@ -380,6 +405,7 @@ func _get_mission_by_id(mission_id: String) -> Mission:
 
 # Mission creation helper
 func create_delivery_mission(id: String, title: String, description: String, deliverable: String, target_npc) -> Mission:
+	#print("MISSION: create_delivery_mission")
 	var mission = Mission.new(id, title, description, deliverable, target_npc)
 	
 	# Get target name (use random name if it's a Boomguy)
@@ -390,7 +416,7 @@ func create_delivery_mission(id: String, title: String, description: String, del
 	# Setup as a two-part mission (pickup and deliver, no rollerblade)
 	var phases: Array[String] = [
 		"Pick up ammo for delivery.",
-		"Deliver ammo to " + target_name + "."
+		"Deliver to " + target_name + "."
 	]
 	mission.setup_phases(phases)
 	
@@ -440,6 +466,7 @@ func debug_test_rollerblade_mission():
 
 # Reset all mission state on game over
 func reset_mission_state() -> void:
+	#print("MISSION: reset_mission_state")
 	# Clean up any existing deliverables
 	for mission_id in mission_deliverables.keys():
 		for deliverable in mission_deliverables[mission_id]:

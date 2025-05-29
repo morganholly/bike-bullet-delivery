@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bobqsolltvkqa"]
+[gd_scene load_steps=11 format=3 uid="uid://bobqsolltvkqa"]
 
-[ext_resource type="Script" uid="uid://vhbtrf7f8xi0" path="res://ui/scripts/components/ui_inventory_slot.gd" id="1_vk32u"]
+[ext_resource type="Script" uid="uid://y45x82diayl4" path="res://ui/scenes/components/inventory/ui_inventory_slot.gd" id="1_bw5ix"]
 [ext_resource type="Texture2D" uid="uid://bdtco5bv1nasu" path="res://ui/assets/ui_elements/small slot border@2x.png" id="2_vk32u"]
-[ext_resource type="Texture2D" uid="uid://ru2kje81sl4o" path="res://ui/assets/backgrounds/bg small slot.png" id="3_5iash"]
-[ext_resource type="Texture2D" uid="uid://7ds2t6thondr" path="res://ui/assets/icons/weapons/gun r51 icon@2x.png" id="4_2eylc"]
+[ext_resource type="Texture2D" uid="uid://cbxvkp8mvfe6n" path="res://ui/assets/ui_elements/bg small slot.png" id="3_h46rr"]
 [ext_resource type="Texture2D" uid="uid://bdwyd1q0bmxvm" path="res://ui/assets/ui_elements/small slot bullet icon@2x.png" id="4_invnb"]
 [ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="5_cib14"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_2eylc"]
 [ext_resource type="Theme" uid="uid://dglq35eqxqdbb" path="res://theme/gametheme_dark.tres" id="7_hqkj4"]
+[ext_resource type="Texture2D" uid="uid://cb6aa4aci2nau" path="res://ui/assets/icons/weapons/pickup objects big icon.png" id="9_5ce65"]
+[ext_resource type="Texture2D" uid="uid://br7caqmq5lvwe" path="res://ui/assets/icons/weapons/gun r51 icon.png" id="9_6l7km"]
+[ext_resource type="Texture2D" uid="uid://c575klg34dl1k" path="res://ui/assets/icons/weapons/gun r51 big icon.png" id="9_h46rr"]
 
 [node name="UIInventorySlot" type="Control"]
 custom_minimum_size = Vector2(70, 68)
@@ -15,7 +17,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 70.0
 offset_bottom = 110.0
-script = ExtResource("1_vk32u")
+script = ExtResource("1_bw5ix")
 
 [node name="Frame" type="Sprite2D" parent="."]
 position = Vector2(35, 55)
@@ -23,8 +25,9 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_vk32u")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(35, 55)
-texture = ExtResource("3_5iash")
+texture = ExtResource("3_h46rr")
 
 [node name="SlotNumber" type="Label" parent="."]
 layout_mode = 0
@@ -42,7 +45,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ActiveBar" type="Control" parent="."]
-visible = false
+z_index = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -54,8 +57,8 @@ offset_top = 49.0
 offset_right = 81.0
 offset_bottom = 89.0
 
-[node name="Sprite2D2" type="Sprite2D" parent="ActiveBar/Top"]
-position = Vector2(-61, 37)
+[node name="SpriteAmmo" type="Sprite2D" parent="ActiveBar/Top"]
+position = Vector2(-63, 40)
 rotation = -1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_invnb")
@@ -105,27 +108,45 @@ offset_top = 21.0
 offset_right = 78.0
 offset_bottom = 61.0
 
-[node name="Sprite2D" type="Sprite2D" parent="ActiveBar/Bot"]
-position = Vector2(82, 127)
+[node name="SpriteGun" type="Sprite2D" parent="ActiveBar/Bot"]
+position = Vector2(35, 26)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_2eylc")
+texture = ExtResource("9_h46rr")
 
-[node name="Label" type="Label" parent="ActiveBar/Bot"]
-layout_mode = 0
-offset_left = -11.0
-offset_top = 109.0
-offset_right = 60.0
-offset_bottom = 164.0
+[node name="Label" type="Label" parent="ActiveBar/Bot/SpriteGun"]
+offset_top = 14.0
+offset_right = 71.0
+offset_bottom = 40.0
 theme = ExtResource("5_cib14")
 theme_override_font_sizes/font_size = 20
 text = "R51"
 
+[node name="SpriteObject" type="Sprite2D" parent="ActiveBar/Bot"]
+position = Vector2(31, 21)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_5ce65")
+
+[node name="Label2" type="Label" parent="ActiveBar/Bot/SpriteObject"]
+offset_left = -130.0
+offset_top = 142.0
+offset_right = 159.0
+offset_bottom = 187.0
+theme = ExtResource("5_cib14")
+theme_override_font_sizes/font_size = 35
+text = "PICK UP OBJECTS"
+
 [node name="PassiveBar" type="Control" parent="."]
+z_index = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PassiveBar"]
+[node name="SpriteGun" type="Sprite2D" parent="PassiveBar"]
+position = Vector2(35, 40)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_6l7km")
+
+[node name="SpriteAmmo" type="Sprite2D" parent="PassiveBar"]
 position = Vector2(35, 55)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_invnb")

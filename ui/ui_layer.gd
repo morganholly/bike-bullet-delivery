@@ -68,6 +68,7 @@ func _setup_inventory_slots() -> void:
 			inventory_slots.append(slot)
 			
 			# Set the slot number
+			slot.slotnumber = (i+1)
 			if slot.has_node("SlotNumber"):
 				var number = i + 1
 				if number == 10:
@@ -133,3 +134,13 @@ func _setup_mission_indicators() -> void:
 # Method to show the rollerblade prompt when level is ready
 func show_rollerblade_prompt() -> void:
 	UIManager.show_rollerblade_prompt()
+	
+	
+func update_slots():
+	#TIDYUP
+	#print("UPDATE SLOTS")
+	#for item in inventory_slots:
+	#	print("A SLOT")
+	#	item.update_ammo()
+	#	pass
+	pass

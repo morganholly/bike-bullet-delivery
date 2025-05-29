@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu8tqa8w5f1cc"
-path="res://.godot/imported/civilians.png-768873575ff90daf08f4f961fbe300d3.ctex"
+uid="uid://d04pqu4rbc4m1"
+path="res://.godot/imported/civilian-cop.png-b54e282c7eaa8e1a2d119529705c5478.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enviroment/Civilians/civilians.png"
-dest_files=["res://.godot/imported/civilians.png-768873575ff90daf08f4f961fbe300d3.ctex"]
+source_file="res://enviroment/Civilians/civilian-cop.png"
+dest_files=["res://.godot/imported/civilian-cop.png-b54e282c7eaa8e1a2d119529705c5478.ctex"]
 
 [params]
 

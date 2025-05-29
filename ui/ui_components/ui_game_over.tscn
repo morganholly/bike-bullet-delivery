@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlvqqr42q4cta"]
 
 [ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="1_gfkvg"]
-[ext_resource type="Script" path="res://ui/ui_components/ui_game_over.gd" id="2_btfha"]
+[ext_resource type="Script" uid="uid://bqp33helsqyha" path="res://ui/ui_components/ui_game_over.gd" id="2_btfha"]
 
 [node name="UIGameOver" type="Control"]
 layout_mode = 3
@@ -23,8 +23,7 @@ grow_vertical = 2
 [node name="GameOverLabel" type="Label" parent="CenterContainer"]
 layout_mode = 2
 theme = ExtResource("1_gfkvg")
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 96
 text = "GAME OVER"
 horizontal_alignment = 1
-vertical_alignment = 1 
+vertical_alignment = 1

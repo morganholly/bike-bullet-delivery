@@ -23,9 +23,12 @@ extends Node3D
 @onready var aim_fire: Sprite3D = $Rotate/Flip/FirstPerson/hands/aim/fire
 @onready var norm_rest: Sprite3D = $Rotate/Flip/FirstPerson/hands/normal/rest
 @onready var norm_fire: Sprite3D = $Rotate/Flip/FirstPerson/hands/normal/fire
+@onready var flare_rest: Sprite3D = $Rotate/Flip/FirstPerson/hands/flare/rest
+@onready var flare_fire: Sprite3D = $Rotate/Flip/FirstPerson/hands/flare/fire
 
 @onready var hands_aim: Node3D = $Rotate/Flip/FirstPerson/hands/aim
 @onready var hands_normal: Node3D = $Rotate/Flip/FirstPerson/hands/normal
+@onready var hands_flare: Node3D = $Rotate/Flip/FirstPerson/hands/flare
 @onready var hands_empty: Node3D = $Rotate/Flip/FirstPerson/hands/empty
 @onready var hands_grab: Node3D = $Rotate/Flip/FirstPerson/hands/grab
 

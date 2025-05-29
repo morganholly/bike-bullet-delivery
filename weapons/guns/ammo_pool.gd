@@ -26,3 +26,8 @@ func load_mag(bullet_type: GunStats.BulletType, mag_size: int) -> int:
 	full_mags[bullet_type] += num_mags
 	free_ammo[bullet_type] -= num_mags * mag_size
 	return num_mags
+
+func play_ammopickup():
+	#called from demo_bullets.gd
+	$"../../pickup".play() #TIDYUP
+	pass

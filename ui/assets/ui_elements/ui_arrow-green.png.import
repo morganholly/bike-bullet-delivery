@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cavk0s667pmpy"
-path="res://.godot/imported/ui_inventory_slot_active.png-d45595ae1c8b871e8c80477589ddf5a2.ctex"
+uid="uid://ct2ia3rx37jwi"
+path="res://.godot/imported/ui_arrow-green.png-f594331d622ad5ce9922a3de62cf6079.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/ui_inventory_slot_active.png"
-dest_files=["res://.godot/imported/ui_inventory_slot_active.png-d45595ae1c8b871e8c80477589ddf5a2.ctex"]
+source_file="res://ui/assets/ui_elements/ui_arrow-green.png"
+dest_files=["res://.godot/imported/ui_arrow-green.png-f594331d622ad5ce9922a3de62cf6079.ctex"]
 
 [params]
 

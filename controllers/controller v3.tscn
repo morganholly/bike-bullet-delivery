@@ -1,0 +1,343 @@
+[gd_scene load_steps=60 format=3 uid="uid://bedyvdrpw7tvs"]
+
+[ext_resource type="Script" uid="uid://bqdahmxg3wsop" path="res://controllers/controller v3.gd" id="1_1ery5"]
+[ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_h07et"]
+[ext_resource type="Script" uid="uid://c06lti0ifcwdy" path="res://controllers/hold_container.gd" id="3_ta8m6"]
+[ext_resource type="PackedScene" uid="uid://be8kx6fdtbf55" path="res://weapons/guns/ammo_pool.tscn" id="4_fahva"]
+[ext_resource type="Script" uid="uid://dr12il0lp4h6c" path="res://controllers/hold_system.gd" id="5_m6ppq"]
+[ext_resource type="Script" uid="uid://bcm71tef8knec" path="res://controllers/player_entity.gd" id="6_lp688"]
+[ext_resource type="Texture2D" uid="uid://60pvunuvjrjd" path="res://npcs/playerEntity/rollerblader_spritesheet.png" id="7_48bqv"]
+[ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="8_vfct8"]
+[ext_resource type="PackedScene" uid="uid://hl8invlcxyuh" path="res://controllers/camera.tscn" id="9_ep7x0"]
+[ext_resource type="PackedScene" uid="uid://cwc3bq6cub00w" path="res://audio/footsteps.tscn" id="10_n04a8"]
+[ext_resource type="AudioStream" uid="uid://csr5y7t5j1jxi" path="res://audio/rollerblade_noise1.wav" id="11_8u5dv"]
+[ext_resource type="AudioStream" uid="uid://bgrtt1q55f1jf" path="res://audio/rollerblade clacks/bps_rollerblading_01.wav" id="12_tj61s"]
+[ext_resource type="AudioStream" uid="uid://cxow54t7y8pdo" path="res://audio/rollerblade clacks/bps_rollerblading_02a.wav" id="13_4gw5k"]
+[ext_resource type="AudioStream" uid="uid://dex6y0n8ut3pu" path="res://audio/rollerblade clacks/bps_rollerblading_08b.wav" id="14_1jvyi"]
+[ext_resource type="AudioStream" uid="uid://djerm2hgs57py" path="res://audio/rollerblade clacks/bps_rollerblading_09.wav" id="15_er7t0"]
+[ext_resource type="AudioStream" uid="uid://ri7je5rvld7y" path="res://audio/rollerblade clacks/bps_rollerblading_10.wav" id="16_lr8lf"]
+[ext_resource type="AudioStream" uid="uid://nltnj7mdortq" path="res://audio/rollerblade clacks/bps_rollerblading_11.wav" id="17_7idpy"]
+[ext_resource type="AudioStream" uid="uid://cjxthge8eb04u" path="res://audio/rollerblade clacks/bps_rollerblading_12.wav" id="18_sq81x"]
+[ext_resource type="AudioStream" uid="uid://caexgprjjwxyk" path="res://audio/rollerblade clacks/bps_rollerblading_13.wav" id="19_o8qvf"]
+[ext_resource type="AudioStream" uid="uid://bp1xr4xcmikd" path="res://audio/rollerblade clacks/bps_rollerblading_14.wav" id="20_gkdwe"]
+[ext_resource type="AudioStream" uid="uid://qqqy387ijioy" path="res://audio/rollerblade clacks/bps_rollerblading_15.wav" id="21_s8ng8"]
+[ext_resource type="AudioStream" uid="uid://cb4q3vefvvhc5" path="res://audio/rollerblade clacks/bps_rollerblading_16a.wav" id="22_b2ps3"]
+[ext_resource type="AudioStream" uid="uid://jyi2xlpv8qxw" path="res://audio/rollerblade clacks/bps_rollerblading_16b.wav" id="23_t3qr0"]
+[ext_resource type="AudioStream" uid="uid://jvxekamacev0" path="res://audio/rollerblade clacks/bps_rollerblading_03.wav" id="24_fjkw0"]
+[ext_resource type="AudioStream" uid="uid://crrae6bjavfcu" path="res://audio/rollerblade clacks/bps_rollerblading_16c.wav" id="25_grb6a"]
+[ext_resource type="AudioStream" uid="uid://c3agpunyo1sxq" path="res://audio/rollerblade clacks/bps_rollerblading_17.wav" id="26_1684l"]
+[ext_resource type="AudioStream" uid="uid://tk2ba7ho5rj6" path="res://audio/rollerblade clacks/bps_rollerblading_18.wav" id="27_dw0ji"]
+[ext_resource type="AudioStream" uid="uid://dlgg1i2s451ug" path="res://audio/rollerblade clacks/bps_rollerblading_04.wav" id="28_ojuq0"]
+[ext_resource type="AudioStream" uid="uid://h2oissuaowhc" path="res://audio/rollerblade clacks/bps_rollerblading_05.wav" id="29_p53p2"]
+[ext_resource type="AudioStream" uid="uid://c418t324dba27" path="res://audio/rollerblade clacks/bps_rollerblading_06.wav" id="30_1dflv"]
+[ext_resource type="AudioStream" uid="uid://cvcrb7t5r3pbm" path="res://audio/rollerblade clacks/bps_rollerblading_07a.wav" id="31_x8onb"]
+[ext_resource type="AudioStream" uid="uid://dxs7fl7noiyy3" path="res://audio/rollerblade clacks/bps_rollerblading_07b.wav" id="32_757s1"]
+[ext_resource type="AudioStream" uid="uid://bpfl150iwbfoq" path="res://audio/rollerblade clacks/bps_rollerblading_07c.wav" id="33_3s7w5"]
+[ext_resource type="AudioStream" uid="uid://cpkb3qvuwydm3" path="res://audio/rollerblade clacks/bps_rollerblading_08a.wav" id="34_0wfjg"]
+[ext_resource type="AudioStream" uid="uid://kcf8ulygfwo8" path="res://audio/hurt sounds/player_hurt_1.ogg" id="35_cwajn"]
+[ext_resource type="AudioStream" uid="uid://c8b8pyoiup1xa" path="res://audio/hurt sounds/player_hurt_2.ogg" id="36_j504a"]
+[ext_resource type="AudioStream" uid="uid://c2sposbjbhab2" path="res://audio/hurt sounds/player_death.ogg" id="37_a46j6"]
+[ext_resource type="AudioStream" uid="uid://c2kml10aopnb8" path="res://audio/pickup/Pickup35.wav" id="37_h07et"]
+[ext_resource type="AudioStream" uid="uid://c37qct8wd56ef" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-01.wav" id="38_evi1o"]
+[ext_resource type="AudioStream" uid="uid://sa061davolmn" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-02.wav" id="39_8f2nu"]
+[ext_resource type="AudioStream" uid="uid://cfhr77e5dppl4" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav" id="40_evq64"]
+[ext_resource type="AudioStream" uid="uid://48p3nk8f0dhy" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-04.wav" id="41_1ji4k"]
+[ext_resource type="AudioStream" uid="uid://b6ebjbyv5wtl5" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-05.wav" id="42_immm4"]
+[ext_resource type="AudioStream" uid="uid://bfx80c646n31f" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-06.wav" id="43_aif1f"]
+[ext_resource type="AudioStream" uid="uid://dule6bd6a1me3" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-07.wav" id="44_1ddmh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q0gj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr3rn"]
+atlas = ExtResource("7_48bqv")
+region = Rect2(114, 0, 57, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdatg"]
+atlas = ExtResource("7_48bqv")
+region = Rect2(57, 0, 57, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oq1c"]
+atlas = ExtResource("7_48bqv")
+region = Rect2(171, 0, 57, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdatg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3rn")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3rn")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdatg")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oq1c")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jjtsd"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_ik8fk"]
+inner_radius = 0.25
+outer_radius = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3wbva"]
+top_radius = 0.25
+bottom_radius = 0.3
+height = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_knsne"]
+radius = 1.0
+height = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sa7iv"]
+radius = 0.01
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_74jyf"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 23
+stream_0/stream = ExtResource("12_tj61s")
+stream_1/stream = ExtResource("13_4gw5k")
+stream_2/stream = ExtResource("24_fjkw0")
+stream_3/stream = ExtResource("28_ojuq0")
+stream_4/stream = ExtResource("29_p53p2")
+stream_5/stream = ExtResource("30_1dflv")
+stream_6/stream = ExtResource("31_x8onb")
+stream_7/stream = ExtResource("32_757s1")
+stream_8/stream = ExtResource("33_3s7w5")
+stream_9/stream = ExtResource("34_0wfjg")
+stream_10/stream = ExtResource("14_1jvyi")
+stream_11/stream = ExtResource("15_er7t0")
+stream_12/stream = ExtResource("16_lr8lf")
+stream_13/stream = ExtResource("17_7idpy")
+stream_14/stream = ExtResource("18_sq81x")
+stream_15/stream = ExtResource("19_o8qvf")
+stream_16/stream = ExtResource("20_gkdwe")
+stream_17/stream = ExtResource("21_s8ng8")
+stream_18/stream = ExtResource("22_b2ps3")
+stream_19/stream = ExtResource("23_t3qr0")
+stream_20/stream = ExtResource("25_grb6a")
+stream_21/stream = ExtResource("26_1684l")
+stream_22/stream = ExtResource("27_dw0ji")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kd5ju"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("35_cwajn")
+stream_1/stream = ExtResource("36_j504a")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dimnp"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("37_a46j6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ubbnh"]
+random_pitch = 1.1
+streams_count = 7
+stream_0/stream = ExtResource("38_evi1o")
+stream_1/stream = ExtResource("39_8f2nu")
+stream_2/stream = ExtResource("40_evq64")
+stream_3/stream = ExtResource("41_1ji4k")
+stream_4/stream = ExtResource("42_immm4")
+stream_5/stream = ExtResource("43_aif1f")
+stream_6/stream = ExtResource("44_1ddmh")
+
+[node name="CharControllerV3" type="CharacterBody3D" groups=["Damageable", "Player"]]
+collision_layer = 2
+collision_mask = 33
+floor_max_angle = 1.0472
+platform_on_leave = 2
+script = ExtResource("1_1ery5")
+
+[node name="UniformHealth" parent="." instance=ExtResource("2_h07et")]
+max_health = 50.0
+
+[node name="capsule_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6q0gj")
+
+[node name="HoldContainer" type="Node3D" parent="."]
+script = ExtResource("3_ta8m6")
+
+[node name="AmmoPool" parent="HoldContainer" instance=ExtResource("4_fahva")]
+full_mags = Dictionary[int, int]({
+0: 4
+})
+
+[node name="1" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 1
+
+[node name="2" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 2
+
+[node name="3" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 3
+
+[node name="4" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 4
+
+[node name="5" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 5
+
+[node name="6" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 6
+
+[node name="7" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 7
+
+[node name="8" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 8
+
+[node name="9" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 9
+
+[node name="10" type="Node3D" parent="HoldContainer" groups=["hold_system"]]
+script = ExtResource("5_m6ppq")
+slotindex = 10
+
+[node name="WorldModel2" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.0590102, 0, 0.998257, 0, 1, 0, -0.998257, 0, -0.0590102, 0, 0, 0)
+input_ray_pickable = false
+mass = 0.001
+gravity_scale = 0.0
+sleeping = true
+freeze = true
+script = ExtResource("6_lp688")
+
+[node name="player_sprite" type="AnimatedSprite3D" parent="WorldModel2" node_paths=PackedStringArray("designated_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
+top_level = true
+layers = 2
+pixel_size = 0.03
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_rdatg")
+animation = &"idle_back"
+script = ExtResource("8_vfct8")
+designated_parent = NodePath("..")
+
+[node name="WorldModel" type="Node3D" parent="."]
+visible = false
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
+visible = false
+pixel_size = 0.03
+alpha_cut = 1
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_rdatg")
+animation = &"idle_front"
+
+[node name="capsule_view_mesh" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+layers = 2
+mesh = SubResource("CapsuleMesh_jjtsd")
+
+[node name="hat" type="Node3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+
+[node name="hat_brim" type="MeshInstance3D" parent="WorldModel/hat"]
+visible = false
+layers = 2
+mesh = SubResource("TorusMesh_ik8fk")
+skeleton = NodePath("../..")
+
+[node name="hat_center" type="MeshInstance3D" parent="WorldModel/hat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+visible = false
+layers = 2
+mesh = SubResource("CylinderMesh_3wbva")
+skeleton = NodePath("../..")
+
+[node name="Camera" parent="." instance=ExtResource("9_ep7x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="RaycastBelow" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.75, 0)
+
+[node name="Rotate" type="Node3D" parent="."]
+
+[node name="RaycastStairsAhead" type="RayCast3D" parent="Rotate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="stair_climb_area" type="Area3D" parent="Rotate"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.25, 0)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rotate/stair_climb_area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_knsne")
+
+[node name="can_ride" type="Area3D" parent="." groups=["Rideable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 32
+
+[node name="can_ride_collider" type="CollisionShape3D" parent="can_ride"]
+shape = SubResource("SphereShape3D_sa7iv")
+
+[node name="Footsteps" parent="." instance=ExtResource("10_n04a8")]
+step_strength = 3.0
+strength_variance = 2.0
+always_update_weights = true
+
+[node name="rollerblade loop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_8u5dv")
+volume_db = -80.0
+autoplay = true
+bus = &"Rollerblades"
+
+[node name="rollerblade clacks" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_74jyf")
+max_polyphony = 8
+bus = &"Rollerblades"
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kd5ju")
+
+[node name="pickup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("37_h07et")
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dimnp")
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ubbnh")
+
+[connection signal="body_entered" from="can_ride" to="." method="_on_can_ride_body_entered"]
+[connection signal="body_exited" from="can_ride" to="." method="_on_can_ride_body_exited"]

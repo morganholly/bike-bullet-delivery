@@ -13,6 +13,8 @@ func _ready():
 	quit_button.pressed.connect(_on_quit_pressed)
 
 func _on_start_pressed():
+	$AudioMenuclick.play()
+	await get_tree().create_timer(.1).timeout
 	get_tree().change_scene_to_file("res://cutscenes/slideshow/slideshow.tscn")
 
 func _on_options_pressed():
@@ -20,7 +22,18 @@ func _on_options_pressed():
 	pass
 
 func _on_credits_pressed():
+	$AudioMenuclick.play()
+	await get_tree().create_timer(.1).timeout
 	get_tree().change_scene_to_file("res://menus/credits/credits.tscn")
 
 func _on_quit_pressed():
+	$AudioMenuclick.play()
+	await get_tree().create_timer(.1).timeout
 	get_tree().quit()
+
+
+
+func _on_button_mouse_entered() -> void:
+	#play audio blip
+	$AudioMenuover.play()
+	pass # Replace with function body.

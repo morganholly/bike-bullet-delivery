@@ -10,8 +10,9 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_vylu1")
 full_mags = Dictionary[int, int]({
-0: 4
+0: 1
 })
+take_while_holding = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_u4brl")

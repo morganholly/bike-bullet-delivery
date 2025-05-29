@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxlhw3r5j6p0u"]
+
+[ext_resource type="Script" uid="uid://cdf8p1kxpsbr1" path="res://weapons/guns/deliverable_bullets.gd" id="1_gpqno"]
+[ext_resource type="PackedScene" uid="uid://dwjbi03u7v2sr" path="res://weapons/guns/bullet_pickup.tscn" id="2_7dgyu"]
+[ext_resource type="PackedScene" uid="uid://d368nrh8iy7cc" path="res://weapons/guns/ammonautpizza.glb" id="3_gpqno"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_538jo"]
+size = Vector3(0.583496, 0.307713, 0.607666)
+
+[node name="DeliverableBullets" type="RigidBody3D" groups=["Deliverable"]]
+collision_layer = 257
+script = ExtResource("1_gpqno")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00708008, 0.0708979, 0.00915531)
+shape = SubResource("BoxShape3D_538jo")
+
+[node name="BulletPickup" parent="." instance=ExtResource("2_7dgyu")]
+disable_equip = true
+
+[node name="ammonautpizza2" parent="." instance=ExtResource("3_gpqno")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.00597566, 0, 0.0161324)
+
+[connection signal="body_entered" from="BulletPickup" to="." method="_on_bullet_pickup_ammo_transferred"]

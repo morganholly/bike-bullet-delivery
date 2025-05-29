@@ -67,7 +67,7 @@ func spawn_bullet() -> void:
 	add_child(bullet)
 	
 	# Set random properties
-	var scale = randf_range(min_scale, max_scale)
+	#var scale = randf_range(min_scale, max_scale)
 	#bullet.scale = Vector2(scale, scale)
 	bullet.speed = randf_range(min_speed, max_speed)
 	bullet.trail_duration = randf_range(min_trail_duration, max_trail_duration)

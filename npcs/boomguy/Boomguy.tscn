@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://db2eyvfi8wple"]
+[gd_scene load_steps=42 format=3 uid="uid://db2eyvfi8wple"]
 
 [ext_resource type="Script" uid="uid://b8uwuxg31f8bo" path="res://npcs/boomguy/boomguy.gd" id="1_6xrnp"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_7u3ht"]
+[ext_resource type="PackedScene" uid="uid://diodrmn3fcc2t" path="res://npcs/boomguy/BoomguyProjectile.tscn" id="2_mqy2c"]
 [ext_resource type="Texture2D" uid="uid://c8xdfxeljipf8" path="res://npcs/alien/alien_char_sheet/alien_spritesheet.png" id="3_l35ol"]
 [ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_4j5tw"]
 [ext_resource type="Texture2D" uid="uid://bkpnghooq0hhw" path="res://npcs/boomguy/spritesheet/boomguy_spritesheet.png" id="4_d4htd"]
@@ -229,6 +230,7 @@ max_contacts_reported = 10
 script = ExtResource("1_6xrnp")
 collision_hit = 69
 collision_sight = 68
+projectile_prefab = ExtResource("2_mqy2c")
 
 [node name="UniformHealth" parent="." instance=ExtResource("2_7u3ht")]
 max_armor = 0.0

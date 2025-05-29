@@ -1,0 +1,1595 @@
+[gd_scene load_steps=44 format=3 uid="uid://b6kvfu4ii46i8"]
+
+[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_453xm"]
+[ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="2_ytnn7"]
+[ext_resource type="MeshLibrary" uid="uid://c3wff7tvt7ja1" path="res://enviroment/Buildings/Road/NewRoadBits/NewRoadTilesLib2.tres" id="3_3yqtc"]
+[ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="4_fr1bx"]
+[ext_resource type="MeshLibrary" uid="uid://bwvpkbtnv6luj" path="res://enviroment/SmallerObjectsLib.tres" id="5_w6tjd"]
+[ext_resource type="PackedScene" uid="uid://dpep6wedv5iwj" path="res://audio/ambient_audio.tscn" id="6_if3o8"]
+[ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="7_vqscx"]
+[ext_resource type="PackedScene" uid="uid://bedyvdrpw7tvs" path="res://controllers/controller v3.tscn" id="8_453xm"]
+[ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="9_ye4fr"]
+[ext_resource type="PackedScene" path="res://npcs/boomguy/Boomguy.tscn" id="10_u2wb4"]
+[ext_resource type="PackedScene" path="res://npcs/boomguy/AltBoomguy.tscn" id="11_3yqtc"]
+[ext_resource type="PackedScene" uid="uid://cvqhmpmp433mm" path="res://utils/thing_spawner.tscn" id="11_t0cqc"]
+[ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="12_gkhkv"]
+[ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="13_3ypyg"]
+[ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="14_j3qbc"]
+[ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="15_p83lv"]
+[ext_resource type="PackedScene" uid="uid://bjkhnm0ct5m0r" path="res://enviroment/Trees/btree_small.tscn" id="16_gl7cl"]
+[ext_resource type="PackedScene" uid="uid://c6tgoblhgs40" path="res://enviroment/Trees/btree_bush.tscn" id="17_sty1l"]
+[ext_resource type="PackedScene" uid="uid://cuke785auu3f8" path="res://enviroment/Trees/btree_big.tscn" id="18_nt64s"]
+[ext_resource type="PackedScene" uid="uid://d3dr0m4c53hap" path="res://enviroment/Trees/btree_sumac.tscn" id="19_8r36g"]
+[ext_resource type="PackedScene" uid="uid://dp1g6gx2o2y81" path="res://enviroment/Alien/alieny_mothership.tscn" id="20_3yqtc"]
+[ext_resource type="PackedScene" uid="uid://bohh7rf8n10e6" path="res://enviroment/Alien/alieny_minisphere.tscn" id="20_5npch"]
+[ext_resource type="PackedScene" uid="uid://skyfnhebjq7u" path="res://enviroment/Alien/alieny_sphere.tscn" id="21_uiebb"]
+[ext_resource type="PackedScene" uid="uid://ihwu4ke7sxcb" path="res://enviroment/Alien/alieny_maxisphere.tscn" id="22_7ux23"]
+[ext_resource type="PackedScene" uid="uid://cygsyrr2ah6by" path="res://enviroment/Alien/alieny_head.tscn" id="23_da2qh"]
+[ext_resource type="PackedScene" uid="uid://12ks0wrvaepx" path="res://enviroment/Alien/alieny_pile.tscn" id="24_5abpd"]
+[ext_resource type="PackedScene" uid="uid://djs83codvuvbs" path="res://enviroment/Civilians/bcivilian_ammonautsecurity.tscn" id="25_p5opb"]
+[ext_resource type="PackedScene" uid="uid://doebjhdg6kkpw" path="res://enviroment/Civilians/bcivilian_employee1.tscn" id="26_ekvxl"]
+[ext_resource type="PackedScene" uid="uid://8reu4fj67tcs" path="res://enviroment/Civilians/bcivilian_employee2.tscn" id="27_8ugi7"]
+[ext_resource type="PackedScene" uid="uid://vmqqls5eaxqr" path="res://enviroment/Civilians/bcivilian_militiaman.tscn" id="28_2c6g5"]
+[ext_resource type="PackedScene" uid="uid://c81i2k5sn8vso" path="res://enviroment/Civilians/bcivilian_militiawoman.tscn" id="29_u0s7a"]
+[ext_resource type="PackedScene" uid="uid://dhsk3pq3k1fxp" path="res://enviroment/Civilians/bcivilian_police.tscn" id="30_oa0bn"]
+[ext_resource type="PackedScene" uid="uid://dqoon5njxx8gl" path="res://enviroment/Civilians/bcivilian_punk.tscn" id="31_e2b6t"]
+[ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/gun_pistol.tscn" id="32_xrp3y"]
+[ext_resource type="PackedScene" uid="uid://brgnuo3dvsmt" path="res://enviroment/street furniture/advertising.tscn" id="33_isb8y"]
+[ext_resource type="PackedScene" uid="uid://d13aalm43crg3" path="res://enviroment/street furniture/lantern.tscn" id="34_cwq0a"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
+panorama = ExtResource("2_ytnn7")
+filter = false
+
+[sub_resource type="Sky" id="Sky_vfugj"]
+sky_material = SubResource("PanoramaSkyMaterial_5rmu0")
+
+[sub_resource type="Environment" id="Environment_gmn8u"]
+background_mode = 2
+sky = SubResource("Sky_vfugj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_m5u3s"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_a8p52"]
+resource_name = "slow rotate"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.54434, -0.25, 0, 0.25, 0, 3.14159, -0.25, 0, 0.25, 0, 4.79966, -0.25, 0, 0.25, 0, 6.28319, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5, 10, 15, 20)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ao766"]
+_data = {
+&"RESET": SubResource("Animation_m5u3s"),
+&"slow rotate": SubResource("Animation_a8p52")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgq1o"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_453xm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gmn8u")
+
+[node name="New Gridmaps" type="Node3D" parent="."]
+
+[node name="GridMap-mainmap" type="GridMap" parent="New Gridmaps"]
+mesh_library = ExtResource("3_3yqtc")
+cell_size = Vector3(18, 2, 18)
+data = {
+"cells": PackedInt32Array(65533, 65529, 1441792, 65534, 65529, 1441814, 65532, 65529, 1048598, 65532, 65530, 1048598, 65532, 65531, 1048598, 65534, 65530, 1441814, 65534, 65531, 1441814, 65533, 65530, 1441813, 65533, 65531, 1441813, 65533, 65532, 1441817, 65534, 65532, 1441817, 65535, 65532, 1441817, 65532, 65532, 1441817, 65531, 65532, 1441817, 65530, 65532, 1441817, 65529, 65532, 1441811, 65528, 65532, 1441817, 65527, 65532, 1441817, 65526, 65532, 1441812, 65526, 65533, 655385, 65535, 65531, 655378, 65535, 65530, 655378, 0, 65531, 24, 0, 65532, 21, 0, 65530, 655385, 12, 3, 1048588, 11, 65528, 1441819, 9, 65528, 1441820, 8, 65528, 1441820, 7, 65528, 655386, 8, 65529, 655378, 9, 65529, 655378, 10, 65529, 655378, 11, 65529, 655378, 12, 65529, 655378, 13, 65529, 655378, 13, 65528, 655378, 13, 65527, 655378, 13, 65526, 655378, 12, 65528, 655378, 13, 65530, 655378, 12, 65530, 655378, 11, 65530, 655378, 10, 65530, 655378, 9, 65530, 655378, 8, 65530, 655378, 8, 65531, 655378, 8, 65532, 655378, 9, 65532, 655378, 9, 65531, 655378, 10, 65531, 655378, 11, 65531, 655378, 11, 65532, 655378, 12, 65532, 655378, 13, 65532, 655378, 13, 65531, 655378, 12, 65531, 655378, 9, 65525, 655378, 10, 65525, 655378, 11, 65525, 655378, 12, 65525, 655378, 12, 65526, 655378, 12, 65527, 655378, 11, 65527, 655378, 10, 65527, 655378, 9, 65527, 655378, 8, 65527, 655378, 8, 65526, 655378, 8, 65525, 655378, 9, 65526, 655378, 10, 65526, 655378, 11, 65526, 655378, 10, 65532, 655378, 8, 65533, 1048601, 9, 65533, 1048601, 10, 65533, 1048601, 13, 65533, 1048601, 6, 65532, 1048601, 5, 65532, 1048601, 3, 65532, 1048601, 2, 65532, 1048601, 4, 65532, 21, 7, 65531, 24, 7, 65529, 655384, 7, 65530, 655385, 7, 65527, 655385, 7, 65526, 655385, 7, 65525, 655379, 7, 65524, 655385, 7, 65523, 655385, 7, 65522, 655385, 1, 65532, 1441816, 0, 65533, 655384, 0, 65534, 655385, 65534, 65535, 1048601, 65535, 65535, 1048601, 65530, 65535, 1048601, 65531, 65535, 1048601, 65529, 65535, 1048601, 0, 0, 25, 0, 1, 25, 0, 65535, 655386, 65533, 65535, 1441818, 65532, 65535, 1441811, 0, 65528, 655379, 4, 65527, 655379, 12, 9, 19, 1, 9, 19, 65531, 9, 19, 4, 65531, 21, 5, 65530, 21, 6, 65530, 21, 6, 65529, 6, 5, 65529, 21, 4, 65529, 1441813, 4, 65530, 26, 0, 65529, 26, 1, 65529, 1441816, 2, 65529, 1048596, 2, 65528, 1441812, 3, 65528, 1441817, 5, 65528, 1441817, 6, 65528, 1441817, 4, 65528, 1048602, 3, 65531, 18, 2, 65531, 18, 3, 65530, 18, 3, 65529, 18, 6, 65527, 18, 5, 65527, 18, 4, 65526, 25, 4, 65525, 655380, 3, 65524, 655365, 0, 65523, 655379, 0, 65527, 25, 0, 65526, 25, 65535, 65525, 1441797, 0, 65525, 25, 0, 65524, 25, 13, 65525, 18, 65535, 65523, 5, 65535, 65524, 1441797, 65535, 65526, 1441797, 65535, 65527, 1441797, 65530, 65527, 1441797, 65531, 65527, 1441797, 65532, 65527, 1441797, 65533, 65527, 1441797, 65534, 65527, 1441797, 1, 65525, 5, 1, 65524, 5, 1, 65523, 5, 1, 65522, 5, 1, 65526, 5, 1, 65527, 655366, 1, 65528, 1048587, 2, 65527, 655365, 3, 65527, 655365, 3, 65526, 655365, 4, 65524, 655365, 5, 65525, 655365, 5, 65526, 655365, 6, 65526, 655365, 6, 65522, 655365, 6, 65523, 655365, 6, 65524, 655365, 6, 65525, 655365, 14, 65524, 655365, 13, 65524, 655365, 12, 65524, 655365, 11, 65524, 655365, 10, 65524, 655365, 9, 65524, 655365, 8, 65524, 655365, 8, 65522, 655365, 8, 65523, 655365, 14, 65525, 655365, 14, 65526, 655389, 14, 65527, 655389, 14, 65528, 655365, 14, 65529, 655389, 14, 65530, 655389, 14, 65531, 655365, 14, 65532, 655365, 14, 65534, 655365, 14, 4, 655365, 14, 5, 655365, 14, 6, 655365, 14, 65535, 655365, 14, 0, 655365, 14, 1, 655365, 14, 2, 655365, 14, 3, 655365, 13, 7, 5, 13, 65534, 655378, 13, 65535, 1048594, 13, 0, 655378, 13, 1, 655378, 13, 2, 655378, 13, 3, 655378, 13, 4, 655378, 13, 5, 655378, 13, 6, 655378, 7, 65534, 25, 12, 4, 655380, 12, 5, 655383, 12, 6, 655383, 12, 7, 655383, 12, 8, 655386, 6, 8, 1048601, 5, 8, 1048601, 12, 10, 25, 12, 11, 25, 13, 8, 5, 13, 9, 5, 13, 10, 5, 13, 11, 5, 11, 10, 5, 11, 11, 5, 11, 9, 5, 10, 9, 11, 9, 9, 5, 8, 9, 1048605, 7, 9, 1048605, 6, 9, 11, 5, 9, 1048605, 4, 9, 5, 3, 9, 1048605, 2, 9, 5, 2, 10, 1048577, 2, 11, 1048579, 2, 12, 655378, 2, 13, 1048579, 2, 14, 655378, 2, 15, 655378, 2, 16, 655378, 0, 15, 655378, 0, 14, 655378, 0, 13, 1048579, 0, 12, 655378, 0, 11, 1048579, 0, 10, 1441793, 0, 9, 1048582, 65532, 9, 5, 65532, 10, 5, 65530, 4, 5, 65530, 5, 5, 65530, 6, 29, 65530, 7, 29, 65530, 8, 5, 65530, 9, 5, 65530, 10, 5, 65531, 3, 5, 65532, 3, 1441803, 6, 3, 21, 5, 3, 21, 5, 2, 21, 5, 1, 21, 5, 0, 21, 5, 65534, 21, 5, 65535, 21, 5, 4, 21, 5, 5, 21, 5, 6, 21, 4, 6, 21, 4, 7, 21, 3, 6, 21, 3, 5, 21, 3, 4, 21, 3, 3, 21, 4, 3, 21, 3, 2, 21, 3, 1, 21, 65531, 10, 25, 65531, 11, 25, 65531, 12, 25, 65530, 11, 5, 65530, 12, 5, 65532, 7, 1441798, 65531, 2, 1441817, 65532, 2, 1048595, 65533, 2, 1048597, 65533, 3, 23, 65532, 4, 1441815, 65533, 4, 1048596, 65531, 4, 1441812, 65531, 5, 655383, 65531, 7, 655383, 65531, 8, 655384, 65528, 65535, 20, 65528, 65534, 655383, 65528, 65533, 655371, 65527, 65534, 655383, 65527, 65533, 655378, 65531, 1, 1441797, 65532, 1, 1441803, 65532, 0, 1441797, 65530, 0, 1441797, 65531, 0, 11, 65528, 0, 1441797, 65529, 0, 1441797, 65527, 65535, 1441797, 65525, 65535, 1441797, 65525, 65534, 1441797, 65525, 65533, 1441797, 65525, 65532, 1441797, 65526, 65531, 1441797, 65527, 65531, 1441797, 65528, 65531, 1441797, 65529, 65527, 1441797, 65529, 65528, 1441797, 65529, 65529, 1441797, 65529, 65530, 1441797, 65534, 65526, 1441797, 65534, 65528, 655367, 65530, 65528, 1441810, 65530, 65529, 1441810, 65530, 65530, 1441810, 65530, 65534, 1441810, 65531, 65534, 1441810, 65529, 65533, 1441797, 65529, 65534, 1441797, 65534, 65533, 1048582, 65535, 65533, 655365, 65535, 65534, 655364, 65534, 65534, 1441794, 0, 2, 1441813, 65534, 2, 1048599, 65535, 2, 1048599, 0, 3, 20, 1, 3, 1441818, 2, 3, 1441816, 1, 4, 655384, 1, 5, 655385, 1, 6, 655385, 1, 7, 655385, 1, 8, 26, 2, 8, 1441816, 3, 8, 1441817, 4, 8, 1441817, 1, 10, 655385, 1, 11, 655385, 1, 12, 655385, 1, 13, 655385, 1, 14, 655385, 1, 15, 655385, 1, 16, 655385, 65532, 11, 655365, 65532, 12, 655365, 65533, 9, 8, 65535, 9, 1048582, 65532, 8, 1048582, 65533, 7, 655366, 65533, 8, 655378, 65534, 8, 655378, 65534, 7, 1048582, 65535, 8, 1441798, 0, 8, 1441798, 65532, 6, 1048599, 65533, 6, 1048599, 65534, 6, 1048599, 65535, 6, 1048597, 65535, 5, 22, 0, 6, 1441814, 65535, 7, 655382, 0, 7, 6, 65533, 0, 23, 65533, 1, 23, 65534, 0, 1441798, 65534, 1, 1048594, 65535, 1, 1048583, 65535, 0, 18, 2, 1, 21, 2, 0, 21, 2, 65535, 21, 2, 65534, 21, 3, 65534, 21, 4, 65534, 21, 1, 65533, 2, 1, 65534, 1441793, 1, 65535, 1441793, 1, 0, 2, 1, 1, 1441793, 1, 2, 2, 2, 2, 2, 3, 65535, 2, 3, 0, 2, 4, 65535, 2, 4, 1, 1441796, 6, 2, 2, 6, 1, 2, 6, 0, 2, 6, 65535, 2, 6, 65534, 2, 6, 65533, 18, 7, 65533, 26, 5, 65533, 1, 4, 65533, 23, 3, 65533, 1, 2, 65533, 2, 7, 65532, 655386, 12, 65533, 1441818, 11, 65533, 1048600, 65531, 6, 26, 65534, 5, 1441803, 65534, 4, 1441802, 65534, 3, 1441803, 65535, 3, 5, 65535, 4, 18, 2, 4, 2, 2, 5, 2, 2, 6, 2, 2, 7, 2, 3, 7, 655364, 5, 7, 655364, 6, 7, 2, 6, 6, 1441795, 6, 4, 2, 4, 4, 2, 4, 5, 2, 0, 5, 1048583, 65535, 65528, 1048578, 65535, 65529, 1048578, 65533, 65533, 22, 65533, 65534, 655382, 14, 65533, 1441811, 5, 65531, 2, 6, 65531, 2, 4, 2, 1441794, 4, 0, 2, 65532, 5, 655363, 65532, 65534, 655378, 65532, 65533, 1048582, 65532, 65528, 655367, 65530, 65533, 655374, 7, 65535, 25, 7, 0, 25, 7, 1, 25, 7, 2, 25, 8, 65534, 1048582, 8, 65535, 1441794, 8, 0, 1441794, 8, 1, 655378, 8, 2, 1441793, 9, 65534, 655378, 9, 65535, 1048594, 9, 0, 1441794, 9, 1, 2, 9, 2, 1441793, 10, 65534, 4, 10, 65535, 1441794, 10, 0, 1441794, 10, 1, 1, 10, 2, 1048599, 11, 65535, 655378, 11, 0, 2, 11, 1, 2, 11, 2, 1048599, 12, 65534, 23, 12, 65535, 23, 12, 0, 1441793, 12, 1, 23, 12, 2, 1048596, 7, 3, 21, 7, 4, 25, 7, 5, 25, 7, 6, 655383, 7, 7, 24, 7, 8, 1048602, 8, 3, 1441815, 8, 4, 18, 8, 5, 18, 8, 6, 18, 8, 7, 2, 8, 8, 1048601, 9, 3, 1441813, 9, 4, 20, 9, 5, 1048578, 9, 6, 655378, 9, 7, 8, 9, 8, 1048601, 10, 4, 1048599, 10, 5, 1, 10, 6, 655378, 10, 8, 1048601, 11, 4, 1048599, 11, 5, 1048578, 11, 6, 655378, 11, 7, 655378, 11, 8, 1048601, 65530, 3, 1441803, 65530, 2, 1441817, 65529, 2, 1441812, 65530, 1, 655368, 65528, 2, 655366, 65528, 3, 655366, 65529, 3, 655385, 15, 65534, 1441797, 16, 65534, 1441797, 17, 65534, 1441797, 18, 65534, 1441797, 19, 65534, 1441797, 15, 65532, 1441797, 16, 65532, 1441797, 17, 65532, 1441797, 18, 65532, 1441797, 19, 65532, 1441797, 20, 65532, 1441797, 21, 65534, 1441797, 21, 65533, 1441797, 21, 65532, 1441797, 15, 65533, 1441817, 16, 65533, 1441817, 17, 65533, 1441817, 18, 65533, 1441817, 19, 65533, 1441817, 20, 65534, 655385, 20, 65533, 655380, 15, 65528, 655370, 15, 65529, 655370, 15, 65527, 655370, 6, 65521, 655365, 6, 65520, 655365, 7, 65520, 655365, 9, 65520, 655365, 8, 65520, 655365, 7, 65521, 1441812, 8, 65521, 1048599, 65531, 65529, 655366, 65531, 65530, 29, 65531, 65528, 655378, 1, 65530, 655378, 2, 65530, 655378, 1, 65531, 655378, 65531, 65531, 17, 65530, 65531, 15, 11, 65534, 1048594)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap-smallchanges" type="GridMap" parent="New Gridmaps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh_library = ExtResource("4_fr1bx")
+cell_size = Vector3(0.8, 0.8, 0.8)
+data = {
+"cells": PackedInt32Array(26, 65417, 1441808, 26, 65426, 1441808, 26, 65408, 1441808, 26, 65435, 1441808, 25, 65361, 1441808, 60, 65403, 655376, 51, 65403, 655376, 42, 65403, 655376, 68, 65395, 1441808, 69, 65387, 1441808, 80, 65382, 655376, 89, 65382, 655376, 104, 65381, 655376, 81, 65403, 1048592, 81, 65412, 1048592, 104, 65394, 16, 113, 65394, 16, 79, 65440, 524304, 106, 65440, 16, 90, 65440, 16, 37, 65441, 16, 55, 65441, 16, 72, 65434, 524304, 72, 65435, 524304, 73, 65441, 16, 82, 65441, 16, 46, 65440, 16, 64, 65440, 16, 91, 65429, 1048592, 106, 65428, 655376, 84, 65420, 1048592, 89, 65395, 16, 122, 65388, 1441803, 153, 65418, 1048592, 141, 65418, 1441808, 142, 65409, 1441808, 33, 65403, 655376, 127, 65341, 16, 136, 65341, 16, 145, 65341, 16, 154, 65340, 16, 118, 65339, 16)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap3-crossblocks" type="GridMap" parent="New Gridmaps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh_library = ExtResource("4_fr1bx")
+cell_size = Vector3(0.8, 2, 0.8)
+data = {
+"cells": PackedInt32Array(720762, 65379, 14, 655474, 65251, 14, 720853, 65307, 655374, 655689, 65524, 655374, 655689, 27, 1441806, 655689, 81, 1441806, 655689, 136, 1441806, 655609, 157, 655374, 720801, 65500, 1441806)
+}
+metadata/_editor_floor_ = Vector3(0, 8, 0)
+
+[node name="GridMap4-cars" type="GridMap" parent="New Gridmaps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh_library = ExtResource("5_w6tjd")
+cell_size = Vector3(0.8, 0.8, 0.8)
+data = {
+"cells": PackedInt32Array(65454, 65394, 1507332, 65453, 65389, 1507334, 65454, 65384, 1507335, 65504, 65429, 1245191, 65505, 65384, 1245191, 65455, 65428, 1507335, 65455, 65432, 1507338, 65454, 65413, 1507338, 65443, 65442, 655361, 17, 65368, 1507336, 5, 65367, 917512, 60, 65492, 1507337, 64, 12, 917513, 132, 65503, 262153, 113, 29, 917513, 133, 65526, 262153, 114, 130, 262153, 114, 122, 262153, 124, 152, 1507337, 87, 119, 262153, 87, 104, 262153, 87, 96, 262153, 122, 179, 1245193, 20, 169, 917512, 12, 201, 1245192, 18, 202, 1048578, 65504, 185, 655361, 65441, 196, 262154, 65486, 105, 262154, 1, 162, 1048577, 65518, 95, 917510, 65522, 95, 917509, 65526, 95, 917507, 65454, 155, 1245194, 65464, 155, 1245191, 71, 65380, 1245190, 70, 65375, 1507335, 41, 65382, 1245191, 48, 65374, 262148, 61, 65359, 1507331, 142, 65399, 262151, 129, 65417, 262149, 125, 65417, 262150, 121, 65417, 262151, 114, 65358, 1245190, 124, 65358, 1245191, 130, 65387, 262154, 143, 65358, 1245188, 152, 65358, 1245187, 129, 65397, 1441793, 112, 65345, 1048577, 112, 65349, 1048577, 65530, 65408, 917512, 65516, 65442, 655361, 65530, 65435, 1, 65515, 65438, 1048577, 65533, 65439, 1441793, 65520, 65404, 1441792, 65517, 65438, 1441792, 65520, 65444, 1441792, 65533, 65443, 1441792, 65529, 65442, 262152, 65526, 65407, 262152, 65515, 65430, 262152, 65518, 65430, 917512, 65504, 65434, 1245194, 106, 65331, 1507336, 95, 65326, 917512, 179, 65292, 1245192, 160, 65285, 262152, 171, 65285, 1507336, 324, 65485, 262152, 330, 65475, 1507336, 6, 65471, 262150, 5, 65497, 262150, 15, 65484, 262149, 14, 65472, 262151, 6, 65513, 1507336, 14, 65510, 1245192, 14, 65502, 262154, 6, 65506, 262151, 65505, 65469, 1, 65533, 10, 655361, 65533, 91, 655361, 65532, 111, 1, 65528, 111, 1, 65506, 198, 1, 65479, 193, 1441793, 65481, 196, 1441792, 65509, 194, 1441792, 65478, 188, 1441792, 65486, 114, 1, 65452, 62, 917512, 65456, 51, 1245192, 186, 40, 1507338, 187, 35, 1245190, 187, 26, 1507335, 187, 31, 1507333, 226, 62, 1507335, 261, 49, 1507335, 262, 108, 1507335, 283, 93, 1507335, 232, 93, 1507334, 251, 108, 1245190, 249, 49, 1245190, 241, 93, 1507333, 273, 93, 1507333, 274, 114, 917508, 223, 93, 1245187, 235, 63, 1245187, 264, 93, 1245187, 242, 108, 1245187, 196, 151, 1245188, 196, 147, 1245187, 196, 138, 1245194, 65457, 65470, 917514, 196, 65522, 1507332, 196, 65518, 1507333, 196, 65514, 1507335, 211, 65505, 917514, 206, 65506, 917507, 250, 65494, 917511, 258, 65515, 262151, 262, 65514, 917514, 7, 65485, 262150, 65491, 23, 917510, 65495, 24, 262148, 65499, 23, 262149, 65503, 23, 262154, 65510, 27, 1, 65509, 20, 1507336, 65518, 108, 262152, 65532, 97, 655361, 65489, 182, 1, 65494, 182, 1, 65478, 183, 1507338, 197, 65494, 1245189, 186, 65494, 1507334, 152, 65486, 1507335, 255, 65495, 262154, 70, 147, 917513, 77, 154, 1507337, 65498, 158, 262147, 65502, 158, 917510, 65506, 158, 917509, 65510, 158, 917507, 17, 170, 655361, 18, 177, 1441793, 20, 171, 1048578, 65317, 65474, 917514, 65321, 65474, 917514, 65341, 65474, 917510, 260, 65494, 262147, 65503, 65439, 1507331)
+}
+
+[node name="Ambient Audio" parent="." instance=ExtResource("6_if3o8")]
+
+[node name="quad" parent="." instance=ExtResource("7_vqscx")]
+
+[node name="CharControllerV3" parent="." instance=ExtResource("8_453xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0824, 2.25131, -97.5815)
+
+[node name="UILayer" parent="." instance=ExtResource("9_ye4fr")]
+
+[node name="Boomguys" type="Node" parent="."]
+
+[node name="Boomguy" parent="Boomguys" instance=ExtResource("10_u2wb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8864, 11.3567, 0)
+
+[node name="Boomguy4" parent="Boomguys" instance=ExtResource("11_3yqtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76566, 5.19815, -103.685)
+
+[node name="Boomguy5" parent="Boomguys" instance=ExtResource("11_3yqtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.39724, 5.19815, -97.7485)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("11_t0cqc")]
+scenes = Array[PackedScene]([ExtResource("12_gkhkv"), ExtResource("13_3ypyg"), ExtResource("14_j3qbc")])
+num_items = 50
+normal_dot_threshold = 0.7
+respawn_player_distance = 100.0
+things_list = Array[Dictionary]([{
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(29.7767, 1.1, 93.3379)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(59.9196, 1.1, -68.5164)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(87.5434, 1.09998, -21.4041)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(2.89011, 1.1, 39.5904)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(62.4613, 1.10003, 72.1192)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(24.0927, 1.10002, 74.7415)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(74.163, 1.09998, -50.7491)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(30.5364, 1.1, 96.5809)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(67.753, 1.1, 65.4174)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(89.3199, 1.1, -64.0183)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(71.973, 1.29998, -71.8615)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(68.6086, 1.1, -21.3513)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-6.73225, 1.3, 38.086)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(10.3523, 1.10002, 62.9216)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(94.5822, 4.08972, -95.5199)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(43.161, 1.29998, 53.5013)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-96.3966, 9.1, 86.5941)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(-48.1043, 1.10002, 24.3665)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(28.271, 1.1, 79.1307)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-82.6903, 9.1, 64.8991)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(-61.623, 1.10002, 80.1456)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(29.0267, 1.10003, 73.1821)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(38.5999, 1.1, -13.734)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(7.53112, 1.10002, 38.6696)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(38.9015, 1.1, -4.79824)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(16.3003, 1.29998, 33.6973)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(-22.6205, 1.29998, 89.7608)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(83.6568, 1.1, -42.6765)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(-41.5849, 1.1, 58.4328)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(-54.1327, 1.10002, 76.6859)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(79.1409, 4.09351, 48.7507)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(-16.4558, 1.29998, 83.6223)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(-99.8766, 9.1, 92.1053)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(-47.0313, 1.1, 74.7542)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(89.9063, 1.29998, 35.7828)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-54.119, 9.1, 16.9704)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(94.2493, 1.09998, -58.7882)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(92.4834, 4.08155, 96.736)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(-82.3555, 9.1, 66.0706)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(54.7365, 1.29998, 2.4253)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(-62.7672, 9.1, 71.9434)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(53.3566, 1.3, 0.161673)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(63.6326, 1.10002, 76.3962)
+}, {
+"node": ExtResource("13_3ypyg"),
+"position": Vector3(-32.0278, 1.1, 50.3545)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(91.7028, 1.1, -57.3446)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(90.1162, 1.29998, -36.3938)
+}, {
+"node": ExtResource("12_gkhkv"),
+"position": Vector3(96.0528, 1.1, 98.8643)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-76.3078, 1.1, 94.8218)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-2.29824, 2.67721, 88.3923)
+}, {
+"node": ExtResource("14_j3qbc"),
+"position": Vector3(-26.5698, 2.56658, 25.3762)
+}])
+
+[node name="AmmoSpawner" parent="." instance=ExtResource("11_t0cqc")]
+min_y = -2.0
+max_y = 5.0
+min_x = -120.0
+max_x = 260.0
+min_z = -200.0
+max_z = 180.0
+scenes = Array[PackedScene]([ExtResource("15_p83lv")])
+num_items = 200
+frames_per_spawn_in_game = 6
+normal_dot_threshold = 0.4
+height_up_place = 0.25
+things_list = Array[Dictionary]([{
+"node": ExtResource("15_p83lv"),
+"position": Vector3(132.772, 1.25, -59.9484)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(215.277, 1.44998, -108.463)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(231.914, 1.44998, 113.873)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-15.3947, 1.25, 95.9665)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(114.596, 1.24997, -137.427)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(100.728, 1.25, 96.9092)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(80.321, 1.25, -141.748)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(248.945, 1.25, -40.0295)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(166.244, 1.44998, 101.158)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(198.878, 1.24998, 48.6244)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-76.981, 1.25, 103.419)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(182.304, 1.44998, -148.952)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(82.5856, 1.44998, 72.7625)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(137.258, 1.25, -138.88)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(103.714, 1.25, 50.7171)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(211.602, 1.44998, -87.5541)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-38.406, 1.44998, 29.911)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(203.78, 1.44998, -99.5779)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(227.279, 1.25002, 88.3305)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(155.669, 1.25003, 58.5632)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(235.2, 1.45, -52.7549)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(64.6652, 1.25, -28.9012)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-80.0139, 1.24998, 137.025)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-61.4486, 1.24998, 78.6672)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(145.13, 1.44998, -140.508)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(160.203, 1.44998, 91.5802)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(8.67424, 1.25, 38.869)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-78.6074, 1.25002, 161.634)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(126.479, 1.25002, -139.426)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-57.7064, 1.25, 75.9404)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(147.118, 1.44998, -112.066)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(115.818, 1.25, -121.191)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(188.785, 1.25002, 43.8529)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(116.266, 1.25003, 67.1462)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(74.9066, 1.25002, -91.0412)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(76.8336, 1.25, 120.97)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(103.005, 1.44998, -161.105)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(151.656, 1.44998, 93.3926)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(101.103, 1.25, -33.3155)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(49.9507, 1.25002, -0.992228)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(41.8189, 1.25, -119.815)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(64.4184, 1.25, 26.5317)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(128.696, 1.25003, 106.837)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(52.602, 1.45, -56.4273)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(174.19, 1.44998, -91.3765)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(111.071, 1.25002, -64.8642)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(232.854, 1.45, 114.617)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(93.4555, 1.25, 67.4137)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(34.7226, 1.25, -115.792)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(134.162, 1.25, 19.1281)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-77.6155, 1.25, 144.468)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-24.9241, 1.25, 123.011)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(169.312, 1.44998, -161.282)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(232.055, 1.44998, 46.4879)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(240.974, 1.44998, -98.2101)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-26.6726, 1.24998, -5.00721)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(128.266, 1.45, -28.2496)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(159.294, 2.5708, 115.259)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(181.596, 1.25, 151.771)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(166.369, 1.44998, 117.996)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(228.057, 1.25002, 17.3744)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(226.273, 1.25003, 57.6799)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(154.279, 1.44998, -141.805)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(14.566, 1.25, 32.6464)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(44.5066, 1.24998, -68.3019)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-61.241, 1.25002, 116.422)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(35.1985, 1.24998, 156.42)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(236.335, 1.44998, 6.38441)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(231.871, 1.44998, 28.7923)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(144.625, 1.44998, -98.8825)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(109.418, 1.24998, -130.889)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(251.256, 1.44998, -185.754)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(236.912, 1.44998, -155.375)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(94.8594, 2.73816, 138.479)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(180.852, 1.44998, 112.713)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(190.238, 1.44998, -80.0507)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(106.605, 1.24998, -118.846)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(212.198, 1.44998, 99.3294)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(233.723, 1.44998, 30.1464)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-77.4638, 1.25, 172.123)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(131.294, 1.25002, -54.3117)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(26.3837, 1.25, 85.9476)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(173.951, 1.44998, -116.272)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(87.1393, 1.25, -138.15)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(144.831, 1.44998, 101.775)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(210.922, 1.44998, -141.057)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(37.3258, 1.25002, 68.6834)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(247.891, 1.44998, -92.1014)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(22.9089, 1.25003, -120.644)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(184.989, 1.44998, 92.9221)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(81.9035, 1.25, -101.176)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-85.2164, 1.25, 122.9)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-28.8563, 1.44998, 23.8712)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-74.1114, 1.44998, 123.481)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(216.524, 1.44998, 22.1486)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(187.129, 1.44998, -191.216)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(217.933, 1.44998, -184.117)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(222.131, 1.25003, 41.7474)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(249.219, 1.44998, -141.313)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(98.4669, 1.44998, -73.0506)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(20.2491, 1.37747, 73.4141)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(126.842, 1.44998, 21.5479)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(232.686, 1.45, -3.53806)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(118.944, 1.25, 63.6573)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(104.975, 1.25003, 46.2851)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(64.0246, 1.25, -59.6591)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-79.117, 1.24998, 135.328)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(222.586, 1.44998, -113.41)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(193.733, 1.44998, -193.108)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-35.4028, 2.45, 106.552)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(64.1448, 1.45001, 161.642)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(85.9456, 1.25, -33.2648)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-6.38853, 1.44998, 76.8924)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(171.862, 1.25, 83.792)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(184.997, 1.44998, 109.529)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(219.19, 1.25, 134.628)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(139.963, 1.25003, -17.5702)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(130.831, 1.25002, -36.3658)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(232.117, 1.44998, 77.3223)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(222.105, 1.25, -13.9971)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(2.58613, 1.24998, -106.969)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(198.887, 1.44998, -143.877)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(129.437, 1.25002, -54.3932)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-43.7232, 1.25, 55.6879)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(228.429, 1.44998, -123.044)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(11.3148, 1.25, 39.6669)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(215.2, 1.25002, 50.3529)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(251.377, 1.44998, -98.3958)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(194.048, 1.44998, -121.567)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(47.7497, 1.25, 31.8226)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(12.9321, 1.25, -85.7001)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(22.5382, 1.25002, 136.582)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(80.5389, 1.25002, -89.223)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-68.8736, 2.0928, 125.446)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(131.492, 1.25002, -122.848)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(133.581, 1.25, -164.021)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(136.322, 1.25, 74.9079)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(1.85656, 1.25, -6.1667)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(161.17, 1.44998, -69.7724)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(41.5979, 1.24998, 17.7023)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(176.811, 1.44998, -60.3212)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(107.739, 1.25, 78.9094)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-81.2578, 1.25, 82.4812)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-41.7404, 1.25, -5.57025)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(209.31, 1.44998, -168.149)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(168.353, 1.25, -42.8636)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(203.665, 1.44998, -186.311)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(97.3271, 1.25, 102.387)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(4.19157, 1.25002, 18.6463)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(154.154, 1.44998, -118.024)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(195.912, 1.44998, -174.125)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(74.8998, 1.25, -44.5686)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(51.2309, 1.25, -135.577)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(179.838, 1.45001, 55.7596)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-49.7197, 1.25003, 82.2291)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-9.21874, 1.44998, 73.9984)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(135.777, 1.25, 92.9475)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-3.22256, 1.44998, -38.3254)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(154.129, 1.44998, -155.445)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(159.872, 1.44998, -155.286)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-4.71012, 1.44998, -52.1251)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(130.513, 1.25003, -18.9208)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(187.489, 1.24998, 81.9548)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(231.466, 1.25, 78.4199)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(209.495, 1.44998, -87.1754)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(199.194, 1.44998, -55.7674)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(123.499, 1.25, 146.534)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-38.0389, 1.44998, 63.1028)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-78.5605, 1.25002, 106.342)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(81.0987, 1.25002, -156.9)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(30.3247, 1.25, 83.2921)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(76.0268, 1.25, 135.733)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(140.857, 1.25003, -115.445)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(141.077, 1.25, 121.606)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(133.871, 1.25, 22.3694)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(45.7418, 1.25003, -141.389)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(56.5527, 1.25, 45.7949)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(70.0033, 1.24998, -57.7352)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(145.905, 4.13892, 39.8607)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-77.9079, 1.25, 119.421)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(148.685, 1.44998, -56.4737)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(70.8381, 1.45, -34.7923)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(94.2401, 1.25003, 45.8541)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(-67.2418, 1.25, 119.711)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(227.803, 1.44998, -112.152)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(157.295, 1.44998, -27.267)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(178.177, 1.25, 152.178)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(89.7375, 1.25002, -58.6255)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(208.305, 1.44998, -163.049)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(136.405, 1.25, -23.2291)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(42.4788, 1.25, -15.154)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(138.989, 1.25, -191.093)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(208.918, 1.44998, -88.541)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(73.4233, 1.44998, -71.9819)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(232.88, 1.44998, 43.645)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(198.06, 1.44998, -136.475)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(175.501, 1.44998, -98.4542)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(241.08, 1.44998, -195.061)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(206.042, 1.44998, -11.7398)
+}, {
+"node": ExtResource("15_p83lv"),
+"position": Vector3(185.264, 1.25, 48.9573)
+}])
+
+[node name="Billboard Trees" type="Node3D" parent="."]
+
+[node name="BTree Small" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55845, 1.20579, -96.274)
+
+[node name="BTree Small2" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3664, 1.20579, -94.1601)
+
+[node name="BTree Small3" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75287, 1.20579, -90.5748)
+
+[node name="BTree Bush" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.8421, 1.2, -132.818)
+
+[node name="BTree Bush2" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1917, 1.2, -131.216)
+
+[node name="BTree Bush3" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.3466, 1.2, -131.696)
+
+[node name="BTree Big" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6174, 1.24277, -101.779)
+
+[node name="BTree Big2" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190.747, 0.979668, -140.072)
+
+[node name="BTree Big3" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.954, 1.2, -166.521)
+
+[node name="BTree Big4" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 173.521, 1.2, -56.8082)
+
+[node name="BTree Big5" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.386, 1.2, -62.499)
+
+[node name="BTree Big6" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.599, 1.2, -153.847)
+
+[node name="BTree Small4" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 169.628, 1.21134, -150.526)
+
+[node name="BTree Small5" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 187.427, 1.21134, -153.554)
+
+[node name="BTree Small6" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.492, 1.21134, -146.559)
+
+[node name="BTree Small7" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.572, 1.21134, -156.102)
+
+[node name="BTree Small8" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 214.943, 1.15834, -120.404)
+
+[node name="BTree Big7" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.968, 1.12543, -120.957)
+
+[node name="BTree Big8" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.615, 0.845491, -118.616)
+
+[node name="BTree Bush4" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.273, 1.2, -98.4136)
+
+[node name="BTree Small9" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, -0.000890118, 0, 0.000890118, 1, 199.977, 1.18384, -110.364)
+
+[node name="BTree Small10" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.081, 1.17364, -147.304)
+
+[node name="BTree Bush5" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 202.38, 1.2, -152.583)
+
+[node name="BTree Small11" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 196.773, 1.21134, -148.924)
+
+[node name="BTree Bush6" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.981, 1.2, -152.264)
+
+[node name="BTree Small12" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.25, 1.21134, -151.178)
+
+[node name="BTree Bush7" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.628, 1.2, -160.57)
+
+[node name="BTree Small13" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.044, 1.21134, -57.3648)
+
+[node name="BTree Small14" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.644, 1.21134, -55.8492)
+
+[node name="BTree Bush8" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 183.936, 1.2, -57.7126)
+
+[node name="BTree Small15" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.797, 1.21134, -56.5196)
+
+[node name="BTree Small16" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.061, 1.21134, -74.9898)
+
+[node name="BTree Bush9" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.424, 1.2, -80.4258)
+
+[node name="BTree Small17" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.027, 1.21134, -91.2536)
+
+[node name="BTree Big9" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.422, 1.2, -87.5784)
+
+[node name="BTree Small18" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.78, 1.21134, -118.654)
+
+[node name="BTree Small19" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.656, 1.21134, -82.5923)
+
+[node name="BTree Small20" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.322, 1.21134, -146.211)
+
+[node name="BTree Small21" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.04, 1.21134, -122.218)
+
+[node name="BTree Big10" parent="Billboard Trees" instance=ExtResource("18_nt64s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.866, 1.2, -117.065)
+
+[node name="BTree Small22" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.845, 1.21134, -110.676)
+
+[node name="BTree Bush10" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.497, 1.2, -104.488)
+
+[node name="BTree Small23" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152.625, 1.21134, -113.012)
+
+[node name="BTree Sumac" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213.671, 1.22548, -22.3903)
+
+[node name="BTree Sumac2" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213.795, 1.22548, -33.9298)
+
+[node name="BTree Sumac3" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 241.398, 1.22548, -25.1284)
+
+[node name="BTree Sumac4" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 247.341, 1.22548, -29.4168)
+
+[node name="BTree Sumac5" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 235.385, 1.22548, 38.854)
+
+[node name="BTree Sumac6" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.25, 1.15662, 61.8768)
+
+[node name="BTree Sumac7" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 243.968, 1.22548, 59.2736)
+
+[node name="BTree Sumac8" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 236.998, 1.22548, 54.5341)
+
+[node name="BTree Sumac9" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.83, 1.22548, 45.0912)
+
+[node name="BTree Sumac10" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.168, 1.22548, 38.8911)
+
+[node name="BTree Sumac11" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 234.849, 1.22548, 60.3897)
+
+[node name="BTree Sumac12" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 214.659, 1.22548, -6.27901)
+
+[node name="BTree Sumac13" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 205.631, 1.22548, -6.23276)
+
+[node name="BTree Sumac14" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 246.713, 1.22548, 17.5349)
+
+[node name="BTree Sumac15" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.941, 1.22548, 17.1312)
+
+[node name="BTree Sumac16" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 245.892, 1.22548, -4.14786)
+
+[node name="BTree Sumac17" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.922, 1.22548, 81.9782)
+
+[node name="BTree Sumac18" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 246.733, 1.22548, 105.19)
+
+[node name="BTree Sumac19" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 240.541, 1.22548, 98.2912)
+
+[node name="BTree Sumac20" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.1627, 1.22548, 145.697)
+
+[node name="BTree Sumac21" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.1135, 1.22548, 142.313)
+
+[node name="BTree Sumac23" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3244, 1.22548, 146.337)
+
+[node name="BTree Sumac24" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1268, 1.22548, 157.565)
+
+[node name="BTree Sumac25" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4799, 1.22548, 149.717)
+
+[node name="BTree Bush11" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.3416, 1.2, -23.9053)
+
+[node name="BTree Bush12" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.9183, 1.2, -28.9706)
+
+[node name="BTree Sumac22" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.0995, 1.22548, 129.279)
+
+[node name="BTree Sumac26" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1729, 1.22548, -39.7589)
+
+[node name="BTree Sumac27" parent="Billboard Trees" instance=ExtResource("19_8r36g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47963, 1.22548, -46.5357)
+
+[node name="BTree Bush13" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.2694, 1.2, -121.826)
+
+[node name="BTree Bush14" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.8334, 1.1559, -125.453)
+
+[node name="Alieny_ufo" parent="Billboard Trees" instance=ExtResource("20_3yqtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.074, 39.0393, -134.501)
+
+[node name="Billboard Alieny" type="Node3D" parent="."]
+
+[node name="Alieny_minisphere" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.1028, 2.74631, -134.475)
+
+[node name="Alieny_minisphere2" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4074, 4.56797, -126.706)
+
+[node name="Alieny_sphere" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.3193, 7.16187, -137.631)
+
+[node name="Alieny_maxisphere" parent="Billboard Alieny" instance=ExtResource("22_7ux23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.1268, 5.57006, -143.595)
+
+[node name="Alieny_sphere2" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.4124, 7.75831, -130.98)
+
+[node name="Alieny_sphere3" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.869, 5.17749, -128.984)
+
+[node name="Alieny_sphere4" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.974, 3.90772, -137.281)
+
+[node name="Alieny_sphere5" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.8156, 4.1565, -138.917)
+
+[node name="Alieny_sphere6" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.0824, 3.89845, -131.751)
+
+[node name="Alieny_sphere7" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.1254, 4.07977, -146.473)
+
+[node name="Alieny_sphere8" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.8167, 4.2396, -141.376)
+
+[node name="Alieny_sphere9" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.8959, 4.85781, -141.345)
+
+[node name="Alieny_sphere10" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.3451, 4.70065, -140.075)
+
+[node name="Alieny_minisphere3" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.072, 4.32983, -130.634)
+
+[node name="Alieny_minisphere4" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.4, 3.87255, -136.643)
+
+[node name="Alieny_minisphere5" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.0405, 4.69218, -131.956)
+
+[node name="Alieny_minisphere6" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.6063, 3.87057, -148.444)
+
+[node name="Alieny_minisphere7" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.8842, 2.1197, -136.812)
+
+[node name="Alieny_sphere11" parent="Billboard Alieny" instance=ExtResource("21_uiebb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.1642, 5.42998, -141.862)
+
+[node name="Alieny_maxisphere2" parent="Billboard Alieny" instance=ExtResource("22_7ux23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 221.952, 8.13374, 149.936)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Billboard Alieny/Alieny_maxisphere2"]
+libraries = {
+&"": SubResource("AnimationLibrary_ao766")
+}
+autoplay = "slow rotate"
+
+[node name="Alieny_head" parent="Billboard Alieny/Alieny_maxisphere2" instance=ExtResource("23_da2qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110489, -1.15802, 8.75545)
+
+[node name="Alieny_head3" parent="Billboard Alieny/Alieny_maxisphere2" instance=ExtResource("23_da2qh")]
+transform = Transform3D(0.999558, 0.0297186, 0, -0.0297186, 0.999558, 0, 0, -9.31323e-10, 1, -2.31612, -0.643343, -10.8211)
+
+[node name="Alieny_head2" parent="Billboard Alieny/Alieny_maxisphere2" instance=ExtResource("23_da2qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0628, -2.21997, 4.06467)
+
+[node name="Alieny_head4" parent="Billboard Alieny/Alieny_maxisphere2" instance=ExtResource("23_da2qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87346, 0.0534544, -6.96262)
+
+[node name="Alieny_head6" parent="Billboard Alieny/Alieny_maxisphere2" instance=ExtResource("23_da2qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8096, -1.10357, -5.44954)
+
+[node name="Alieny_head5" parent="Billboard Alieny/Alieny_maxisphere2" instance=ExtResource("23_da2qh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.98503, 0.440092, 2.49139)
+
+[node name="Alieny_pile" parent="Billboard Alieny" instance=ExtResource("24_5abpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.881, 1.29075, 142.285)
+
+[node name="Alieny_pile2" parent="Billboard Alieny" instance=ExtResource("24_5abpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.957, 1.29075, 160.223)
+
+[node name="Alieny_pile3" parent="Billboard Alieny" instance=ExtResource("24_5abpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 212.828, 1.36502, 130.968)
+
+[node name="Alieny_pile4" parent="Billboard Alieny" instance=ExtResource("24_5abpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.142, 1.1831, 160.523)
+
+[node name="Billboard Civilians" type="Node3D" parent="."]
+
+[node name="BCivilian AmmonautSec" parent="Billboard Civilians" instance=ExtResource("25_p5opb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4769, 6.19112, -115.461)
+
+[node name="BCivilian Employee Bob" parent="Billboard Civilians" instance=ExtResource("26_ekvxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.2281, 1.20948, -113.769)
+
+[node name="BCivilian Employee Ellen" parent="Billboard Civilians" instance=ExtResource("27_8ugi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6891, 1.19554, -113.09)
+
+[node name="BCivilian MilitiaMan" parent="Billboard Civilians" instance=ExtResource("28_2c6g5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.093, 1.2084, -24.7135)
+
+[node name="BCivilian MilitiaWoman" parent="Billboard Civilians" instance=ExtResource("29_u0s7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.8, 1.2084, -26.797)
+
+[node name="BCivilian MilitiaMan2" parent="Billboard Civilians" instance=ExtResource("28_2c6g5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 204.368, 4.47904, -33.0334)
+
+[node name="BCivilian MilitiaWoman2" parent="Billboard Civilians" instance=ExtResource("29_u0s7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 202.959, 1.2084, -19.8813)
+
+[node name="BCivilian RiotPolice" parent="Billboard Civilians" instance=ExtResource("30_oa0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.544, 1.22808, 66.0833)
+
+[node name="BCivilian RiotPolice2" parent="Billboard Civilians" instance=ExtResource("30_oa0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.889, 1.21229, 60.589)
+
+[node name="BCivilian RiotPolice3" parent="Billboard Civilians" instance=ExtResource("30_oa0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.348, 1.21229, 64.4766)
+
+[node name="BCivilian RiotPolice4" parent="Billboard Civilians" instance=ExtResource("30_oa0bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.258, 1.21229, 62.0353)
+
+[node name="BCivilian Punk" parent="Billboard Civilians" instance=ExtResource("31_e2b6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9084, 1.2084, 151.195)
+
+[node name="BCivilian Punk2" parent="Billboard Civilians" instance=ExtResource("31_e2b6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4013, 1.2084, 154.205)
+
+[node name="BCivilian Punk3" parent="Billboard Civilians" instance=ExtResource("31_e2b6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0658, 1.2084, 149.467)
+
+[node name="Street Furniture" type="Node3D" parent="."]
+
+[node name="Lantern" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -132.004)
+
+[node name="Lantern2" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -132.17)
+
+[node name="Lantern3" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -133.2)
+
+[node name="Lantern4" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -139.079)
+
+[node name="Lantern5" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -139.246)
+
+[node name="Lantern6" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -140.275)
+
+[node name="Boundaries" type="Node3D" parent="."]
+
+[node name="boundaries" type="CSGCombiner3D" parent="Boundaries"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93923, 7.88885, -146.21)
+size = Vector3(20.5174, 14.848, 10.5722)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(0.0213089, 0, 0.999773, 0, 1, 0, -0.999773, 0, 0.0213089, -127.284, 7.88885, -63.2352)
+size = Vector3(20.5174, 14.848, 10.5722)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.3498, 7.59653, -164.3)
+size = Vector3(24.2333, 14.2634, 10.5722)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(0.979911, 0, 0.199436, 0, 1, 0, -0.199436, 0, 0.979911, 133.087, 4.09515, -203.042)
+size = Vector3(24.2333, 14.2634, 14.6955)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(-0.145461, 0, -0.989364, 0, 1, 0, 0.989364, 0, -0.145461, 263.263, 4.09515, -43.3191)
+size = Vector3(24.2333, 14.2634, 15.4937)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(0.054166, 0, -0.998532, 0, 1, 0, 0.998532, 0, 0.054166, 223.866, 4.09515, 183.866)
+size = Vector3(14.4948, 14.2634, 36.7936)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(0.0570937, 0, -0.998369, 0, 1, 0, 0.998369, 0, 0.0570937, 24.0528, 4.09515, 184.327)
+size = Vector3(15.0534, 14.2634, 39.3064)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(0.0350042, 0, -0.999388, 0, 1, 0, 0.999388, 0, 0.0350042, -82.709, 4.09515, 182.745)
+size = Vector3(12.3045, 14.2634, 39.3064)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/boundaries"]
+transform = Transform3D(-0.997666, 0, -0.0682766, 0, 1, 0, 0.0682766, 0, -0.997666, -62.783, 4.09515, 41.3948)
+size = Vector3(12.3045, 14.2634, 39.3064)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="no_spawn" type="CSGCombiner3D" parent="Boundaries"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.2356, 5.00043, -189.893)
+size = Vector3(200, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.162, 5.00043, -211.864)
+size = Vector3(100, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.404, 5.00043, -249.986)
+size = Vector3(100, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.548, 5.00043, 39.8161)
+size = Vector3(100, 10, 50)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.573, 5.00043, -23.7454)
+size = Vector3(100, 10, 50)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132.015, 5.00043, -129.361)
+size = Vector3(100, 10, 100)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.8189, 5.00043, -84.0263)
+size = Vector3(40, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.2622, 5.00043, -88.2942)
+size = Vector3(40, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.8019, 5.00043, -95.9125)
+size = Vector3(40, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.796, 5.00043, -102.867)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.9862, 5.00043, -112.088)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.3812, 5.00043, -118.099)
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5427, 5.00043, -81.1431)
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9868, 5.00043, -140.234)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3095, 5.00043, -37.0947)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92847, 5.00043, 99.7498)
+size = Vector3(15, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.105, 5.00043, 131.168)
+size = Vector3(15, 10, 15)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 202.209, 5.00043, 106.592)
+size = Vector3(15, 10, 15)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.889, 5.00043, 11.918)
+size = Vector3(40, 10, 40)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 199.975, 5.00043, 16.9449)
+size = Vector3(10, 10, 10)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 267.123, 5.00043, -44.8982)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.508, 5.00043, 187.221)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51283, 5.00043, 173.625)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4916, 5.00043, 172.465)
+size = Vector3(60, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Boundaries/no_spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.3355, 5.00043, 166.496)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_qgq1o")
+
+[node name="Demon" parent="." instance=ExtResource("14_j3qbc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.2336, 6.44571, -66.8296)
+
+[node name="player weapons" type="Node3D" parent="."]
+
+[node name="test_gun" parent="player weapons" instance=ExtResource("32_xrp3y")]
+transform = Transform3D(1, 0, 0, 0, 0.999425, 0.0339052, 0, -0.0339052, 0.999425, -45.8224, 4.02201, -124.628)
+
+[node name="DemoBullets" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6438, 2.00287, -124.477)
+
+[node name="DemoBullets2" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7775, 2.00287, -124.657)
+
+[node name="DemoBullets3" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.848, 1.125, -122.434)
+
+[node name="DemoBullets4" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3815, 1.125, -124.762)
+
+[node name="DemoBullets5" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5293, 2.00287, -125.819)
+
+[node name="DemoBullets6" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4055, 2.00287, -124.033)
+
+[node name="DemoBullets7" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8682, 2.05603, -125.251)
+
+[node name="DemoBullets8" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.7419, 1.325, -124.917)
+
+[node name="DemoBullets9" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.5103, 2.00287, -123.95)
+
+[node name="DemoBullets10" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.3417, 2.00287, -123.937)
+
+[node name="DemoBullets11" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.9691, 2.00287, -126.126)
+
+[node name="DemoBullets12" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8545, 2.82241, 24.9547)
+
+[node name="DemoBullets13" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1139, 2.74655, 25.4465)
+
+[node name="DemoBullets14" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1643, 2.83528, 25.7204)
+
+[node name="DemoBullets15" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5256, 1.325, 8.01295)
+
+[node name="DemoBullets16" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0758, 1.325, -108.796)
+
+[node name="DemoBullets17" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8748, 2.85814, -107.93)
+
+[node name="DemoBullets18" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4391, 1.325, -108.966)
+
+[node name="DemoBullets19" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.202, 1.325, -20.624)
+
+[node name="DemoBullets20" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.82, 1.325, 132.817)
+
+[node name="DemoBullets21" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.059, 1.325, 112.641)
+
+[node name="DemoBullets22" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42467, 1.325, 87.3273)
+
+[node name="DemoBullets23" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.65489, 1.325, 72.7041)
+
+[node name="DemoBullets24" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3398, 1.325, 100.056)
+
+[node name="DemoBullets25" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7507, 1.325, 103.976)
+
+[node name="DemoBullets26" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5977, 1.325, 136.211)
+
+[node name="DemoBullets27" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39503, 2.77783, 130.344)
+
+[node name="DemoBullets28" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6895, 1.325, 159.313)
+
+[node name="DemoBullets29" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.7382, 1.325, 156.497)
+
+[node name="DemoBullets30" parent="player weapons" instance=ExtResource("15_p83lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.4834, 4.5207, 145.005)
+
+[node name="advertising hoarding" parent="." instance=ExtResource("33_isb8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3538, 21.115, -27.637)
+
+[node name="advertising hoarding2" parent="." instance=ExtResource("33_isb8y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27.3301, 21.115, -35.7826)
