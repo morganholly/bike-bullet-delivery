@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=42 format=3 uid="uid://dq8uucqyty7x2"]
 
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_a4beh"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dpep6wedv5iwj" path="res://audio/ambient_audio.tscn" id="5_1ub4c"]
 [ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="5_sk3dq"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="7_vfugj"]
-[ext_resource type="PackedScene" uid="uid://bedyvdrpw7tvs" path="res://controllers/controller v3.tscn" id="8_a8p52"]
+[ext_resource type="PackedScene" uid="uid://bedyvdrpw7tvs" path="res://controllers/controller v3.tscn" id="8_s8jcy"]
+[ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="9_qgq1o"]
 [ext_resource type="PackedScene" uid="uid://cvqhmpmp433mm" path="res://utils/thing_spawner.tscn" id="11_n1gn4"]
 [ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="12_flftk"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="12_gspqf"]
-[ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/test_gun.tscn" id="13_a4beh"]
+[ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/gun_pistol.tscn" id="13_a4beh"]
 [ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="13_ayj5j"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="14_n1gn4"]
 [ext_resource type="PackedScene" uid="uid://bjkhnm0ct5m0r" path="res://enviroment/Trees/btree_small.tscn" id="16_a7pj8"]
@@ -133,51 +134,21 @@ data = {
 
 [node name="quad" parent="." instance=ExtResource("5_sk3dq")]
 
-[node name="CharControllerV3" parent="." instance=ExtResource("8_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6669, 6.35075, -92.6263)
+[node name="CharControllerV3" parent="." instance=ExtResource("8_s8jcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.558, 2.20169, -99.8147)
 
 [node name="UILayer" parent="." instance=ExtResource("7_vfugj")]
 
 [node name="Boomguys" type="Node" parent="."]
 
-[node name="Boomguy" parent="Boomguys"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
+[node name="Boomguy" parent="Boomguys" instance=ExtResource("9_qgq1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8864, 11.3567, 0)
-script = null
 
-[node name="Boomguy2" parent="Boomguys"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
+[node name="Boomguy2" parent="Boomguys" instance=ExtResource("9_qgq1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
-script = null
 
-[node name="Boomguy3" parent="Boomguys"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
+[node name="Boomguy3" parent="Boomguys" instance=ExtResource("9_qgq1o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180.834, 11.3567, 46.2572)
-script = null
 
 [node name="EnemySpawner" parent="." instance=ExtResource("11_n1gn4")]
 scenes = Array[PackedScene]([ExtResource("12_flftk"), ExtResource("13_ayj5j"), ExtResource("12_gspqf")])
@@ -1318,24 +1289,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0658, 1.2084, 149.467)
 
 [node name="Street Furniture" type="Node3D" parent="."]
 
-[node name="Lantern" parent="Street Furniture" instance=ExtResource("34_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -132.004)
-
-[node name="Lantern2" parent="Street Furniture" instance=ExtResource("34_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -132.17)
-
-[node name="Lantern3" parent="Street Furniture" instance=ExtResource("34_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -133.2)
-
-[node name="Lantern4" parent="Street Furniture" instance=ExtResource("34_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -139.079)
-
-[node name="Lantern5" parent="Street Furniture" instance=ExtResource("34_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -139.246)
-
-[node name="Lantern6" parent="Street Furniture" instance=ExtResource("34_a8p52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -140.275)
-
 [node name="Boundaries" type="Node3D" parent="."]
 
 [node name="boundaries" type="CSGCombiner3D" parent="Boundaries"]
@@ -1617,3 +1570,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3538, 21.115, -27.637)
 
 [node name="advertising hoarding2" parent="." instance=ExtResource("33_s8jcy")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27.3301, 21.115, -35.7826)
+
+[node name="Lantern" parent="." instance=ExtResource("34_a8p52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -132.004)
+
+[node name="Lantern2" parent="." instance=ExtResource("34_a8p52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -132.17)
+
+[node name="Lantern3" parent="." instance=ExtResource("34_a8p52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -133.2)
+
+[node name="Lantern4" parent="." instance=ExtResource("34_a8p52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -139.079)
+
+[node name="Lantern5" parent="." instance=ExtResource("34_a8p52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -139.246)
+
+[node name="Lantern6" parent="." instance=ExtResource("34_a8p52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -140.275)

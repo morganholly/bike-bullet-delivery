@@ -107,6 +107,11 @@ func _on_reload_state_changed(is_reloading: bool) -> void:
 # Called every frame to update the UI based on the player's current state
 func _process(_delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
+	if Input.is_action_just_released("rollerblade"):
+		if $UIRollerbladeIcon.visible == false:
+			$UIRollerbladeIcon.visible = true
+		else:
+			$UIRollerbladeIcon.visible = false
 	if player and player.has_node("HoldContainer"):
 		var hold_container = player.get_node("HoldContainer")
 		
@@ -128,13 +133,14 @@ func _setup_mission_indicators() -> void:
 		mission_indicator_layer = mission_indicator_scene.instantiate()
 		add_child(mission_indicator_layer)
 		print("Created mission indicator layer dynamically")
-	else:
+	else:if Input.is_action_pressed("zoom"):
 		print("Using mission indicator layer from scene")
 
 # Method to show the rollerblade prompt when level is ready
 func show_rollerblade_prompt() -> void:
 	UIManager.show_rollerblade_prompt()
 	
+
 	
 func update_slots():
 	#TIDYUP

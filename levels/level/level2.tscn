@@ -1,6 +1,6 @@
-[gd_scene load_steps=44 format=3 uid="uid://b6kvfu4ii46i8"]
+[gd_scene load_steps=50 format=3 uid="uid://b6kvfu4ii46i8"]
 
-[ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_453xm"]
+[ext_resource type="Script" uid="uid://c8uh3fu8uck2d" path="res://levels/level/level2.gd" id="1_3yqtc"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="2_ytnn7"]
 [ext_resource type="MeshLibrary" uid="uid://c3wff7tvt7ja1" path="res://enviroment/Buildings/Road/NewRoadBits/NewRoadTilesLib2.tres" id="3_3yqtc"]
 [ext_resource type="MeshLibrary" uid="uid://bwish66d046ki" path="res://enviroment/Buildings/Road/SmallRoadBits/RoadTilesLib.tres" id="4_fr1bx"]
@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cp6bdq5pahndr" path="res://screen_space_shading/sss_quad.tscn" id="7_vqscx"]
 [ext_resource type="PackedScene" uid="uid://bedyvdrpw7tvs" path="res://controllers/controller v3.tscn" id="8_453xm"]
 [ext_resource type="PackedScene" uid="uid://c86ur1pluawt6" path="res://ui/scenes/layers/ui_layer.tscn" id="9_ye4fr"]
-[ext_resource type="PackedScene" path="res://npcs/boomguy/Boomguy.tscn" id="10_u2wb4"]
-[ext_resource type="PackedScene" path="res://npcs/boomguy/AltBoomguy.tscn" id="11_3yqtc"]
+[ext_resource type="PackedScene" uid="uid://db2eyvfi8wple" path="res://npcs/boomguy/Boomguy.tscn" id="10_u2wb4"]
 [ext_resource type="PackedScene" uid="uid://cvqhmpmp433mm" path="res://utils/thing_spawner.tscn" id="11_t0cqc"]
 [ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="12_gkhkv"]
+[ext_resource type="PackedScene" uid="uid://xpx6gdcia8s5" path="res://npcs/boomguy/AltBoomguy.tscn" id="12_w6tjd"]
 [ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="13_3ypyg"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="14_j3qbc"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="15_p83lv"]
@@ -29,13 +29,19 @@
 [ext_resource type="PackedScene" uid="uid://djs83codvuvbs" path="res://enviroment/Civilians/bcivilian_ammonautsecurity.tscn" id="25_p5opb"]
 [ext_resource type="PackedScene" uid="uid://doebjhdg6kkpw" path="res://enviroment/Civilians/bcivilian_employee1.tscn" id="26_ekvxl"]
 [ext_resource type="PackedScene" uid="uid://8reu4fj67tcs" path="res://enviroment/Civilians/bcivilian_employee2.tscn" id="27_8ugi7"]
+[ext_resource type="PackedScene" uid="uid://c2p60v63est3n" path="res://enviroment/Civilians/bcivilian_army.tscn" id="27_evy04"]
 [ext_resource type="PackedScene" uid="uid://vmqqls5eaxqr" path="res://enviroment/Civilians/bcivilian_militiaman.tscn" id="28_2c6g5"]
 [ext_resource type="PackedScene" uid="uid://c81i2k5sn8vso" path="res://enviroment/Civilians/bcivilian_militiawoman.tscn" id="29_u0s7a"]
 [ext_resource type="PackedScene" uid="uid://dhsk3pq3k1fxp" path="res://enviroment/Civilians/bcivilian_police.tscn" id="30_oa0bn"]
 [ext_resource type="PackedScene" uid="uid://dqoon5njxx8gl" path="res://enviroment/Civilians/bcivilian_punk.tscn" id="31_e2b6t"]
-[ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/gun_pistol.tscn" id="32_xrp3y"]
 [ext_resource type="PackedScene" uid="uid://brgnuo3dvsmt" path="res://enviroment/street furniture/advertising.tscn" id="33_isb8y"]
 [ext_resource type="PackedScene" uid="uid://d13aalm43crg3" path="res://enviroment/street furniture/lantern.tscn" id="34_cwq0a"]
+[ext_resource type="PackedScene" uid="uid://b5x78sox4880h" path="res://enviroment/Civilians/bcivilian_uberpunk.tscn" id="35_ye4fr"]
+[ext_resource type="PackedScene" uid="uid://bypiqmube8065" path="res://enviroment/Civilians/bcivilian_punk2.tscn" id="36_u2wb4"]
+[ext_resource type="PackedScene" uid="uid://3ouwoy5nh8rp" path="res://enviroment/Civilians/bcivilian_police2.tscn" id="37_t0cqc"]
+[ext_resource type="PackedScene" uid="uid://fgrcevr5c0hi" path="res://enviroment/Civilians/bcivilian_armytalk.tscn" id="38_ye4fr"]
+[ext_resource type="PackedScene" uid="uid://s3wiafv1y0kt" path="res://enviroment/Civilians/bcivilian_employeetalk.tscn" id="39_u2wb4"]
+[ext_resource type="PackedScene" uid="uid://dd6dccvg4ekv0" path="res://enviroment/Civilians/bcivilian_sciencetalk.tscn" id="40_t0cqc"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
 panorama = ExtResource("2_ytnn7")
@@ -91,7 +97,7 @@ transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
 [node name="Level" type="Node3D"]
-script = ExtResource("1_453xm")
+script = ExtResource("1_3yqtc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gmn8u")
@@ -144,13 +150,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0824, 2.25131, -97.5815)
 [node name="Boomguys" type="Node" parent="."]
 
 [node name="Boomguy" parent="Boomguys" instance=ExtResource("10_u2wb4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8864, 11.3567, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5764, 10.6407, -1.09809)
 
-[node name="Boomguy4" parent="Boomguys" instance=ExtResource("11_3yqtc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76566, 5.19815, -103.685)
+[node name="Boomguy2" parent="Boomguys" instance=ExtResource("12_w6tjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.8784, 7.47155, 110.895)
 
-[node name="Boomguy5" parent="Boomguys" instance=ExtResource("11_3yqtc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.39724, 5.19815, -97.7485)
+[node name="Boomguy4" parent="Boomguys" instance=ExtResource("12_w6tjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.53, 7.47155, 139.586)
+
+[node name="Boomguy3" parent="Boomguys" instance=ExtResource("12_w6tjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 226.933, 9.44524, 51.5143)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("11_t0cqc")]
 scenes = Array[PackedScene]([ExtResource("12_gkhkv"), ExtResource("13_3ypyg"), ExtResource("14_j3qbc")])
@@ -1037,7 +1046,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.78, 1.21134, -118.654)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.656, 1.21134, -82.5923)
 
 [node name="BTree Small20" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.322, 1.21134, -146.211)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.322, 1.21134, -149.814)
 
 [node name="BTree Small21" parent="Billboard Trees" instance=ExtResource("16_gl7cl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.04, 1.21134, -122.218)
@@ -1147,9 +1156,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.2694, 1.2, -121.826)
 [node name="BTree Bush14" parent="Billboard Trees" instance=ExtResource("17_sty1l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.8334, 1.1559, -125.453)
 
-[node name="Alieny_ufo" parent="Billboard Trees" instance=ExtResource("20_3yqtc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.074, 39.0393, -134.501)
-
 [node name="Billboard Alieny" type="Node3D" parent="."]
 
 [node name="Alieny_minisphere" parent="Billboard Alieny" instance=ExtResource("20_5npch")]
@@ -1248,7 +1254,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 212.828, 1.36502, 130.968)
 [node name="Alieny_pile4" parent="Billboard Alieny" instance=ExtResource("24_5abpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 215.142, 1.1831, 160.523)
 
+[node name="spawn_alien" type="Marker3D" parent="Billboard Alieny"]
+transform = Transform3D(0.817587, 0, -0.575805, 0, 1, 0, 0.575805, 0, 0.817587, 190.81, 1.4413, -127.894)
+
+[node name="spawn_alien2" type="Marker3D" parent="Billboard Alieny"]
+transform = Transform3D(0.78536, 0, -0.619039, 0, 1, 0, 0.619039, 0, 0.78536, 190.81, 1.4413, -144.824)
+
+[node name="spawn_alien3" type="Marker3D" parent="Billboard Alieny"]
+transform = Transform3D(0.894732, 0, -0.446604, 0, 1, 0, 0.446604, 0, 0.894732, 184.75, 1.4413, -149.279)
+
+[node name="spawn_alien4" type="Marker3D" parent="Billboard Alieny"]
+transform = Transform3D(0.276476, 0, -0.961021, 0, 1, 0, 0.961021, 0, 0.276476, 184.75, 1.4413, -123.928)
+
+[node name="Alieny_ufo" parent="Billboard Alieny" instance=ExtResource("20_3yqtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 197.074, 39.0393, -134.501)
+
 [node name="Billboard Civilians" type="Node3D" parent="."]
+
+[node name="BCivilian Army" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.489, 1.0234, -57.8785)
+
+[node name="BCivilian Army2" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.774, 1.2234, -70.7576)
 
 [node name="BCivilian AmmonautSec" parent="Billboard Civilians" instance=ExtResource("25_p5opb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.4769, 6.19112, -115.461)
@@ -1290,7 +1317,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9084, 1.2084, 151.195)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4013, 1.2084, 154.205)
 
 [node name="BCivilian Punk3" parent="Billboard Civilians" instance=ExtResource("31_e2b6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0658, 1.2084, 149.467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.8382, 1.2084, 148.176)
+
+[node name="BCivilian Army3" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.706, 1.2234, -55.624)
+
+[node name="BCivilian Army4" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.248, 1.0234, -67.2456)
+
+[node name="BCivilian Army5" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.09, 1.0234, -61.5484)
+
+[node name="BCivilian RiotPolice5" parent="Billboard Civilians" instance=ExtResource("35_ye4fr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2229, 1.2084, 158.402)
+
+[node name="BCivilian Punk4" parent="Billboard Civilians" instance=ExtResource("36_u2wb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.6511, 1.2084, 147.212)
+
+[node name="BCivilian Punk5" parent="Billboard Civilians" instance=ExtResource("36_u2wb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1147, 1.2084, 161.423)
+
+[node name="BCivilian Cop" parent="Billboard Civilians" instance=ExtResource("37_t0cqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3323, 1.03552, 182.995)
+
+[node name="BCivilian Cop2" parent="Billboard Civilians" instance=ExtResource("37_t0cqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0456, 1.0084, 182.083)
+
+[node name="BCivilian Cop3" parent="Billboard Civilians" instance=ExtResource("37_t0cqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3083, 1.0084, 184.052)
+
+[node name="BCivilian Cop4" parent="Billboard Civilians" instance=ExtResource("37_t0cqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4396, 1.2084, 182.934)
+
+[node name="BCivilian Army6" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.575, 1.0234, 170.255)
+
+[node name="BCivilian Army7" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 232.14, 1.2234, 172.064)
+
+[node name="BCivilian Army8" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 229.579, 1.0234, 173.411)
+
+[node name="BCivilian Army9" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.925, 1.0234, 172.532)
+
+[node name="BCivilian Army10" parent="Billboard Civilians" instance=ExtResource("27_evy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 229.842, 1.0234, 170.901)
+
+[node name="BCivilian Army11-talk" parent="Billboard Civilians" instance=ExtResource("38_ye4fr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 229.161, 1.0234, 168.322)
+
+[node name="BCivilian Army11" parent="Billboard Civilians" instance=ExtResource("39_u2wb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8308, 1.2234, -123.934)
+
+[node name="BCivilian Army12" parent="Billboard Civilians" instance=ExtResource("40_t0cqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4771, 1.02341, -147.283)
+
+[node name="BCivilian Cop5" parent="Billboard Civilians" instance=ExtResource("37_t0cqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.3645, 1.00841, -146.712)
 
 [node name="Street Furniture" type="Node3D" parent="."]
 
@@ -1301,7 +1385,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -132.004)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -132.17)
 
 [node name="Lantern3" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -133.2)
+transform = Transform3D(1, 0, 0, 0, 0.999572, -0.0292475, 0, 0.0292475, 0.999572, 146.976, 1.21337, -130.284)
 
 [node name="Lantern4" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -139.079)
@@ -1310,7 +1394,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.051, 1.21337, -139.079)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.628, 1.21337, -139.246)
 
 [node name="Lantern6" parent="Street Furniture" instance=ExtResource("34_cwq0a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -140.275)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.976, 1.21337, -139.572)
 
 [node name="Boundaries" type="Node3D" parent="."]
 
@@ -1495,14 +1579,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.2336, 6.44571, -66.8296)
 
 [node name="player weapons" type="Node3D" parent="."]
 
-[node name="test_gun" parent="player weapons" instance=ExtResource("32_xrp3y")]
-transform = Transform3D(1, 0, 0, 0, 0.999425, 0.0339052, 0, -0.0339052, 0.999425, -45.8224, 4.02201, -124.628)
-
 [node name="DemoBullets" parent="player weapons" instance=ExtResource("15_p83lv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6438, 2.00287, -124.477)
 
 [node name="DemoBullets2" parent="player weapons" instance=ExtResource("15_p83lv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7775, 2.00287, -124.657)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2694, -8.50967, -112.399)
 
 [node name="DemoBullets3" parent="player weapons" instance=ExtResource("15_p83lv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.848, 1.125, -122.434)
@@ -1514,7 +1595,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3815, 1.125, -124.762)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5293, 2.00287, -125.819)
 
 [node name="DemoBullets6" parent="player weapons" instance=ExtResource("15_p83lv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4055, 2.00287, -124.033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.2643, 0.911394, -119.383)
 
 [node name="DemoBullets7" parent="player weapons" instance=ExtResource("15_p83lv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.8682, 2.05603, -125.251)
@@ -1593,3 +1674,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3538, 21.115, -27.637)
 
 [node name="advertising hoarding2" parent="." instance=ExtResource("33_isb8y")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27.3301, 21.115, -35.7826)
+
+[node name="marker1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.639, 3.44197, -135.265)

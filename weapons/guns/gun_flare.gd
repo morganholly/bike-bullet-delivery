@@ -63,7 +63,8 @@ func _process(delta: float) -> void:
 	
 func stash_extra_mags(ammo_pool: Node) -> void:
 	ammo_pool_ref = ammo_pool  # Store reference to ammo pool
-	ammo_pool.full_mags[gun_stats.bullet_id] += extra_mags
+	ammo_pool.full_mags[0] += extra_mags
+	#ammo_pool.full_mags[gun_stats.bullet_id] += extra_mags
 	extra_mags = 0
 
 # Helper function to calculate reserve ammo

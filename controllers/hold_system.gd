@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var camera: Node3D = $"../../Camera"
 @onready var character_body_3d: CharacterBody3D = $"../.."
+@onready var audio_new_weapon = $"../../Newweapon"
 
 @export var slotindex = 0 #TIDYUP
 
@@ -19,6 +20,8 @@ var debounce_gun_hold_swap: float = 0.5
 var smoothed_aim_basis: Basis
 var ammo_pool: Node
 var gun_state_slot_inactive: bool = false
+
+var firstgun=true
 
 #var hold_filt_coefs: Array[float] = [0, 0, 0, 0, 0]
 #var hold_filt_dx: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO]
@@ -204,8 +207,18 @@ func active_slot_input(event) -> void:
 								gun_tween_to_hold()
 								
 								current_action_state = ActionState.GUN
+								audio_new_weapon.play()
 								print("set the gun slotindex")
-								UIManager.pistolindex=slotindex
+								if firstgun==true:
+									UIManager.show_prompt_timer("Use number keys to cycle between inventory slots", 3.0)
+									firstgun=false
+									
+								if camera.gun_position_r.get_node("gun_action").gunname == "pistol":
+									UIManager.pistolindex=slotindex
+									UIManager.currentgun="pistol"
+								else:
+									UIManager.flareindex=slotindex
+									UIManager.currentgun="flare"
 								camera.gun_position_r.get_node("gun_action").update_ui_ammo_display(ammo_pool)
 							[_, false, true]: # only melee, maybe hold
 								#print("only melee, maybe hold")
@@ -239,6 +252,7 @@ func active_slot_input(event) -> void:
 						#obj_over.contact_monitor = true
 						holding = obj_over
 		ActionState.HOLDITEM:
+			
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
 				if holding.is_in_group("holdable_could_gun"):
 					debounce_gun_hold_swap = 0.5
@@ -271,6 +285,10 @@ func active_slot_input(event) -> void:
 						holding = null
 					camera.hands_mode = camera.HandsMode.Empty
 		ActionState.GUN:
+			if UIManager.pistolindex==slotindex:
+				UIManager.currentgun="pistol"
+			else:
+				UIManager.currentgun="flare"
 			if event.is_action_pressed("gun_hold_swap") and debounce_gun_hold_swap < 0.1:
 				debounce_gun_hold_swap = 0.5
 				#print("to item hold")

@@ -38,6 +38,7 @@ collision_mask = 103
 angular_damp = 0.1
 
 [node name="gun_action" parent="." instance=ExtResource("1_pg3p4")]
+gunname = "pistol"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gun_action"]
 transform = Transform3D(1.08453e-08, 1.30685e-07, -1, -0.996574, 0.0827038, -2.22045e-16, 0.0827038, 0.996574, 1.31134e-07, 0, -0.027, -0.107)

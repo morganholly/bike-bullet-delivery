@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c86ur1pluawt6"]
+[gd_scene load_steps=14 format=3 uid="uid://c86ur1pluawt6"]
 
 [ext_resource type="Script" uid="uid://da4yh5jaqthlw" path="res://ui/scenes/layers/ui_layer.gd" id="1_gjtyb"]
 [ext_resource type="PackedScene" uid="uid://b28u6gyil6hi3" path="res://ui/scenes/components/mission/ui_missions.tscn" id="5_vu3t1"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bb3hkihvpgtl2" path="res://ui/scenes/components/bottom_bar/ui_bottom_health.tscn" id="9_ss76r"]
 [ext_resource type="PackedScene" uid="uid://faugrq2xktpn" path="res://ui/scenes/components/bottom_bar/ui_bottom_gun.tscn" id="9_ywlly"]
 [ext_resource type="PackedScene" uid="uid://dlvqqr42q4cta" path="res://ui/ui_components/ui_game_over.tscn" id="10_xdm30"]
+[ext_resource type="AudioStream" uid="uid://csqeln2p6hb2e" path="res://audio/menu/newmission.wav" id="11_p531k"]
+[ext_resource type="Texture2D" uid="uid://cfo5nmm1o3dia" path="res://ui/assets/icons/rollerblade.png" id="11_ywlly"]
+[ext_resource type="AudioStream" uid="uid://cgu8v8uevsc7n" path="res://audio/menu/completephase.wav" id="12_ywlly"]
 
 [node name="UILayer" type="CanvasLayer"]
 script = ExtResource("1_gjtyb")
@@ -67,3 +70,25 @@ offset_bottom = 725.0
 [node name="UIPromptLabel" parent="." instance=ExtResource("9_p0bhb")]
 
 [node name="UIGameOver" parent="." instance=ExtResource("10_xdm30")]
+
+[node name="UIRollerbladeIcon" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 19.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="UIRollerbladeIcon"]
+position = Vector2(652, 652)
+texture = ExtResource("11_ywlly")
+
+[node name="Newmission" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_p531k")
+
+[node name="Completephase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ywlly")
+
+[node name="Completemission" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ywlly")

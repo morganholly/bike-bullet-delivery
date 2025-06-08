@@ -41,6 +41,8 @@ var is_game_over_visible: bool = false
 var pistolindex=-1 #TIDYUP
 var pistolreloading=false
 var flareindex=-1 #TIDYUP
+var flarereloading=false
+var currentgun="none"
 
 func _ready():
 	pass
@@ -119,6 +121,13 @@ func show_prompt(text: String = "") -> void:
 func hide_prompt() -> void:
 	is_prompt_visible = false
 	prompt_visibility_changed.emit(is_prompt_visible)
+
+func show_prompt_timer(text: String = "", hangtime: float = 3.0) -> void:
+	show_prompt(text)
+	var timer = get_tree().create_timer(hangtime)
+	timer.timeout.connect(func(): 
+		hide_prompt()
+	)
 
 func set_prompt_text(text: String) -> void:
 	prompt_text = text

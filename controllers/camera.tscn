@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dnkvsmgytc4x2" path="res://graphics/hands/pistol_hand_muzzleflare.png" id="3_1qon4"]
 [ext_resource type="Texture2D" uid="uid://dn0gbami32fq" path="res://graphics/hands/pistol_hand_angle_muzzleflare.png" id="3_7p6mk"]
 [ext_resource type="Texture2D" uid="uid://bv3jyxyq1wmgn" path="res://graphics/hands/fist.png" id="6_bgs54"]
-[ext_resource type="Texture2D" uid="uid://ccfd8vfls1k8w" path="res://graphics/hands/flaregun_side.png" id="6_lwn5h"]
+[ext_resource type="Texture2D" uid="uid://c1qlisqghvjwc" path="res://graphics/hands/flaregun_side.png" id="6_lwn5h"]
 [ext_resource type="Texture2D" uid="uid://f60ubvnpd6lu" path="res://graphics/hands/grabbinghand.png" id="6_xyjsj"]
-[ext_resource type="Texture2D" uid="uid://cuxawigd8xku6" path="res://graphics/hands/flaregun_side_flare.png" id="7_kat4e"]
+[ext_resource type="Texture2D" uid="uid://bx8im0n2lkjah" path="res://graphics/hands/flaregun_side_flare.png" id="7_kat4e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48gdj"]
 render_priority = 127
@@ -188,6 +188,7 @@ visible = false
 
 [node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/aim"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_bgs54")
 cast_shadow = 0
 shaded = true
@@ -237,27 +238,21 @@ texture = ExtResource("3_7p6mk")
 transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 0.173648, -0.0858316, 0.98106, 1.856, -0.709, -1.758)
 visible = false
 
-[node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/flare"]
-visible = false
-material_override = SubResource("StandardMaterial3D_1qon4")
-cast_shadow = 0
-shaded = true
-alpha_cut = 1
-texture_filter = 0
-render_priority = 100
-texture = ExtResource("6_lwn5h")
-region_rect = Rect2(0, 200, 0, 0)
-
 [node name="fire" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/flare"]
-transform = Transform3D(0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 0, 0, 1, -0.007, 0.122, 0)
+transform = Transform3D(0.992546, 0.121869, -5.96046e-08, -0.121869, 0.992546, -2.23517e-08, 0, -1.49012e-08, 1, -0.037963, 0.121524, 0.0054388)
 visible = false
-material_override = SubResource("StandardMaterial3D_xyjsj")
-cast_shadow = 0
 shaded = true
 alpha_cut = 1
 texture_filter = 0
-render_priority = 100
 texture = ExtResource("7_kat4e")
+
+[node name="rest" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/flare"]
+transform = Transform3D(1, 7.45058e-09, -1.04308e-07, -6.51926e-09, 1, -2.23517e-08, 1.04308e-07, -5.21541e-08, 1, -0.0753126, -0.00115734, 0.0132294)
+visible = false
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("6_lwn5h")
 
 [node name="grab" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
 transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 0.173648, -0.0858316, 0.98106, 1.856, -0.709, -1.758)
@@ -275,6 +270,7 @@ region_rect = Rect2(0, 200, 0, 0)
 
 [node name="empty" type="Node3D" parent="Rotate/Flip/FirstPerson/hands"]
 transform = Transform3D(0.984808, 0.0151344, -0.172987, 0, 0.996195, 0.0871557, 0.173648, -0.0858316, 0.98106, 1.856, -0.709, -1.758)
+visible = false
 
 [node name="hand" type="Sprite3D" parent="Rotate/Flip/FirstPerson/hands/empty"]
 transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, -0.24, 0)

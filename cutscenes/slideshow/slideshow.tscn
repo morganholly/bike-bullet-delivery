@@ -7,8 +7,8 @@
 [ext_resource type="Resource" uid="uid://cneebfxdnn6qu" path="res://cutscenes/slideshow/intro_slides/intro_slide3.tres" id="4_5k4vd"]
 [ext_resource type="Script" uid="uid://nnx0ljva0suw" path="res://ui/ui_manager.gd" id="6_3ws0i"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_xksoj"]
-[ext_resource type="AudioStream" uid="uid://crslg74ges1pl" path="res://audio/menu/Shoot21.wav" id="7_3ws0i"]
-[ext_resource type="AudioStream" uid="uid://dxy5hiji5ak8b" path="res://audio/menu/Hit24.wav" id="7_kxhc8"]
+[ext_resource type="AudioStream" uid="uid://crslg74ges1pl" path="res://audio/menu/textbeep.wav" id="7_3ws0i"]
+[ext_resource type="AudioStream" uid="uid://dxy5hiji5ak8b" path="res://audio/menu/menuclick.wav" id="7_kxhc8"]
 
 [sub_resource type="Animation" id="Animation_yd5k5"]
 length = 0.001

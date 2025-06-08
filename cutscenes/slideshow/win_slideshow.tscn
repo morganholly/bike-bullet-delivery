@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cqjwi6dlovtlr"]
+[gd_scene load_steps=30 format=3 uid="uid://cqjwi6dlovtlr"]
 
 [ext_resource type="Script" uid="uid://b1o6u47ijor3t" path="res://cutscenes/slideshow/slideshow.gd" id="1_p7ctf"]
 [ext_resource type="Script" uid="uid://bebtd7forbp76" path="res://cutscenes/slideshow/slide_data.gd" id="2_jrrp2"]
@@ -10,8 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://00ksyp8kwh5o" path="res://cutscenes/slideshow/win_slides/story_win5.png" id="8_nxhwv"]
 [ext_resource type="Texture2D" uid="uid://bh7qrackte4kf" path="res://cutscenes/slideshow/win_slides/story_win6.png" id="9_rqvce"]
 [ext_resource type="Texture2D" uid="uid://dvkc6hfr81m1u" path="res://cutscenes/slideshow/win_slides/story_win7.png" id="10_v0omj"]
-[ext_resource type="AudioStream" uid="uid://crslg74ges1pl" path="res://audio/menu/Shoot21.wav" id="11_k4a47"]
-[ext_resource type="AudioStream" uid="uid://dxy5hiji5ak8b" path="res://audio/menu/Hit24.wav" id="12_mgre5"]
+[ext_resource type="AudioStream" uid="uid://crslg74ges1pl" path="res://audio/menu/textbeep.wav" id="11_k4a47"]
+[ext_resource type="Texture2D" uid="uid://c7gpghor073so" path="res://cutscenes/slideshow/win_slides/story_theend.png" id="11_mgre5"]
+[ext_resource type="AudioStream" uid="uid://dxy5hiji5ak8b" path="res://audio/menu/menuclick.wav" id="12_mgre5"]
 
 [sub_resource type="Resource" id="Resource_5aahf"]
 script = ExtResource("6_5aahf")
@@ -30,7 +31,7 @@ metadata/_custom_type_script = "uid://bebtd7forbp76"
 [sub_resource type="Resource" id="Resource_1rq6d"]
 script = ExtResource("6_5aahf")
 character_name = ""
-dialogue_text = "Boomguy destroyed the alien mothership and saved the world."
+dialogue_text = "Boomguy destroyed the alien command ship and saved the world."
 position = Vector2(0, 0)
 scale = Vector2(1, 1)
 metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
@@ -111,6 +112,20 @@ background_texture = ExtResource("10_v0omj")
 text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_kcj2g")])
 metadata/_custom_type_script = "uid://bebtd7forbp76"
 
+[sub_resource type="Resource" id="Resource_mgre5"]
+script = ExtResource("6_5aahf")
+character_name = ""
+dialogue_text = "       "
+position = Vector2(0, 0)
+scale = Vector2(1, 1)
+metadata/_custom_type_script = "uid://b0u5q5sqesvnc"
+
+[sub_resource type="Resource" id="Resource_nxhwv"]
+script = ExtResource("2_jrrp2")
+background_texture = ExtResource("11_mgre5")
+text_entries = Array[ExtResource("6_5aahf")]([SubResource("Resource_mgre5")])
+metadata/_custom_type_script = "uid://bebtd7forbp76"
+
 [node name="Slideshow" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -119,7 +134,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p7ctf")
-slides = Array[ExtResource("2_jrrp2")]([SubResource("Resource_k4a47"), SubResource("Resource_m0csr"), SubResource("Resource_8qlxf"), SubResource("Resource_ua8m2"), SubResource("Resource_47s8g"), SubResource("Resource_b17s8"), SubResource("Resource_jl42w")])
+slides = Array[ExtResource("2_jrrp2")]([SubResource("Resource_k4a47"), SubResource("Resource_m0csr"), SubResource("Resource_8qlxf"), SubResource("Resource_ua8m2"), SubResource("Resource_47s8g"), SubResource("Resource_b17s8"), SubResource("Resource_jl42w"), SubResource("Resource_nxhwv")])
 next_scene_path = "res://menus/start_menu/start_menu.tscn"
 
 [node name="Background" type="TextureRect" parent="."]

@@ -42,8 +42,11 @@ var mission_deliverables = {}  # Track deliverables for each mission
 var deliverable_states = {}  # Track state of deliverables: "spawned", "picked_up", "delivered"
 var waiting_for_rollerblade = false  # Flag to track if we're waiting for the player to press B
 var max_active_missions = 4  # Maximum number of active missions allowed at once
+var tutorial = true
+
 
 func _ready():
+
 	# Connect our own signals to handle UI updates
 	mission_started.connect(_on_mission_started)
 	mission_completed.connect(_on_mission_completed)
@@ -97,7 +100,7 @@ func _on_mission_started(mission_id: String) -> void:
 			request_deliverable_spawn(mission_id)
 
 func _on_mission_completed(mission_id: String) -> void:
-	#print("MISSION: _on_mission_completed")
+	print("MISSION: (mission manager) _on_mission_completed")
 	# Remove the mission from UI when completed
 	# Removing mission from UI: " + mission_id
 	UIManager.remove_mission_from_ui(mission_id)
@@ -112,6 +115,9 @@ func _on_mission_completed(mission_id: String) -> void:
 	# Clean up deliverable state
 	if mission_id in deliverable_states:
 		deliverable_states.erase(mission_id)
+		
+	#the tutorial mission is over
+		tutorial=false
 
 func _on_mission_phase_completed(mission_id: String, phase_index: int) -> void:
 	#print("MISSION: _on_mission_phase_completed")
@@ -158,9 +164,9 @@ func assign_random_names_to_boomguys() -> void:
 func create_rollerblade_delivery_mission(id: String, title: String, target_npc) -> Mission:
 	#print("MISSION: create_rollerblade_delivery_mission")
 	# Get target name (use random name if it's a Boomguy)
-	var target_name = target_npc.name
+	#var target_name = target_npc.name
 	#if target_npc.is_in_group("Boomguy") and target_npc.name in boomguy_names:
-	#		if target_npc.name == "Boomguy":
+	var target_name = "Boomguy"
 	boomguy_names[target_npc.name]= "Nathan Boomguy"
 	target_name = boomguy_names[target_npc.name]
 
@@ -327,7 +333,7 @@ func create_deliverable_instance(mission_id: String, position: Vector3) -> Node:
 
 # Handle deliverable pickup event
 func _on_deliverable_picked_up(mission_id: String) -> void:
-	#print("MISSION: _on_deliverable_picked up")
+	#print("DELIVERABLE PICKED UP")
 	if mission_id in active_missions:
 		deliverable_states[mission_id] = "picked_up"
 		emit_signal("deliverable_picked_up", mission_id)
@@ -343,28 +349,31 @@ func _on_deliverable_picked_up(mission_id: String) -> void:
 			UIManager.update_mission_target(mission_id, mission.target)
 
 func complete_mission(mission_id: String):
-	#print("MISSION: complete_mission")
-	if mission_id in active_missions:
-		var mission = active_missions[mission_id]
-		mission.completed = true
-		completed_missions.append(mission)
-		active_missions.erase(mission_id)
-		# Completing mission: " + mission_id
-		emit_signal("mission_completed", mission_id)
-		return true
-	return false
+	print("MISSION: complete_mission")
+	
+	var mission = active_missions[mission_id]
+	mission.completed = true
+	completed_missions.append(mission)
+	active_missions.erase(mission_id)
+	# Completing mission: " + mission_id
+	emit_signal("mission_completed", mission_id)
+	return true
+	
 
 # Called when player delivers to the target NPC
 func deliver_to_npc(mission_id: String, npc: Node):
 	#print("MISSION: deliver_to_npc")
 	if mission_id in active_missions:
-		var mission = active_missions[mission_id]
-		
+		print("BOOMGUY DELIVERY: in active missions")	
+		var mission = active_missions[mission_id] #this is the culprit right here
+		print("target: ",mission.target, "  targetid: ",mission.target_id, "npc: ",npc)
 		# Check if this is the correct target
 		if mission.target == npc or (mission.target_id != "" and mission.target_id == npc.name):
+			print("BOOMGUY DELIVERY: checked boomguy is correct one")
 			# For tutorial mission, reject delivery if player hasn't completed the rollerblade phase
 			if mission_id == "mission_1" and mission.has_phases and mission.current_phase < 2:
 				# Player tried to deliver before using rollerblades
+				print("BOOMGUY DELIVERY: mission 1 rollerblades")
 				return false
 			
 			# Successful delivery to target: " + npc.name + " for mission: " + mission_id
@@ -372,10 +381,15 @@ func deliver_to_npc(mission_id: String, npc: Node):
 			emit_signal("delivery_made", mission_id, npc)
 			
 			# For phased missions, if we're in the delivery phase, complete the mission
-			if mission.has_phases and mission.current_phase == 2:
+			if mission_id == "mission_1" and mission.has_phases and mission.current_phase == 2:
+				return complete_mission(mission_id)
+			elif mission_id != "mission_1" and mission.has_phases and mission.current_phase == 1:
+				print("BOOMGUY DELIVERY: phases")	
 				return complete_mission(mission_id)
 			elif not mission.has_phases:
+				print("BOOMGUY DELIVERY: no phases")	
 				return complete_mission(mission_id)
+			return true #TIDYUP
 	
 	return false
 
@@ -439,19 +453,7 @@ func debug_test_rollerblade_mission():
 	# Find a target
 	var npcs = get_tree().get_nodes_in_group("NPC")
 	var target = null
-	
-	if npcs.size() > 0:
-		target = npcs[0]
-	else:
-		# Create a dummy target
-		target = Node3D.new()
-		target.name = "TestTarget"
-		get_tree().root.add_child(target)
-		
-		# Position it somewhere reasonable
-		var player = get_tree().get_first_node_in_group("Player")
-		if player:
-			target.global_position = player.global_position + Vector3(10, 0, 10)
+	target = npcs[0]
 	
 	# Create the rollerblade delivery mission
 	var mission_id = "rollerblade_test"

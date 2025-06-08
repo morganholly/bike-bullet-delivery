@@ -6,8 +6,8 @@
 [ext_resource type="Resource" uid="uid://bre5o7a47o7qi" path="res://cutscenes/slideshow/outro_slides/outro_slide2.tres" id="3_4k4vd"]
 [ext_resource type="Texture2D" uid="uid://bbh4fj7nqkrgw" path="res://cutscenes/slideshow/outro_slides/story_outro3.png" id="5_8dex4"]
 [ext_resource type="Script" uid="uid://b0u5q5sqesvnc" path="res://cutscenes/slideshow/text_entry.gd" id="6_ymrrb"]
-[ext_resource type="AudioStream" uid="uid://crslg74ges1pl" path="res://audio/menu/Shoot21.wav" id="7_1rq6d"]
-[ext_resource type="AudioStream" uid="uid://dxy5hiji5ak8b" path="res://audio/menu/Hit24.wav" id="8_m0csr"]
+[ext_resource type="AudioStream" uid="uid://crslg74ges1pl" path="res://audio/menu/textbeep.wav" id="7_1rq6d"]
+[ext_resource type="AudioStream" uid="uid://dxy5hiji5ak8b" path="res://audio/menu/menuclick.wav" id="8_m0csr"]
 
 [sub_resource type="Resource" id="Resource_1rq6d"]
 script = ExtResource("6_ymrrb")

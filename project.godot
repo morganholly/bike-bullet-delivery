@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bullet Buffet"
-run/main_scene="uid://bsdcph0ot0101"
+run/main_scene="uid://b4sjqmxxive3p"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 boot_splash/show_image=false

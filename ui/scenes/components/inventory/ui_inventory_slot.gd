@@ -40,11 +40,13 @@ func _ready() -> void:
 	$ActiveBar/Top/CurrentAmmo.hide()
 	$ActiveBar/Top/Seperator.hide()
 	$ActiveBar/Top/MaxAmmo.hide()
-	$ActiveBar/Bot/SpriteGun.hide()
+	$ActiveBar/Bot/SpritePistol.hide()
+	$ActiveBar/Bot/SpriteFlare.hide()
 	$ActiveBar/Bot/SpriteObject.hide()
 	#$ActiveBar/Bot/Label.hide()
 	$PassiveBar/SpriteAmmo.hide()
-	$PassiveBar/SpriteGun.hide()
+	$PassiveBar/SpritePistol.hide()
+	$PassiveBar/SpriteFlare.hide()
 	$PassiveBar/Label.hide()
 
 func _on_bullets_updated(mag_count, reserve_count):
@@ -52,17 +54,58 @@ func _on_bullets_updated(mag_count, reserve_count):
 	if mag_count==-2:
 		mag_count=old_mag
 	old_mag=mag_count
+	
 	if UIManager.pistolindex == slotnumber:
 		if !isgun:
 			$ActiveBar/Top/SpriteAmmo.show()
 			$ActiveBar/Top/CurrentAmmo.show()
 			$ActiveBar/Top/Seperator.show()
 			$ActiveBar/Top/MaxAmmo.show()
-			$ActiveBar/Bot/SpriteGun.show()
+			$ActiveBar/Bot/SpritePistol.show()
+			$ActiveBar/Bot/SpriteFlare.hide()
 			$ActiveBar/Bot/SpriteObject.hide()
 			#$ActiveBar/Bot/Label.show()
 			$PassiveBar/SpriteAmmo.show()
-			$PassiveBar/SpriteGun.show()
+			$PassiveBar/SpritePistol.show()
+			$PassiveBar/SpriteFlare.hide()
+			$PassiveBar/Label.show()
+			isgun = true
+			
+		$PassiveBar/Label.text=str(mag_count+reserve_count)
+		var magpadding=""
+		if mag_count<10:
+			magpadding = "0"
+
+		var respadding=""
+		if reserve_count<10:
+			respadding = "0"
+		elif reserve_count<100:
+			respadding = "0"	
+
+		
+		if mag_count == -1:
+			$ActiveBar/Top/CurrentAmmo.text=" RELOAD"
+			$ActiveBar/Top/MaxAmmo.text=""
+			$ActiveBar/Top/Seperator.hide()
+		else:
+			$ActiveBar/Top/CurrentAmmo.text= magpadding + str(mag_count)
+			$ActiveBar/Top/MaxAmmo.text = respadding + str(reserve_count)
+			$ActiveBar/Top/Seperator.show()
+		
+		pass
+	elif UIManager.flareindex == slotnumber:
+		if !isgun:
+			$ActiveBar/Top/SpriteAmmo.show()
+			$ActiveBar/Top/CurrentAmmo.show()
+			$ActiveBar/Top/Seperator.show()
+			$ActiveBar/Top/MaxAmmo.show()
+			$ActiveBar/Bot/SpritePistol.hide()
+			$ActiveBar/Bot/SpriteFlare.show()
+			$ActiveBar/Bot/SpriteObject.hide()
+			#$ActiveBar/Bot/Label.show()
+			$PassiveBar/SpriteAmmo.show()
+			$PassiveBar/SpritePistol.hide()
+			$PassiveBar/SpriteFlare.show()
 			$PassiveBar/Label.show()
 			isgun = true
 			
@@ -109,7 +152,7 @@ func set_selected(selected: bool) -> void:
 		$PassiveBar.visible = false
 		slot_number.position.x += number_offset_x
 		slot_number.position.y += number_offset_y
-		if UIManager.pistolindex != slotnumber:
+		if UIManager.pistolindex != slotnumber and UIManager.flareindex != slotnumber:
 			$ActiveBar/Bot/SpriteObject.show()
 			
 	else:

@@ -8,7 +8,6 @@ var push_events: bool = false
 @export var scenes: Array = [
 	preload("res://levels/level/level2.tscn"),
 	preload("res://levels/level/level.tscn"),
-	preload("res://levels/level/level_old.tscn"),
 	preload("res://levels/testing/test01.tscn"),
 	preload("res://levels/testing/test02.tscn"),
 	preload("res://levels/testing/test03.tscn"),
@@ -51,6 +50,6 @@ func _input(event: InputEvent):
 		push_events = false
 		sub_viewport.get_child(0).queue_free()
 		control_2.show()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	if push_events:
 		sub_viewport.push_input(event)

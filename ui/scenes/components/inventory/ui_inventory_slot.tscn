@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bobqsolltvkqa"]
+[gd_scene load_steps=13 format=3 uid="uid://bobqsolltvkqa"]
 
 [ext_resource type="Script" uid="uid://y45x82diayl4" path="res://ui/scenes/components/inventory/ui_inventory_slot.gd" id="1_bw5ix"]
 [ext_resource type="Texture2D" uid="uid://bdtco5bv1nasu" path="res://ui/assets/ui_elements/small slot border@2x.png" id="2_vk32u"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cb6aa4aci2nau" path="res://ui/assets/icons/weapons/pickup objects big icon.png" id="9_5ce65"]
 [ext_resource type="Texture2D" uid="uid://br7caqmq5lvwe" path="res://ui/assets/icons/weapons/gun r51 icon.png" id="9_6l7km"]
 [ext_resource type="Texture2D" uid="uid://c575klg34dl1k" path="res://ui/assets/icons/weapons/gun r51 big icon.png" id="9_h46rr"]
+[ext_resource type="Texture2D" uid="uid://10vr3n0bm7n8" path="res://ui/assets/icons/weapons/gun flare big icon.png" id="9_sjtsm"]
+[ext_resource type="Texture2D" uid="uid://bfnud0ku0j1cv" path="res://ui/assets/icons/weapons/gun flare icon.png" id="12_2igxk"]
 
 [node name="UIInventorySlot" type="Control"]
 custom_minimum_size = Vector2(70, 68)
@@ -108,12 +110,13 @@ offset_top = 21.0
 offset_right = 78.0
 offset_bottom = 61.0
 
-[node name="SpriteGun" type="Sprite2D" parent="ActiveBar/Bot"]
+[node name="SpritePistol" type="Sprite2D" parent="ActiveBar/Bot"]
+visible = false
 position = Vector2(35, 26)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_h46rr")
 
-[node name="Label" type="Label" parent="ActiveBar/Bot/SpriteGun"]
+[node name="Label" type="Label" parent="ActiveBar/Bot/SpritePistol"]
 offset_top = 14.0
 offset_right = 71.0
 offset_bottom = 40.0
@@ -121,7 +124,21 @@ theme = ExtResource("5_cib14")
 theme_override_font_sizes/font_size = 20
 text = "R51"
 
+[node name="SpriteFlare" type="Sprite2D" parent="ActiveBar/Bot"]
+position = Vector2(35, 26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_sjtsm")
+
+[node name="Label" type="Label" parent="ActiveBar/Bot/SpriteFlare"]
+offset_top = 14.0
+offset_right = 71.0
+offset_bottom = 40.0
+theme = ExtResource("5_cib14")
+theme_override_font_sizes/font_size = 20
+text = "FLARE"
+
 [node name="SpriteObject" type="Sprite2D" parent="ActiveBar/Bot"]
+visible = false
 position = Vector2(31, 21)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_5ce65")
@@ -141,10 +158,15 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SpriteGun" type="Sprite2D" parent="PassiveBar"]
+[node name="SpritePistol" type="Sprite2D" parent="PassiveBar"]
 position = Vector2(35, 40)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_6l7km")
+
+[node name="SpriteFlare" type="Sprite2D" parent="PassiveBar"]
+position = Vector2(35, 40)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_2igxk")
 
 [node name="SpriteAmmo" type="Sprite2D" parent="PassiveBar"]
 position = Vector2(35, 55)

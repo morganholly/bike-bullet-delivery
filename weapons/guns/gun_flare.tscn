@@ -9,17 +9,17 @@
 
 [sub_resource type="Resource" id="Resource_2aam4"]
 script = ExtResource("3_v5ijs")
-normal_damage = 10.0
+normal_damage = 15.0
 metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
 
 [sub_resource type="Resource" id="Resource_c46v0"]
 script = ExtResource("2_46uqy")
 hit_type = 0
 bullet_speed = 350.0
-bullet_id = 0
+bullet_id = 6
 shot_damage = SubResource("Resource_2aam4")
 infinite_ammo = false
-mag_capacity = 5
+mag_capacity = 3
 reload_time = 5.0
 partial_refill_time = 10.0
 can_auto_fire = false
@@ -57,6 +57,8 @@ angular_damp = 0.1
 
 [node name="gun_action" parent="." instance=ExtResource("1_ntwxu")]
 gun_stats = SubResource("Resource_c46v0")
+gunname = "flare"
+mag_rand_fill_max = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gun_action"]
 transform = Transform3D(1.08453e-08, 1.30685e-07, -1, -0.996574, 0.0827038, -2.22045e-16, 0.0827038, 0.996574, 1.31134e-07, 0, -0.027, -0.107)
@@ -80,6 +82,6 @@ collision_layer = 256
 collision_mask = 0
 priority = -10
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00616455, 0.204607, -0.0552168)
 shape = SubResource("BoxShape3D_46uqy")

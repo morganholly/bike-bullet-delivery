@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bedyvdrpw7tvs"]
+[gd_scene load_steps=61 format=3 uid="uid://bedyvdrpw7tvs"]
 
 [ext_resource type="Script" uid="uid://bqdahmxg3wsop" path="res://controllers/controller v3.gd" id="1_1ery5"]
 [ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_h07et"]
@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://c2sposbjbhab2" path="res://audio/hurt sounds/player_death.ogg" id="37_a46j6"]
 [ext_resource type="AudioStream" uid="uid://c2kml10aopnb8" path="res://audio/pickup/Pickup35.wav" id="37_h07et"]
 [ext_resource type="AudioStream" uid="uid://c37qct8wd56ef" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-01.wav" id="38_evi1o"]
+[ext_resource type="AudioStream" uid="uid://8t3e5shjliwa" path="res://audio/menu/newweapon.wav" id="38_ta8m6"]
 [ext_resource type="AudioStream" uid="uid://sa061davolmn" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-02.wav" id="39_8f2nu"]
 [ext_resource type="AudioStream" uid="uid://cfhr77e5dppl4" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav" id="40_evq64"]
 [ext_resource type="AudioStream" uid="uid://48p3nk8f0dhy" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-04.wav" id="41_1ji4k"]
@@ -237,6 +238,7 @@ script = ExtResource("6_lp688")
 [node name="player_sprite" type="AnimatedSprite3D" parent="WorldModel2" node_paths=PackedStringArray("designated_parent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.882729, 0)
 top_level = true
+visible = false
 layers = 2
 pixel_size = 0.03
 alpha_cut = 1
@@ -332,6 +334,9 @@ stream = SubResource("AudioStreamRandomizer_kd5ju")
 
 [node name="pickup" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("37_h07et")
+
+[node name="Newweapon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("38_ta8m6")
 
 [node name="die" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_dimnp")

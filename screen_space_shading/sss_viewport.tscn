@@ -26,7 +26,6 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 script = ExtResource("1_68sve")
-pick_scene = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false

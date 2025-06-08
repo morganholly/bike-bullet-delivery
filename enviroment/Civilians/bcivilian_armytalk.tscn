@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://fgrcevr5c0hi"]
+
+[ext_resource type="Script" uid="uid://cjs1bk1xwhuxt" path="res://enviroment/Civilians/bcivilian_talk.gd" id="1_c5qwk"]
+[ext_resource type="Texture2D" uid="uid://dbkrfpifcpq40" path="res://enviroment/Civilians/civilian-armyguy.png" id="1_rot4s"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ayj5j"]
+height = 1.51379
+radius = 0.348633
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_doj4r"]
+size = Vector3(7.56688, 5.49445, 9.19992)
+
+[node name="BCivilian Scientist" type="StaticBody3D"]
+script = ExtResource("1_c5qwk")
+phrase1 = "We got told not to touch the spheres"
+phrase2 = "The sphere hasn't done anything dangerous... yet"
+phrase3 = "I wanna go home"
+phrase4 = "This place gives me the creeps"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816599, 0)
+pixel_size = 0.03
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_rot4s")
+
+[node name="StatusText" type="Label3D" parent="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0858622, 1.12707, -0.0427673)
+billboard = 1
+alpha_cut = 1
+text = "hello
+"
+font_size = 56
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00614929, 0.769632, 0.0015564)
+shape = SubResource("CylinderShape3D_ayj5j")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0111408, 0, 0.0217695)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129366, 3.01294, -0.27836)
+shape = SubResource("BoxShape3D_doj4r")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

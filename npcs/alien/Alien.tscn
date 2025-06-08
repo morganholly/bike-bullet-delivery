@@ -227,7 +227,7 @@ alpha_cut = 1
 alpha_hash_scale = 0.5
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_myj7t")
-animation = &"shoot_front"
+animation = &"damaged"
 script = ExtResource("3_n3nxh")
 designated_parent = NodePath("..")
 

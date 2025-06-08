@@ -1,0 +1,270 @@
+[gd_scene load_steps=35 format=3 uid="uid://c10jc2rb68omn"]
+
+[ext_resource type="Script" uid="uid://b6kttihtsshdo" path="res://npcs/alien/enemy.gd" id="1_51hns"]
+[ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_ql36b"]
+[ext_resource type="Texture2D" uid="uid://dvxbodoahe12" path="res://npcs/alien/alien_char_sheet/alien_green_spritesheet.png" id="3_51hns"]
+[ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="4_ux6hx"]
+[ext_resource type="AudioStream" uid="uid://dppxckeeljxt6" path="res://audio/hurt sounds/enemy_hurt.ogg" id="5_divo1"]
+[ext_resource type="AudioStream" uid="uid://c50ypq262ob7n" path="res://audio/hurt sounds/enemy_death_1.ogg" id="6_x36vq"]
+[ext_resource type="AudioStream" uid="uid://ba61gyctaqmi8" path="res://audio/hurt sounds/enemy_death_2.ogg" id="7_gr3n0"]
+[ext_resource type="AudioStream" uid="uid://cungx1yoyggob" path="res://audio/hurt sounds/enemy_death_3.ogg" id="8_h6g07"]
+[ext_resource type="PackedScene" uid="uid://cce7pakh1pe5y" path="res://weapons/collision_damage.tscn" id="9_wj2dt"]
+[ext_resource type="Script" uid="uid://dsmnh0m8qybhj" path="res://weapons/damage_resources/normal_damage.gd" id="10_wt0n7"]
+[ext_resource type="PackedScene" uid="uid://b1wlucj585wc2" path="res://utils/freeze_away_from_player.tscn" id="11_de08l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
+radius = 0.690391
+height = 2.34891
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql36b"]
+atlas = ExtResource("3_51hns")
+region = Rect2(272, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fyy2"]
+atlas = ExtResource("3_51hns")
+region = Rect2(816, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux6hx"]
+atlas = ExtResource("3_51hns")
+region = Rect2(884, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_divo1"]
+atlas = ExtResource("3_51hns")
+region = Rect2(952, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x36vq"]
+atlas = ExtResource("3_51hns")
+region = Rect2(1020, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr3n0"]
+atlas = ExtResource("3_51hns")
+region = Rect2(136, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6g07"]
+atlas = ExtResource("3_51hns")
+region = Rect2(0, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj2dt"]
+atlas = ExtResource("3_51hns")
+region = Rect2(204, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt0n7"]
+atlas = ExtResource("3_51hns")
+region = Rect2(68, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de08l"]
+atlas = ExtResource("3_51hns")
+region = Rect2(612, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjvfb"]
+atlas = ExtResource("3_51hns")
+region = Rect2(680, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq288"]
+atlas = ExtResource("3_51hns")
+region = Rect2(748, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_847ty"]
+atlas = ExtResource("3_51hns")
+region = Rect2(340, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de5bd"]
+atlas = ExtResource("3_51hns")
+region = Rect2(408, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6odbc"]
+atlas = ExtResource("3_51hns")
+region = Rect2(476, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pi3pc"]
+atlas = ExtResource("3_51hns")
+region = Rect2(544, 0, 68, 87)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wojxy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql36b")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fyy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux6hx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_divo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x36vq")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr3n0")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6g07")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj2dt")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt0n7")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de08l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjvfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq288")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjvfb")
+}],
+"loop": true,
+"name": &"shoot_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_847ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de5bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6odbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pi3pc")
+}],
+"loop": true,
+"name": &"walk_front",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
+custom_solver_bias = 0.041
+radius = 19.526
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tjnlw"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_divo1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qlx0e"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("6_x36vq")
+stream_1/stream = ExtResource("7_gr3n0")
+stream_2/stream = ExtResource("8_h6g07")
+
+[sub_resource type="Resource" id="Resource_tjnlw"]
+script = ExtResource("10_wt0n7")
+normal_damage = 3.0
+metadata/_custom_type_script = "uid://dsmnh0m8qybhj"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wh3l7"]
+radius = 1.0
+height = 3.0
+
+[node name="Enemy" type="RigidBody3D" groups=["Damageable", "enemies_targetable_by_boomguy"]]
+collision_layer = 4
+collision_mask = 711
+can_sleep = false
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_51hns")
+follow_strength = 5
+shoot_range = 20.0
+melee_range = 0.0
+shoot_delay = 0.6
+
+[node name="UniformHealth" parent="." instance=ExtResource("2_ql36b")]
+max_armor = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967723, 1.17078, 0)
+shape = SubResource("CapsuleShape3D_v0wm2")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("designated_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0858622, 1.28948, 0)
+top_level = true
+pixel_size = 0.0313
+alpha_cut = 1
+alpha_hash_scale = 0.5
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_wojxy")
+animation = &"death"
+script = ExtResource("4_ux6hx")
+designated_parent = NodePath("..")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.0463)
+shape = SubResource("SphereShape3D_4rmfa")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]
+transform = Transform3D(-0.999999, 0.000553374, 0.00112828, 1.14177e-10, -0.897828, 0.440346, 0.00125668, 0.440346, 0.897827, 0, 1.97005, 0.0749006)
+visible = false
+spot_range = 6.76936
+spot_angle = 46.8611
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tjnlw")
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qlx0e")
+
+[node name="hurt area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionDamage" parent="hurt area" instance=ExtResource("9_wj2dt")]
+damage = SubResource("Resource_tjnlw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurt area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967723, 1.17078, 0)
+shape = SubResource("CapsuleShape3D_wh3l7")
+
+[node name="FreezeAwayFromPlayer" parent="." instance=ExtResource("11_de08l")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_Area3D_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_Area3D_body_exited"]

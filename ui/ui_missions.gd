@@ -9,6 +9,11 @@ extends Control
 @onready var vbox_container: VBoxContainer = $MarginContainer/VBoxContainer
 @onready var margin_container: MarginContainer = $MarginContainer
 
+#blips
+@onready var audio_new_mission = $"../Newmission"
+@onready var audio_complete_phase = $"../Completephase"
+@onready var audio_complete_mission = $"../Completemission"
+
 # Reference to the mission item scene
 var mission_item_scene = preload("res://ui/ui_mission_item.tscn")
 var mission_items: Array[Control] = []
@@ -31,6 +36,10 @@ func _ready() -> void:
 	UIManager.mission_removed.connect(_on_mission_removed)
 	UIManager.mission_updated.connect(_on_mission_updated)
 	print("UIMissions: Connected to UIManager signals successfully")
+	
+	MissionManager.mission_phase_completed.connect(_on_mission_phase_completed)
+	MissionManager.mission_completed.connect(_on_mission_completed)
+	MissionManager.deliverable_picked_up.connect(_on_deliverable_picked_up)
 	
 	# Initial resize with no missions
 	resize_container()
@@ -74,11 +83,13 @@ func _on_mission_added(mission_id: String, title: String, description: String) -
 	# Add the new mission item
 	var item = add_mission_item_sync(title, description)
 	mission_map[mission_id] = item
+	audio_new_mission.play()
 	
 	# Register this item with the UIManager
 	UIManager.register_mission_ui_item(mission_id, item)
 	
 	print("UIMissions: Mission added to UI: " + mission_id)
+	resize_container()
 
 # Handler for when a mission is removed
 func _on_mission_removed(mission_id: String) -> void:
@@ -109,6 +120,7 @@ func _on_mission_updated(mission_id: String, title: String, description: String)
 			item.get_node("MarginContainer/VBoxContainer/Label").text = description
 	
 	print("UIMissions: Mission updated in UI: " + mission_id)
+	resize_container()
 
 # Non-coroutine version for signal handlers
 func add_mission_item_sync(title: String, description: String) -> Control:
@@ -216,3 +228,22 @@ func resize_container() -> void:
 	
 	# Ensure VBoxContainer stays within the bounds of the parent container
 	vbox_container.size.y = size.y - top_section_height - bottom_margin
+
+func _on_mission_completed(mission_id):
+	audio_complete_mission.play()
+	pass
+
+func _on_mission_phase_completed(mission_id, phase_index):
+	audio_complete_phase.play()
+	pass
+
+func _on_deliverable_picked_up(missionid):
+	#highlight current item in the UI
+	for item in mission_items:
+		item.get_node("BackgroundRegular").show()
+		item.get_node("BackgroundSelect").hide()
+		
+	var item = mission_map[missionid]
+	item.get_node("BackgroundRegular").hide()
+	item.get_node("BackgroundSelect").show()
+	pass

@@ -7,6 +7,8 @@ extends Node
 @onready var red_arrow: MeshInstance3D = $red_arrow
 
 #@export_range(0, 1, 0.05) var mag_fill_percent: float = 0.5
+@export var gunname: String = ""
+
 @export var mag_rand_fill_min: int = 0
 @export var mag_rand_fill_max: int = 10
 var bullets_in_mag: int = 0
@@ -63,7 +65,8 @@ func _process(delta: float) -> void:
 	
 func stash_extra_mags(ammo_pool: Node) -> void:
 	ammo_pool_ref = ammo_pool  # Store reference to ammo pool
-	ammo_pool.full_mags[gun_stats.bullet_id] += extra_mags
+	ammo_pool.full_mags[0] += extra_mags #and the everything goes crazy
+	#ammo_pool.full_mags[gun_stats.bullet_id] += extra_mags
 	extra_mags = 0
 
 # Helper function to calculate reserve ammo

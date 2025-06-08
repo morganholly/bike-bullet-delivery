@@ -161,21 +161,20 @@ func _input(event):
 		#		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		elif event.is_action_pressed("swap_cameras"):
 			if third_person_select:
-				third_person_select = false
-				camera_first_person.current = false and is_active
-				camera_third_person.current = true and is_active
-				nodeSpringarm.spring_length = camera_distance
-				$Rotate/Flip/FirstPerson/hands.hide()
-				#listener_3p.current = false
-				#listener_1p.current = true
+				#third_person_select = false
+				#camera_first_person.current = false and is_active
+				#camera_third_person.current = true and is_active
+				#nodeSpringarm.spring_length = camera_distance
+				#$Rotate/Flip/FirstPerson/hands.hide()
+				pass
 			else:
-				third_person_select = true
-				camera_third_person.current = false and is_active
-				camera_first_person.current = true and is_active
-				nodeSpringarm.spring_length = 0
-				$Rotate/Flip/FirstPerson/hands.show()
-				#listener_3p.current = true
-				#listener_1p.current = false
+				#third_person_select = true
+				#camera_third_person.current = false and is_active
+				#camera_first_person.current = true and is_active
+				#nodeSpringarm.spring_length = 0
+				#$Rotate/Flip/FirstPerson/hands.show()
+				pass
+			pass
 		elif event.is_action_pressed("release_mouse"):
 			set_mode_menu()
 
@@ -222,24 +221,33 @@ func _process(delta):
 			HandsMode.Empty:
 				hands_aim.hide()
 				hands_normal.hide()
+				hands_flare.hide()
 				hands_empty.show()
 				hands_grab.hide()
 			HandsMode.Hold:
 				hands_aim.hide()
 				hands_normal.hide()
+				hands_flare.hide()
 				hands_empty.hide()
 				hands_grab.show()
 			HandsMode.GunNormal:
 				hands_aim.hide()
 				hands_normal.show()
+				hands_flare.hide()
 				hands_empty.hide()
 				hands_grab.hide()
+				if UIManager.currentgun=="flare":
+					hands_normal.hide()
+					hands_flare.show()
 			HandsMode.GunAim:
 				hands_aim.show()
 				hands_normal.hide()
+				hands_flare.hide()
 				hands_empty.hide()
 				hands_grab.hide()
-		
+				if UIManager.currentgun=="flare":
+					hands_aim.hide()
+					hands_flare.show()
 		if process_aim:
 			nodePointer.visible = true
 			if(nodeRaycast.is_colliding()):
@@ -264,13 +272,18 @@ func _process(delta):
 			#nodePointer.visible = false
 
 func gun_sprite_firing(firing: bool):
+	print("SPRITE FIRING")
 	if firing:
 		aim_rest.hide()
 		aim_fire.show()
 		norm_rest.hide()
 		norm_fire.show()
+		flare_rest.hide()
+		flare_fire.show()
 	else:
 		aim_rest.show()
 		aim_fire.hide()
 		norm_rest.show()
 		norm_fire.hide()
+		flare_rest.show()
+		flare_fire.hide()
