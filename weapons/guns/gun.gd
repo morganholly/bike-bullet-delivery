@@ -65,7 +65,12 @@ func _process(delta: float) -> void:
 	
 func stash_extra_mags(ammo_pool: Node) -> void:
 	ammo_pool_ref = ammo_pool  # Store reference to ammo pool
-	ammo_pool.full_mags[0] += extra_mags #and the everything goes crazy
+	# maybe fixed
+	if ammo_pool.full_mags.has_key(gun_stats.bullet_id):
+		ammo_pool.full_mags[gun_stats.bullet_id] += extra_mags
+	else:
+		ammo_pool.full_mags[gun_stats.bullet_id] = extra_mags
+	#ammo_pool.full_mags[0] += extra_mags #and the everything goes crazy
 	#ammo_pool.full_mags[gun_stats.bullet_id] += extra_mags
 	extra_mags = 0
 
