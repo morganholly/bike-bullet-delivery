@@ -4,7 +4,7 @@ extends Node
 # It doesn't modify any existing Boomguy functionality
 
 var delivery_area: Area3D
-var feedback_label: Label3D
+@onready var feedback_label = $"../Sprite3D/StatusText"
 var boomguy: Node3D  # Reference to parent Boomguy node
 var delivered_bullets = []  # Track bullets that have been delivered
 
@@ -22,7 +22,7 @@ func _ready():
 	setup_delivery_area()
 	
 	# Add a label to show mission info
-	setup_feedback_label()
+	feedback_label.hide()
 	
 	print("BoomguyDelivery: Initialized delivery area")
 
@@ -66,26 +66,6 @@ func setup_delivery_area():
 	visual.material_override = material
 	delivery_area.add_child(visual)
 
-func setup_feedback_label():
-	# Create a 3D label above Boomguy - add to scene root for independent control
-	feedback_label = Label3D.new()
-	feedback_label.name = "BoomguyFeedbackLabel"
-	feedback_label.text = ""
-	feedback_label.font_size = 36  # Larger, more visible font
-	feedback_label.modulate = Color.WHITE
-	feedback_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	feedback_label.no_depth_test = true  # Ensure it's always visible
-	feedback_label.fixed_size = true  # Consistent size regardless of distance
-	
-	# Add outline for better visibility
-	feedback_label.outline_size = 3
-	feedback_label.outline_modulate = Color.BLACK
-	
-	# Add to scene root so we can control it independently
-	get_tree().root.add_child(feedback_label)
-	
-	# Position will be updated in _process
-	update_feedback_label_position()
 
 # Update delivery area position to match Boomguy
 func update_delivery_area_position():
@@ -101,7 +81,6 @@ func update_feedback_label_position():
 # Process function to update position every frame
 func _process(_delta):
 	update_delivery_area_position()
-	update_feedback_label_position()
 	
 	# Handle bullet cleanup
 	handle_delivered_bullets()
@@ -141,8 +120,8 @@ func handle_delivered_bullets():
 func _exit_tree():
 	if delivery_area:
 		delivery_area.queue_free()
-	if feedback_label:
-		feedback_label.queue_free()
+	#if feedback_label:
+		#feedback_label.queue_free()
 
 func _on_delivery_area_body_entered(body):
 	
@@ -159,11 +138,12 @@ func _on_delivery_area_body_entered(body):
 				
 				# Deliver to this NPC and check if it was successful
 				var delivery_successful = body.deliver_to_target(get_parent())
-				
+				print("BOOMGUY DELIVERY: delivery:", delivery_successful)	
 				# Only process the bullet if delivery was successful
-				if delivery_successful:
-					print("delivery received")
+				if delivery_successful == true:
+					print("BOOMGUY DELIVERY: display feedback")	
 					# Show feedback - Make it more noticeable
+					feedback_label.show()
 					feedback_label.text = "Delivery Received!"
 					feedback_label.modulate = Color(0.0, 1.0, 0.2)  # Bright green
 					
@@ -175,6 +155,7 @@ func _on_delivery_area_body_entered(body):
 					timer.timeout.connect(func(): 
 						feedback_label.text = ""
 						feedback_label.scale = Vector3(1, 1, 1)
+						feedback_label.modulate = Color.WHITE
 					)
 					
 					# Mark bullet for delayed removal instead of trying to free it immediately
@@ -184,16 +165,18 @@ func _on_delivery_area_body_entered(body):
 						# Make it invisible to indicate it's been delivered
 						if body.has_node("MeshInstance3D"):
 							body.get_node("MeshInstance3D").visible = false
-				else:
-					# Delivery was rejected
-					feedback_label.text = "You need to use rollerblades first!"
-					feedback_label.modulate = Color.RED
+				#else:
+				#	# Delivery was rejected
+				#	feedback_label.show()
+				#	feedback_label.text = "You need to use rollerblades first!"
+				#	feedback_label.modulate = Color.RED
 					
-					# Create a timer to reset label
-					var timer = get_tree().create_timer(2.0)
-					timer.timeout.connect(func(): 
-						feedback_label.text = ""
-					)
+				#	# Create a timer to reset label
+				#	var timer = get_tree().create_timer(2.0)
+				#	timer.timeout.connect(func(): 
+				#		feedback_label.hide()
+				#		feedback_label.text = ""
+				#	)
 	
 	# If it's a player, show a hint
 	elif body.is_in_group("Player"):

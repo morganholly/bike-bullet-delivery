@@ -53,6 +53,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Top" type="Control" parent="ActiveBar"]
+visible = false
 anchors_preset = 0
 offset_left = 41.0
 offset_top = 49.0
@@ -125,11 +126,13 @@ theme_override_font_sizes/font_size = 20
 text = "R51"
 
 [node name="SpriteFlare" type="Sprite2D" parent="ActiveBar/Bot"]
+visible = false
 position = Vector2(35, 26)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_sjtsm")
 
 [node name="Label" type="Label" parent="ActiveBar/Bot/SpriteFlare"]
+visible = false
 offset_top = 14.0
 offset_right = 71.0
 offset_bottom = 40.0
@@ -159,11 +162,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="SpritePistol" type="Sprite2D" parent="PassiveBar"]
+visible = false
 position = Vector2(35, 40)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_6l7km")
 
 [node name="SpriteFlare" type="Sprite2D" parent="PassiveBar"]
+visible = false
 position = Vector2(35, 40)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_2igxk")

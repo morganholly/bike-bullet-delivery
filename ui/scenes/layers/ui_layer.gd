@@ -45,8 +45,8 @@ func _ready() -> void:
 
 func _setup_inventory_slots() -> void:
 	# Clear any existing slots first
-	for child in inventory_container.get_children():
-		child.queue_free()
+	#for child in inventory_container.get_children():
+	#	child.queue_free()
 	
 	inventory_slots.clear()
 	
@@ -63,21 +63,23 @@ func _setup_inventory_slots() -> void:
 		
 		# Create the visual inventory slots
 		for i in range(num_slots):
+			#var slotname = "UIInventory/HBoxContainer/UIInventorySlot" +str(i+1)
+			#var slot = get_node(slotname)
 			var slot = inventory_slot_scene.instantiate()
 			inventory_container.add_child(slot)
 			inventory_slots.append(slot)
 			
 			# Set the slot number
 			slot.slotnumber = (i+1)
-			if slot.has_node("SlotNumber"):
-				var number = i + 1
-				if number == 10:
-					number = 0  # 0 key represents slot 10
-				slot.get_node("SlotNumber").text = str(number)
+			
+			var number = i + 1
+			if number == 10:
+				number = 0  # 0 key represents slot 10
+			slot.get_node("SlotNumber").text = str(number)
 		
 		# Highlight the currently selected slot
-		if hold_container.selected_slot >= 0 and hold_container.selected_slot < inventory_slots.size():
-			_highlight_slot(hold_container.selected_slot)
+		#if hold_container.selected_slot >= 0 and hold_container.selected_slot < inventory_slots.size():
+		_highlight_slot(hold_container.selected_slot)
 
 func _on_slot_selected(slot_index: int) -> void:
 	_highlight_slot(slot_index)

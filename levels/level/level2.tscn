@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b6kvfu4ii46i8"]
+[gd_scene load_steps=51 format=3 uid="uid://b6kvfu4ii46i8"]
 
 [ext_resource type="Script" uid="uid://c8uh3fu8uck2d" path="res://levels/level/level2.gd" id="1_3yqtc"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="2_ytnn7"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://fgrcevr5c0hi" path="res://enviroment/Civilians/bcivilian_armytalk.tscn" id="38_ye4fr"]
 [ext_resource type="PackedScene" uid="uid://s3wiafv1y0kt" path="res://enviroment/Civilians/bcivilian_employeetalk.tscn" id="39_u2wb4"]
 [ext_resource type="PackedScene" uid="uid://dd6dccvg4ekv0" path="res://enviroment/Civilians/bcivilian_sciencetalk.tscn" id="40_t0cqc"]
+[ext_resource type="PackedScene" uid="uid://cgceybj8ubqvs" path="res://enviroment/Civilians/bcivilian_militiatalk.tscn" id="41_u2wb4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5rmu0"]
 panorama = ExtResource("2_ytnn7")
@@ -152,14 +153,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0824, 2.25131, -97.5815)
 [node name="Boomguy" parent="Boomguys" instance=ExtResource("10_u2wb4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5764, 10.6407, -1.09809)
 
-[node name="Boomguy2" parent="Boomguys" instance=ExtResource("12_w6tjd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.8784, 7.47155, 110.895)
-
 [node name="Boomguy4" parent="Boomguys" instance=ExtResource("12_w6tjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.53, 7.47155, 139.586)
 
-[node name="Boomguy3" parent="Boomguys" instance=ExtResource("12_w6tjd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 226.933, 9.44524, 51.5143)
+[node name="spawnmarkers" type="Node3D" parent="."]
+
+[node name="SpawnBoomguy1" type="Marker3D" parent="spawnmarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224.25, 1.84559, -44.737)
+
+[node name="SpawnBoomguy2" type="Marker3D" parent="spawnmarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.4491, 1.84559, 119.184)
+
+[node name="SpawnBoomguy3" type="Marker3D" parent="spawnmarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.4567, 1.84559, 25.4831)
+
+[node name="SpawnBoomguy4" type="Marker3D" parent="spawnmarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192.759, 1.84559, -114.132)
+
+[node name="SpawnBoomguy5" type="Marker3D" parent="spawnmarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.011, 1.84559, 152.075)
+
+[node name="SpawnBoomguy6" type="Marker3D" parent="spawnmarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 203.403, 1.84559, 43.7245)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("11_t0cqc")]
 scenes = Array[PackedScene]([ExtResource("12_gkhkv"), ExtResource("13_3ypyg"), ExtResource("14_j3qbc")])
@@ -1296,7 +1311,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.8, 1.2084, -26.797)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 204.368, 4.47904, -33.0334)
 
 [node name="BCivilian MilitiaWoman2" parent="Billboard Civilians" instance=ExtResource("29_u0s7a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 202.959, 1.2084, -19.8813)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 209.017, 1.2084, -21.8575)
 
 [node name="BCivilian RiotPolice" parent="Billboard Civilians" instance=ExtResource("30_oa0bn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.544, 1.22808, 66.0833)
@@ -1375,6 +1390,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4771, 1.02341, -147.283)
 
 [node name="BCivilian Cop5" parent="Billboard Civilians" instance=ExtResource("37_t0cqc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.3645, 1.00841, -146.712)
+
+[node name="BCivilian Employee" parent="Billboard Civilians" instance=ExtResource("41_u2wb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.429, 1.2084, -23.7539)
+
+[node name="BCivilian MilitiaMan3" parent="Billboard Civilians" instance=ExtResource("28_2c6g5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.559, 1.2084, -10.9369)
+
+[node name="BCivilian MilitiaMan4" parent="Billboard Civilians" instance=ExtResource("28_2c6g5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 214.894, 1.2084, -22.744)
 
 [node name="Street Furniture" type="Node3D" parent="."]
 

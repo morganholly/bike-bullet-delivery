@@ -1,0 +1,298 @@
+[gd_scene load_steps=41 format=3 uid="uid://dcs8cm7k4bdbc"]
+
+[ext_resource type="Script" uid="uid://b8uwuxg31f8bo" path="res://npcs/boomguy/boomguy.gd" id="1_b7xj2"]
+[ext_resource type="PackedScene" uid="uid://dc0ycck3etk38" path="res://weapons/uniform_health.tscn" id="2_3itub"]
+[ext_resource type="Texture2D" uid="uid://c8xdfxeljipf8" path="res://npcs/alien/alien_char_sheet/alien_spritesheet.png" id="3_eh8nc"]
+[ext_resource type="Texture2D" uid="uid://btqpcwi2ovl81" path="res://npcs/boomguy/spritesheet/boomguy_yellowspritesheet.png" id="4_b7xj2"]
+[ext_resource type="Script" uid="uid://dje7ulousmgr3" path="res://graphics/animated_billboard.gd" id="5_63uwd"]
+[ext_resource type="Script" uid="uid://cg6nf2nd681lf" path="res://npcs/boomguy/boomguy_delivery.gd" id="6_wwgac"]
+[ext_resource type="AudioStream" uid="uid://dafkxuf21l1js" path="res://audio/areniporgen__hk51_corrected_tail.wav" id="7_cgsi8"]
+[ext_resource type="AudioStream" uid="uid://kcf8ulygfwo8" path="res://audio/hurt sounds/player_hurt_1.ogg" id="8_6fugm"]
+[ext_resource type="AudioStream" uid="uid://c8b8pyoiup1xa" path="res://audio/hurt sounds/player_hurt_2.ogg" id="9_q6r0h"]
+[ext_resource type="AudioStream" uid="uid://c2sposbjbhab2" path="res://audio/hurt sounds/player_death.ogg" id="10_k73km"]
+[ext_resource type="AudioStream" uid="uid://c37qct8wd56ef" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-01.wav" id="11_oy73a"]
+[ext_resource type="AudioStream" uid="uid://sa061davolmn" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-02.wav" id="12_wq7gw"]
+[ext_resource type="AudioStream" uid="uid://cfhr77e5dppl4" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-03.wav" id="13_ov1y2"]
+[ext_resource type="AudioStream" uid="uid://48p3nk8f0dhy" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-04.wav" id="14_2kew6"]
+[ext_resource type="AudioStream" uid="uid://b6ebjbyv5wtl5" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-05.wav" id="15_eksyx"]
+[ext_resource type="AudioStream" uid="uid://bfx80c646n31f" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-06.wav" id="16_vy0k0"]
+[ext_resource type="AudioStream" uid="uid://dule6bd6a1me3" path="res://audio/cloth hits/mattruthsound__hit-punch-repeated-cloth-pillow-bedding-07.wav" id="17_5uaw3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
+radius = 0.690391
+height = 2.34891
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tiwd"]
+atlas = ExtResource("3_eh8nc")
+region = Rect2(272, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8llsw"]
+atlas = ExtResource("3_eh8nc")
+region = Rect2(816, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5n2w"]
+atlas = ExtResource("3_eh8nc")
+region = Rect2(884, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv57w"]
+atlas = ExtResource("3_eh8nc")
+region = Rect2(952, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlx0e"]
+atlas = ExtResource("3_eh8nc")
+region = Rect2(1020, 0, 68, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3itub"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(228, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh8nc"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(0, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcr63"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(342, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63uwd"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(114, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwgac"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(684, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgsi8"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(1140, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fugm"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(456, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r0h"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(912, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k73km"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(798, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy73a"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(1254, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq7gw"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(570, 0, 114, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov1y2"]
+atlas = ExtResource("4_b7xj2")
+region = Rect2(1026, 0, 114, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myj7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tiwd")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8llsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5n2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv57w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlx0e")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3itub")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh8nc")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcr63")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63uwd")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwgac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgsi8")
+}],
+"loop": true,
+"name": &"shoot_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fugm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r0h")
+}],
+"loop": true,
+"name": &"shoot_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k73km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy73a")
+}],
+"loop": true,
+"name": &"shoot_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq7gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov1y2")
+}],
+"loop": true,
+"name": &"shoot_right",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4rmfa"]
+radius = 35.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dt2ni"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("8_6fugm")
+stream_1/stream = ExtResource("9_q6r0h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pv4w4"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("10_k73km")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kuybt"]
+random_pitch = 1.1
+streams_count = 7
+stream_0/stream = ExtResource("11_oy73a")
+stream_1/stream = ExtResource("12_wq7gw")
+stream_2/stream = ExtResource("13_ov1y2")
+stream_3/stream = ExtResource("14_2kew6")
+stream_4/stream = ExtResource("15_eksyx")
+stream_5/stream = ExtResource("16_vy0k0")
+stream_6/stream = ExtResource("17_5uaw3")
+
+[node name="Boomguy" type="RigidBody3D" groups=["Boomguy", "Damageable", "NPC"]]
+collision_layer = 4
+collision_mask = 711
+can_sleep = false
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_b7xj2")
+collision_hit = 69
+collision_sight = 68
+
+[node name="UniformHealth" parent="." instance=ExtResource("2_3itub")]
+max_armor = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967723, 1.17078, 0)
+shape = SubResource("CapsuleShape3D_v0wm2")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("designated_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0858622, 0.996132, 0)
+top_level = true
+pixel_size = 0.0313
+alpha_cut = 1
+alpha_hash_scale = 0.5
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_myj7t")
+animation = &"shoot_back"
+script = ExtResource("5_63uwd")
+designated_parent = NodePath("..")
+
+[node name="StatusText" type="Label3D" parent="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0858622, 1.72774, -0.0427673)
+billboard = 1
+alpha_cut = 1
+text = "hello
+"
+font_size = 56
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="shifted" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.9723)
+visible = false
+shape = SubResource("SphereShape3D_4rmfa")
+disabled = true
+
+[node name="centered" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4rmfa")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Area3D"]
+transform = Transform3D(-0.999999, 0.000553374, 0.00112828, 1.14177e-10, -0.897828, 0.440346, 0.00125668, 0.440346, 0.897827, 0, 1.97005, 0.0749006)
+visible = false
+spot_range = 6.76936
+spot_angle = 46.8611
+
+[node name="DeliveryController" type="Node" parent="."]
+script = ExtResource("6_wwgac")
+
+[node name="gun sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_cgsi8")
+bus = &"Gunshots"
+
+[node name="hurt" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dt2ni")
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pv4w4")
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kuybt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_Area3D_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_Area3D_body_exited"]

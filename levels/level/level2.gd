@@ -28,6 +28,10 @@ var passive_intensity_timer: Timer
 
 #alien spawn
 const GreenAlien = preload("res://npcs/alien/AlienGreen.tscn")
+#boomguys
+const GreenPlasmaguy = preload("res://npcs/boomguy/AltBoomguy.tscn")
+const PurplePlasmaguy = preload("res://npcs/boomguy/AltBoomguy2.tscn")
+const RedPlasmaguy = preload("res://npcs/boomguy/AltBoomguy3.tscn")
 # rewards
 const PistolPickup = preload("res://weapons/guns/gun_pistol.tscn")
 
@@ -217,7 +221,26 @@ func _on_request_spawn_deliverable(mission_id: String, position: Vector3) -> voi
 
 # Find NPCs in the scene to use as mission targets
 func _find_mission_targets():
-	# Look specifically for the BoomGuy
+	
+	#make some new boomguys
+	randomize()
+	
+	for i in 2:
+		var rand1=randi_range(1,3)
+		var bg
+		if rand1 == 1:	
+			bg=RedPlasmaguy.instantiate()
+		elif rand1 == 2:
+			bg=PurplePlasmaguy.instantiate()
+		else:
+			bg=GreenPlasmaguy.instantiate()
+		
+		$Boomguys.add_child(bg)
+		rand1=(2*(i+1))+randi_range(0,1)
+		var rname="spawnmarkers/SpawnBoomguy"+str(rand1)
+		bg.transform = get_node(rname).transform
+
+	# Look specifically for the main BoomGuy
 	boomguy = get_node_or_null("Boomguy")
 	
 	# Add boomguy to mission targets if found

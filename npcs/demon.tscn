@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr3tpc842vglw"]
 
-[ext_resource type="Texture2D" path="res://textures/Mockups/Demon.png" id="1_4rmfa"]
-[ext_resource type="Script" path="res://npcs/demon.gd" id="1_vwpks"]
-[ext_resource type="Script" path="res://npcs/Billboard.gd" id="2_vwpks"]
+[ext_resource type="Script" uid="uid://btpm5v06b7mvy" path="res://npcs/demon.gd" id="1_vwpks"]
+[ext_resource type="Script" uid="uid://cxsl201yyt24m" path="res://npcs/Billboard.gd" id="2_vwpks"]
+[ext_resource type="Texture2D" uid="uid://cdxihy6cp18p3" path="res://npcs/demon/demon_spritesheet_v2.png" id="2_xsxaa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0wm2"]
 height = 2.31707
@@ -20,7 +20,7 @@ shape = SubResource("CapsuleShape3D_v0wm2")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13089, 0)
-texture = ExtResource("1_4rmfa")
+texture = ExtResource("2_xsxaa")
 script = ExtResource("2_vwpks")
 
 [node name="Area3D" type="Area3D" parent="."]

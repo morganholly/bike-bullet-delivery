@@ -79,7 +79,7 @@ vec4 dither_internal(vec4 in_c, vec2 in_world_vertex, bool in_cut_alpha) {
 
     // add contrast and shift
     float c_a = c.a;
-    c = (c - 0.5 + shift) * contrast + 0.5;
+	c = (c - 0.5 + shift) * contrast + 0.5;
     c.a = c_a;
     c = clamp(c, 0.0, 1.0);
 

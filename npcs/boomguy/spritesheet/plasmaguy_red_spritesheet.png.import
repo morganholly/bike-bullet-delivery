@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ykuo0bytko"
-path.s3tc="res://.godot/imported/flaregun_ground.png-2200d87cc935ee01225b6d4bb932f5db.s3tc.ctex"
-path.etc2="res://.godot/imported/flaregun_ground.png-2200d87cc935ee01225b6d4bb932f5db.etc2.ctex"
+uid="uid://l3xi3idblecg"
+path.s3tc="res://.godot/imported/plasmaguy_red_spritesheet.png-ec677142c4e1c61f8d7dc5847b29b7b9.s3tc.ctex"
+path.etc2="res://.godot/imported/plasmaguy_red_spritesheet.png-ec677142c4e1c61f8d7dc5847b29b7b9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://graphics/hands/flaregun_ground.png"
-dest_files=["res://.godot/imported/flaregun_ground.png-2200d87cc935ee01225b6d4bb932f5db.s3tc.ctex", "res://.godot/imported/flaregun_ground.png-2200d87cc935ee01225b6d4bb932f5db.etc2.ctex"]
+source_file="res://npcs/boomguy/spritesheet/plasmaguy_red_spritesheet.png"
+dest_files=["res://.godot/imported/plasmaguy_red_spritesheet.png-ec677142c4e1c61f8d7dc5847b29b7b9.s3tc.ctex", "res://.godot/imported/plasmaguy_red_spritesheet.png-ec677142c4e1c61f8d7dc5847b29b7b9.etc2.ctex"]
 
 [params]
 
