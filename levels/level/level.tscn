@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dq8uucqyty7x2"]
+[gd_scene load_steps=41 format=3 uid="uid://dq8uucqyty7x2"]
 
 [ext_resource type="Script" uid="uid://bww0me0vqhwis" path="res://levels/testing/level_test03.gd" id="1_a4beh"]
 [ext_resource type="Texture2D" uid="uid://bratj2ahekm12" path="res://graphics/sbs pano 21 quantize 4k.png" id="1_jb04a"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cvqhmpmp433mm" path="res://utils/thing_spawner.tscn" id="11_n1gn4"]
 [ext_resource type="PackedScene" uid="uid://b2vj1tgxdcsin" path="res://npcs/alien/Alien.tscn" id="12_flftk"]
 [ext_resource type="PackedScene" uid="uid://c05asq1j676ah" path="res://npcs/zombie/zombie.tscn" id="12_gspqf"]
-[ext_resource type="PackedScene" uid="uid://cpl1271apupa6" path="res://weapons/guns/gun_pistol.tscn" id="13_a4beh"]
 [ext_resource type="PackedScene" uid="uid://4sijvv22ya5s" path="res://npcs/demon/demon.tscn" id="13_ayj5j"]
 [ext_resource type="PackedScene" uid="uid://cbbfu2jutj4bf" path="res://weapons/guns/demo_bullets.tscn" id="14_n1gn4"]
 [ext_resource type="PackedScene" uid="uid://bjkhnm0ct5m0r" path="res://enviroment/Trees/btree_small.tscn" id="16_a7pj8"]
@@ -1472,14 +1471,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.2336, 6.44571, -66.8296)
 
 [node name="player weapons" type="Node3D" parent="."]
 
-[node name="test_gun" parent="player weapons" instance=ExtResource("13_a4beh")]
-transform = Transform3D(1, 0, 0, 0, 0.999425, 0.0339052, 0, -0.0339052, 0.999425, -45.8224, 2.4307, -124.628)
-
 [node name="DemoBullets" parent="player weapons" instance=ExtResource("14_n1gn4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6438, 2.00287, -124.477)
 
 [node name="DemoBullets2" parent="player weapons" instance=ExtResource("14_n1gn4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7775, 2.00287, -124.657)
+transform = Transform3D(0.999998, 0.0021293, 0, -0.0021293, 0.999998, 0, 0, 0, 1, -43.7775, 2.00287, -124.657)
 
 [node name="DemoBullets3" parent="player weapons" instance=ExtResource("14_n1gn4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.848, 1.125, -122.434)

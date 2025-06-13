@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bobqsolltvkqa"]
+[gd_scene load_steps=15 format=3 uid="uid://bobqsolltvkqa"]
 
 [ext_resource type="Script" uid="uid://y45x82diayl4" path="res://ui/scenes/components/inventory/ui_inventory_slot.gd" id="1_bw5ix"]
 [ext_resource type="Texture2D" uid="uid://bdtco5bv1nasu" path="res://ui/assets/ui_elements/small slot border@2x.png" id="2_vk32u"]
-[ext_resource type="Texture2D" uid="uid://cbxvkp8mvfe6n" path="res://ui/assets/ui_elements/bg small slot.png" id="3_h46rr"]
+[ext_resource type="Texture2D" uid="uid://dm4dx7fbinruv" path="res://ui/assets/ui_elements/selected slot border@2x.png" id="3_2igxk"]
+[ext_resource type="Texture2D" uid="uid://ru2kje81sl4o" path="res://ui/assets/backgrounds/bg small slot.png" id="3_5ce65"]
 [ext_resource type="Texture2D" uid="uid://bdwyd1q0bmxvm" path="res://ui/assets/ui_elements/small slot bullet icon@2x.png" id="4_invnb"]
+[ext_resource type="Texture2D" uid="uid://ckjktccr77qr0" path="res://ui/assets/backgrounds/bg selected slot.png" id="4_sjtsm"]
 [ext_resource type="Theme" uid="uid://d2jk1b7ideyme" path="res://theme/gametheme.tres" id="5_cib14"]
 [ext_resource type="FontFile" uid="uid://cdrmj0ef85cvi" path="res://fonts/Victor_Mono/static/VictorMono-Bold.ttf" id="6_2eylc"]
 [ext_resource type="Theme" uid="uid://dglq35eqxqdbb" path="res://theme/gametheme_dark.tres" id="7_hqkj4"]
@@ -21,22 +23,19 @@ offset_right = 70.0
 offset_bottom = 110.0
 script = ExtResource("1_bw5ix")
 
-[node name="Frame" type="Sprite2D" parent="."]
-position = Vector2(35, 55)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_vk32u")
+[node name="ActiveBar" type="Control" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(35, 55)
-texture = ExtResource("3_h46rr")
-
-[node name="SlotNumber" type="Label" parent="."]
+[node name="SlotNumber" type="Label" parent="ActiveBar"]
 layout_mode = 0
-offset_left = 42.0
-offset_top = 40.0
-offset_right = 70.0
-offset_bottom = 82.0
+offset_left = 124.0
+offset_top = 56.0
+offset_right = 152.0
+offset_bottom = 98.0
 theme_override_colors/font_color = Color(0.980392, 0.878431, 0.294118, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -46,14 +45,12 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ActiveBar" type="Control" parent="."]
-z_index = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Frame" type="Sprite2D" parent="ActiveBar"]
+position = Vector2(76, 80)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_2igxk")
 
 [node name="Top" type="Control" parent="ActiveBar"]
-visible = false
 anchors_preset = 0
 offset_left = 41.0
 offset_top = 49.0
@@ -112,7 +109,6 @@ offset_right = 78.0
 offset_bottom = 61.0
 
 [node name="SpritePistol" type="Sprite2D" parent="ActiveBar/Bot"]
-visible = false
 position = Vector2(35, 26)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_h46rr")
@@ -155,11 +151,36 @@ theme = ExtResource("5_cib14")
 theme_override_font_sizes/font_size = 35
 text = "PICK UP OBJECTS"
 
+[node name="Background2" type="Sprite2D" parent="ActiveBar"]
+z_index = -1
+position = Vector2(76, 57)
+texture = ExtResource("4_sjtsm")
+
 [node name="PassiveBar" type="Control" parent="."]
 z_index = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Frame" type="Sprite2D" parent="PassiveBar"]
+position = Vector2(35, 55)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_vk32u")
+
+[node name="SlotNumber" type="Label" parent="PassiveBar"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 40.0
+offset_right = 70.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.980392, 0.878431, 0.294118, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_2eylc")
+theme_override_font_sizes/font_size = 30
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpritePistol" type="Sprite2D" parent="PassiveBar"]
 visible = false
@@ -188,3 +209,8 @@ theme = ExtResource("7_hqkj4")
 theme_override_fonts/font = ExtResource("6_2eylc")
 theme_override_font_sizes/font_size = 24
 text = "000"
+
+[node name="Background" type="Sprite2D" parent="PassiveBar"]
+z_index = -1
+position = Vector2(35, 55)
+texture = ExtResource("3_5ce65")

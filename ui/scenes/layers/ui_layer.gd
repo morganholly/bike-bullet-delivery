@@ -70,12 +70,8 @@ func _setup_inventory_slots() -> void:
 			inventory_slots.append(slot)
 			
 			# Set the slot number
-			slot.slotnumber = (i+1)
-			
-			var number = i + 1
-			if number == 10:
-				number = 0  # 0 key represents slot 10
-			slot.get_node("SlotNumber").text = str(number)
+			var i1=i+1
+			slot.set_slotnumber(i1)
 		
 		# Highlight the currently selected slot
 		#if hold_container.selected_slot >= 0 and hold_container.selected_slot < inventory_slots.size():

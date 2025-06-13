@@ -64,7 +64,7 @@ func setup_delivery_area():
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.albedo_color = Color(0.0, 1.0, 0.0, 0.2)  # Green, transparent
 	visual.material_override = material
-	delivery_area.add_child(visual)
+	#delivery_area.add_child(visual)
 
 
 # Update delivery area position to match Boomguy

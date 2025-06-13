@@ -239,6 +239,7 @@ func _on_mission_phase_completed(mission_id, phase_index):
 
 func _on_deliverable_picked_up(missionid):
 	#highlight current item in the UI
+	print("MISSIONID",missionid)
 	for item in mission_items:
 		item.get_node("BackgroundRegular").show()
 		item.get_node("BackgroundSelect").hide()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlem5ii2q155t"]
+[gd_scene load_steps=4 format=3 uid="uid://dlem5ii2q155t"]
 
-[ext_resource type="Texture2D" uid="uid://b2j24svpw612b" path="res://ui/ui_mission_item.png" id="1_rfhfu"]
+[ext_resource type="Texture2D" uid="uid://b2j24svpw612b" path="res://ui/assets/ui_elements/ui_mission_item.png" id="1_rfhfu"]
 [ext_resource type="FontFile" uid="uid://7kp3j8uwkhom" path="res://fonts/Armata/Armata-Regular.ttf" id="2_7qb13"]
+[ext_resource type="Texture2D" uid="uid://do7adoiar2hc7" path="res://ui/assets/ui_elements/ui_mission_itemselected.png" id="2_14yg8"]
 
 [node name="UIMissionItem" type="Control"]
 layout_mode = 3
@@ -13,7 +14,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Background" type="NinePatchRect" parent="."]
+[node name="BackgroundRegular" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +22,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_rfhfu")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="BackgroundSelect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_14yg8")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10

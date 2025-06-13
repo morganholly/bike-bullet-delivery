@@ -142,6 +142,7 @@ data = {
 [node name="Ambient Audio" parent="." instance=ExtResource("6_if3o8")]
 
 [node name="quad" parent="." instance=ExtResource("7_vqscx")]
+visible = false
 
 [node name="CharControllerV3" parent="." instance=ExtResource("8_453xm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.0824, 2.25131, -97.5815)
